@@ -26,26 +26,12 @@ namespace Specflow.Steps.Object
 
         #region Given
 
-        /// <summary>
-        /// Assigns a string value to a property
-        /// Ex:
-        /// Given property property-name equals to "value-to-be-assigned"
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
         [Given(@"property ([^\s]+) equals to ""(.*)""")]
         public void SetRequestProperty(string name, string value)
         {
             ExecuteProtected(() => SetRequestContentProperty(name, value));
         }
 
-        /// <summary>
-        /// Assigns a number to a property
-        /// Ex:
-        /// Given property secondNumber equals to the number 20
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
         [Given(@"property ([^\s]+) equals to the number ([-+]?[\d]*[\.]?[\d]+)")]
         public void SetRequestProperty(string name, decimal value)
         {
@@ -56,15 +42,27 @@ namespace Specflow.Steps.Object
 
         #region Then
 
-        /// <summary>
-        /// Assert an expected numeric property
-        /// Ex:
-        /// Then property result should be the number 100
-        /// </summary>
-        /// <param name="propertyName"></param>
-        /// <param name="expectedPropertyValue"></param>
         [Then(@"property ([^\s]+) should be the number ([-+]?[\d]*[\.]?[\d]+)")]
         public void AssertNumericProperty(string propertyName, decimal expectedPropertyValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponseProperty(propertyName, expectedPropertyValue);
+            });
+        }
+
+        [Then(@"property ([^\s]+) should be null")]
+        [Then(@"property ([^\s]+) should be NULL")]
+        public void AssertNullProperty(string propertyName)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateNullProperty(propertyName);
+            });
+        }
+
+        [Then(@"property ([^\s]+) should be (False|false|True|true)")]
+        public void AssertBooleanProperty(string propertyName, bool expectedPropertyValue)
         {
             ExecuteProtected(() =>
             {
@@ -119,6 +117,30 @@ namespace Specflow.Steps.Object
             Assert.AreEqual(value, convertedValue, $"Property: {name}");
         }
 
+        private void ValidateResponseProperty(string name, bool value)
+        {
+            var jToken = FindProperty(name);
+            Assert.IsTrue(jToken is JValue, $"Property {name} is not a single value");
+            var jValue = jToken as JValue;
+            Assert.IsNotNull(jValue.Value, $"Property {name} is null");
+            Assert.IsTrue(IsBoolean(jValue), $"Property {name} is not a boolean");
+            Assert.IsTrue(bool.TryParse(jValue.Value.ToString(), out bool convertedValue), $"Property {name} is not a valid boolean");
+            Assert.AreEqual(value, convertedValue, $"Property: {name}");
+        }
+
+        private void ValidateNullProperty(string name)
+        {
+            var jToken = FindProperty(name, true);
+            if (jToken == null)
+            {
+                return;
+            }
+
+            Assert.IsTrue(jToken is JValue, $"Property {name} is not a single value");
+            var jValue = jToken as JValue;
+            Assert.IsNull(jValue.Value, $"Property {name} is not null");
+        }
+
         private JToken FindProperty(string name, bool canBeNull = false)
         {
             ValidateResponse();
@@ -134,6 +156,11 @@ namespace Specflow.Steps.Object
         private bool IsNumber(JToken jToken)
         {
             return jToken.Type == JTokenType.Float || jToken.Type == JTokenType.Integer;
+        }
+
+        private bool IsBoolean(JToken jToken)
+        {
+            return jToken.Type == JTokenType.Boolean;
         }
     }
 }
