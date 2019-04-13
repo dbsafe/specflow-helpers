@@ -52,6 +52,23 @@ namespace Specflow.Steps.Object.Tests.ExtensionMethods
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void SetProperty_Given_an_array_of_texts_Property_must_be_in_the_json()
+        {
+            _target.SetProperty("PropA", new string[] { "value-a", "value-b" });
+
+            var actual = _target.ToString();
+
+            var expected = @"{
+  ""PropA"": [
+    ""value-a"",
+    ""value-b""
+  ]
+}";
+
+            Assert.AreEqual(expected, actual);
+        }
+
         private void Print(string message)
         {
             TestContext.WriteLine(message);

@@ -24,11 +24,11 @@ namespace Demo.CalcEng.Domain
         public OperationResponse<decimal> Sum(MultiNumbersOperationRequest request)
         {
             decimal total = 0;
-            foreach(var number in request.Numbers)
+            foreach (var number in request.Numbers)
             {
                 total += number;
             }
-            
+
             return OperationResponse.CreateSucceed(total);
         }
 

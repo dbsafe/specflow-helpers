@@ -39,6 +39,27 @@ namespace Specflow.Steps.Object
             ExecuteProtected(() => SetRequestContentProperty(name, value));
         }
 
+        /// <summary>
+        /// Assigns several properties
+        /// Ex:
+        /// Given properties
+        /// | name    | value       |
+        /// | Address | 10 Main St. |
+        /// | City    | MyTown      |
+        /// </summary>
+        /// <param name="table"></param>
+        [Given(@"properties")]
+        public void SetRequestProperties(Table table)
+        {
+            ExecuteProtected(() => SetRequestContentProperties(table));
+        }
+
+        [Given(@"property ([^\s]+) is an empty array")]
+        public void SetRequestPropertyAsEmptyArray(string name)
+        {
+            ExecuteProtected(() => SetRequestContentPropertyAsEmptyArray(name));
+        }
+
         #endregion
 
         #region Then
@@ -78,21 +99,6 @@ namespace Specflow.Steps.Object
             {
                 ValidateResponseProperty(propertyName, expectedPropertyValue);
             });
-        }
-
-        /// <summary>
-        /// Assigns several properties
-        /// Ex:
-        /// Given properties
-        /// | name    | value       |
-        /// | Address | 10 Main St. |
-        /// | City    | MyTown      |
-        /// </summary>
-        /// <param name="table"></param>
-        [Given(@"properties")]
-        public void SetRequestProperties(Table table)
-        {
-            ExecuteProtected(() => SetRequestContentProperties(table));
         }
 
         #endregion
@@ -138,6 +144,11 @@ namespace Specflow.Steps.Object
             {
                 Request[item.Name] = item.Value;
             }
+        }
+
+        private void SetRequestContentPropertyAsEmptyArray(string name)
+        {
+            Request.SetProperty(name, new string[0]);
         }
 
         private void ValidateResponseProperty(string name, decimal value)

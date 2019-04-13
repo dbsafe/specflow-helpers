@@ -20,6 +20,16 @@ Scenario: Add two numbers - Operation succeeds
 	# Assert that a property is null
 	And property Error should be NULL
 
+
+Scenario: Add several numbers - Passing a list. Passing an empty array
+	# Setting a property as an empty array
+	Given property Numbers is an empty array
+	When I execute the Sum operation
+	Then property OperationResult should be the number 0
+	And property Succeed should be True
+	And property Error should be NULL
+
+
 Scenario: Divide two numbers - Operation fails
 	# Setting several properties using a table
 	Given properties
