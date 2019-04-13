@@ -4,6 +4,7 @@ using Specflow.Steps.Object.ExtensionMethods;
 using System;
 using System.Runtime.CompilerServices;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace Specflow.Steps.Object
 {
@@ -79,6 +80,21 @@ namespace Specflow.Steps.Object
             });
         }
 
+        /// <summary>
+        /// Assigns several properties
+        /// Ex:
+        /// Given properties
+        /// | name    | value       |
+        /// | Address | 10 Main St. |
+        /// | City    | MyTown      |
+        /// </summary>
+        /// <param name="table"></param>
+        [Given(@"properties")]
+        public void SetRequestProperties(Table table)
+        {
+            ExecuteProtected(() => SetRequestContentProperties(table));
+        }
+
         #endregion
 
         protected void ExecuteProtected(Action action, [CallerMemberName]string caller = null)
@@ -113,6 +129,15 @@ namespace Specflow.Steps.Object
         private void SetRequestContentProperty(string name, decimal value)
         {
             Request.SetProperty(name, value);
+        }
+
+        private void SetRequestContentProperties(Table table)
+        {
+            var items = table.CreateSet<ObjectProperty>();
+            foreach (var item in items)
+            {
+                Request[item.Name] = item.Value;
+            }
         }
 
         private void ValidateResponseProperty(string name, decimal value)

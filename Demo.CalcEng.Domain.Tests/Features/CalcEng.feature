@@ -21,8 +21,11 @@ Scenario: Add two numbers - Operation succeeds
 	And property Error should be NULL
 
 Scenario: Divide two numbers - Operation fails
-	Given property FirstNumber equals to "10"
-	And property SecondNumber equals to "0"
+	# Setting several properties using a table
+	Given properties
+	| name         | value |
+	| FirstNumber  | 10    |
+	| SecondNumber | 0     |
 	When I execute the Div operation
 	Then property Succeed should be False
 
