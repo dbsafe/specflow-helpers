@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
+using Specflow.Steps.Object.Collections;
 using Specflow.Steps.Object.ExtensionMethods;
 using System;
 using System.Linq;
@@ -108,7 +109,7 @@ namespace Specflow.Steps.Object
             });
         }
 
-        [Then(@"property ([^\s]+) should be the array ""(.*)""")]
+        [Then(@"property ([^\s]+) should be the single-element array ""(.*)""")]
         public void AssertArrayProperty(string propertyName, string itemsCsv)
         {
             ExecuteProtected(() =>
@@ -117,18 +118,52 @@ namespace Specflow.Steps.Object
             });
         }
 
-        private void ValidateArrayProperty(string propertyName, string itemsCsv)
+        [Then(@"property ([^\s]+) should be the complex-element array")]
+        public void AssertArrayProperty(string propertyName, Table table)
         {
-            var actualToken = FindProperty(propertyName);
-            Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {propertyName}. Actual type is not an array");
+            ExecuteProtected(() =>
+            {
+                ValidateArray(propertyName, table);
+            });
+        }
 
-            var expectedArray = itemsCsv.Split(',').Select(a => a.Trim());
+        private void ValidateArray(string propertyName, Table table)
+        {
+            if (table.Header.Count == 1 && table.Header.First() == string.Empty)
+            {
+                ValidateSingleColumnArray(propertyName, table);
+            }
+            else
+            {
+                ValidateMultiColumnArray(propertyName, table);
+            }
+        }
+
+        private void ValidateSingleColumnArray(string arrayPropertyName, Table table)
+        {
+            var actualToken = FindProperty(arrayPropertyName);
+            Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {arrayPropertyName}. Actual type is not an array");
+
+            var expectedArray = table.Rows.Select(a => a[0]).ToArray();
             var actualArray = actualToken.Children().Select(a => a.ToString()).ToArray();
             var areArrayEqual = expectedArray.SequenceEqual(actualArray);
 
             if (!areArrayEqual)
             {
-                Assert.Fail($"Array property {propertyName}. Actual and expected don't match");
+                Assert.Fail($"Array property {arrayPropertyName}. Actual and expected don't match");
+            }
+        }
+
+        private void ValidateMultiColumnArray(string arrayPropertyName, Table table)
+        {
+            var actualToken = FindProperty(arrayPropertyName);
+            Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {arrayPropertyName}. Actual type is not an array");
+
+            var expectedDataset = DataCollection.Load(table);
+            var actualDataset = DataCollection.Load(actualToken.Children());
+            if (!DataCompare.Compare(expectedDataset, actualDataset, out string message))
+            {
+                Assert.Fail($"Array property {arrayPropertyName}.\n{message}");
             }
         }
 
@@ -230,6 +265,21 @@ namespace Specflow.Steps.Object
             Assert.IsTrue(jToken is JValue, $"Property {name} is not a single value");
             var jValue = jToken as JValue;
             Assert.IsNull(jValue.Value, $"Property {name} is not null");
+        }
+
+        private void ValidateArrayProperty(string propertyName, string itemsCsv)
+        {
+            var actualToken = FindProperty(propertyName);
+            Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {propertyName}. Actual type is not an array");
+
+            var expectedArray = itemsCsv.Split(',').Select(a => a.Trim());
+            var actualArray = actualToken.Children().Select(a => a.ToString()).ToArray();
+            var areArrayEqual = expectedArray.SequenceEqual(actualArray);
+
+            if (!areArrayEqual)
+            {
+                Assert.Fail($"Array property {propertyName}. Actual and expected don't match");
+            }
         }
 
         private JToken FindProperty(string name, bool canBeNull = false)

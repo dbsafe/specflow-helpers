@@ -43,5 +43,12 @@ namespace Demo.CalcEng.Domain.Tests
             var operationResponse = _calcEng.PrimeNumbers();
             SetResponse(JObject.FromObject(operationResponse));
         }
+
+        [When(@"I request domain items")]
+        public void RequestDomainItems()
+        {
+            var operationResponse = _calcEng.GetDomainItems();
+            SetResponse(JObject.FromObject(operationResponse));
+        }
     }
 }

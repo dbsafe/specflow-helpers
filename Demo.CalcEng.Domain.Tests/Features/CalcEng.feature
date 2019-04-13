@@ -52,5 +52,30 @@ Scenario: Divide two numbers - Operation fails
 Scenario: Request Prime Numbers
 	When I request prime numbers
 
-	# Assert an array
-	Then property OperationResult should be the array "2, 3, 5, 7, 11, 13, 17, 19, 23"
+	# Assert an array with single elements
+	Then property OperationResult should be the single-element array "2, 3, 5, 7, 11, 13, 17, 19, 23"
+
+
+Scenario: Request Domain Items
+	When I request domain items
+
+	# Assert an array with complex elements
+	Then property OperationResult should be the complex-element array
+	# key column(s)
+	# data type
+	# expected null value
+	| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+	| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
+	| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+	| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |
+	| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
+
+Scenario: Request Domain Items - Ignore field
+	When I request domain items
+	Then property OperationResult should be the complex-element array
+	# Ignore a field in the array
+	| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+	| item1-pa  | [IGNORE] | 2000-01-01    | 100          | True            |
+	| item2-pa  | [IGNORE] | 2000-01-02    | 200          | False           |
+	| item3-pa  | [IGNORE] | 2000-01-03    | 300          | False           |
+	| item4-pa  | [IGNORE] | 2000-01-04    | 400          | False           |

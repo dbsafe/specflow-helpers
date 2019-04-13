@@ -13,6 +13,15 @@ namespace Demo.CalcEng.Domain
         public decimal[] Numbers { get; set; }
     }
 
+    public class DomainItem
+    {
+        public DateTime Date { get; set; }
+        public string PropA { get; set; }
+        public string PropB { get; set; }
+        public decimal Value { get; set; }
+        public bool IsSmall { get; set; }
+    }
+
     public class CalcEng
     {
         public OperationResponse<decimal> Sum(TwoNumbersOperationRequest request)
@@ -59,6 +68,17 @@ namespace Demo.CalcEng.Domain
         public OperationResponse<decimal[]> PrimeNumbers()
         {
             var data = new decimal[] { 2, 3, 5, 7, 11, 13, 17, 19, 23 };
+            return OperationResponse.CreateSucceed(data);
+        }
+
+        public OperationResponse<DomainItem[]> GetDomainItems()
+        {
+            var item1 = new DomainItem { Date = new DateTime(2000, 1, 1), PropA = "item1-pa", Value = 100m, IsSmall = true };
+            var item2 = new DomainItem { Date = new DateTime(2000, 1, 2), PropA = "item2-pa", PropB = "item2-pb", Value = 200m };
+            var item3 = new DomainItem { Date = new DateTime(2000, 1, 3), PropA = "item3-pa", PropB = "item3-pb", Value = 300m };
+            var item4 = new DomainItem { Date = new DateTime(2000, 1, 4), PropA = "item4-pa", PropB = "item4-pb", Value = 400m };
+
+            var data = new DomainItem[] { item1, item2, item3, item4 };
             return OperationResponse.CreateSucceed(data);
         }
     }

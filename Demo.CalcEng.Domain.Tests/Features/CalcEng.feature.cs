@@ -195,7 +195,104 @@ this.ScenarioInitialize(scenarioInfo);
 #line 53
  testRunner.When("I request prime numbers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 56
- testRunner.Then("property OperationResult should be the array \"2, 3, 5, 7, 11, 13, 17, 19, 23\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("property OperationResult should be the single-element array \"2, 3, 5, 7, 11, 13, " +
+                    "17, 19, 23\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Domain Items")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void RequestDomainItems()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items", null, ((string[])(null)));
+#line 59
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 60
+ testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "PropA:key",
+                        "PropB",
+                        "Date:DateTime",
+                        "Value:Number",
+                        "IsSmall:Boolean"});
+            table2.AddRow(new string[] {
+                        "item1-pa",
+                        "[NULL]",
+                        "2000-01-01",
+                        "100",
+                        "True"});
+            table2.AddRow(new string[] {
+                        "item2-pa",
+                        "item2-pb",
+                        "2000-01-02",
+                        "200",
+                        "False"});
+            table2.AddRow(new string[] {
+                        "item3-pa",
+                        "item3-pb",
+                        "2000-01-03",
+                        "300",
+                        "False"});
+            table2.AddRow(new string[] {
+                        "item4-pa",
+                        "item4-pb",
+                        "2000-01-04",
+                        "400",
+                        "False"});
+#line 63
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table2, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Domain Items - Ignore field")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void RequestDomainItems_IgnoreField()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Ignore field", null, ((string[])(null)));
+#line 73
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 74
+ testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "PropA:key",
+                        "PropB",
+                        "Date:DateTime",
+                        "Value:Number",
+                        "IsSmall:Boolean"});
+            table3.AddRow(new string[] {
+                        "item1-pa",
+                        "[IGNORE]",
+                        "2000-01-01",
+                        "100",
+                        "True"});
+            table3.AddRow(new string[] {
+                        "item2-pa",
+                        "[IGNORE]",
+                        "2000-01-02",
+                        "200",
+                        "False"});
+            table3.AddRow(new string[] {
+                        "item3-pa",
+                        "[IGNORE]",
+                        "2000-01-03",
+                        "300",
+                        "False"});
+            table3.AddRow(new string[] {
+                        "item4-pa",
+                        "[IGNORE]",
+                        "2000-01-04",
+                        "400",
+                        "False"});
+#line 75
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table3, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
