@@ -47,3 +47,10 @@ Scenario: Divide two numbers - Operation fails
 
 	# Assert a text property
 	And property Error should be "Attempted to divide by zero."
+
+
+Scenario: Request Prime Numbers
+	When I request prime numbers
+
+	# Assert an array
+	Then property OperationResult should be the array "2, 3, 5, 7, 11, 13, 17, 19, 23"

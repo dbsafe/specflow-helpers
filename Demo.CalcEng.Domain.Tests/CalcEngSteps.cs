@@ -36,5 +36,12 @@ namespace Demo.CalcEng.Domain.Tests
             var operationResponse = _calcEng.Div(request);
             SetResponse(JObject.FromObject(operationResponse));
         }
+
+        [When(@"I request prime numbers")]
+        public void RequestPrimeNumbers()
+        {
+            var operationResponse = _calcEng.PrimeNumbers();
+            SetResponse(JObject.FromObject(operationResponse));
+        }
     }
 }

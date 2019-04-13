@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Specflow.Steps.Object.ExtensionMethods;
 using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -61,9 +62,9 @@ namespace Specflow.Steps.Object
         }
 
         [Given(@"property ([^\s]+) is the array ""(.*)""")]
-        public void SetRequestPropertyAsArray(string name, string itemsCvs)
+        public void SetRequestPropertyAsArray(string name, string itemsCsv)
         {
-            ExecuteProtected(() => SetRequestContentPropertyAsArray(name, itemsCvs));
+            ExecuteProtected(() => SetRequestContentPropertyAsArray(name, itemsCsv));
         }
 
         #endregion
@@ -105,6 +106,30 @@ namespace Specflow.Steps.Object
             {
                 ValidateResponseProperty(propertyName, expectedPropertyValue);
             });
+        }
+
+        [Then(@"property ([^\s]+) should be the array ""(.*)""")]
+        public void AssertArrayProperty(string propertyName, string itemsCsv)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateArrayProperty(propertyName, itemsCsv);
+            });
+        }
+
+        private void ValidateArrayProperty(string propertyName, string itemsCsv)
+        {
+            var actualToken = FindProperty(propertyName);
+            Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {propertyName}. Actual type is not an array");
+
+            var expectedArray = itemsCsv.Split(',').Select(a => a.Trim());
+            var actualArray = actualToken.Children().Select(a => a.ToString()).ToArray();
+            var areArrayEqual = expectedArray.SequenceEqual(actualArray);
+
+            if (!areArrayEqual)
+            {
+                Assert.Fail($"Array property {propertyName}. Actual and expected don't match");
+            }
         }
 
         #endregion
@@ -159,7 +184,7 @@ namespace Specflow.Steps.Object
 
         private void SetRequestContentPropertyAsArray(string name, string itemsCvs)
         {
-            var items = itemsCvs.Split(',');
+            var items = itemsCvs.Split(',').Select(a => a.Trim()).ToArray();
             Request.SetProperty(name, items);
         }
 

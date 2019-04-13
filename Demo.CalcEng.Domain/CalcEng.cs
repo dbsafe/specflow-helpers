@@ -55,5 +55,11 @@ namespace Demo.CalcEng.Domain
                 return OperationResponse.CreateFailled<decimal>(ex.Message);
             }
         }
+
+        public OperationResponse<decimal[]> PrimeNumbers()
+        {
+            var data = new decimal[] { 2, 3, 5, 7, 11, 13, 17, 19, 23 };
+            return OperationResponse.CreateSucceed(data);
+        }
     }
 }

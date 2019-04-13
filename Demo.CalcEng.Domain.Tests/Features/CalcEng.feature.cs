@@ -182,6 +182,23 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Prime Numbers")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void RequestPrimeNumbers()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Prime Numbers", null, ((string[])(null)));
+#line 52
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 53
+ testRunner.When("I request prime numbers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 56
+ testRunner.Then("property OperationResult should be the array \"2, 3, 5, 7, 11, 13, 17, 19, 23\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
