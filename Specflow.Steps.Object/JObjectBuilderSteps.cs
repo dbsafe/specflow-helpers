@@ -60,6 +60,12 @@ namespace Specflow.Steps.Object
             ExecuteProtected(() => SetRequestContentPropertyAsEmptyArray(name));
         }
 
+        [Given(@"property ([^\s]+) is the array ""(.*)""")]
+        public void SetRequestPropertyAsArray(string name, string itemsCvs)
+        {
+            ExecuteProtected(() => SetRequestContentPropertyAsArray(name, itemsCvs));
+        }
+
         #endregion
 
         #region Then
@@ -149,6 +155,12 @@ namespace Specflow.Steps.Object
         private void SetRequestContentPropertyAsEmptyArray(string name)
         {
             Request.SetProperty(name, new string[0]);
+        }
+
+        private void SetRequestContentPropertyAsArray(string name, string itemsCvs)
+        {
+            var items = itemsCvs.Split(',');
+            Request.SetProperty(name, items);
         }
 
         private void ValidateResponseProperty(string name, decimal value)

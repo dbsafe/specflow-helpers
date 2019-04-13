@@ -21,12 +21,19 @@ Scenario: Add two numbers - Operation succeeds
 	And property Error should be NULL
 
 
-Scenario: Add several numbers - Passing a list. Passing an empty array
+Scenario: Add several numbers - Passing a list - Passing an empty array
 	# Setting a property as an empty array
 	Given property Numbers is an empty array
 	When I Add several numbers
 	Then property Succeed should be False
 	And property Error should be "The list is empty"
+
+
+Scenario: Add several numbers - Passing a list
+	# Setting a property as an array
+	Given property Numbers is the array "1,2,3,4,5"
+	When I Add several numbers
+	Then property OperationResult should be the number 15
 
 
 Scenario: Divide two numbers - Operation fails
