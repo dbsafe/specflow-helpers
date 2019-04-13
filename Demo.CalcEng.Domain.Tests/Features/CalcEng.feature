@@ -56,6 +56,23 @@ Scenario: Request Prime Numbers
 	Then property OperationResult should be the single-element array "2, 3, 5, 7, 11, 13, 17, 19, 23"
 
 
+Scenario: Request Prime Numbers - Using a table
+	When I request prime numbers
+
+	# Assert an array with single elements using a table
+	Then property OperationResult should be the single-element array
+	| values |
+	| 2      |
+	| 3      |
+	| 5      |
+	| 7      |
+	| 11     |
+	| 13     |
+	| 17     |
+	| 19     |
+	| 23     |
+
+
 Scenario: Request Domain Items
 	When I request domain items
 

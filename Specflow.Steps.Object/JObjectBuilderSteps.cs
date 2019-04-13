@@ -118,25 +118,22 @@ namespace Specflow.Steps.Object
             });
         }
 
-        [Then(@"property ([^\s]+) should be the complex-element array")]
+        [Then(@"property ([^\s]+) should be the single-element array")]
         public void AssertArrayProperty(string propertyName, Table table)
         {
             ExecuteProtected(() =>
             {
-                ValidateArray(propertyName, table);
+                ValidateSingleColumnArray(propertyName, table);
             });
         }
 
-        private void ValidateArray(string propertyName, Table table)
+        [Then(@"property ([^\s]+) should be the complex-element array")]
+        public void AssertComplexArrayProperty(string propertyName, Table table)
         {
-            if (table.Header.Count == 1 && table.Header.First() == string.Empty)
-            {
-                ValidateSingleColumnArray(propertyName, table);
-            }
-            else
+            ExecuteProtected(() =>
             {
                 ValidateMultiColumnArray(propertyName, table);
-            }
+            });
         }
 
         private void ValidateSingleColumnArray(string arrayPropertyName, Table table)
