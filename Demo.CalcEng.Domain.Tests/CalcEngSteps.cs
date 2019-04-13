@@ -13,10 +13,18 @@ namespace Demo.CalcEng.Domain.Tests
 
         public CalcEngSteps(TestContext testContext) : base(testContext) { }
 
-        [When(@"I execute the Sum operation")]
-        public void ExecuteSum()
+        [When(@"I Add two numbers")]
+        public void ExecuteAddTwoNumbers()
         {
             var request = Request.ToObject<TwoNumbersOperationRequest>();
+            var operationResponse = _calcEng.Sum(request);
+            SetResponse(JObject.FromObject(operationResponse));
+        }
+
+        [When(@"I Add several numbers")]
+        public void ExecuteAddSeveralNumbers()
+        {
+            var request = Request.ToObject<MultiNumbersOperationRequest>();
             var operationResponse = _calcEng.Sum(request);
             SetResponse(JObject.FromObject(operationResponse));
         }

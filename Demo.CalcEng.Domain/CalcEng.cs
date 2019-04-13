@@ -23,6 +23,11 @@ namespace Demo.CalcEng.Domain
 
         public OperationResponse<decimal> Sum(MultiNumbersOperationRequest request)
         {
+            if (request.Numbers.Length == 0)
+            {
+                return OperationResponse.CreateFailled<decimal>("The list is empty");
+            }
+
             decimal total = 0;
             foreach (var number in request.Numbers)
             {

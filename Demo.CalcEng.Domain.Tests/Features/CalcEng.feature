@@ -9,7 +9,7 @@ Scenario: Add two numbers - Operation succeeds
 	And property SecondNumber equals to the number 20
 	
 	# Executing an operation
-	When I execute the Sum operation
+	When I Add two numbers
 	
 	# Assert a numeric property
 	Then property OperationResult should be the number 30
@@ -24,10 +24,9 @@ Scenario: Add two numbers - Operation succeeds
 Scenario: Add several numbers - Passing a list. Passing an empty array
 	# Setting a property as an empty array
 	Given property Numbers is an empty array
-	When I execute the Sum operation
-	Then property OperationResult should be the number 0
-	And property Succeed should be True
-	And property Error should be NULL
+	When I Add several numbers
+	Then property Succeed should be False
+	And property Error should be "The list is empty"
 
 
 Scenario: Divide two numbers - Operation fails
