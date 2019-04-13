@@ -20,5 +20,13 @@ namespace Demo.CalcEng.Domain.Tests
             var operationResponse = _calcEng.Sum(request);
             SetResponse(JObject.FromObject(operationResponse));
         }
+
+        [When(@"I execute the Div operation")]
+        public void ExecuteDiv()
+        {
+            var request = Request.ToObject<TwoNumbersOperationRequest>();
+            var operationResponse = _calcEng.Div(request);
+            SetResponse(JObject.FromObject(operationResponse));
+        }
     }
 }

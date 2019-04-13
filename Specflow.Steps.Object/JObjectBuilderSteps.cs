@@ -70,6 +70,15 @@ namespace Specflow.Steps.Object
             });
         }
 
+        [Then(@"property ([^\s]+) should be ""(.*)""")]
+        public void AssertTextProperty(string propertyName, string expectedPropertyValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponseProperty(propertyName, expectedPropertyValue);
+            });
+        }
+
         #endregion
 
         protected void ExecuteProtected(Action action, [CallerMemberName]string caller = null)
@@ -126,6 +135,15 @@ namespace Specflow.Steps.Object
             Assert.IsTrue(IsBoolean(jValue), $"Property {name} is not a boolean");
             Assert.IsTrue(bool.TryParse(jValue.Value.ToString(), out bool convertedValue), $"Property {name} is not a valid boolean");
             Assert.AreEqual(value, convertedValue, $"Property: {name}");
+        }
+
+        private void ValidateResponseProperty(string name, string value)
+        {
+            var jToken = FindProperty(name);
+            Assert.IsTrue(jToken is JValue, $"Property {name} is not a single value");
+            var jValue = jToken as JValue;
+            Assert.IsNotNull(jValue.Value, $"Property {name} is null");
+            Assert.AreEqual(value, jValue.Value.ToString(), $"Property: {name}");
         }
 
         private void ValidateNullProperty(string name)

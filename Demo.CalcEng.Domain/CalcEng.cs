@@ -1,4 +1,6 @@
-﻿namespace Demo.CalcEng.Domain
+﻿using System;
+
+namespace Demo.CalcEng.Domain
 {
     public class TwoNumbersOperationRequest
     {
@@ -18,6 +20,19 @@
         {
             var data = request.FirstNumber - request.SecondNumber;
             return OperationResponse.CreateSucceed(data);
+        }
+
+        public OperationResponse<decimal> Div(TwoNumbersOperationRequest request)
+        {
+            try
+            {
+                var data = request.FirstNumber / request.SecondNumber;
+                return OperationResponse.CreateSucceed(data);
+            }
+            catch (Exception ex)
+            {
+                return OperationResponse.CreateFailled<decimal>(ex.Message);
+            }
         }
     }
 }
