@@ -81,6 +81,17 @@ namespace Specflow.Steps.Object
             });
         }
 
+        // [Then(@"property ([^\s]+) should be the datetime (^\d{4}(-\d\d(-\d\d(T\d\d:\d\d(:\d\d)?(\.\d+)?(([+-]\d\d:\d\d)|Z)?)?)?)?$)")]
+        // [Then(@"property ([^\s]+) should be the datetime (^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$)")]
+        [Then(@"property ([^\s]+) should be the datetime (.*)")]
+        public void AssertDateTimeProperty(string propertyName, DateTime expectedPropertyValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponseProperty(propertyName, expectedPropertyValue);
+            });
+        }
+
         [Then(@"property ([^\s]+) should be null")]
         [Then(@"property ([^\s]+) should be NULL")]
         public void AssertNullProperty(string propertyName)
@@ -231,6 +242,17 @@ namespace Specflow.Steps.Object
             Assert.AreEqual(value, convertedValue, $"Property: {name}");
         }
 
+        private void ValidateResponseProperty(string name, DateTime value)
+        {
+            var jToken = FindProperty(name);
+            Assert.IsTrue(jToken is JValue, $"Property {name} is not a single value");
+            var jValue = jToken as JValue;
+            Assert.IsNotNull(jValue.Value, $"Property {name} is null");
+            Assert.IsTrue(IsDateTime(jValue), $"Property {name} is not a datetime");
+            Assert.IsTrue(DateTime.TryParse(jValue.Value.ToString(), out DateTime convertedValue), $"Property {name} is not a valid number");
+            Assert.AreEqual(value, convertedValue, $"Property: {name}");
+        }
+
         private void ValidateResponseProperty(string name, bool value)
         {
             var jToken = FindProperty(name);
@@ -289,6 +311,11 @@ namespace Specflow.Steps.Object
             }
 
             return jToken;
+        }
+
+        private bool IsDateTime(JToken jToken)
+        {
+            return jToken.Type == JTokenType.Date;
         }
 
         private bool IsNumber(JToken jToken)

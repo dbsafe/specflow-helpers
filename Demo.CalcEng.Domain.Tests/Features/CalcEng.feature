@@ -96,3 +96,9 @@ Scenario: Request Domain Items - Ignore field
 	| item2-pa  | [IGNORE] | 2000-01-02    | 200          | False           |
 	| item3-pa  | [IGNORE] | 2000-01-03    | 300          | False           |
 	| item4-pa  | [IGNORE] | 2000-01-04    | 400          | False           |
+
+Scenario: Request Domain Items - DtateTime property
+	When I request domain items
+	# assert a property using its path
+	# assert a datetime property
+	Then property OperationResult[1].Date should be the datetime 2000-01-02
