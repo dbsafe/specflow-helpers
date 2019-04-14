@@ -3,7 +3,7 @@
 
 Scenario: Add two numbers - Operation succeeds
 	# Setting a property as text
-	Given property FirstNumber equals to "10" 
+	Given property FirstNumber equals to '10'
 	
 	# Setting a property as number
 	And property SecondNumber equals to the number 20
@@ -26,12 +26,12 @@ Scenario: Add several numbers - Passing a list - Passing an empty array
 	Given property Numbers is an empty array
 	When I Add several numbers
 	Then property Succeed should be False
-	And property Error should be "The list is empty"
+	And property Error should be 'The list is empty'
 
 
 Scenario: Add several numbers - Passing a list
 	# Setting a property as an array
-	Given property Numbers is the array "1,2,3,4,5"
+	Given property Numbers is the array '1,2,3,4,5'
 	When I Add several numbers
 	Then property OperationResult should be the number 15
 
@@ -46,14 +46,14 @@ Scenario: Divide two numbers - Operation fails
 	Then property Succeed should be False
 
 	# Assert a text property
-	And property Error should be "Attempted to divide by zero."
+	And property Error should be 'Attempted to divide by zero.'
 
 
 Scenario: Request Prime Numbers
 	When I request prime numbers
 
 	# Assert an array with single elements
-	Then property OperationResult should be the single-element array "2, 3, 5, 7, 11, 13, 17, 19, 23"
+	Then property OperationResult should be the single-element array '2, 3, 5, 7, 11, 13, 17, 19, 23'
 
 
 Scenario: Request Prime Numbers - Using a table
@@ -101,4 +101,7 @@ Scenario: Request Domain Items - DtateTime property
 	When I request domain items
 	# assert a property using its path
 	# assert a datetime property
-	Then property OperationResult[1].Date should be the datetime 2000-01-02
+	Then property OperationResult[1].Date should be the datetime '2000-01-02'
+	# assert a datetime property including the time
+	Then property OperationResult[1].Date should be the datetime '2000-01-02 00:00:00'
+

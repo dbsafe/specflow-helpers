@@ -29,7 +29,7 @@ namespace Specflow.Steps.Object
 
         #region Given
 
-        [Given(@"property ([^\s]+) equals to ""(.*)""")]
+        [Given(@"property ([^\s]+) equals to '(.*)'")]
         public void SetRequestProperty(string name, string value)
         {
             ExecuteProtected(() => SetRequestContentProperty(name, value));
@@ -62,7 +62,7 @@ namespace Specflow.Steps.Object
             ExecuteProtected(() => SetRequestContentPropertyAsEmptyArray(name));
         }
 
-        [Given(@"property ([^\s]+) is the array ""(.*)""")]
+        [Given(@"property ([^\s]+) is the array '(.*)'")]
         public void SetRequestPropertyAsArray(string name, string itemsCsv)
         {
             ExecuteProtected(() => SetRequestContentPropertyAsArray(name, itemsCsv));
@@ -81,9 +81,7 @@ namespace Specflow.Steps.Object
             });
         }
 
-        // [Then(@"property ([^\s]+) should be the datetime (^\d{4}(-\d\d(-\d\d(T\d\d:\d\d(:\d\d)?(\.\d+)?(([+-]\d\d:\d\d)|Z)?)?)?)?$)")]
-        // [Then(@"property ([^\s]+) should be the datetime (^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$)")]
-        [Then(@"property ([^\s]+) should be the datetime (.*)")]
+        [Then(@"property ([^\s]+) should be the datetime '(.*)'")]
         public void AssertDateTimeProperty(string propertyName, DateTime expectedPropertyValue)
         {
             ExecuteProtected(() =>
@@ -111,7 +109,7 @@ namespace Specflow.Steps.Object
             });
         }
 
-        [Then(@"property ([^\s]+) should be ""(.*)""")]
+        [Then(@"property ([^\s]+) should be '(.*)'")]
         public void AssertTextProperty(string propertyName, string expectedPropertyValue)
         {
             ExecuteProtected(() =>
@@ -120,7 +118,7 @@ namespace Specflow.Steps.Object
             });
         }
 
-        [Then(@"property ([^\s]+) should be the single-element array ""(.*)""")]
+        [Then(@"property ([^\s]+) should be the single-element array '(.*)'")]
         public void AssertArrayProperty(string propertyName, string itemsCsv)
         {
             ExecuteProtected(() =>
