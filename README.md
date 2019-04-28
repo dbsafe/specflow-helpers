@@ -56,7 +56,7 @@ public class CalcEngSteps : JObjectBuilderSteps
     {
         var request = Request.ToObject<TwoNumbersOperationRequest>();
         var operationResponse = _calcEng.Sum(request);
-        SetResponse(JObject.FromObject(operationResponse));
+        SetResponse(operationResponse);
     }
 
     // ...
