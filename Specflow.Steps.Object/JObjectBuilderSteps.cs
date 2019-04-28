@@ -22,9 +22,9 @@ namespace Specflow.Steps.Object
             TestContext = testContext;
         }
 
-        public void SetResponse(JObject response)
+        public void SetResponse(object response)
         {
-            Response = response;
+            Response = JObject.FromObject(response);
         }
 
         #region Given

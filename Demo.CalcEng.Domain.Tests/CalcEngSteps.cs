@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json.Linq;
 using Specflow.Steps.Object;
 using TechTalk.SpecFlow;
 
@@ -18,7 +17,7 @@ namespace Demo.CalcEng.Domain.Tests
         {
             var request = Request.ToObject<TwoNumbersOperationRequest>();
             var operationResponse = _calcEng.Sum(request);
-            SetResponse(JObject.FromObject(operationResponse));
+            SetResponse(operationResponse);
         }
 
         [When(@"I Add several numbers")]
@@ -26,7 +25,7 @@ namespace Demo.CalcEng.Domain.Tests
         {
             var request = Request.ToObject<MultiNumbersOperationRequest>();
             var operationResponse = _calcEng.Sum(request);
-            SetResponse(JObject.FromObject(operationResponse));
+            SetResponse(operationResponse);
         }
 
         [When(@"I execute the Div operation")]
@@ -34,21 +33,21 @@ namespace Demo.CalcEng.Domain.Tests
         {
             var request = Request.ToObject<TwoNumbersOperationRequest>();
             var operationResponse = _calcEng.Div(request);
-            SetResponse(JObject.FromObject(operationResponse));
+            SetResponse(operationResponse);
         }
 
         [When(@"I request prime numbers")]
         public void RequestPrimeNumbers()
         {
             var operationResponse = _calcEng.PrimeNumbers();
-            SetResponse(JObject.FromObject(operationResponse));
+            SetResponse(operationResponse);
         }
 
         [When(@"I request domain items")]
         public void RequestDomainItems()
         {
             var operationResponse = _calcEng.GetDomainItems();
-            SetResponse(JObject.FromObject(operationResponse));
+            SetResponse(operationResponse);
         }
     }
 }
