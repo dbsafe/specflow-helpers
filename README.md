@@ -33,6 +33,11 @@ public class TwoNumbersOperationRequest
     public decimal FirstNumber { get; set; }
     public decimal SecondNumber { get; set; }
 }
+
+public class OperationResponse<TData>
+{
+     public TData OperationResult { get; set; }
+}
 ```
 
 **Step Definition class**
