@@ -27,6 +27,12 @@ public class CalcEng
     
     // ...
 }
+
+public class TwoNumbersOperationRequest
+{
+    public decimal FirstNumber { get; set; }
+    public decimal SecondNumber { get; set; }
+}
 ```
 
 **Step Definition class**
@@ -64,5 +70,23 @@ The `SetResponse` method converts the response from the `Sum` method into a `JOb
 SetResponse(operationResponse);
 ```
 
+**Feature file**
+```
+Feature: CalcEng
+	Test the Calculation Engine
 
+Scenario: Add two numbers - returns correct value
+	Given property FirstNumber equals to the number 10
+	And property SecondNumber equals to the number 20
+	When I Add two numbers
+	Then property OperationResult should be the number 30
+```
 
+The properties of the request are set using a step definition from `JObjectBuilderSteps`.
+
+```csharp
+[Given(@"property ([^\s]+) equals to the number ([-+]?[\d]*[\.]?[\d]+)")]
+public void SetRequestProperty(string name, decimal value)
+```
+
+There is not need to define steps to set properties or parameters in the Step Definition class.
