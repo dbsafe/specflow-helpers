@@ -89,4 +89,12 @@ The properties of the request are set using a step definition from `JObjectBuild
 public void SetRequestProperty(string name, decimal value)
 ```
 
-There is not need to define steps to set properties or parameters in the Step Definition class.
+The same when validating the response. When reading a property of the response a step definition from `JObjectBuilderSteps` is used.
+
+```csharp
+[Then(@"property ([^\s]+) should be the number ([-+]?[\d]*[\.]?[\d]+)")]
+public void AssertNumericProperty(string propertyName, decimal expectedPropertyValue)
+```
+
+There is not need to define steps to set and read properties in the Step Definition class.
+
