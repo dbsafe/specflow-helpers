@@ -94,7 +94,7 @@ The properties of the request are set using a step definition from `JObjectBuild
 public void SetRequestProperty(string name, decimal value)
 ```
 
-The same when validating the response. When reading a property of the response a step definition from `JObjectBuilderSteps` is used.
+When reading a property of the response a step definition from `JObjectBuilderSteps` is used.
 
 ```csharp
 [Then(@"property ([^\s]+) should be the number ([-+]?[\d]*[\.]?[\d]+)")]
