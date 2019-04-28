@@ -11,8 +11,8 @@ Features
 specflow-helpers provides methods for setting properties of a request object and methods for reading properties of a response object. 
 These methods can be used by defining a Step Definition class that inherits from a class defined in specflow-helpers.
 
-Testing methods of a class
---------------------------
+Demo - Testing methods of a class
+---------------------------------
 
 Suppose we have the class CalcEng that has the method Sum.
 
