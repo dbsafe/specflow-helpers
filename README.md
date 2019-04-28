@@ -103,3 +103,31 @@ public void AssertNumericProperty(string propertyName, decimal expectedPropertyV
 
 There is not need to define steps to set and read properties in the Step Definition class.
 
+Projects in the solution
+------------------------
+
+Project Name | Description
+------------ | -----------
+Specflow.Steps.Object | specflow-helpers implementation
+Specflow.Steps.Object.Tests | Unit test for specflow-helpers implementation
+Demo.CalcEng.Domain | Defines a service class used in the demo
+Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Specflow tests
+
+Supported `Given` steps
+---------------------
+
+Assigning a text value to a property
+
+```cshart
+[Given(@"property ([^\s]+) equals to '(.*)'")]
+public void SetRequestProperty(string name, string value)
+```
+Example:
+```
+Given property FirstName equals to 'Maria'
+```
+
+
+
+
+
