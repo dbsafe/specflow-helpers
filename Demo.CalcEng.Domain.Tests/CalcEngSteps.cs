@@ -49,5 +49,13 @@ namespace Demo.CalcEng.Domain.Tests
             var operationResponse = _calcEng.GetDomainItems();
             SetResponse(operationResponse);
         }
+
+        [When(@"I request domain items by date")]
+        public void RequestDomainItemsByDate()
+        {
+            var request = Request.ToObject<GetDomainItemsByDateRequest>();
+            var operationResponse = _calcEng.GetDomainItemsByDate(request);
+            SetResponse(operationResponse);
+        }
     }
 }

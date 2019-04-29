@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Demo.CalcEng.Domain
 {
@@ -13,6 +14,12 @@ namespace Demo.CalcEng.Domain
         public decimal[] Numbers { get; set; }
     }
 
+    public class GetDomainItemsByDateRequest
+    {
+        public DateTime Date { get; set; }
+        public bool IsSmall { get; set; }
+    }
+
     public class DomainItem
     {
         public DateTime Date { get; set; }
@@ -24,6 +31,14 @@ namespace Demo.CalcEng.Domain
 
     public class CalcEng
     {
+        private readonly DomainItem[] _domainItems = new DomainItem[]
+        {
+            new DomainItem { Date = new DateTime(2000, 1, 1), PropA = "item1-pa", Value = 100m, IsSmall = true },
+            new DomainItem { Date = new DateTime(2000, 1, 2), PropA = "item2-pa", PropB = "item2-pb", Value = 200m },
+            new DomainItem { Date = new DateTime(2000, 1, 3), PropA = "item3-pa", PropB = "item3-pb", Value = 300m },
+            new DomainItem { Date = new DateTime(2000, 1, 4), PropA = "item4-pa", PropB = "item4-pb", Value = 400m }
+        };
+
         public OperationResponse<decimal> Sum(TwoNumbersOperationRequest request)
         {
             var data = request.FirstNumber + request.SecondNumber;
@@ -73,12 +88,14 @@ namespace Demo.CalcEng.Domain
 
         public OperationResponse<DomainItem[]> GetDomainItems()
         {
-            var item1 = new DomainItem { Date = new DateTime(2000, 1, 1), PropA = "item1-pa", Value = 100m, IsSmall = true };
-            var item2 = new DomainItem { Date = new DateTime(2000, 1, 2), PropA = "item2-pa", PropB = "item2-pb", Value = 200m };
-            var item3 = new DomainItem { Date = new DateTime(2000, 1, 3), PropA = "item3-pa", PropB = "item3-pb", Value = 300m };
-            var item4 = new DomainItem { Date = new DateTime(2000, 1, 4), PropA = "item4-pa", PropB = "item4-pb", Value = 400m };
+            return OperationResponse.CreateSucceed(_domainItems);
+        }
 
-            var data = new DomainItem[] { item1, item2, item3, item4 };
+        public OperationResponse<DomainItem[]> GetDomainItemsByDate(GetDomainItemsByDateRequest request)
+        {
+            var data = _domainItems
+                .Where(a => a.Date == request.Date && a.IsSmall == request.IsSmall)
+                .ToArray();
             return OperationResponse.CreateSucceed(data);
         }
     }

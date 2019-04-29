@@ -2,10 +2,10 @@
 	Test the Calculation Engine
 
 Scenario: Add two numbers - Operation succeeds
-	# Setting a property as text
+	# Setting a property as text -
 	Given property FirstNumber equals to '10'
 	
-	# Setting a property as number
+	# Setting a property as number -
 	And property SecondNumber equals to the number 20
 	
 	# Executing an operation
@@ -22,7 +22,7 @@ Scenario: Add two numbers - Operation succeeds
 
 
 Scenario: Add several numbers - Passing a list - Passing an empty array
-	# Setting a property as an empty array
+	# Setting a property as an empty array -
 	Given property Numbers is an empty array
 	When I Add several numbers
 	Then property Succeed should be False
@@ -97,7 +97,19 @@ Scenario: Request Domain Items - Ignore field
 	| item3-pa  | [IGNORE] | 2000-01-03    | 300          | False           |
 	| item4-pa  | [IGNORE] | 2000-01-04    | 400          | False           |
 
-Scenario: Request Domain Items - DtateTime property
+Scenario: Request Domain Items By Date
+	# Setting a DateTime property -
+	Given property Date equals to '2000-01-01'
+	# Setting a Boolean property -
+	And property IsSmall equals to 'True'
+	
+	When I request domain items by date
+
+	Then property OperationResult should be the complex-element array
+	| PropA:key | PropB  | Date:DateTime | Value:Number | IsSmall:Boolean |
+	| item1-pa  | [NULL] | 2000-01-01    | 100          | True            |
+
+Scenario: Request Domain Items - Assert DtateTime property
 	When I request domain items
 	# assert a property using its path
 	# assert a datetime property
