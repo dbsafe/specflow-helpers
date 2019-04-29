@@ -101,7 +101,7 @@ When reading a property of the response a step definition from `JObjectBuilderSt
 public void AssertNumericProperty(string propertyName, decimal expectedPropertyValue)
 ```
 
-There is not need to define steps to set and read properties in the Step Definition class.
+The Step Definition class that supports `CalcEng` tests does not need to define custom steps for setting properties of the request and validating properties of the response.
 
 Projects in the solution
 ------------------------
@@ -116,7 +116,7 @@ Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Sp
 Supported `Given` steps
 ---------------------
 
-Assigning a text value to a property
+**Assigning a text value to a property**
 
 ```cshart
 [Given(@"property ([^\s]+) equals to '(.*)'")]
@@ -127,7 +127,11 @@ Example:
 Given property FirstName equals to 'Maria'
 ```
 
+This step can be use to set non-text properties. The serialization process that occurs when creating the actual request takes care of converting the text.
 
+```
+Given property FirstNumber equals to '10'
+```
 
 
 
