@@ -136,5 +136,15 @@ Given property Date equals to '2000-01-01'
 Given property IsSmall equals to 'True'
 ```
 
+**Assigning a numeric value to a property**
 
+```csharp
+[Given(@"property ([^\s]+) equals to the number ([-+]?[\d]*[\.]?[\d]+)")]
+public void SetRequestProperty(string name, decimal value)
+```
+
+Example:
+```
+Given property SecondNumber equals to the number 20
+```
 
