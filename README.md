@@ -148,3 +148,14 @@ Example:
 Given property SecondNumber equals to the number 20
 ```
 
+**Assigning an empty array to a property**
+
+```csharp
+[Given(@"property ([^\s]+) is an empty array")]
+public void SetRequestPropertyAsEmptyArray(string name)
+```
+
+Example:
+```
+Given property Numbers is an empty array
+```
