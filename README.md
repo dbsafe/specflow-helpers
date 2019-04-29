@@ -129,8 +129,11 @@ Given property FirstName equals to 'Maria'
 
 This step can be use to set non-text properties. The serialization process that occurs when creating the actual request takes care of converting the text.
 
+Example:
 ```
 Given property FirstNumber equals to '10'
+Given property Date equals to '2000-01-01'
+Given property IsSmall equals to 'True'
 ```
 
 
