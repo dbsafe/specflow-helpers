@@ -256,12 +256,8 @@ Then property OperationResult should be the complex-element array
   ```
   
   
- **Assert a property using a JPath**
- 
- Complex properties can be retrieved using a JPath
- 
- Example:
- ```
+ **Retrieving a property using JPath**
+  ```
  Then property OperationResult[1].Date should be the datetime '2000-01-02'
  Then property OperationResult[1].PropB should be 'item2-pb'
  ```
