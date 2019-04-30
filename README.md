@@ -1,4 +1,8 @@
-# specflow-helpers
+specflow-helpers
+==================
+[![Build status](https://dev.azure.com/dbsafe/dbsafe/_apis/build/status/dbsafe/specflow-helpers-CI)](https://dev.azure.com/dbsafe/dbsafe/_build/latest?definitionId=4)
+
+Library to support writing unit test with Specflow
 
 This library provides base implementation that can be reused when writing the code behind for Specflow tests. 
 In order to use the library some knowledge of Specflow is required.
