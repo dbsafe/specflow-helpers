@@ -117,12 +117,6 @@ Supported `Given` steps
 ---------------------
 
 **Assigning a text value to a property**
-
-```cshart
-[Given(@"property ([^\s]+) equals to '(.*)'")]
-public void SetRequestProperty(string name, string value)
-```
-Example:
 ```
 Given property FirstName equals to 'Maria'
 ```
