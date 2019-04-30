@@ -218,13 +218,26 @@ Then property OperationResult should be the complex-element array
 - The headers indicates the property names and the data type
   
   Example:
-  `Date:DateTime`
+  ```
+  Date:DateTime
+  ```
   
 - When **key** is added to a property the property is used as the key in the array. 
   **key** can be added to more than one property to create a composite key. 
   **key** must be positioned before the property type when the type is specified.
   
   Example:
-  `PropA:key`
-  `Value:key:Number`
+  ```
+  PropA:key
+  Value:key:Number
+  ```
   
+- Use `[NULL]` when a property is expected to be null
+
+  Example:
+  ```
+  Then property OperationResult should be the complex-element array
+  | PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+  | item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
+  | item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+  ```
