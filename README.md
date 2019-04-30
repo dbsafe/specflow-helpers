@@ -159,3 +159,15 @@ Example:
 ```
 Given property Numbers is an empty array
 ```
+
+**Assigning an array to a property**
+
+```csharp
+[Given(@"property ([^\s]+) is the array '(.*)'")]
+public void SetRequestPropertyAsArray(string name, string itemsCsv)
+```
+
+Example:
+```
+Given property Numbers is the array '1,2,3,4,5'
+```
