@@ -209,9 +209,6 @@ Then property OperationResult should be the single-element array '2, 3, 5, 7, 11
 **Assert an array that contains complex elements**
 ```
 Then property OperationResult should be the complex-element array
-# key column(s)
-# data type
-# expected null value
 | PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
 | item1-pa  | item1-pb | 2000-01-01    | 100          | True            |
 | item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
