@@ -14,10 +14,10 @@ Scenario: Add two numbers - Operation succeeds
 	# Assert a numeric property
 	Then property OperationResult should be the number 30
 	
-	# Assert a boolean property
+	# Assert a boolean property -
 	And property Succeed should be True
 	
-	# Assert that a property is null
+	# Assert that a property is null -
 	And property Error should be NULL
 
 
@@ -30,14 +30,14 @@ Scenario: Add several numbers - Passing a list - Passing an empty array
 
 
 Scenario: Add several numbers - Passing a list
-	# Setting a property as an array
+	# Setting a property as an array -
 	Given property Numbers is the array '1,2,3,4,5'
 	When I Add several numbers
 	Then property OperationResult should be the number 15
 
 
 Scenario: Divide two numbers - Operation fails
-	# Setting several properties using a table
+	# Setting several properties using a table -
 	Given properties
 	| name         | value |
 	| FirstNumber  | 10    |
@@ -52,14 +52,14 @@ Scenario: Divide two numbers - Operation fails
 Scenario: Request Prime Numbers
 	When I request prime numbers
 
-	# Assert an array with single elements
+	# Assert an array with single elements -
 	Then property OperationResult should be the single-element array '2, 3, 5, 7, 11, 13, 17, 19, 23'
 
 
 Scenario: Request Prime Numbers - Using a table
 	When I request prime numbers
 
-	# Assert an array with single elements using a table
+	# Assert an array with single elements using a table -
 	Then property OperationResult should be the single-element array
 	| values |
 	| 2      |
@@ -76,7 +76,7 @@ Scenario: Request Prime Numbers - Using a table
 Scenario: Request Domain Items
 	When I request domain items
 
-	# Assert an array with complex elements
+	# Assert an array with complex elements -
 	Then property OperationResult should be the complex-element array
 	# key column(s)
 	# data type
@@ -90,7 +90,7 @@ Scenario: Request Domain Items
 Scenario: Request Domain Items - Ignore field
 	When I request domain items
 	Then property OperationResult should be the complex-element array
-	# Ignore a field in the array
+	# Ignore a field in the array -
 	| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
 	| item1-pa  | [IGNORE] | 2000-01-01    | 100          | True            |
 	| item2-pa  | [IGNORE] | 2000-01-02    | 200          | False           |
@@ -111,7 +111,7 @@ Scenario: Request Domain Items By Date
 
 Scenario: Request Domain Items - Assert DtateTime property
 	When I request domain items
-	# assert a property using its path
+	# assert a property using its path -
 	# assert a datetime property
 	Then property OperationResult[1].Date should be the datetime '2000-01-02'
 	# assert a datetime property including the time
