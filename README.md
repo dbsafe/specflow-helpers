@@ -114,15 +114,9 @@ Demo.CalcEng.Domain | Defines a service class used in the demo
 Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Specflow tests
 
 Supported `Given` steps
----------------------
+-----------------------
 
 **Assigning a text value to a property**
-
-```cshart
-[Given(@"property ([^\s]+) equals to '(.*)'")]
-public void SetRequestProperty(string name, string value)
-```
-Example:
 ```
 Given property FirstName equals to 'Maria'
 ```
@@ -137,25 +131,135 @@ Given property IsSmall equals to 'True'
 ```
 
 **Assigning a numeric value to a property**
-
-```csharp
-[Given(@"property ([^\s]+) equals to the number ([-+]?[\d]*[\.]?[\d]+)")]
-public void SetRequestProperty(string name, decimal value)
-```
-
-Example:
 ```
 Given property SecondNumber equals to the number 20
 ```
 
 **Assigning an empty array to a property**
-
-```csharp
-[Given(@"property ([^\s]+) is an empty array")]
-public void SetRequestPropertyAsEmptyArray(string name)
-```
-
-Example:
 ```
 Given property Numbers is an empty array
 ```
+
+**Assigning an array to a property**
+```
+Given property Numbers is the array '1,2,3,4,5'
+```
+
+**Assigning severl properties in one step**
+```
+Given properties
+| name         | value |
+| FirstNumber  | 10    |
+| SecondNumber | 0     |
+```
+
+Supported `Then` steps
+----------------------
+
+**Assert a text property**
+```
+Then property Error should be 'Attempted to divide by zero.'
+```
+
+**Assert a numeric property**
+```
+Then property OperationResult should be the number 30
+```
+
+**Assert a boolean property**
+```
+Then property Succeed should be True
+```
+
+**Assert a DateTime property**
+```
+Then property Date should be the datetime '2000-01-02'
+```
+
+**Assert that a property is null**
+```
+Then property Error should be NULL
+```
+
+**Assert an array that contains single elements**
+```
+Then property OperationResult should be the single-element array '2, 3, 5, 7, 11, 13, 17, 19, 23'
+```
+
+**Assert an array that contains single elements**
+```
+Then property OperationResult should be the single-element array
+| values |
+| 2      |
+| 3      |
+| 5      |
+| 7      |
+| 11     |
+| 13     |
+| 17     |
+| 19     |
+| 23     |
+```
+
+**Assert an array that contains single elements (in one line)**
+```
+Then property OperationResult should be the single-element array '2, 3, 5, 7, 11, 13, 17, 19, 23'
+```
+
+**Assert an array that contains complex elements**
+```
+Then property OperationResult should be the complex-element array
+| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+| item1-pa  | item1-pb | 2000-01-01    | 100          | True            |
+| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+```
+
+- Each column represents a property of the elements in the array
+- The headers indicates the property names and the data type
+  
+  Example:
+  ```
+  Date:DateTime
+  ```
+  
+- When **key** is added to a property the property is used as the key in the array. 
+  **key** can be added to more than one property to create a composite key. 
+  **key** must be positioned before the property type when the type is specified.
+  
+  Example:
+  ```
+  PropA:key
+  Value:key:Number
+  ```
+  
+- Use `[NULL]` when a property is expected to be null
+
+  Example:
+  ```
+  Then property OperationResult should be the complex-element array
+  | PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+  | item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
+  | item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+  ```
+  
+  - Use `[IGNORE]` to skip the validation of a property
+  
+  Example:
+  ```
+  Then property OperationResult should be the complex-element array
+  | PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+  | item1-pa  | [IGNORE] | 2000-01-01    | 100          | True            |
+  | item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+  ```
+  
+  
+ **Assert a property using a JPath**
+ 
+ Complex properties can be retrieved using a JPath
+ 
+ Example:
+ ```
+ Then property OperationResult[1].Date should be the datetime '2000-01-02'
+ Then property OperationResult[1].PropB should be 'item2-pb'
+ ```
+ 
