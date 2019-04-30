@@ -201,14 +201,33 @@ Then property OperationResult should be the single-element array
 | 23     |
 ```
 
-
 **Assert an array that contains single elements (in one line)**
 ```
 Then property OperationResult should be the single-element array '2, 3, 5, 7, 11, 13, 17, 19, 23'
 ```
 
+**Assert an array that contains complex elements**
+```
+Then property OperationResult should be the complex-element array
+# key column(s)
+# data type
+# expected null value
+| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+| item1-pa  | item1-pb | 2000-01-01    | 100          | True            |
+| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+```
 
-
-
-
-
+- Each column represents a property of the elements in the array
+- The headers indicates the property names and the data type
+  
+  Example:
+  `Date:DateTime`
+  
+- When **key** is added to a property the property is used as the key in the array. 
+  **key** can be added to more than one property to create a composite key. 
+  **key** must be positioned before the property type when the type is specified.
+  
+  Example:
+  `PropA:key`
+  `Value:key:Number`
+  
