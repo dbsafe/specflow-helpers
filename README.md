@@ -114,7 +114,7 @@ Demo.CalcEng.Domain | Defines a service class used in the demo
 Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Specflow tests
 
 Supported `Given` steps
----------------------
+-----------------------
 
 **Assigning a text value to a property**
 ```
@@ -152,3 +152,63 @@ Given properties
 | FirstNumber  | 10    |
 | SecondNumber | 0     |
 ```
+
+Supported `Then` steps
+----------------------
+
+**Assert a text property**
+```
+Then property Error should be 'Attempted to divide by zero.'
+```
+
+**Assert a numeric property**
+```
+Then property OperationResult should be the number 30
+```
+
+**Assert a boolean property**
+```
+Then property Succeed should be True
+```
+
+**Assert a DateTime property**
+```
+Then property Date should be the datetime '2000-01-02'
+```
+
+**Assert that a property is null**
+```
+Then property Error should be NULL
+```
+
+**Assert an array that contains single elements**
+```
+Then property OperationResult should be the single-element array '2, 3, 5, 7, 11, 13, 17, 19, 23'
+```
+
+**Assert an array that contains single elements**
+```
+Then property OperationResult should be the single-element array
+| values |
+| 2      |
+| 3      |
+| 5      |
+| 7      |
+| 11     |
+| 13     |
+| 17     |
+| 19     |
+| 23     |
+```
+
+
+**Assert an array that contains single elements (in one line)**
+```
+Then property OperationResult should be the single-element array '2, 3, 5, 7, 11, 13, 17, 19, 23'
+```
+
+
+
+
+
+
