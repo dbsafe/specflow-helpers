@@ -10,7 +10,7 @@
   </PropertyGroup>  
 
   <ItemGroup>
-    <PackageReference Include="Helpers.Specflow.Steps.Object" Version="1.1.0.22-beta" />
+    <PackageReference Include="Helpers.Specflow.Steps.Object" Version="1.1.0.24" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
