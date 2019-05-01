@@ -15,12 +15,12 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
     <PackageReference Include="SpecFlow" Version="3.0.199" />
     <PackageReference Include="SpecFlow.MsTest" Version="3.0.199" />
+    <PackageReference Include="Specflow.Steps.Object" Version="1.0.0.20-beta" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.199" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Demo.CalcEng.Domain\Demo.CalcEng.Domain.csproj" />
-    <ProjectReference Include="..\Specflow.Steps.Object\Specflow.Steps.Object.csproj" />
   </ItemGroup>
 
   <ItemGroup>
