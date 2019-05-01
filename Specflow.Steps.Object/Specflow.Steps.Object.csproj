@@ -15,6 +15,7 @@
     <AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.1.0</FileVersion>
     <IncludeSymbols>True</IncludeSymbols>
+    <PackageId>Helpers.Specflow.Steps.Object</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
