@@ -14,7 +14,11 @@ Features
 specflow-helpers provides methods for setting properties of a request object and methods for reading properties of a response object. 
 These methods can be used by defining a Step Definition class that inherits from a class defined in specflow-helpers.
 
-Demo - Testing methods of a class
+NuGet package
+-------------
+[Helpers.Specflow.Steps.Object](https://www.nuget.org/packages/Helpers.Specflow.Steps.Object/)
+
+Example - Testing methods of a class
 ---------------------------------
 
 Suppose we have the class CalcEng that has the method Sum.
@@ -114,7 +118,7 @@ Project Name | Description
 Specflow.Steps.Object | specflow-helpers implementation
 Specflow.Steps.Object.Tests | Unit test for specflow-helpers implementation
 Demo.CalcEng.Domain | Defines a service class used in the demo
-Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Specflow tests
+Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Specflow tests. Uses the release version of Helpers.Specflow.Steps.Object in NuGet. For debugging and testing remove the reference to the NuGet package and add a reference to the project Specflow.Steps.Object
 
 Supported `Given` steps
 -----------------------
