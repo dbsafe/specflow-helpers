@@ -24,10 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Features\CalcEng.feature.cs">
+    <Compile Update="Features\CalcEngService.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>CalcEng.feature</DependentUpon>
+      <DependentUpon>CalcEngService.feature</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -39,9 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Features\CalcEng.feature">
+    <SpecFlowFeatureFiles Update="Features\CalcEngService.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CalcEng.feature.cs</LastGenOutput>
+      <LastGenOutput>CalcEngService.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
   </ItemGroup>
 

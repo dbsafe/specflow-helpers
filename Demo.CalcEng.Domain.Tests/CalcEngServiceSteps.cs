@@ -6,11 +6,11 @@ namespace Demo.CalcEng.Domain.Tests
 {
     [Binding]
     [Scope(Feature = "CalcEng")]
-    public class CalcEngSteps : JObjectBuilderSteps
+    public class CalcEngServiceSteps : JObjectBuilderSteps
     {
-        private readonly CalcEng _calcEng = new CalcEng();
+        private readonly CalcEngService _calcEng = new CalcEngService();
 
-        public CalcEngSteps(TestContext testContext) : base(testContext) { }
+        public CalcEngServiceSteps(TestContext testContext) : base(testContext) { }
 
         [When(@"I Add two numbers")]
         public void ExecuteAddTwoNumbers()

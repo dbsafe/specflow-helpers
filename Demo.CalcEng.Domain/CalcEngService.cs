@@ -29,7 +29,18 @@ namespace Demo.CalcEng.Domain
         public bool IsSmall { get; set; }
     }
 
-    public class CalcEng
+    public interface ICalcEngService
+    {
+        OperationResponse<decimal> Div(TwoNumbersOperationRequest request);
+        OperationResponse<DomainItem[]> GetDomainItems();
+        OperationResponse<DomainItem[]> GetDomainItemsByDate(GetDomainItemsByDateRequest request);
+        OperationResponse<decimal[]> PrimeNumbers();
+        OperationResponse<decimal> Sub(TwoNumbersOperationRequest request);
+        OperationResponse<decimal> Sum(MultiNumbersOperationRequest request);
+        OperationResponse<decimal> Sum(TwoNumbersOperationRequest request);
+    }
+
+    public class CalcEngService : ICalcEngService
     {
         private readonly DomainItem[] _domainItems = new DomainItem[]
         {
