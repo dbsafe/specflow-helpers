@@ -60,7 +60,7 @@ namespace Demo.CalcEng.Domain
         {
             if (request.Numbers.Length == 0)
             {
-                return OperationResponse.CreateFailled<decimal>("The list is empty");
+                return OperationResponse.CreateFailed<decimal>("The list is empty");
             }
 
             decimal total = 0;
@@ -87,7 +87,7 @@ namespace Demo.CalcEng.Domain
             }
             catch (Exception ex)
             {
-                return OperationResponse.CreateFailled<decimal>(ex.Message);
+                return OperationResponse.CreateFailed<decimal>(ex.Message);
             }
         }
 
