@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Domain.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Object.Tests", "Specflow.Steps.Object.Tests\Specflow.Steps.Object.Tests.csproj", "{FCBE8D1C-17F9-4580-BC43-46762B899499}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CalcEng.Api", "Demo.CalcEng.Api\Demo.CalcEng.Api.csproj", "{45B36D37-137C-476B-8A0B-E6B5E642F1AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Api", "Demo.CalcEng.Api\Demo.CalcEng.Api.csproj", "{45B36D37-137C-476B-8A0B-E6B5E642F1AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CalcEng.Api.Tests", "Demo.CalcEng.Api.Tests\Demo.CalcEng.Api.Tests.csproj", "{57148037-152F-41B8-AB7D-BEB8F45A535B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{45B36D37-137C-476B-8A0B-E6B5E642F1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45B36D37-137C-476B-8A0B-E6B5E642F1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45B36D37-137C-476B-8A0B-E6B5E642F1AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57148037-152F-41B8-AB7D-BEB8F45A535B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57148037-152F-41B8-AB7D-BEB8F45A535B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57148037-152F-41B8-AB7D-BEB8F45A535B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57148037-152F-41B8-AB7D-BEB8F45A535B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
