@@ -27,6 +27,11 @@ namespace Specflow.Steps.Object
             Response = JObject.FromObject(response);
         }
 
+        public void SetResponse(JObject response)
+        {
+            Response = response;
+        }
+
         #region Given
 
         [Given(@"property ([^\s]+) equals to '(.*)'")]
@@ -311,12 +316,12 @@ namespace Specflow.Steps.Object
             return jToken;
         }
 
-        private bool IsDateTime(JToken jToken)
+        private static bool IsDateTime(JToken jToken)
         {
             return jToken.Type == JTokenType.Date;
         }
 
-        private bool IsNumber(JToken jToken)
+        private static bool IsNumber(JToken jToken)
         {
             return jToken.Type == JTokenType.Float || jToken.Type == JTokenType.Integer;
         }
