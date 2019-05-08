@@ -293,10 +293,10 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RequestDomainItems_IgnoreField()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Ignore field", null, ((string[])(null)));
-#line 90
+#line 91
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 91
+#line 92
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -329,7 +329,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "2000-01-04",
                         "400",
                         "False"});
-#line 92
+#line 93
  testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -341,14 +341,14 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RequestDomainItemsByDate()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items By Date", null, ((string[])(null)));
-#line 100
+#line 102
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 102
- testRunner.Given("property Date equals to \'2000-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 104
- testRunner.And("property IsSmall equals to \'True\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("property Date equals to \'2000-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 106
+ testRunner.And("property IsSmall equals to \'True\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 108
  testRunner.When("I request domain items by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -363,7 +363,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "2000-01-01",
                         "100",
                         "True"});
-#line 108
+#line 110
  testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table5, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -375,15 +375,32 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RequestDomainItems_AssertDtateTimeProperty()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Assert DtateTime property", null, ((string[])(null)));
-#line 112
+#line 115
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 113
- testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 116
+ testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 119
  testRunner.Then("property OperationResult[1].Date should be the datetime \'2000-01-02\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 118
+#line 121
  testRunner.Then("property OperationResult[1].Date should be the datetime \'2000-01-02 00:00:00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Calling a method that does not need parameters")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void CallingAMethodThatDoesNotNeedParameters()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calling a method that does not need parameters", null, ((string[])(null)));
+#line 124
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 125
+ testRunner.When("I request pi", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 126
+ testRunner.Then("property OperationResult should be the number 3.14", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

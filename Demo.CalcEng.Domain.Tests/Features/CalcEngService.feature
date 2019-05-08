@@ -71,7 +71,7 @@ Scenario: Request Prime Numbers - Using a table
 	| 17     |
 	| 19     |
 	| 23     |
-
+	
 
 Scenario: Request Domain Items
 	When I request domain items
@@ -87,6 +87,7 @@ Scenario: Request Domain Items
 	| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |
 	| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
 
+
 Scenario: Request Domain Items - Ignore field
 	When I request domain items
 	Then property OperationResult should be the complex-element array
@@ -96,6 +97,7 @@ Scenario: Request Domain Items - Ignore field
 	| item2-pa  | [IGNORE] | 2000-01-02    | 200          | False           |
 	| item3-pa  | [IGNORE] | 2000-01-03    | 300          | False           |
 	| item4-pa  | [IGNORE] | 2000-01-04    | 400          | False           |
+
 
 Scenario: Request Domain Items By Date
 	# Setting a DateTime property -
@@ -109,6 +111,7 @@ Scenario: Request Domain Items By Date
 	| PropA:key | PropB  | Date:DateTime | Value:Number | IsSmall:Boolean |
 	| item1-pa  | [NULL] | 2000-01-01    | 100          | True            |
 
+
 Scenario: Request Domain Items - Assert DtateTime property
 	When I request domain items
 	# assert a property using its path -
@@ -117,3 +120,7 @@ Scenario: Request Domain Items - Assert DtateTime property
 	# assert a datetime property including the time
 	Then property OperationResult[1].Date should be the datetime '2000-01-02 00:00:00'
 
+
+Scenario: Calling a method that does not need parameters
+	When I request pi
+	Then property OperationResult should be the number 3.14

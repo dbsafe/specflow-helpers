@@ -57,5 +57,12 @@ namespace Demo.CalcEng.Domain.Tests
             var operationResponse = _calcEng.GetDomainItemsByDate(request);
             SetResponse(operationResponse);
         }
+
+        [When(@"I request pi")]
+        public void RequestPi()
+        {
+            var operationResult = _calcEng.Pi();
+            SetResponse(operationResult);
+        }
     }
 }

@@ -38,6 +38,7 @@ namespace Demo.CalcEng.Domain
         OperationResponse<decimal> Sub(TwoNumbersOperationRequest request);
         OperationResponse<decimal> Sum(MultiNumbersOperationRequest request);
         OperationResponse<decimal> Sum(TwoNumbersOperationRequest request);
+        OperationResponse<decimal> Pi();
     }
 
     public class CalcEngService : ICalcEngService
@@ -108,6 +109,11 @@ namespace Demo.CalcEng.Domain
                 .Where(a => a.Date == request.Date && a.IsSmall == request.IsSmall)
                 .ToArray();
             return OperationResponse.CreateSucceed(data);
+        }
+
+        public OperationResponse<decimal> Pi()
+        {
+            return OperationResponse.CreateSucceed(3.14m);
         }
     }
 }
