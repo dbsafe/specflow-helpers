@@ -6,11 +6,11 @@ using System.Net;
 
 namespace Demo.CalcEng.Api.Controllers
 {
-    public class AppSimController<TController> : ControllerBase
+    public class CalcEngApiController<TController> : ControllerBase
     {
         protected ILogger<TController> _logger;
 
-        public AppSimController(ILogger<TController> logger)
+        public CalcEngApiController(ILogger<TController> logger)
         {
             _logger = logger;
         }

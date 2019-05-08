@@ -45,7 +45,7 @@ namespace Specflow.Steps.WebApi.HttpClient
                 return await client.PutAsync(request.Url, httpContent);
             });
         }
-
+        
         private Task<HttpResponseMessage> DeleteAsync(HttpClientExRequest request)
         {
             return ExecuteRequest(async (client) =>
@@ -68,7 +68,7 @@ namespace Specflow.Steps.WebApi.HttpClient
         {
             if (request.Content == null)
             {
-                return new StringContent(string.Empty);
+                return null;
             }
 
             string contentAsText = request.Content.ToString();

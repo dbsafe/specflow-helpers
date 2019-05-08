@@ -4,9 +4,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Demo.CalcEng.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/CalcEng")]
     [ApiController]
-    public class CalcEngController : AppSimController<CalcEngController>
+    public class CalcEngController : CalcEngApiController<CalcEngController>
     {
         private ICalcEngService _calcEngService;
 
@@ -16,7 +16,7 @@ namespace Demo.CalcEng.Api.Controllers
             _calcEngService = calcEngService;
         }
 
-        [HttpPost("sum")]
+        [HttpPost("Sum")]
         public IActionResult Sum(TwoNumbersOperationRequest request)
         {
             var response = _calcEngService.Sum(request);

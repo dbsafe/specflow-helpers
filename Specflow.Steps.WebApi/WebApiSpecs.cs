@@ -11,9 +11,9 @@ using TechTalk.SpecFlow;
 
 namespace Specflow.Steps.WebApi
 {
-    public interface IWebApiSpecsConfig
+    public class WebApiSpecsConfig
     {
-        string BaseUrl { get; }
+        public string BaseUrl { get; set; }
     }
 
     public enum HttpRequestType
@@ -35,15 +35,16 @@ namespace Specflow.Steps.WebApi
     [Binding]
     public class WebApiSpecs : JObjectBuilderSteps
     {
+        private const string EMPTY_MSG_ITEM = "[EMPTY]";
         private bool _requestSent = false;
 
-        private IWebApiSpecsConfig _config;
+        private WebApiSpecsConfig _config;
         private HttpClientExRequest _httpRequest;
         private Dictionary<string, string> _responseHeaders;
 
         public HttpResponseMessage HttpResponse { get; private set; }
 
-        public WebApiSpecs(TestContext testContext, IWebApiSpecsConfig config)
+        public WebApiSpecs(TestContext testContext, WebApiSpecsConfig config)
             : base(testContext)
         {
             _config = config;
@@ -74,7 +75,12 @@ namespace Specflow.Steps.WebApi
 
         protected virtual void PrintError(string message)
         {
-            Print($"*******************    {message}    *******************");
+            Print($"*******************    ERROR    *******************\n{message}");
+        }
+
+        protected virtual void PrintWarning(string message)
+        {
+            Print($"*******************    WARN    *******************\n{message}");
         }
 
         private void ValidateHttpResponse()
@@ -110,12 +116,15 @@ namespace Specflow.Steps.WebApi
         {
             var request = GetCurrentRequest();
 
-            Assert.IsTrue(request.RequestType.HasValue, "Request type must be specified");
+            if (!request.RequestType.HasValue)
+            {
+                throw new InvalidOperationException("Request type must have a value");
+            }
 
             if ((request.RequestType.Value == HttpRequestType.GET || request.RequestType.Value == HttpRequestType.DELETE) &&
                 (request.Content != null && request.Content.HasValues))
             {
-                Assert.Fail("Requests of type GET/DELETE cannot have a content");
+                PrintWarning("Requests of type GET/DELETE cannot have a content");
             }
 
             if (string.IsNullOrWhiteSpace(request.Url))
@@ -179,38 +188,22 @@ namespace Specflow.Steps.WebApi
 
         private async Task SendHttpRequestAsync()
         {
-            if (_httpRequest.RequestType.Value == HttpRequestType.GET || _httpRequest.RequestType.Value == HttpRequestType.DELETE)
-            {
-                _httpRequest.Content = null;
-            }
-
             PrintRequest();
             var client = new HttpClientEx();
-            try
-            {
-                HttpResponse = await client.SendRequest(_httpRequest);
-                ExtractHeadersFromHttpResponse();
-                ExtractContentFromHttpResponse();
-            }
-            finally
-            {
-                await PrintResponseAsync();
-            }
+            HttpResponse = await client.SendRequest(_httpRequest);
+            ExtractHeadersFromHttpResponse();
+            ExtractContentFromHttpResponse();
+            await PrintResponseAsync();
         }
 
-        private static string GetDisplayHeaders(IEnumerable<KeyValuePair<string, string>> Headers)
+        private static string GetDisplayHeaders(IEnumerable<KeyValuePair<string, string>> headers)
         {
-            if (Headers == null)
+            if (headers == null || headers.Count() == 0)
             {
-                throw new ArgumentNullException(nameof(Headers));
+                return EMPTY_MSG_ITEM;
             }
 
-            if (Headers == null || Headers.Count() == 0)
-            {
-                return "none";
-            }
-
-            var lines = Headers.Select(header => $"{header.Key}:{header.Value}");
+            var lines = headers.Select(header => $"{header.Key}:{header.Value}");
             return $"/n{string.Join("\n", lines)}";
         }
 
@@ -218,10 +211,10 @@ namespace Specflow.Steps.WebApi
         {
             if (request.Content == null)
             {
-                return "none";
+                return EMPTY_MSG_ITEM;
             }
 
-            return $"/n{request.Content.ToString()}";
+            return request.Content.ToString();
         }
 
         private static async Task<string> GetDisplayContentAsync(HttpContent content)
@@ -237,9 +230,10 @@ namespace Specflow.Steps.WebApi
         private void PrintRequest()
         {
             var request = _httpRequest;
+            var url = $"{_config.BaseUrl}/{_httpRequest.Url}";
             var headers = GetDisplayHeaders(request.Headers);
             var bodyText = GetDisplayContent(request);
-            var text = $"REQUEST\nMETHOD: {request.RequestType}\nURL: {request.Url}\nHEADERS:\n{headers}\nBODY: {bodyText}";
+            var text = $"REQUEST\nMETHOD: {request.RequestType}\nURL: {request.Url}\nHEADERS:\n{headers}\nBODY:\n{bodyText}\n";
             Print(text);
         }
     }
