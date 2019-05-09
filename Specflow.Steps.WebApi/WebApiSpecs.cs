@@ -220,7 +220,7 @@ namespace Specflow.Steps.WebApi
 
             var headers = GetDisplayHeaders(_responseHeaders);
             var bodyText = await GetDisplayContentAsync(HttpResponse.Content);
-            var text = $"RESPONSE\nSTATUSCODE: {(int)HttpResponse.StatusCode}\nREASONPHRASE: {HttpResponse.ReasonPhrase}\nHEADERS:\n{headers}\nBODY:\n{bodyText}";
+            var text = $"RESPONSE\nSTATUSCODE: {(int)HttpResponse.StatusCode}\nREASONPHRASE: {HttpResponse.ReasonPhrase}\nHEADERS:\n{headers}\nBODY:\n{bodyText}\n";
             Print(text);
         }
 
