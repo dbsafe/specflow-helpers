@@ -58,11 +58,32 @@ namespace Specflow.Steps.WebApi
         {
             ExecuteProtected(() =>
             {
+                _requestSent = false;
                 var request = GetCurrentRequest();
                 request.Url = $"{_config.BaseUrl}/{path}";
                 request.RequestType = requestType;
                 ValidateRequest();
                 SendHttpRequestAsync().Wait();
+            });
+        }
+
+        [Then(@"StatusCode should be (\d+)")]
+        public void AssertStatusCode(int statusCode)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponse();
+                Assert.AreEqual(statusCode, (int)HttpResponse.StatusCode, "Unexpected StatusCode");
+            });
+        }
+
+        [Then(@"ReasonPhrase should be '([\w\W]+)'")]
+        public void AssertReasonPhrase(string reasonPhrase)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponse();
+                Assert.AreEqual(reasonPhrase, HttpResponse.ReasonPhrase, "Unexpected ReasonPhrase");
             });
         }
 
@@ -88,7 +109,7 @@ namespace Specflow.Steps.WebApi
         {
             if (!_requestSent)
             {
-                PrintAndThrowException("A request to the server needs to be sent first.");
+                PrintAndThrowException("A request must be sent before validating the response.");
             }
 
             if (HttpResponse == null)
@@ -192,6 +213,7 @@ namespace Specflow.Steps.WebApi
             PrintRequest();
             var client = new HttpClientEx();
             HttpResponse = await client.SendRequest(_httpRequest);
+            _requestSent = true;
             ExtractHeadersFromHttpResponse();
             ExtractContentFromHttpResponse();
             await PrintResponseAsync();
