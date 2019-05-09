@@ -41,7 +41,7 @@ namespace Specflow.Steps.WebApi
 
         private WebApiSpecsConfig _config;
         private HttpClientExRequest _httpRequest;
-        private Dictionary<string, string> _responseHeaders;
+        private List<KeyValuePair<string, string>> _responseHeaders;
 
         public HttpResponseMessage HttpResponse { get; private set; }
 
@@ -84,6 +84,22 @@ namespace Specflow.Steps.WebApi
             {
                 ValidateResponse();
                 Assert.AreEqual(reasonPhrase, HttpResponse.ReasonPhrase, "Unexpected ReasonPhrase");
+            });
+        }
+
+        [Then(@"header ([^\s]+) should be '(.*)'")]
+        public void AssertHeader(string name, string value)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponse();
+
+                Assert.IsNotNull(HttpResponse.Headers, "Headers property is null");
+                Assert.IsTrue(HttpResponse.Headers.Contains(name), $"Header {name} not found");
+                Print($"Header with the name '{name}' found");
+
+                var headerValues = HttpResponse.Headers.GetValues(name);
+                Assert.IsTrue(headerValues.Any(header => header == value), $"Header '{name}' was found but the value did not match");
             });
         }
 
@@ -157,14 +173,14 @@ namespace Specflow.Steps.WebApi
 
         private void ExtractHeadersFromHttpResponse()
         {
-            _responseHeaders = new Dictionary<string, string>();
+            _responseHeaders = new List<KeyValuePair<string, string>>();
             if (HttpResponse.Headers != null)
             {
                 foreach (var header in HttpResponse.Headers)
                 {
                     foreach (var headervalue in header.Value)
                     {
-                        _responseHeaders[header.Key] = headervalue;
+                        _responseHeaders.Add(new KeyValuePair<string, string>(header.Key, headervalue));
                     }
                 }
             }

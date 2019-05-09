@@ -25,7 +25,9 @@ namespace Demo.CalcEng.Api.Controllers
         [HttpGet("Pi")]
         public IActionResult Pi()
         {
-            return Execute<OperationResponse>(() => _calcEngService.Pi());
+            Response.Headers.Add("test-header", new string[] { "value-1", "value-2" });
+            var content = _calcEngService.Pi();
+            return Ok(content);
         }
     }
 }

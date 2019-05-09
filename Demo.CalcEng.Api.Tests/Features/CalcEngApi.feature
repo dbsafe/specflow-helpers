@@ -11,6 +11,10 @@ Scenario: Request PI - Operation succeeds
 	And property succeed should be true
 	And property error should be null
 
+	# Validate headers
+	And header Server should be 'Kestrel'
+	And header test-header should be 'value-2'
+
 	# Validating properties form the http response
 	And StatusCode should be 200
 	And ReasonPhrase should be 'OK'
