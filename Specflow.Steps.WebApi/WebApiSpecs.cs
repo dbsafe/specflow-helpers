@@ -36,6 +36,7 @@ namespace Specflow.Steps.WebApi
     public class WebApiSpecs : JObjectBuilderSteps
     {
         private const string EMPTY_MSG_ITEM = "[EMPTY]";
+        private const string NULL_MSG_ITEM = "[NULL]";
         private bool _requestSent = false;
 
         private WebApiSpecsConfig _config;
@@ -176,13 +177,13 @@ namespace Specflow.Steps.WebApi
         {
             if (HttpResponse == null)
             {
-                Print("RESPONSE: null");
+                Print($"RESPONSE: {NULL_MSG_ITEM}");
                 return;
             }
 
             var headers = GetDisplayHeaders(_responseHeaders);
             var bodyText = await GetDisplayContentAsync(HttpResponse.Content);
-            var text = $"RESPONSE\nSTATUSCODE: {(int)HttpResponse.StatusCode}\nREASONPHRASE: {HttpResponse.ReasonPhrase}\nHEADERS:\n{headers}\nBODY: {bodyText}";
+            var text = $"RESPONSE\nSTATUSCODE: {(int)HttpResponse.StatusCode}\nREASONPHRASE: {HttpResponse.ReasonPhrase}\nHEADERS:\n{headers}\nBODY:\n{bodyText}";
             Print(text);
         }
 
@@ -198,39 +199,45 @@ namespace Specflow.Steps.WebApi
 
         private static string GetDisplayHeaders(IEnumerable<KeyValuePair<string, string>> headers)
         {
-            if (headers == null || headers.Count() == 0)
+            if (headers == null)
+            {
+                return NULL_MSG_ITEM;
+            }
+
+            if (headers.Count() == 0)
             {
                 return EMPTY_MSG_ITEM;
             }
 
             var lines = headers.Select(header => $"{header.Key}:{header.Value}");
-            return $"/n{string.Join("\n", lines)}";
+            return $"{string.Join("\n", lines)}";
         }
 
         private static string GetDisplayContent(HttpClientExRequest request)
         {
             if (request.Content == null)
             {
-                return EMPTY_MSG_ITEM;
+                return NULL_MSG_ITEM;
             }
 
-            return request.Content.ToString();
+            var text = request.Content.ToString();
+            return text == string.Empty ? EMPTY_MSG_ITEM : text;
         }
 
         private static async Task<string> GetDisplayContentAsync(HttpContent content)
         {
             if (content == null)
             {
-                return "none";
+                return NULL_MSG_ITEM;
             }
 
-            return await content.ReadAsStringAsync();
+            var text = await content.ReadAsStringAsync();
+            return text == string.Empty ? EMPTY_MSG_ITEM : text;
         }
 
         private void PrintRequest()
         {
             var request = _httpRequest;
-            var url = $"{_config.BaseUrl}/{_httpRequest.Url}";
             var headers = GetDisplayHeaders(request.Headers);
             var bodyText = GetDisplayContent(request);
             var text = $"REQUEST\nMETHOD: {request.RequestType}\nURL: {request.Url}\nHEADERS:\n{headers}\nBODY:\n{bodyText}\n";
