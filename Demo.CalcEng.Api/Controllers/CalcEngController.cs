@@ -19,8 +19,13 @@ namespace Demo.CalcEng.Api.Controllers
         [HttpPost("Sum")]
         public IActionResult Sum(TwoNumbersOperationRequest request)
         {
-            var response = _calcEngService.Sum(request);
-            return Ok(response);
+            return Execute<OperationResponse>(() => _calcEngService.Sum(request));
+        }
+
+        [HttpGet("Pi")]
+        public IActionResult Pi()
+        {
+            return Execute<OperationResponse>(() => _calcEngService.Pi());
         }
     }
 }
