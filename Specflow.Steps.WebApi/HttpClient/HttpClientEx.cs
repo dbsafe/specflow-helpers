@@ -1,9 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Specflow.Steps.WebApi.HttpClient
 {
+    public enum HttpRequestType
+    {
+        GET,
+        POST,
+        PUT,
+        DELETE
+    }
+
+    public class HttpClientExRequest
+    {
+        public HttpRequestType? RequestType { get; set; }
+        public string Url { get; set; }
+        public string Content { get; set; }
+        public IList<KeyValuePair<string, string>> Headers { get; set; }
+    }
+
     public class HttpClientEx
     {
         public async Task<HttpResponseMessage> SendRequest(HttpClientExRequest request)

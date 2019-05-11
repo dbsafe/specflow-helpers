@@ -1,4 +1,5 @@
-﻿using Demo.CalcEng.Domain;
+﻿using Demo.CalcEng.Api.Middleware;
+using Demo.CalcEng.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +31,7 @@ namespace Demo.CalcEng.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseRequestResponseLogging();
             ConfigureSwagerUi(app);
             app.UseMvc();
 

@@ -29,5 +29,19 @@ namespace Demo.CalcEng.Api.Controllers
             var content = _calcEngService.Pi();
             return Ok(content);
         }
+
+        [HttpDelete("DeleteTest/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var data = OperationResponse.CreateSucceed($"deleted item {id}");
+            return Ok(data);
+        }
+
+        [HttpPut("PutTest/{id}")]
+        public IActionResult Save(int id, DomainItem item)
+        {
+            var data = OperationResponse.CreateSucceed($"Item: {id}, new PropA: {item.PropA}");
+            return Ok(data);
+        }
     }
 }

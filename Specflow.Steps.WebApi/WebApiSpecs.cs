@@ -16,20 +16,20 @@ namespace Specflow.Steps.WebApi
         public string BaseUrl { get; set; }
     }
 
-    public enum HttpRequestType
+    public enum WebApiSpecsRequestContentType
     {
-        GET,
-        POST,
-        PUT,
-        DELETE
+        StringContent,
+        JObjectContent
     }
 
-    public class HttpClientExRequest
+    public class WebApiSpecsRequest
     {
         public HttpRequestType? RequestType { get; set; }
         public string Url { get; set; }
-        public JObject Content { get; set; }
+        public JObject JObjectContent { get; set; }
+        public string StringContent { get; set; }
         public IList<KeyValuePair<string, string>> Headers { get; set; }
+        public WebApiSpecsRequestContentType ContentType { get; set; }
     }
 
     [Binding]
@@ -38,10 +38,9 @@ namespace Specflow.Steps.WebApi
         private const string EMPTY_MSG_ITEM = "[EMPTY]";
         private const string NULL_MSG_ITEM = "[NULL]";
         private bool _requestSent = false;
+        private string _stringContent = null;
 
         private WebApiSpecsConfig _config;
-        private HttpClientExRequest _httpRequest;
-        private List<KeyValuePair<string, string>> _responseHeaders;
 
         public HttpResponseMessage HttpResponse { get; private set; }
 
@@ -53,17 +52,27 @@ namespace Specflow.Steps.WebApi
 
         #region Steps
 
+        [Given(@"content equals to '([\w\W]+)'")]
+        public void SetContent(string content)
+        {
+            ExecuteProtected(() =>
+            {
+                Assert.IsNull(_stringContent, "The content can be assigned only one time");
+                _stringContent = content;
+            });
+        }
+
         [When(@"I send a (POST|GET|PUT|DELETE) request to ([\w\W]+)")]
         public void CreateClientRequest(HttpRequestType requestType, string path)
         {
             ExecuteProtected(() =>
             {
                 _requestSent = false;
-                var request = GetCurrentRequest();
+                var request = CreateRequest();
                 request.Url = $"{_config.BaseUrl}/{path}";
                 request.RequestType = requestType;
-                ValidateRequest();
-                SendHttpRequestAsync().Wait();
+                ValidateRequest(request);
+                SendHttpRequestAsync(request).Wait();
             });
         }
 
@@ -116,11 +125,6 @@ namespace Specflow.Steps.WebApi
             Print($"*******************    ERROR    *******************\n{message}");
         }
 
-        protected virtual void PrintWarning(string message)
-        {
-            Print($"*******************    WARN    *******************\n{message}");
-        }
-
         private void ValidateHttpResponse()
         {
             if (!_requestSent)
@@ -140,49 +144,16 @@ namespace Specflow.Steps.WebApi
             throw new Exception(message);
         }
 
-        private HttpClientExRequest GetCurrentRequest()
+        private void ValidateRequest(WebApiSpecsRequest request)
         {
-            if (_httpRequest == null)
-            {
-                _httpRequest = new HttpClientExRequest { Content = Request };
-            }
-
-            return _httpRequest;
-        }
-
-        private void ValidateRequest()
-        {
-            var request = GetCurrentRequest();
-
             if (!request.RequestType.HasValue)
             {
                 throw new InvalidOperationException("Request type must have a value");
             }
 
-            if ((request.RequestType.Value == HttpRequestType.GET || request.RequestType.Value == HttpRequestType.DELETE) &&
-                (request.Content != null && request.Content.HasValues))
-            {
-                PrintWarning("Requests of type GET/DELETE cannot have a content");
-            }
-
             if (string.IsNullOrWhiteSpace(request.Url))
             {
                 Assert.Fail("Path must be specified");
-            }
-        }
-
-        private void ExtractHeadersFromHttpResponse()
-        {
-            _responseHeaders = new List<KeyValuePair<string, string>>();
-            if (HttpResponse.Headers != null)
-            {
-                foreach (var header in HttpResponse.Headers)
-                {
-                    foreach (var headervalue in header.Value)
-                    {
-                        _responseHeaders.Add(new KeyValuePair<string, string>(header.Key, headervalue));
-                    }
-                }
             }
         }
 
@@ -203,36 +174,71 @@ namespace Specflow.Steps.WebApi
                 }
                 catch (Exception ex)
                 {
-                    var message = $"Unable to decode the response.";
+                    var message = $"Unable to decode the response.\nContent:\n{content}";
                     PrintError(message);
                     throw new Exception(message, ex);
                 }
             }
         }
 
-        private async Task PrintResponseAsync()
+        private async Task PrintResponseAsync(HttpResponseMessage response)
         {
-            if (HttpResponse == null)
-            {
-                Print($"RESPONSE: {NULL_MSG_ITEM}");
-                return;
-            }
-
-            var headers = GetDisplayHeaders(_responseHeaders);
-            var bodyText = await GetDisplayContentAsync(HttpResponse.Content);
-            var text = $"RESPONSE\nSTATUSCODE: {(int)HttpResponse.StatusCode}\nREASONPHRASE: {HttpResponse.ReasonPhrase}\nHEADERS:\n{headers}\nBODY:\n{bodyText}\n";
+            var headers = GetDisplayHeaders(response);
+            var bodyText = await GetDisplayContentAsync(response.Content);
+            var text = $"RESPONSE [HttpResponseMessage]\nSTATUSCODE: {(int)HttpResponse.StatusCode}\nREASONPHRASE: {HttpResponse.ReasonPhrase}\nHEADERS:\n{headers}\nBODY:\n{bodyText}\n";
             Print(text);
         }
 
-        private async Task SendHttpRequestAsync()
+        private async Task SendHttpRequestAsync(WebApiSpecsRequest request)
         {
-            PrintRequest();
+            PrintRequest(request);
             var client = new HttpClientEx();
-            HttpResponse = await client.SendRequest(_httpRequest);
+            var httpClientExRequest = MapRequest(request);
+            HttpResponse = await client.SendRequest(httpClientExRequest);
             _requestSent = true;
-            ExtractHeadersFromHttpResponse();
             ExtractContentFromHttpResponse();
-            await PrintResponseAsync();
+            await PrintResponseAsync(HttpResponse);
+        }
+
+        private static HttpClientExRequest MapRequest(WebApiSpecsRequest webApiSpecsRequest)
+        {
+            if (webApiSpecsRequest == null)
+            {
+                throw new ArgumentNullException(nameof(webApiSpecsRequest));
+            }
+
+            return new HttpClientExRequest
+            {
+                Content = MapContent(webApiSpecsRequest),
+                Headers = webApiSpecsRequest.Headers,
+                RequestType = webApiSpecsRequest.RequestType,
+                Url = webApiSpecsRequest.Url
+            };
+        }
+
+        private static string MapContent(WebApiSpecsRequest webApiSpecsRequest)
+        {
+            switch (webApiSpecsRequest.ContentType)
+            {
+                case WebApiSpecsRequestContentType.StringContent:
+                    return webApiSpecsRequest.StringContent;
+                case WebApiSpecsRequestContentType.JObjectContent:
+                    return webApiSpecsRequest.JObjectContent?.ToString();
+                default:
+                    throw new InvalidOperationException($"Unexpected content type {webApiSpecsRequest.ContentType}");
+            }
+        }
+
+        private static string GetDisplayHeaders(HttpResponseMessage response)
+        {
+            if (response == null)
+            {
+                return NULL_MSG_ITEM;
+            }
+
+            var headers = response.Headers;
+            var lines = headers.Select(header => $"{header.Key}:{string.Join(",", header.Value)}");
+            return $"{string.Join("\n", lines)}";
         }
 
         private static string GetDisplayHeaders(IEnumerable<KeyValuePair<string, string>> headers)
@@ -251,15 +257,16 @@ namespace Specflow.Steps.WebApi
             return $"{string.Join("\n", lines)}";
         }
 
-        private static string GetDisplayContent(HttpClientExRequest request)
+        private static string GetDisplayContent(WebApiSpecsRequest webApiSpecsRequest)
         {
-            if (request.Content == null)
+            var content = MapContent(webApiSpecsRequest);
+
+            if (content == null)
             {
                 return NULL_MSG_ITEM;
             }
 
-            var text = request.Content.ToString();
-            return text == string.Empty ? EMPTY_MSG_ITEM : text;
+            return content == string.Empty ? EMPTY_MSG_ITEM : content;
         }
 
         private static async Task<string> GetDisplayContentAsync(HttpContent content)
@@ -273,13 +280,27 @@ namespace Specflow.Steps.WebApi
             return text == string.Empty ? EMPTY_MSG_ITEM : text;
         }
 
-        private void PrintRequest()
+        private void PrintRequest(WebApiSpecsRequest webApiSpecsRequest)
         {
-            var request = _httpRequest;
-            var headers = GetDisplayHeaders(request.Headers);
-            var bodyText = GetDisplayContent(request);
-            var text = $"REQUEST\nMETHOD: {request.RequestType}\nURL: {request.Url}\nHEADERS:\n{headers}\nBODY:\n{bodyText}\n";
+            var headers = GetDisplayHeaders(webApiSpecsRequest.Headers);
+            var bodyText = GetDisplayContent(webApiSpecsRequest);
+            var text = $"REQUEST [WebApiSpecsRequest]\nMETHOD: {webApiSpecsRequest.RequestType}\nURL: {webApiSpecsRequest.Url}\nHEADERS:\n{headers}\nBODY:\n{bodyText}\n";
             Print(text);
+        }
+
+        private WebApiSpecsRequest CreateRequest()
+        {
+            const string message = "The content must be built by assigning properties or by assigning a string value but both methods cannot be combined.";
+            Assert.IsFalse(Request != null && _stringContent != null, message);
+
+            if (_stringContent != null)
+            {
+                return new WebApiSpecsRequest { StringContent = _stringContent, ContentType = WebApiSpecsRequestContentType.StringContent };
+            }
+            else
+            {
+                return new WebApiSpecsRequest { JObjectContent = Request, ContentType = WebApiSpecsRequestContentType.JObjectContent };
+            }
         }
     }
 }

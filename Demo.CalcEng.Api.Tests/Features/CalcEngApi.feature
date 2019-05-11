@@ -27,4 +27,19 @@ Scenario: Add two numbers - Operation fails when expected request is not present
 
 
 Scenario: Add two numbers - Operation succeeds
+	Given property FirstNumber equals to '10'
+	And property SecondNumber equals to the number 20
 	When I send a POST request to api/CalcEng/Sum
+	Then property operationResult should be the number 30
+
+
+Scenario: Calling Delete method
+	When I send a DELETE request to api/CalcEng/DeleteTest/10
+	Then property operationResult should be 'deleted item 10'
+
+
+Scenario: Calling Put method
+	# setting the content
+	Given content equals to '{"PropA": "abc" }'
+	When I send a PUT request to api/CalcEng/PutTest/11
+	Then property operationResult should be 'Item: 11, new PropA: abc'
