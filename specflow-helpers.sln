@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Object", "Specflow.Steps.Object\Specflow.Steps.Object.csproj", "{4EF19ECA-CFBD-4E42-90D5-1D6A71443A20}"
 EndProject
@@ -10,6 +10,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Domain.Tests", "Demo.CalcEng.Domain.Tests\Demo.CalcEng.Domain.Tests.csproj", "{1C57E9D9-BFC2-4E77-A102-C15573FB0C0F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Object.Tests", "Specflow.Steps.Object.Tests\Specflow.Steps.Object.Tests.csproj", "{FCBE8D1C-17F9-4580-BC43-46762B899499}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Api", "Demo.CalcEng.Api\Demo.CalcEng.Api.csproj", "{45B36D37-137C-476B-8A0B-E6B5E642F1AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CalcEng.Api.Tests", "Demo.CalcEng.Api.Tests\Demo.CalcEng.Api.Tests.csproj", "{57148037-152F-41B8-AB7D-BEB8F45A535B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specflow.Steps.WebApi", "Specflow.Steps.WebApi\Specflow.Steps.WebApi.csproj", "{424C0896-C72B-4F21-9737-E10DC6FB730A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{FCBE8D1C-17F9-4580-BC43-46762B899499}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCBE8D1C-17F9-4580-BC43-46762B899499}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCBE8D1C-17F9-4580-BC43-46762B899499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B36D37-137C-476B-8A0B-E6B5E642F1AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B36D37-137C-476B-8A0B-E6B5E642F1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B36D37-137C-476B-8A0B-E6B5E642F1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B36D37-137C-476B-8A0B-E6B5E642F1AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57148037-152F-41B8-AB7D-BEB8F45A535B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57148037-152F-41B8-AB7D-BEB8F45A535B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57148037-152F-41B8-AB7D-BEB8F45A535B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57148037-152F-41B8-AB7D-BEB8F45A535B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{424C0896-C72B-4F21-9737-E10DC6FB730A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{424C0896-C72B-4F21-9737-E10DC6FB730A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{424C0896-C72B-4F21-9737-E10DC6FB730A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{424C0896-C72B-4F21-9737-E10DC6FB730A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

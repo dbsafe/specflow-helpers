@@ -14,7 +14,7 @@ namespace Specflow.Steps.Object
     public class JObjectBuilderSteps
     {
         public TestContext TestContext { get; }
-        public JObject Request { get; } = new JObject();
+        public JObject Request { get; private set; }
         public JObject Response { get; private set; }
 
         public JObjectBuilderSteps(TestContext testContext)
@@ -25,6 +25,11 @@ namespace Specflow.Steps.Object
         public void SetResponse(object response)
         {
             Response = JObject.FromObject(response);
+        }
+
+        public void SetResponse(JObject response)
+        {
+            Response = response;
         }
 
         #region Given
@@ -201,16 +206,19 @@ namespace Specflow.Steps.Object
 
         private void SetRequestContentProperty(string name, string value)
         {
+            InitializeRequest();
             Request.SetProperty(name, value);
         }
 
         private void SetRequestContentProperty(string name, decimal value)
         {
+            InitializeRequest();
             Request.SetProperty(name, value);
         }
 
         private void SetRequestContentProperties(Table table)
         {
+            InitializeRequest();
             var items = table.CreateSet<ObjectProperty>();
             foreach (var item in items)
             {
@@ -220,13 +228,23 @@ namespace Specflow.Steps.Object
 
         private void SetRequestContentPropertyAsEmptyArray(string name)
         {
+            InitializeRequest();
             Request.SetProperty(name, new string[0]);
         }
 
         private void SetRequestContentPropertyAsArray(string name, string itemsCvs)
         {
+            InitializeRequest();
             var items = itemsCvs.Split(',').Select(a => a.Trim()).ToArray();
             Request.SetProperty(name, items);
+        }
+
+        private void InitializeRequest()
+        {
+            if (Request == null)
+            {
+                Request = new JObject();
+            }
         }
 
         private void ValidateResponseProperty(string name, decimal value)
@@ -311,12 +329,12 @@ namespace Specflow.Steps.Object
             return jToken;
         }
 
-        private bool IsDateTime(JToken jToken)
+        private static bool IsDateTime(JToken jToken)
         {
             return jToken.Type == JTokenType.Date;
         }
 
-        private bool IsNumber(JToken jToken)
+        private static bool IsNumber(JToken jToken)
         {
             return jToken.Type == JTokenType.Float || jToken.Type == JTokenType.Integer;
         }

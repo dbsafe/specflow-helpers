@@ -5,7 +5,7 @@
         public bool Succeed { get; set; }
         public string Error { get; set; }
 
-        public static OperationResponse CreateFailled(string error)
+        public static OperationResponse CreateFailed(string error)
         {
             return new OperationResponse { Succeed = false, Error = error };
         }
@@ -15,7 +15,7 @@
             return new OperationResponse { Succeed = true };
         }
 
-        public static OperationResponse<TData> CreateFailled<TData>(string error)
+        public static OperationResponse<TData> CreateFailed<TData>(string error)
         {
             return new OperationResponse<TData> { Succeed = false, Error = error };
         }

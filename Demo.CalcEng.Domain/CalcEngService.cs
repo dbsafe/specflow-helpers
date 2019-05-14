@@ -29,7 +29,19 @@ namespace Demo.CalcEng.Domain
         public bool IsSmall { get; set; }
     }
 
-    public class CalcEng
+    public interface ICalcEngService
+    {
+        OperationResponse<decimal> Div(TwoNumbersOperationRequest request);
+        OperationResponse<DomainItem[]> GetDomainItems();
+        OperationResponse<DomainItem[]> GetDomainItemsByDate(GetDomainItemsByDateRequest request);
+        OperationResponse<decimal[]> PrimeNumbers();
+        OperationResponse<decimal> Sub(TwoNumbersOperationRequest request);
+        OperationResponse<decimal> Sum(MultiNumbersOperationRequest request);
+        OperationResponse<decimal> Sum(TwoNumbersOperationRequest request);
+        OperationResponse<decimal> Pi();
+    }
+
+    public class CalcEngService : ICalcEngService
     {
         private readonly DomainItem[] _domainItems = new DomainItem[]
         {
@@ -49,7 +61,7 @@ namespace Demo.CalcEng.Domain
         {
             if (request.Numbers.Length == 0)
             {
-                return OperationResponse.CreateFailled<decimal>("The list is empty");
+                return OperationResponse.CreateFailed<decimal>("The list is empty");
             }
 
             decimal total = 0;
@@ -76,7 +88,7 @@ namespace Demo.CalcEng.Domain
             }
             catch (Exception ex)
             {
-                return OperationResponse.CreateFailled<decimal>(ex.Message);
+                return OperationResponse.CreateFailed<decimal>(ex.Message);
             }
         }
 
@@ -97,6 +109,11 @@ namespace Demo.CalcEng.Domain
                 .Where(a => a.Date == request.Date && a.IsSmall == request.IsSmall)
                 .ToArray();
             return OperationResponse.CreateSucceed(data);
+        }
+
+        public OperationResponse<decimal> Pi()
+        {
+            return OperationResponse.CreateSucceed(3.14m);
         }
     }
 }
