@@ -9,6 +9,8 @@ namespace Demo.CalcEng.Api
 {
     public class Startup
     {
+        public static bool LogRequestResponse { get; set; } = false;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -31,7 +33,11 @@ namespace Demo.CalcEng.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRequestResponseLogging();
+            if (LogRequestResponse)
+            {
+                app.UseRequestResponseLogging();
+            }
+            
             ConfigureSwagerUi(app);
             app.UseMvc();
 
