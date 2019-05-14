@@ -38,7 +38,7 @@ namespace Demo.CalcEng.Api.Controllers
         }
 
         [HttpPut("PutTest/{id}")]
-        public IActionResult Save(int id, DomainItem item)
+        public IActionResult PutTest(int id, DomainItem item)
         {
             var data = OperationResponse.CreateSucceed($"Item: {id}, new PropA: {item.PropA}");
             return Ok(data);

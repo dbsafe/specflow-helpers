@@ -40,6 +40,6 @@ Scenario: Calling Delete method
 
 Scenario: Calling Put method
 	# setting the content
-	Given content equals to '{"PropA": "abc" }'
+	Given content equals to '{ "PropA": "abc" }'
 	When I send a PUT request to api/CalcEng/PutTest/11
 	Then property operationResult should be 'Item: 11, new PropA: abc'
