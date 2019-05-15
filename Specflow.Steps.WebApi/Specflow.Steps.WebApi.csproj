@@ -1,7 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>A library that extends Specflow</Description>
+    <Copyright>Copyright (c) 2019 specflow-helpers</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/dbsafe/specflow-helpers</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dbsafe/specflow-helpers</RepositoryUrl>
+    <Authors>Ernesto Valcarcel</Authors>
+    <Product>specflow-helpers</Product>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <IncludeSymbols>True</IncludeSymbols>
+    <PackageId>Helpers.Specflow.Steps.WebApi</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +30,13 @@
     <Reference Include="Microsoft.AspNetCore.Http.Extensions">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.http.extensions\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
