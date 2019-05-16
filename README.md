@@ -123,6 +123,21 @@ public class CalcEngController : ControllerBase
 }
 ```
 
+**Step Definition class**
+
+```csharp
+[Binding]
+[Scope(Feature = "CalcEngApi")]
+public class CalcEngApiSteps : WebApiSpecs
+{
+    private static readonly WebApiSpecsConfig _config = new WebApiSpecsConfig { BaseUrl = CalcEngApiHost.BaseUrl };
+    public CalcEngApiSteps(TestContext testContext) : base(testContext, _config) { }
+}
+```
+
+The class `CalcEngApiSteps` descends from `WebApiSpecs` and does not define any step.
+
+
 Projects in the solution
 ------------------------
 
