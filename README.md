@@ -11,15 +11,18 @@ For more information about Specflow visit: https://specflow.org/
 Features
 --------
 
-specflow-helpers provides methods for setting properties of a request object and methods for reading properties of a response object. 
-These methods can be used by defining a Step Definition class that inherits from a class defined in specflow-helpers.
+specflow-helpers can be used for writing tests for methods of a class and for writing test for a WebApi.
 
-NuGet package
+NuGet packages
 -------------
 [Helpers.Specflow.Steps.Object](https://www.nuget.org/packages/Helpers.Specflow.Steps.Object/)
+defines a base Steps Definition class with `Given` steps that set properties of an object and `Then` steps that assert properties of a result.
+
+[Helpers.Specflow.Steps.WebApi](https://www.nuget.org/packages/Helpers.Specflow.Steps.WebApi/)
+defines a base Steps Definition class with `Given` steps that set properties of a `HttpRequest` object and `Then` steps that assert properties of a `HttpResponse` object and its content. The base class has also one `When` step that executes a `HttpRequest` passing a url, method, and query parameters.
 
 Example - Testing methods of a class
----------------------------------
+------------------------------------
 
 Suppose we have the class CalcEng that has the method Sum.
 
@@ -94,21 +97,56 @@ Scenario: Add two numbers - returns correct value
 	Then property OperationResult should be the number 30
 ```
 
-The properties of the request are set using a step definition from `JObjectBuilderSteps`.
-
-```csharp
-[Given(@"property ([^\s]+) equals to the number ([-+]?[\d]*[\.]?[\d]+)")]
-public void SetRequestProperty(string name, decimal value)
-```
-
-When reading a property of the response a step definition from `JObjectBuilderSteps` is used.
-
-```csharp
-[Then(@"property ([^\s]+) should be the number ([-+]?[\d]*[\.]?[\d]+)")]
-public void AssertNumericProperty(string propertyName, decimal expectedPropertyValue)
-```
-
 The Step Definition class that supports `CalcEng` tests does not need to define custom steps for setting properties of the request and validating properties of the response.
+
+
+Example – Testing endpoints of a WebApi
+---------------------------------------
+
+Suppose we have the WebApi with the endpoint Sum.
+
+```csharp
+[Route("api/CalcEng")]
+[ApiController]
+public class CalcEngController : ControllerBase
+{
+    private ICalcEngService _calcEngService;
+
+    [HttpPost("Sum")]
+    public IActionResult Sum(TwoNumbersOperationRequest request)
+    {
+        var data = _calcEngService.Sum(request);
+        return Ok(data);
+    }
+    
+    //...
+}
+```
+
+**Step Definition class**
+
+```csharp
+[Binding]
+[Scope(Feature = "CalcEngApi")]
+public class CalcEngApiSteps : WebApiSpecs
+{
+    private static readonly WebApiSpecsConfig _config = new WebApiSpecsConfig { BaseUrl = CalcEngApiHost.BaseUrl };
+    public CalcEngApiSteps(TestContext testContext) : base(testContext, _config) { }
+}
+```
+
+The class `CalcEngApiSteps` descends from `WebApiSpecs` and does not define any step.
+
+**Feature file**
+
+```
+Scenario: Add two numbers - Operation succeeds
+	Given property FirstNumber equals to the number 10
+	And property SecondNumber equals to the number 20
+	When I send a POST request to api/CalcEng/Sum
+	Then property operationResult should be the number 30
+	And StatusCode should be 200
+```
 
 Projects in the solution
 ------------------------
