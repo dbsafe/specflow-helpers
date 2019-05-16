@@ -137,6 +137,16 @@ public class CalcEngApiSteps : WebApiSpecs
 
 The class `CalcEngApiSteps` descends from `WebApiSpecs` and does not define any step.
 
+**Feature file**
+
+```
+Scenario: Add two numbers - Operation succeeds
+	Given property FirstNumber equals to the number 10
+	And property SecondNumber equals to the number 20
+	When I send a POST request to api/CalcEng/Sum
+	Then property operationResult should be the number 30
+	And StatusCode should be 200
+```
 
 Projects in the solution
 ------------------------
