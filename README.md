@@ -4,7 +4,7 @@ specflow-helpers
 
 Library to support writing unit test with Specflow
 
-This library provides base implementation that can be reused when writing the code behind for Specflow tests. 
+This library provides a base implementation that can be reused when writing the code behind for Specflow tests. 
 In order to use the library some knowledge of Specflow is required.
 For more information about Specflow visit: https://specflow.org/
 
