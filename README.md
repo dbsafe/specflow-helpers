@@ -11,12 +11,15 @@ For more information about Specflow visit: https://specflow.org/
 Features
 --------
 
-specflow-helpers provides methods for setting properties of a request object and methods for reading properties of a response object. 
-These methods can be used by defining a Step Definition class that inherits from a class defined in specflow-helpers.
+specflow-helpers can be used for writing tests for methods of a class and for writing test for a WebApi.
 
-NuGet package
+NuGet packages
 -------------
 [Helpers.Specflow.Steps.Object](https://www.nuget.org/packages/Helpers.Specflow.Steps.Object/)
+defines a base Steps Definition class with `Given` steps that set properties of an object and `Then` steps that assert properties of a result.
+
+[Helpers.Specflow.Steps.WebApi](https://www.nuget.org/packages/Helpers.Specflow.Steps.WebApi/)
+defines a base Steps Definition class with `Given` steps that set properties of a `HttpRequest` object and `Then` steps that assert properties of a `HttpResponse` object and its content. The base class has also one `When` step that executes a `HttpRequest` passing a url, method, and query parameters.
 
 Example - Testing methods of a class
 ---------------------------------
