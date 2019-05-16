@@ -140,6 +140,9 @@ The class `CalcEngApiSteps` descends from `WebApiSpecs` and does not define any 
 **Feature file**
 
 ```
+Feature: CalcEngApi
+	Test the Calculation Engine Api
+	
 Scenario: Add two numbers - Operation succeeds
 	Given property FirstNumber equals to the number 10
 	And property SecondNumber equals to the number 20
