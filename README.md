@@ -310,8 +310,8 @@ Then property OperationResult should be the complex-element array
  Then property OperationResult[1].PropB should be 'item2-pb'
  ```
  
-Supported When step for testing a WebApi service
-------------------------------------------------
+Supported `When` step for testing a WebApi service
+--------------------------------------------------
 
 **Sending a request to a WebApi**
 ```
@@ -322,8 +322,8 @@ Supported methods: `POST`, `GET`, `PUT`, `DELETE`
 Query parameters can be included in the url
 
 
-Supported Then step for testing a WebApi service
-------------------------------------------------
+Supported `Then` step for testing a WebApi service
+--------------------------------------------------
 
 **Assert the StatusCode from the response**
 ```
