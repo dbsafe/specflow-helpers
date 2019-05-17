@@ -310,3 +310,33 @@ Then property OperationResult should be the complex-element array
  Then property OperationResult[1].PropB should be 'item2-pb'
  ```
  
+Supported When step for testing a WebApi service
+------------------------------------------------
+
+**Sending a request to a WebApi**
+```
+When I send a POST request to api/CalcEng/Sum
+```
+
+Supported methods: `POST`, `GET`, `PUT`, `DELETE`
+Query parameters can be part of the url
+
+
+Supported Then step for testing a WebApi service
+------------------------------------------------
+
+**Assert the StatusCode from the response**
+```
+Then StatusCode should be 200
+```
+
+**Assert the ReasonPhrase from the response**
+```
+Then ReasonPhrase should be 'OK'
+```
+
+**Assert a header from the response**
+```
+Then header Server should be 'Kestrel'
+```
+
