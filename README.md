@@ -130,7 +130,7 @@ public class CalcEngController : ControllerBase
 [Scope(Feature = "CalcEngApi")]
 public class CalcEngApiSteps : WebApiSpecs
 {
-    private static readonly WebApiSpecsConfig _config = new WebApiSpecsConfig { BaseUrl = CalcEngApiHost.BaseUrl };
+    private static readonly WebApiSpecsConfig _config = new WebApiSpecsConfig { BaseUrl = "http://localhost:5000" };
     public CalcEngApiSteps(TestContext testContext) : base(testContext, _config) { }
 }
 ```
@@ -156,10 +156,13 @@ Projects in the solution
 
 Project Name | Description
 ------------ | -----------
-Specflow.Steps.Object | specflow-helpers implementation
-Specflow.Steps.Object.Tests | Unit test for specflow-helpers implementation
-Demo.CalcEng.Domain | Defines a service class used in the demo
-Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Specflow tests. Uses the release version of Helpers.Specflow.Steps.Object in NuGet. For debugging and testing remove the reference to the NuGet package and add a reference to the project Specflow.Steps.Object
+Specflow.Steps.Object | specflow-helpers implementation for testing classes
+Specflow.Steps.Object.Tests | Unit test for Specflow.Steps.Object
+Specflow.Steps.WebApi | specflow-helpers implementation for testing WebApi services
+Demo.CalcEng.Domain | Defines a service class used for demo
+Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Specflow tests for a class. Uses the release version from NuGet. For debugging remove the reference to the NuGet package and add a reference to the project Specflow.Steps.Object
+Demo.CalcEng.Api | A WebApi service used for demo 
+Demo.CalcEng.Api.Tests | Demonstrates how to use specflow-helpers to write Specflow tests for a WebApi. Uses the release version from NuGet. For debugging remove the reference to the NuGet packages and add a reference to the projects Specflow.Steps.Object and Specflow.Steps.WebApi
 
 Supported `Given` steps
 -----------------------
