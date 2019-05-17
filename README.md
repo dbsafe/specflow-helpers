@@ -319,7 +319,7 @@ When I send a POST request to api/CalcEng/Sum
 ```
 
 Supported methods: `POST`, `GET`, `PUT`, `DELETE`
-Query parameters can be part of the url
+Query parameters can be included in the url
 
 
 Supported Then step for testing a WebApi service
