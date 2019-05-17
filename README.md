@@ -164,8 +164,8 @@ Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Sp
 Demo.CalcEng.Api | A WebApi service used for demo 
 Demo.CalcEng.Api.Tests | Demonstrates how to use specflow-helpers to write Specflow tests for a WebApi. Uses the release version from NuGet. For debugging remove the reference to the NuGet packages and add a reference to the projects Specflow.Steps.Object and Specflow.Steps.WebApi
 
-Supported `Given` steps that can be used when testing a class or a WebApi service
----------------------------------------------------------------------------------
+Supported `Given` steps for testing a class or a WebApi service
+---------------------------------------------------------------
 
 **Assigning a text value to a property**
 ```
@@ -204,8 +204,8 @@ Given properties
 | SecondNumber | 0     |
 ```
 
-Supported `Then` steps that can be used when testing a class or a WebApi service
---------------------------------------------------------------------------------
+Supported `Then` steps for testing a class or a WebApi service
+--------------------------------------------------------------
 
 **Assert a text property**
 ```
