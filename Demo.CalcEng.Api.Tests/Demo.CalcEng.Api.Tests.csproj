@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Helpers.Specflow.Steps.WebApi" Version="1.2.0.38-beta" />
+    <PackageReference Include="Helpers.Specflow.Steps.WebApi" Version="1.2.0.48" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
