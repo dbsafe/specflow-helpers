@@ -4,22 +4,25 @@ specflow-helpers
 
 Library to support writing unit test with Specflow
 
-This library provides base implementation that can be reused when writing the code behind for Specflow tests. 
+This library provides a base implementation that can be reused when writing the code behind for Specflow tests. 
 In order to use the library some knowledge of Specflow is required.
 For more information about Specflow visit: https://specflow.org/
 
 Features
 --------
 
-specflow-helpers provides methods for setting properties of a request object and methods for reading properties of a response object. 
-These methods can be used by defining a Step Definition class that inherits from a class defined in specflow-helpers.
+specflow-helpers can be used for writing tests for methods of a class and for writing test for a WebApi.
 
-NuGet package
+NuGet packages
 -------------
 [Helpers.Specflow.Steps.Object](https://www.nuget.org/packages/Helpers.Specflow.Steps.Object/)
+defines a base Steps Definition class with `Given` steps that set properties of an object and `Then` steps that assert properties of a result.
+
+[Helpers.Specflow.Steps.WebApi](https://www.nuget.org/packages/Helpers.Specflow.Steps.WebApi/)
+defines a base Steps Definition class with `Given` steps that set properties of a `HttpRequest` object and `Then` steps that assert properties of a `HttpResponse` object and its content. The base class has also one `When` step that executes a `HttpRequest` passing a url, method, and query parameters.
 
 Example - Testing methods of a class
----------------------------------
+------------------------------------
 
 Suppose we have the class CalcEng that has the method Sum.
 
@@ -94,34 +97,79 @@ Scenario: Add two numbers - returns correct value
 	Then property OperationResult should be the number 30
 ```
 
-The properties of the request are set using a step definition from `JObjectBuilderSteps`.
-
-```csharp
-[Given(@"property ([^\s]+) equals to the number ([-+]?[\d]*[\.]?[\d]+)")]
-public void SetRequestProperty(string name, decimal value)
-```
-
-When reading a property of the response a step definition from `JObjectBuilderSteps` is used.
-
-```csharp
-[Then(@"property ([^\s]+) should be the number ([-+]?[\d]*[\.]?[\d]+)")]
-public void AssertNumericProperty(string propertyName, decimal expectedPropertyValue)
-```
-
 The Step Definition class that supports `CalcEng` tests does not need to define custom steps for setting properties of the request and validating properties of the response.
+
+
+Example – Testing endpoints of a WebApi
+---------------------------------------
+
+Suppose we have the WebApi with the endpoint Sum.
+
+```csharp
+[Route("api/CalcEng")]
+[ApiController]
+public class CalcEngController : ControllerBase
+{
+    private ICalcEngService _calcEngService;
+
+    [HttpPost("Sum")]
+    public IActionResult Sum(TwoNumbersOperationRequest request)
+    {
+        var data = _calcEngService.Sum(request);
+        return Ok(data);
+    }
+    
+    //...
+}
+```
+
+**Step Definition class**
+
+```csharp
+[Binding]
+[Scope(Feature = "CalcEngApi")]
+public class CalcEngApiSteps : WebApiSpecs
+{
+    private static readonly WebApiSpecsConfig _config = new WebApiSpecsConfig { BaseUrl = "http://localhost:5000" };
+    public CalcEngApiSteps(TestContext testContext) : base(testContext, _config) { }
+}
+```
+
+The class `CalcEngApiSteps` descends from `WebApiSpecs` and does not define any step.
+
+**Feature file**
+
+```
+Feature: CalcEngApi
+	Test the Calculation Engine Api
+	
+Scenario: Add two numbers - Operation succeeds
+	Given property FirstNumber equals to the number 10
+	And property SecondNumber equals to the number 20
+	When I send a POST request to api/CalcEng/Sum
+	Then property operationResult should be the number 30
+	And StatusCode should be 200
+```
 
 Projects in the solution
 ------------------------
 
 Project Name | Description
 ------------ | -----------
-Specflow.Steps.Object | specflow-helpers implementation
-Specflow.Steps.Object.Tests | Unit test for specflow-helpers implementation
-Demo.CalcEng.Domain | Defines a service class used in the demo
-Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Specflow tests. Uses the release version of Helpers.Specflow.Steps.Object in NuGet. For debugging and testing remove the reference to the NuGet package and add a reference to the project Specflow.Steps.Object
+Specflow.Steps.Object | specflow-helpers implementation for testing classes
+Specflow.Steps.Object.Tests | Unit test for Specflow.Steps.Object
+Specflow.Steps.WebApi | specflow-helpers implementation for testing WebApi services
+Demo.CalcEng.Domain | Defines a service class used for demo
+Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Specflow tests for a class. Uses the release version from NuGet. For debugging remove the reference to the NuGet package and add a reference to the project Specflow.Steps.Object
+Demo.CalcEng.Api | A WebApi service used for demo 
+Demo.CalcEng.Api.Tests | Demonstrates how to use specflow-helpers to write Specflow tests for a WebApi. Uses the release version from NuGet. For debugging remove the reference to the NuGet packages and add a reference to the projects Specflow.Steps.Object and Specflow.Steps.WebApi
 
-Supported `Given` steps
+Development environment
 -----------------------
+VS2019 and .NET Core 2.2 SDK (v2.2.204)
+
+Supported `Given` steps for testing a class or a WebApi service
+---------------------------------------------------------------
 
 **Assigning a text value to a property**
 ```
@@ -160,8 +208,8 @@ Given properties
 | SecondNumber | 0     |
 ```
 
-Supported `Then` steps
-----------------------
+Supported `Then` steps for testing a class or a WebApi service
+--------------------------------------------------------------
 
 **Assert a text property**
 ```
@@ -266,3 +314,33 @@ Then property OperationResult should be the complex-element array
  Then property OperationResult[1].PropB should be 'item2-pb'
  ```
  
+Supported `When` step for testing a WebApi service
+--------------------------------------------------
+
+**Sending a request to a WebApi**
+```
+When I send a POST request to api/CalcEng/Sum
+```
+
+Supported methods: `POST`, `GET`, `PUT`, `DELETE`
+Query parameters can be included in the url
+
+
+Supported `Then` step for testing a WebApi service
+--------------------------------------------------
+
+**Assert the StatusCode from the response**
+```
+Then StatusCode should be 200
+```
+
+**Assert the ReasonPhrase from the response**
+```
+Then ReasonPhrase should be 'OK'
+```
+
+**Assert a header from the response**
+```
+Then header Server should be 'Kestrel'
+```
+

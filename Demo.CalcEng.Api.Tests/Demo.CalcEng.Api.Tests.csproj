@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -8,13 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="Helpers.Specflow.Steps.WebApi" Version="1.2.0.38-beta" />
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.4" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+	<PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
-    <PackageReference Include="SpecFlow" Version="3.0.199" />
-    <PackageReference Include="SpecFlow.MsTest" Version="3.0.199" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.199" />
+    <PackageReference Include="SpecFlow" Version="3.0.213" />
+    <PackageReference Include="SpecFlow.MsTest" Version="3.0.213" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.213" />
   </ItemGroup>
 
   <ItemGroup>
