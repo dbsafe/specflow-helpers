@@ -314,7 +314,7 @@ Then property OperationResult should be the complex-element array
  Then property OperationResult[1].PropB should be 'item2-pb'
  ```
 
-Supported `Given` step only for testing WebApi services
+Supported `Given` step for testing WebApi services only
 -------------------------------------------------------
 
 **Setting the content with a json**
@@ -322,7 +322,7 @@ Supported `Given` step only for testing WebApi services
 Given content equals to '{ "PropA": "abc" }'
 ```
 
-Supported `When` step only for testing WebApi services
+Supported `When` step for testing WebApi services only
 ------------------------------------------------------
 
 **Sending a request to a WebApi**
@@ -334,7 +334,7 @@ Supported methods: `POST`, `GET`, `PUT`, `DELETE`
 Query parameters can be included in the url
 
 
-Supported `Then` steps only for testing WebApi services
+Supported `Then` steps for testing WebApi services only
 -------------------------------------------------------
 
 **Assert the StatusCode from the response**
