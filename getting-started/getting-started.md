@@ -55,3 +55,12 @@ namespace MyApi.Tests
     }
 }
 ```
+
+
+6.	Add a folder called Features to the project
+
+
+7.	Add a `feature` file. Select Add->New Item on Features folder. Select `SpecFlow Feature File` and enter the name MyApi.feature
+
+![Feature File](add-feature-file.png)
+
