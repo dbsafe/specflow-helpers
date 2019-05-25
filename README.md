@@ -21,6 +21,8 @@ defines a base Steps Definition class with `Given` steps that set properties of 
 [Helpers.Specflow.Steps.WebApi](https://www.nuget.org/packages/Helpers.Specflow.Steps.WebApi/)
 defines a base Steps Definition class with `Given` steps that set properties of a `HttpRequest` object and `Then` steps that assert properties of a `HttpResponse` object and its content. The base class has also one `When` step that executes a `HttpRequest` passing a url, method, and query parameters.
 
+**[Getting Started](getting-started/getting-started.md)**
+
 Example - Testing methods of a class
 ------------------------------------
 
