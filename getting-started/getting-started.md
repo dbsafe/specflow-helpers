@@ -87,3 +87,15 @@ Scenario: Create a user - User is created and fields are returned
 ```
 
 
+8.	Remove the assigned custom tool for MyApi.feature file. Select the file and press F4 to open the properties for the file, then clear the Custom Tool property.
+
+![Feature File Properties](feature-file-properties.png)
+
+
+9.	Build the solution and execute the tests. The two tests should pass.
+
+![Tests Explorer](test-explorer.png)
+
+Use the output of the test to se the details of the request and the response.
+
+![Tests Output](test-output.png)
