@@ -19,3 +19,13 @@ To install SpecFlow for Visual Studio 2019 extension select Extensions->Manage E
 3.	After the project is created remove the test that was created with the template. UnitTest1.cs.
 
 5.	Add NuGet packages SpecFlow.Tools.MsBuild.Generation, Helpers.Specflow.Steps.WebApi, and SpecFlow.MsTest to the project.
+
+![SpecFlow.Tools.MsBuild.Generation](SpecFlow.Tools.MsBuild.Generation.png)
+
+![Helpers.Specflow.Steps.WebApi](Helpers.Specflow.Steps.WebApi.png)
+
+![SpecFlow.MsTest](SpecFlow.MsTest.png)
+
+Specflow has different packages for different test frameworks, e.g. SpecFlow.xUnit and SpecFlow.NUnit.
+
+
