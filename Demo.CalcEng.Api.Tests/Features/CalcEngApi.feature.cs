@@ -117,19 +117,38 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request PI - Setting a HTTP Header")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEngApi")]
+        public virtual void RequestPI_SettingAHTTPHeader()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request PI - Setting a HTTP Header", null, ((string[])(null)));
+#line 23
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 26
+ testRunner.Given("header CorrelationId equals to \'1111-aaaa\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 27
+ testRunner.When("I send a GET request to api/CalcEng/Pi", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 28
+ testRunner.Then("header CorrelationId should be \'1111-aaaa\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add two numbers - Operation fails when expected request is not present")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEngApi")]
         public virtual void AddTwoNumbers_OperationFailsWhenExpectedRequestIsNotPresent()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers - Operation fails when expected request is not present", null, ((string[])(null)));
-#line 23
+#line 31
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 24
+#line 32
  testRunner.When("I send a POST request to api/CalcEng/Sum", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 25
+#line 33
  testRunner.Then("StatusCode should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 26
+#line 34
  testRunner.And("ReasonPhrase should be \'Bad Request\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -141,16 +160,16 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void AddTwoNumbers_OperationSucceeds()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers - Operation succeeds", null, ((string[])(null)));
-#line 29
+#line 37
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 30
+#line 38
  testRunner.Given("property FirstNumber equals to \'10\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 31
+#line 39
  testRunner.And("property SecondNumber equals to the number 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 32
+#line 40
  testRunner.When("I send a POST request to api/CalcEng/Sum", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 33
+#line 41
  testRunner.Then("property operationResult should be the number 30", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -162,12 +181,12 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void CallingDeleteMethod()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calling Delete method", null, ((string[])(null)));
-#line 36
+#line 44
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 37
+#line 45
  testRunner.When("I send a DELETE request to api/CalcEng/DeleteTest/10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 38
+#line 46
  testRunner.Then("property operationResult should be \'deleted item 10\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -179,14 +198,14 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void CallingPutMethod()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calling Put method", null, ((string[])(null)));
-#line 41
+#line 49
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 43
+#line 51
  testRunner.Given("content equals to \'{ \"PropA\": \"abc\" }\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 44
+#line 52
  testRunner.When("I send a PUT request to api/CalcEng/PutTest/11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 45
+#line 53
  testRunner.Then("property operationResult should be \'Item: 11, new PropA: abc\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

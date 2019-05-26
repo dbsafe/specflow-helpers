@@ -25,7 +25,11 @@ namespace Demo.CalcEng.Api.Controllers
         [HttpGet("Pi")]
         public IActionResult Pi()
         {
+            var correlationId = Request.Headers["CorrelationId"];
+            Response.Headers.Add("CorrelationId", correlationId);
+
             Response.Headers.Add("test-header", new string[] { "value-1", "value-2" });
+            
             var content = _calcEngService.Pi();
             return Ok(content);
         }

@@ -384,8 +384,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("property OperationResult[1].Date should be the datetime \'2000-01-02\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 121
  testRunner.Then("property OperationResult[1].Date should be the datetime \'2000-01-02 00:00:00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 122
- testRunner.Then("property OperationResult should be an empty array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -396,14 +394,14 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RequestDomainItemsByDate_ReturnsEmptyArray()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items By Date - Returns empty array", null, ((string[])(null)));
-#line 124
+#line 123
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 125
+#line 124
  testRunner.Given("property Date equals to \'1900-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 126
+#line 125
  testRunner.When("I request domain items by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 128
+#line 127
  testRunner.Then("property OperationResult should be an empty array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -415,12 +413,12 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void CallingAMethodThatDoesNotNeedParameters()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calling a method that does not need parameters", null, ((string[])(null)));
-#line 131
+#line 130
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 132
+#line 131
  testRunner.When("I request pi", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 133
+#line 132
  testRunner.Then("property OperationResult should be the number 3.14", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
