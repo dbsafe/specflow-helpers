@@ -42,6 +42,8 @@ namespace Specflow.Steps.WebApi
 
         private WebApiSpecsConfig _config;
 
+        private List<KeyValuePair<string, string>> _headers = new List<KeyValuePair<string, string>>();
+
         public HttpResponseMessage HttpResponse { get; private set; }
 
         public WebApiSpecs(TestContext testContext, WebApiSpecsConfig config)
@@ -62,6 +64,15 @@ namespace Specflow.Steps.WebApi
             });
         }
 
+        [Given(@"header ([^\s]+) equals to '(.*)'")]
+        public void SetHttpHeader(string name, string value)
+        {
+            ExecuteProtected(() =>
+            {
+                _headers.Add(new KeyValuePair<string, string>(name, value));
+            });
+        }
+
         [When(@"I send a (POST|GET|PUT|DELETE) request to ([\w\W]+)")]
         public void CreateClientRequest(HttpRequestType requestType, string path)
         {
@@ -71,6 +82,7 @@ namespace Specflow.Steps.WebApi
                 var request = CreateRequest();
                 request.Url = $"{_config.BaseUrl}/{path}";
                 request.RequestType = requestType;
+                request.Headers = _headers;
                 ValidateRequest(request);
                 SendHttpRequestAsync(request).Wait();
             });

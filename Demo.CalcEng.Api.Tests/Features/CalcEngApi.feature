@@ -20,6 +20,14 @@ Scenario: Request PI - Operation succeeds
 	And ReasonPhrase should be 'OK'
 
 
+Scenario: Request PI - Setting a HTTP Header
+
+	# Setting a header
+	Given header CorrelationId equals to '1111-aaaa'
+	When I send a GET request to api/CalcEng/Pi
+	Then header CorrelationId should be '1111-aaaa'
+
+
 Scenario: Add two numbers - Operation fails when expected request is not present
 	When I send a POST request to api/CalcEng/Sum
 	Then StatusCode should be 400
