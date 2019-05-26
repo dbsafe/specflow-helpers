@@ -150,6 +150,15 @@ namespace Specflow.Steps.Object
             });
         }
 
+        [Then(@"property ([^\s]+) should be an empty array")]
+        public void AssertEmptyArrayProperty(string propertyName)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateEmptyArrayProperty(propertyName);
+            });
+        }
+
         private void ValidateSingleColumnArray(string arrayPropertyName, Table table)
         {
             var actualToken = FindProperty(arrayPropertyName);
@@ -315,6 +324,15 @@ namespace Specflow.Steps.Object
             {
                 Assert.Fail($"Array property {propertyName}. Actual and expected don't match");
             }
+        }
+
+        private void ValidateEmptyArrayProperty(string propertyName)
+        {
+            var actualToken = FindProperty(propertyName);
+            Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {propertyName}. Actual type is not an array");
+
+            var actualArray = actualToken.Children().Select(a => a.ToString()).ToArray();
+            Assert.AreEqual(0, actualArray.Length, $"Array property {propertyName} is not empty");
         }
 
         private JToken FindProperty(string name, bool canBeNull = false)

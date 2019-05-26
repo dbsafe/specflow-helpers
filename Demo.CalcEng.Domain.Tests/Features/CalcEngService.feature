@@ -120,6 +120,12 @@ Scenario: Request Domain Items - Assert DtateTime property
 	# assert a datetime property including the time
 	Then property OperationResult[1].Date should be the datetime '2000-01-02 00:00:00'
 
+Scenario: Request Domain Items By Date - Returns empty array
+	Given property Date equals to '1900-01-01'
+	When I request domain items by date
+	# assert an empty array
+	Then property OperationResult should be an empty array
+
 
 Scenario: Calling a method that does not need parameters
 	When I request pi
