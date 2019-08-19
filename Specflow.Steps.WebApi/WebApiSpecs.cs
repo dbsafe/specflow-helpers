@@ -93,7 +93,7 @@ namespace Specflow.Steps.WebApi
         {
             ExecuteProtected(() =>
             {
-                ValidateResponse();
+                ValidateHttpResponse();
                 Assert.AreEqual(statusCode, (int)HttpResponse.StatusCode, "Unexpected StatusCode");
             });
         }
@@ -103,7 +103,7 @@ namespace Specflow.Steps.WebApi
         {
             ExecuteProtected(() =>
             {
-                ValidateResponse();
+                ValidateHttpResponse();
                 Assert.AreEqual(reasonPhrase, HttpResponse.ReasonPhrase, "Unexpected ReasonPhrase");
             });
         }
@@ -113,7 +113,7 @@ namespace Specflow.Steps.WebApi
         {
             ExecuteProtected(() =>
             {
-                ValidateResponse();
+                ValidateHttpResponse();
 
                 Assert.IsNotNull(HttpResponse.Headers, "Headers property is null");
                 Assert.IsTrue(HttpResponse.Headers.Contains(name), $"Header {name} not found");

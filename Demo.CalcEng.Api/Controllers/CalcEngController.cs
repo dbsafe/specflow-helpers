@@ -34,6 +34,12 @@ namespace Demo.CalcEng.Api.Controllers
             return Ok(content);
         }
 
+        [HttpGet("MethodThatFails")]
+        public IActionResult MethodWithError()
+        {
+            return NotFound();
+        }
+
         [HttpDelete("DeleteTest/{id}")]
         public IActionResult Delete(int id)
         {
