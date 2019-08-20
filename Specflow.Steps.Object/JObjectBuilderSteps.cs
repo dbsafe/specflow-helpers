@@ -159,6 +159,24 @@ namespace Specflow.Steps.Object
             });
         }
 
+        [Then(@"property ([^\s]+) should be an array with ([\d]+) items")]
+        public void AssertArrayCount(string propertyName, int count)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateArrayCount(propertyName, count);
+            });
+        }
+
+        [Then(@"property ([^\s]+) should be an array with 1 item")]
+        public void AssertArrayHasOneItem(string propertyName)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateArrayCount(propertyName, 1);
+            });
+        }
+
         private void ValidateSingleColumnArray(string arrayPropertyName, Table table)
         {
             var actualToken = FindProperty(arrayPropertyName);
@@ -311,10 +329,17 @@ namespace Specflow.Steps.Object
             Assert.IsNull(jValue.Value, $"Property {name} is not null");
         }
 
-        private void ValidateArrayProperty(string propertyName, string itemsCsv)
+        private JToken FindArrayProperty(string propertyName)
         {
             var actualToken = FindProperty(propertyName);
             Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {propertyName}. Actual type is not an array");
+
+            return actualToken;
+        }
+
+        private void ValidateArrayProperty(string propertyName, string itemsCsv)
+        {
+            var actualToken = FindArrayProperty(propertyName);
 
             var expectedArray = itemsCsv.Split(',').Select(a => a.Trim());
             var actualArray = actualToken.Children().Select(a => a.ToString()).ToArray();
@@ -328,11 +353,16 @@ namespace Specflow.Steps.Object
 
         private void ValidateEmptyArrayProperty(string propertyName)
         {
-            var actualToken = FindProperty(propertyName);
-            Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {propertyName}. Actual type is not an array");
-
+            var actualToken = FindArrayProperty(propertyName);
             var actualArray = actualToken.Children().Select(a => a.ToString()).ToArray();
             Assert.AreEqual(0, actualArray.Length, $"Array property {propertyName} is not empty");
+        }
+
+        private void ValidateArrayCount(string arrayPropertyName, int count)
+        {
+            var actualToken = FindArrayProperty(arrayPropertyName);
+            var actualCount = (actualToken as JArray).Count;
+            Assert.AreEqual(count, actualCount, $"Array: {arrayPropertyName}. Actual number of items is {actualCount}");
         }
 
         private JToken FindProperty(string name, bool canBeNull = false)

@@ -98,6 +98,8 @@ Scenario: Request Domain Items - Ignore field
 	| item3-pa  | [IGNORE] | 2000-01-03    | 300          | False           |
 	| item4-pa  | [IGNORE] | 2000-01-04    | 400          | False           |
 
+	Then property OperationResult should be an array with 4 items
+
 
 Scenario: Request Domain Items By Date
 	# Setting a DateTime property -
@@ -110,6 +112,8 @@ Scenario: Request Domain Items By Date
 	Then property OperationResult should be the complex-element array
 	| PropA:key | PropB  | Date:DateTime | Value:Number | IsSmall:Boolean |
 	| item1-pa  | [NULL] | 2000-01-01    | 100          | True            |
+
+	Then property OperationResult should be an array with 1 item
 
 
 Scenario: Request Domain Items - Assert DtateTime property
