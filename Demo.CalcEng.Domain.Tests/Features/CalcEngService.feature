@@ -135,6 +135,6 @@ Scenario: Calling a method that does not need parameters
 	When I request pi
 	Then property OperationResult should be the number 3.14
 
-Scenario: Validating a property type
+Scenario: Validating that a numeric is in a range
 	When I request pi
-	Then property OperationResult should be a number between 2 and 4
+	Then property OperationResult should be a number between 3.1 and 3.2

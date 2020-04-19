@@ -176,6 +176,16 @@ namespace Specflow.Steps.Object
             });
         }
 
+        [Then(@"property ([^\s]+) should be a number between (.*) and (.*)")]
+        public void AssertNumericProperty(string propertyName, decimal minValue, decimal maxValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateNumericProperty(propertyName, minValue, maxValue);
+            });
+        }
+
+
         private void ValidateSingleColumnArray(string arrayPropertyName, Table table)
         {
             var actualToken = FindProperty(arrayPropertyName);
@@ -362,6 +372,32 @@ namespace Specflow.Steps.Object
             var actualToken = FindArrayProperty(arrayPropertyName);
             var actualCount = (actualToken as JArray).Count;
             Assert.AreEqual(count, actualCount, $"Array: {arrayPropertyName}. Actual number of items is {actualCount}");
+        }
+
+        private void ValidateNumericProperty(string propertyName, decimal minValue, decimal maxValue)
+        {
+            if (minValue > maxValue)
+            {
+                Assert.Fail($"Invalid range [{minValue} - {maxValue}]");
+            }
+
+            var jToken = FindProperty(propertyName);
+            Assert.IsTrue(jToken is JValue, $"Property {propertyName} is not a single value");
+            var jValue = jToken as JValue;
+            Assert.IsNotNull(jValue.Value, $"Property {propertyName} is null");
+            Assert.IsTrue(IsNumber(jValue), $"Property {propertyName} is not a number");
+            Assert.IsTrue(decimal.TryParse(jValue.Value.ToString(), out decimal convertedValue), $"Property {propertyName} is not a valid number");
+
+            if (convertedValue < minValue)
+            {
+                Assert.Fail($"Property {propertyName} is less than {minValue}");
+            }
+
+            if (convertedValue > maxValue)
+            {
+                Assert.Fail($"Property {propertyName} is greater than {maxValue}");
+            }
+
         }
 
         private JToken FindProperty(string name, bool canBeNull = false)
