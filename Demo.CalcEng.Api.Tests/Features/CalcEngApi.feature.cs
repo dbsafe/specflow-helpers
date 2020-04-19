@@ -189,10 +189,34 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add two numbers - Operation fails when expected request is not present")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEngApi")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ignore")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Some")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("versions")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("of")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute(".Net")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Core")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("return")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("415")]
         public virtual void AddTwoNumbers_OperationFailsWhenExpectedRequestIsNotPresent()
         {
-            string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers - Operation fails when expected request is not present", null, ((string[])(null)));
+            string[] tagsOfScenario = new string[] {
+                    "ignore",
+                    "Some",
+                    "versions",
+                    "of",
+                    ".Net",
+                    "Core",
+                    "return",
+                    "415"};
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers - Operation fails when expected request is not present", null, new string[] {
+                        "ignore",
+                        "Some",
+                        "versions",
+                        "of",
+                        ".Net",
+                        "Core",
+                        "return",
+                        "415"});
 #line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -214,15 +238,12 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 32
- testRunner.Given("header Content-Type equals to \'application/json\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 33
  testRunner.When("I send a POST request to api/CalcEng/Sum", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 34
+#line 33
  testRunner.Then("StatusCode should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 35
+#line 34
  testRunner.And("ReasonPhrase should be \'Bad Request\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -236,7 +257,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers - Operation succeeds", null, ((string[])(null)));
-#line 38
+#line 37
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -256,16 +277,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 39
+#line 38
  testRunner.Given("property FirstNumber equals to \'10\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 40
+#line 39
  testRunner.And("property SecondNumber equals to the number 20", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 41
+#line 40
  testRunner.When("I send a POST request to api/CalcEng/Sum", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 42
+#line 41
  testRunner.Then("property operationResult should be the number 30", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -279,7 +300,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calling Delete method", null, ((string[])(null)));
-#line 45
+#line 44
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -299,10 +320,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 46
+#line 45
  testRunner.When("I send a DELETE request to api/CalcEng/DeleteTest/10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 47
+#line 46
  testRunner.Then("property operationResult should be \'deleted item 10\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -316,7 +337,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calling Put method", null, ((string[])(null)));
-#line 50
+#line 49
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -336,13 +357,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 52
+#line 51
  testRunner.Given("content equals to \'{ \"PropA\": \"abc\" }\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 53
+#line 52
  testRunner.When("I send a PUT request to api/CalcEng/PutTest/11", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 54
+#line 53
  testRunner.Then("property operationResult should be \'Item: 11, new PropA: abc\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -356,7 +377,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating header and StatusCode when a request fails", null, ((string[])(null)));
-#line 56
+#line 55
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -376,16 +397,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 57
+#line 56
  testRunner.Given("header CorrelationId equals to \'1111-aaaa\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 58
+#line 57
  testRunner.When("I send a GET request to api/MethodThatFails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 59
+#line 58
  testRunner.Then("header Server should be \'Kestrel\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 60
+#line 59
  testRunner.And("StatusCode should be 404", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
