@@ -134,3 +134,11 @@ Scenario: Request Domain Items By Date - Returns empty array
 Scenario: Calling a method that does not need parameters
 	When I request pi
 	Then property OperationResult should be the number 3.14
+
+Scenario: Validating that a numeric value is in a range
+	When I request pi
+	Then property OperationResult should be a number between 3.1 and 3.2
+
+Scenario: Validating that a datetime value is in a range
+	When I request domain items
+	Then property OperationResult[1].Date should be a datetime between '2000-01-01' and '2000-01-03'
