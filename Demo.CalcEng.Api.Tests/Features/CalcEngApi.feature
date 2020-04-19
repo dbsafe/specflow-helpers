@@ -27,7 +27,7 @@ Scenario: Request PI - Setting a HTTP Header
 	When I send a GET request to api/CalcEng/Pi
 	Then header CorrelationId should be '1111-aaaa'
 
-
+#@ignore Some versions of .Net Core return 415
 Scenario: Add two numbers - Operation fails when expected request is not present
 	When I send a POST request to api/CalcEng/Sum
 	Then StatusCode should be 400
