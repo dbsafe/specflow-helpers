@@ -32,7 +32,6 @@ namespace Specflow.Steps.WebApi
         public WebApiSpecsRequestContentType ContentType { get; set; }
     }
 
-    [Binding]
     public class WebApiSpecs : JObjectBuilderSteps
     {
         private const string EMPTY_MSG_ITEM = "[EMPTY]";
