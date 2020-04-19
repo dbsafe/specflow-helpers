@@ -10,7 +10,6 @@ using TechTalk.SpecFlow.Assist;
 
 namespace Specflow.Steps.Object
 {
-    [Binding]
     public class JObjectBuilderSteps
     {
         public TestContext TestContext { get; }
