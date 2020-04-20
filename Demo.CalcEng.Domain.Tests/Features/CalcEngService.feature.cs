@@ -224,13 +224,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Divide two numbers - Operation fails")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Pass an array with complex elements")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
-        public virtual void DivideTwoNumbers_OperationFails()
+        public virtual void PassAnArrayWithComplexElements()
         {
             string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Divide two numbers - Operation fails", null, ((string[])(null)));
-#line 39
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Pass an array with complex elements", null, ((string[])(null)));
+#line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -251,38 +251,41 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "name",
-                            "value"});
+                            "PropA",
+                            "PropB"});
                 table1.AddRow(new string[] {
-                            "FirstNumber",
-                            "10"});
+                            "10",
+                            "100"});
                 table1.AddRow(new string[] {
-                            "SecondNumber",
-                            "0"});
-#line 41
- testRunner.Given("properties", ((string)(null)), table1, "Given ");
+                            "11",
+                            "110"});
+                table1.AddRow(new string[] {
+                            "22",
+                            "220"});
+#line 39
+ testRunner.Given("property Items is the complex-element array", ((string)(null)), table1, "Given ");
+#line hidden
+#line 44
+ testRunner.When("I calculate totals", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 45
- testRunner.When("I execute the Div operation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("property OperationResult.PropA should be the number 43", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 46
- testRunner.Then("property Succeed should be False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 49
- testRunner.And("property Error should be \'Attempted to divide by zero.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("property OperationResult.PropB should be the number 430", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Prime Numbers")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Divide two numbers - Operation fails")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
-        public virtual void RequestPrimeNumbers()
+        public virtual void DivideTwoNumbers_OperationFails()
         {
             string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Prime Numbers", null, ((string[])(null)));
-#line 52
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Divide two numbers - Operation fails", null, ((string[])(null)));
+#line 48
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -302,10 +305,62 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 53
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "name",
+                            "value"});
+                table2.AddRow(new string[] {
+                            "FirstNumber",
+                            "10"});
+                table2.AddRow(new string[] {
+                            "SecondNumber",
+                            "0"});
+#line 50
+ testRunner.Given("properties", ((string)(null)), table2, "Given ");
+#line hidden
+#line 54
+ testRunner.When("I execute the Div operation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 55
+ testRunner.Then("property Succeed should be False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 58
+ testRunner.And("property Error should be \'Attempted to divide by zero.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Prime Numbers")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void RequestPrimeNumbers()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Prime Numbers", null, ((string[])(null)));
+#line 61
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 62
  testRunner.When("I request prime numbers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 56
+#line 65
  testRunner.Then("property OperationResult should be the single-element array \'2, 3, 5, 7, 11, 13, " +
                         "17, 19, 23\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -320,7 +375,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Prime Numbers - Using a table", null, ((string[])(null)));
-#line 59
+#line 68
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -340,31 +395,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 60
+#line 69
  testRunner.When("I request prime numbers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "values"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "2"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "3"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "5"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "7"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "11"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "13"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "17"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "19"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "23"});
-#line 63
- testRunner.Then("property OperationResult should be the single-element array", ((string)(null)), table2, "Then ");
+#line 72
+ testRunner.Then("property OperationResult should be the single-element array", ((string)(null)), table3, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -377,7 +432,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items", null, ((string[])(null)));
-#line 76
+#line 85
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -397,41 +452,41 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 77
+#line 86
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
                             "IsSmall:Boolean"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "item1-pa",
                             "[NULL]",
                             "2000-01-01",
                             "100",
                             "True"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "item2-pa",
                             "item2-pb",
                             "2000-01-02",
                             "200",
                             "False"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "item3-pa",
                             "item3-pb",
                             "2000-01-03",
                             "300",
                             "False"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "item4-pa",
                             "item4-pb",
                             "2000-01-04",
                             "400",
                             "False"});
-#line 80
- testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table3, "Then ");
+#line 89
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table4, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -444,7 +499,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Ignore field", null, ((string[])(null)));
-#line 91
+#line 100
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -464,43 +519,43 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 92
+#line 101
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
                             "IsSmall:Boolean"});
-                table4.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "item1-pa",
                             "[IGNORE]",
                             "2000-01-01",
                             "100",
                             "True"});
-                table4.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "item2-pa",
                             "[IGNORE]",
                             "2000-01-02",
                             "200",
                             "False"});
-                table4.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "item3-pa",
                             "[IGNORE]",
                             "2000-01-03",
                             "300",
                             "False"});
-                table4.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "item4-pa",
                             "[IGNORE]",
                             "2000-01-04",
                             "400",
                             "False"});
-#line 93
- testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table4, "Then ");
+#line 102
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table5, "Then ");
 #line hidden
-#line 101
+#line 110
  testRunner.Then("property OperationResult should be an array with 4 items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -514,7 +569,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items By Date", null, ((string[])(null)));
-#line 104
+#line 113
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -534,31 +589,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 106
+#line 115
  testRunner.Given("property Date equals to \'2000-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 108
+#line 117
  testRunner.And("property IsSmall equals to \'True\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 110
+#line 119
  testRunner.When("I request domain items by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
                             "IsSmall:Boolean"});
-                table5.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "item1-pa",
                             "[NULL]",
                             "2000-01-01",
                             "100",
                             "True"});
-#line 112
- testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table5, "Then ");
+#line 121
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table6, "Then ");
 #line hidden
-#line 116
+#line 125
  testRunner.Then("property OperationResult should be an array with 1 item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -572,7 +627,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Assert DtateTime property", null, ((string[])(null)));
-#line 119
+#line 128
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -592,13 +647,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 120
+#line 129
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 123
+#line 132
  testRunner.Then("property OperationResult[1].Date should be the datetime \'2000-01-02\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 125
+#line 134
  testRunner.Then("property OperationResult[1].Date should be the datetime \'2000-01-02 00:00:00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -612,7 +667,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items By Date - Returns empty array", null, ((string[])(null)));
-#line 127
+#line 136
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -632,13 +687,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 128
+#line 137
  testRunner.Given("property Date equals to \'1900-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 129
+#line 138
  testRunner.When("I request domain items by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 131
+#line 140
  testRunner.Then("property OperationResult should be an empty array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -652,7 +707,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calling a method that does not need parameters", null, ((string[])(null)));
-#line 134
+#line 143
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -672,10 +727,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 135
+#line 144
  testRunner.When("I request pi", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 136
+#line 145
  testRunner.Then("property OperationResult should be the number 3.14", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -689,7 +744,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating that a numeric value is in a range", null, ((string[])(null)));
-#line 138
+#line 147
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -709,10 +764,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 139
+#line 148
  testRunner.When("I request pi", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 140
+#line 149
  testRunner.Then("property OperationResult should be a number between 3.1 and 3.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -726,7 +781,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating that a datetime value is in a range", null, ((string[])(null)));
-#line 142
+#line 151
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -746,67 +801,12 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 143
+#line 152
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 144
+#line 153
  testRunner.Then("property OperationResult[1].Date should be a datetime between \'2000-01-01\' and \'2" +
                         "000-01-03\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Pass an array with complex elements")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
-        public virtual void PassAnArrayWithComplexElements()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Pass an array with complex elements", null, ((string[])(null)));
-#line 146
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                            "PropA",
-                            "PropB"});
-                table6.AddRow(new string[] {
-                            "10",
-                            "100"});
-                table6.AddRow(new string[] {
-                            "11",
-                            "110"});
-                table6.AddRow(new string[] {
-                            "22",
-                            "220"});
-#line 147
- testRunner.Given("property Items equals to the complex-element array", ((string)(null)), table6, "Given ");
-#line hidden
-#line 152
- testRunner.When("I calculate totals", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 153
- testRunner.Then("property OperationResult.PropA should be the number 43", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 154
- testRunner.Then("property OperationResult.PropB should be the number 430", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
