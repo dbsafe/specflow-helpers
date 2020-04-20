@@ -202,7 +202,16 @@ Given property Numbers is an empty array
 Given property Numbers is the array '1,2,3,4,5'
 ```
 
-**Assigning severl properties in one step**
+**Assigning an array with complex objects to a property**
+```
+Given property Items is the complex-element array
+| PropA | PropB |
+| 10    | 100   |
+| 11    | 110   |
+| 22    | 220   |
+```
+
+**Assigning several properties in one step**
 ```
 Given properties
 | name         | value |
