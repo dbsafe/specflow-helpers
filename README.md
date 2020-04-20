@@ -232,6 +232,11 @@ Then property Error should be 'Attempted to divide by zero.'
 Then property OperationResult should be the number 30
 ```
 
+**Assert that a numeric property is in a range**
+```
+Then property OperationResult should be a number between 3.1 and 3.2
+```
+
 **Assert a boolean property**
 ```
 Then property Succeed should be True
@@ -240,6 +245,11 @@ Then property Succeed should be True
 **Assert a DateTime property**
 ```
 Then property Date should be the datetime '2000-01-02'
+```
+
+**Assert that a DateTime property is in a range**
+```
+Then property Date should be a datetime between '2000-01-01' and '2000-01-03'
 ```
 
 **Assert that a property is null**
