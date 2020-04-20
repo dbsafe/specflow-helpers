@@ -142,3 +142,13 @@ Scenario: Validating that a numeric value is in a range
 Scenario: Validating that a datetime value is in a range
 	When I request domain items
 	Then property OperationResult[1].Date should be a datetime between '2000-01-01' and '2000-01-03'
+
+Scenario: Pass an array with complex elements
+	Given property Items equals to the complex-element array
+	| PropA | PropB |
+	| 10    | 100   |
+	| 11    | 110   |
+	| 22    | 220   |
+	When I calculate totals
+	Then property OperationResult.PropA should be the number 43
+	Then property OperationResult.PropB should be the number 430
