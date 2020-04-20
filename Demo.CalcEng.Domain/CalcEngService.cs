@@ -9,9 +9,20 @@ namespace Demo.CalcEng.Domain
         public decimal SecondNumber { get; set; }
     }
 
+    public class DemoItem
+    {
+        public int PropA { get; set; }
+        public int PropB { get; set; }
+    }
+
     public class MultiNumbersOperationRequest
     {
         public decimal[] Numbers { get; set; }
+    }
+
+    public class TotalsOperationRequest
+    {
+        public DemoItem[] Items { get; set; }
     }
 
     public class GetDomainItemsByDateRequest
@@ -71,6 +82,18 @@ namespace Demo.CalcEng.Domain
             }
 
             return OperationResponse.CreateSucceed(total);
+        }
+
+        public OperationResponse<DemoItem> Totals(TotalsOperationRequest request)
+        {
+            var totals = new DemoItem();
+            foreach(var item in request.Items)
+            {
+                totals.PropA += item.PropA;
+                totals.PropB += item.PropB;
+            }
+
+            return OperationResponse.CreateSucceed(totals);
         }
 
         public OperationResponse<decimal> Sub(TwoNumbersOperationRequest request)

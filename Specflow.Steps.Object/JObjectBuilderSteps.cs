@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using Specflow.Steps.Object.Collections;
 using Specflow.Steps.Object.ExtensionMethods;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using TechTalk.SpecFlow;
@@ -70,6 +71,12 @@ namespace Specflow.Steps.Object
         public void SetRequestPropertyAsArray(string name, string itemsCsv)
         {
             ExecuteProtected(() => SetRequestContentPropertyAsArray(name, itemsCsv));
+        }
+
+        [Given(@"property ([^\s]+) equals to the complex-element array")]
+        public void SetRequestPropertyAsArrayWithComplexElements(string name, Table table)
+        {
+            ExecuteProtected(() => SetRequestContentPropertyAsComplexElementArray(name, table));
         }
 
         #endregion
@@ -281,6 +288,31 @@ namespace Specflow.Steps.Object
             InitializeRequest();
             var items = itemsCvs.Split(',').Select(a => a.Trim()).ToArray();
             Request.SetProperty(name, items);
+        }
+
+        private void SetRequestContentPropertyAsComplexElementArray(string name, Table table)
+        {
+            InitializeRequest();
+            var prop = CreateJArrayFromTable(table);
+            Request.Add(name, prop);
+        }
+
+        private JArray CreateJArrayFromTable(Table table)
+        {
+            var items = new List<JObject>();
+            for (int rowIndex = 0; rowIndex < table.RowCount; rowIndex++)
+            {
+                var row = table.Rows[rowIndex];
+                var item = new JObject();
+                items.Add(item);
+
+                foreach (var header in table.Header)
+                {
+                    item.SetProperty(header, row[header]);
+                }
+            }
+
+            return JArray.FromObject(items);
         }
 
         private void InitializeRequest()

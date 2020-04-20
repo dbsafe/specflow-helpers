@@ -34,14 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Features\CalcEngApi.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CalcEngApi.feature</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Features\CalcEngApi.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CalcEngApi.feature.cs</LastGenOutput>

@@ -64,5 +64,13 @@ namespace Demo.CalcEng.Domain.Tests
             var operationResult = _calcEng.Pi();
             SetResponse(operationResult);
         }
+
+        [When(@"I calculate totals")]
+        public void WhenICalculateTotals()
+        {
+            var request = Request.ToObject<TotalsOperationRequest>();
+            var operationResult = _calcEng.Totals(request);
+            SetResponse(operationResult);
+        }
     }
 }
