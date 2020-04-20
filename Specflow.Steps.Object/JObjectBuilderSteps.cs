@@ -73,7 +73,7 @@ namespace Specflow.Steps.Object
             ExecuteProtected(() => SetRequestContentPropertyAsArray(name, itemsCsv));
         }
 
-        [Given(@"property ([^\s]+) equals to the complex-element array")]
+        [Given(@"property ([^\s]+) is the complex-element array")]
         public void SetRequestPropertyAsArrayWithComplexElements(string name, Table table)
         {
             ExecuteProtected(() => SetRequestContentPropertyAsComplexElementArray(name, table));
