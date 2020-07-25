@@ -22,6 +22,12 @@ namespace Demo.CalcEng.Api.Controllers
             return Execute<OperationResponse>(() => _calcEngService.Sum(request));
         }
 
+        [HttpPost("CalculateTotals")]
+        public IActionResult CalculateTotals([FromBody] Row[] request)
+        {
+            return Execute<OperationResponse>(() => _calcEngService.CalculateTotals(request));
+        }
+
         [HttpGet("Pi")]
         public IActionResult Pi()
         {

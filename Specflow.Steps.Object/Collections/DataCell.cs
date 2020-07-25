@@ -122,6 +122,28 @@ namespace Specflow.Steps.Object.Collections
                 return decodedDecimal;
             }
 
+            if (valueResult.Type == typeof(int))
+            {
+                if (!int.TryParse(value, out var decodedInt))
+                {
+                    var message = $"Property: {valueResult.Name}. Expected <{value}> is not a valid Integer";
+                    throw new CollectionException(message);
+                }
+
+                return decodedInt;
+            }
+
+            if (valueResult.Type == typeof(bool))
+            {
+                if (!bool.TryParse(value, out var decodedBoolean))
+                {
+                    var message = $"Property: {valueResult.Name}. Expected <{value}> is not a valid Boolean";
+                    throw new CollectionException(message);
+                }
+
+                return decodedBoolean;
+            }
+
             return value;
         }
 
@@ -132,9 +154,11 @@ namespace Specflow.Steps.Object.Collections
                 case "DateTime":
                     return typeof(DateTime);
                 case "Number":
-                    return typeof(Decimal);
+                    return typeof(decimal);
+                case "Integer":
+                    return typeof(int);
                 case "Boolean":
-                    return typeof(Boolean);
+                    return typeof(bool);
                 case "":
                     return typeof(string);
             }

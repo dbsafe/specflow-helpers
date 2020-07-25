@@ -6,6 +6,8 @@ namespace Specflow.Steps.Object.ExtensionMethods
     {
         public static void SetProperty(this JObject source, string propertyName, string propertyValue) => source[propertyName] = propertyValue;
         public static void SetProperty(this JObject source, string propertyName, decimal propertyValue) => source[propertyName] = propertyValue;
+        public static void SetProperty(this JObject source, string propertyName, int propertyValue) => source[propertyName] = propertyValue;
+        public static void SetProperty(this JObject source, string propertyName, bool propertyValue) => source[propertyName] = propertyValue;
 
         public static void SetProperty(this JObject source, string propertyName, string[] propertyValue)
         {

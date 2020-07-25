@@ -57,3 +57,16 @@ Scenario: Validating header and StatusCode when a request fails
 	When I send a GET request to api/MethodThatFails
 	Then header Server should be 'Kestrel'
 	And StatusCode should be 404
+
+Scenario: Calculate totals
+	Given content is the complex-element array
+	| FieldA:Integer | FieldB | FieldC:Number | IsActive:Boolean |
+	| 1              | 10     | 100.1         | true             |
+	| 2              | 20     | 200.2         | true             |
+	| 3              | 30     | 300.3         | true             |
+	| 1000           | 2000   | 3000          | false            |
+	When I send a POST request to api/CalcEng/CalculateTotals
+	Then StatusCode should be 200
+	And property operationResult.fieldA should be the number 6
+	And property operationResult.fieldB should be the number 60
+	And property operationResult.fieldC should be the number 600.6

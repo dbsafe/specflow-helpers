@@ -37,10 +37,10 @@ Scenario: Add several numbers - Passing a list
 
 Scenario: Pass an array with complex elements
 	Given property Items is the complex-element array
-	| PropA | PropB |
-	| 10    | 100   |
-	| 11    | 110   |
-	| 22    | 220   |
+	| PropA:Number | PropB:Number |
+	| 10           | 100          |
+	| 11           | 110          |
+	| 22           | 220          |
 	When I calculate totals
 	Then property OperationResult.PropA should be the number 43
 	Then property OperationResult.PropB should be the number 430
@@ -138,7 +138,6 @@ Scenario: Request Domain Items By Date - Returns empty array
 	When I request domain items by date
 	# assert an empty array
 	Then property OperationResult should be an empty array
-
 
 Scenario: Calling a method that does not need parameters
 	When I request pi
