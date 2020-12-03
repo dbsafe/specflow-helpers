@@ -45,7 +45,7 @@ namespace Specflow.Steps.Object.Tests.ExtensionMethods
             var actual = _target.ToString();
 
             var expected = @"{
-  ""PropA"": 10.0,
+  ""PropA"": 10,
   ""PropB"": 10.1
 }";
 
@@ -64,6 +64,22 @@ namespace Specflow.Steps.Object.Tests.ExtensionMethods
     ""value-a"",
     ""value-b""
   ]
+}";
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SetProperty_Given_a_boolean_Property_must_be_in_the_json()
+        {
+            _target.SetProperty("PropA", true);
+            _target.SetProperty("PropB", false);
+
+            var actual = _target.ToString();
+
+            var expected = @"{
+  ""PropA"": true,
+  ""PropB"": false
 }";
 
             Assert.AreEqual(expected, actual);

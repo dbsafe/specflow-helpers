@@ -213,7 +213,7 @@ namespace Specflow.Steps.Object.Collections
                 return CompareDateTime(expected, actual, out message);
             }
 
-            if (expected.Type == typeof(Decimal))
+            if (expected.Type == typeof(decimal) || expected.Type == typeof(int))
             {
                 return CompareNumber(expected, actual, out message);
             }

@@ -72,6 +72,12 @@ namespace Specflow.Steps.WebApi
             });
         }
 
+        [Given(@"content is the complex-element array")]
+        public void SetContentAsArrayWithComplexElements(Table table)
+        {
+            ExecuteProtected(() => SetContentAsComplexElementArray(table));
+        }
+
         [When(@"I send a (POST|GET|PUT|DELETE) request to ([\w\W]+)")]
         public void CreateClientRequest(HttpRequestType requestType, string path)
         {
@@ -301,7 +307,7 @@ namespace Specflow.Steps.WebApi
 
         private WebApiSpecsRequest CreateRequest()
         {
-            const string message = "The content must be built by assigning properties or by assigning a string value but both methods cannot be combined.";
+            const string message = "The content must be built by assigning properties, a json string value, or an array. Only one of these methods can be used in the scenario.";
             Assert.IsFalse(Request != null && _stringContent != null, message);
 
             if (_stringContent != null)
@@ -312,6 +318,13 @@ namespace Specflow.Steps.WebApi
             {
                 return new WebApiSpecsRequest { JObjectContent = Request, ContentType = WebApiSpecsRequestContentType.JObjectContent };
             }
+        }
+
+        private void SetContentAsComplexElementArray(Table table)
+        {
+            Assert.IsNull(_stringContent, "The content can be assigned only one time");
+            var content = CreateJArrayFromTable(table);
+            _stringContent = content.ToString();
         }
     }
 }

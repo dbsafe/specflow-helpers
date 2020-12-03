@@ -231,7 +231,7 @@ namespace Specflow.Steps.Object
 
         #endregion
 
-        protected void ExecuteProtected(Action action, [CallerMemberName]string caller = null)
+        protected void ExecuteProtected(Action action, [CallerMemberName] string caller = null)
         {
             try
             {
@@ -239,7 +239,7 @@ namespace Specflow.Steps.Object
             }
             catch (Exception ex)
             {
-                var errorMessage = $"Error when processing method {caller}\n{ex.ToString()}";
+                var errorMessage = $"Error when processing method {caller}\n{ex}";
                 Print(errorMessage);
                 throw;
             }
@@ -247,7 +247,7 @@ namespace Specflow.Steps.Object
 
         protected void Print(string message)
         {
-            TestContext.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")}\n{message}");
+            TestContext.WriteLine($"{DateTime.Now:HH:mm:ss.fff}\n{message}");
         }
 
         protected virtual void ValidateResponse()
@@ -297,18 +297,39 @@ namespace Specflow.Steps.Object
             Request.Add(name, prop);
         }
 
-        private JArray CreateJArrayFromTable(Table table)
+        protected JArray CreateJArrayFromTable(Table table)
         {
             var items = new List<JObject>();
-            for (int rowIndex = 0; rowIndex < table.RowCount; rowIndex++)
+            var dataCollection = DataCollection.Load(table);
+            foreach (var row in dataCollection.Rows)
             {
-                var row = table.Rows[rowIndex];
                 var item = new JObject();
                 items.Add(item);
 
-                foreach (var header in table.Header)
+                foreach (var cell in row.Values)
                 {
-                    item.SetProperty(header, row[header]);
+                    if (cell.Type == typeof(decimal))
+                    {
+                        var value = (decimal)cell.Value;
+                        item.SetProperty(cell.Name, value);
+                        continue;
+                    }
+
+                    if (cell.Type == typeof(int))
+                    {
+                        var value = (int)cell.Value;
+                        item.SetProperty(cell.Name, value);
+                        continue;
+                    }
+
+                    if (cell.Type == typeof(bool))
+                    {
+                        var value = (bool)cell.Value;
+                        item.SetProperty(cell.Name, value);
+                        continue;
+                    }
+
+                    item.SetProperty(cell.Name, cell.Value.ToString());
                 }
             }
 

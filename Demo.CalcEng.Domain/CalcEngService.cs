@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Demo.CalcEng.Domain
@@ -40,6 +41,14 @@ namespace Demo.CalcEng.Domain
         public bool IsSmall { get; set; }
     }
 
+    public class Row
+    {
+        public int FieldA { get; set; }
+        public int FieldB { get; set; }
+        public decimal FieldC { get; set; }
+        public bool IsActive { get; set; }
+    }
+
     public interface ICalcEngService
     {
         OperationResponse<decimal> Div(TwoNumbersOperationRequest request);
@@ -50,6 +59,7 @@ namespace Demo.CalcEng.Domain
         OperationResponse<decimal> Sum(MultiNumbersOperationRequest request);
         OperationResponse<decimal> Sum(TwoNumbersOperationRequest request);
         OperationResponse<decimal> Pi();
+        OperationResponse<Row> CalculateTotals(IEnumerable<Row> request);
     }
 
     public class CalcEngService : ICalcEngService
@@ -137,6 +147,22 @@ namespace Demo.CalcEng.Domain
         public OperationResponse<decimal> Pi()
         {
             return OperationResponse.CreateSucceed(3.14m);
+        }
+
+        public OperationResponse<Row> CalculateTotals(IEnumerable<Row> request)
+        {
+            var totals = new Row();
+            foreach(var row in request)
+            {
+                if (row.IsActive)
+                {
+                    totals.FieldA += row.FieldA;
+                    totals.FieldB += row.FieldB;
+                    totals.FieldC += row.FieldC;
+                }
+            }
+
+            return OperationResponse.CreateSucceed(totals);
         }
     }
 }

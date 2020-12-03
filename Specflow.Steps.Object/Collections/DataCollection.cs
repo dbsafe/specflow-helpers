@@ -7,7 +7,6 @@ namespace Specflow.Steps.Object.Collections
 {
     public class DataCollection
     {
-        public bool IsExpected { get; internal set; }
         public DataRow[] Rows { get; set; }
 
         public static DataCollection Load(Table specFlowTable)
@@ -22,7 +21,6 @@ namespace Specflow.Steps.Object.Collections
             return new DataCollection
             {
                 Rows = rows.ToArray(),
-                IsExpected = true
             };
         }
 
