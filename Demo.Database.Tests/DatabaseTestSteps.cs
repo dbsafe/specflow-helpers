@@ -17,8 +17,8 @@ namespace Demo.Database.Tests
         public void Initialize()
         {
             var dbSafe = SqlDbSafeManager.Initialize("specflow-helpers-demo.xml");
-            dbSafe.SetConnectionString(@"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=specflow-helpers-demo");
-            dbSafe.ExecuteScripts("delete-products");
+            dbSafe.PassConnectionString(@"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=specflow-helpers-demo");
+            dbSafe.ExecuteScripts("delete-data");
 
             _dbSafe = dbSafe;
 

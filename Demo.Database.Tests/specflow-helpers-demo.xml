@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <dbTest>
   <scripts>
-    <script name="delete-product">
+    <script name="delete-data">
       DELETE [dbo].[Product];
     </script>
   </scripts>
