@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dbTest>
+  <scripts>
+    <script name="delete-product">
+      DELETE [dbo].[Product];
+    </script>
+  </scripts>
+
+  <datasets/>
+</dbTest>
