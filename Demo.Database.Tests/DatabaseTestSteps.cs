@@ -16,13 +16,15 @@ namespace Demo.Database.Tests
         [BeforeScenario]
         public void Initialize()
         {
+            var connectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=specflow-helpers-demo";
+
             var dbSafe = SqlDbSafeManager.Initialize("specflow-helpers-demo.xml");
-            dbSafe.PassConnectionString(@"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=specflow-helpers-demo");
+            dbSafe.PassConnectionString(connectionString);
             dbSafe.ExecuteScripts("delete-data");
 
             _dbSafe = dbSafe;
 
-            _populator = new SpecflowDbPopulator();
+            _populator = new SpecflowDbPopulator(connectionString);
             _validator = new SpecflowDbValidator();
         }
 
