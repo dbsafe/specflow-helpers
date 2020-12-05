@@ -1,7 +1,5 @@
 ﻿using DbSafe;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SqlDbSafe;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace Specflow.Steps.Db
@@ -10,42 +8,27 @@ namespace Specflow.Steps.Db
     {
         private readonly string _connectionString;
 
-        public SpecflowDbPopulator(string connectionString, FormatterManager formatter)
+        public SpecflowDbPopulator(string connectionString)
         {
             _connectionString = connectionString;
         }
 
         public void SetTable(string tableName, Table table, bool setIdentityInsert)
         {
-            AssertTableName(tableName);
-            AssertTableSchema(tableName, table);
+            SpecflowDb.AssertTableName(tableName, _connectionString);
+            SpecflowDb.AssertTableSchema(tableName, table, _connectionString);
             PopulateTable(tableName, table, setIdentityInsert);
         }
 
         private void PopulateTable(string tableName, Table table, bool setIdentityInsert)
         {
-            var datasetElement = DataConverter.BuildDatasetElement(tableName, table, setIdentityInsert);
+            var datasetElement = DataConverter.BuildDatasetElementFromSpecFlowTable(tableName, table, setIdentityInsert);
             var sqlDatabaseClient = new SqlDatabaseClient(false)
             {
                 ConnectionString = _connectionString
             };
 
             sqlDatabaseClient.WriteTable(datasetElement);
-        }
-
-        private void AssertTableSchema(string tableName, Table table)
-        {
-            var columnNames = SqlDatabaseSchemaHelper.GetColumnNames(_connectionString, tableName).Select(a => a.ToUpper());            
-            foreach (var header in table.Header)
-            {
-                Assert.IsTrue(columnNames.Contains(header.ToUpper()), $"Column '{header}' not found");
-            }
-        }
-
-        private void AssertTableName(string tableName)
-        {
-            var tableFound = SqlDatabaseSchemaHelper.IsObjectValid(_connectionString, tableName);
-            Assert.IsTrue(tableFound, $"Table '{tableName}' not found");
         }
     }
 }

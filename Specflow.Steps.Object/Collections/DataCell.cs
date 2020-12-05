@@ -23,13 +23,11 @@ namespace Specflow.Steps.Object.Collections
             }
 
             var result = new DataCell { Name = (jToken as JProperty).Name };
-
             if (jToken.HasValues)
             {
-                var jValue = jToken.First as JValue;
-                if (jValue != null)
+                if (jToken.First is JValue jValue)
                 {
-                    result.Value = jValue.Value != null ? jValue.Value.ToString() : null;
+                    result.Value = jValue.Value?.ToString();
                 }
             }
 

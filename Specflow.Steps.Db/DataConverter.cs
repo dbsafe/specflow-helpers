@@ -7,7 +7,7 @@ namespace Specflow.Steps.Db
 {
     public static class DataConverter
     {
-        public static DatasetElement BuildDatasetElement(string tableName, Table table, bool setIdentityInsert)
+        public static DatasetElement BuildDatasetElementFromSpecFlowTable(string tableName, Table table, bool setIdentityInsert)
         {
             DatasetElement result = new DatasetElement
             {
@@ -19,7 +19,7 @@ namespace Specflow.Steps.Db
 
             var headers = table.Header.ToArray();
 
-            foreach(var row in table.Rows)
+            foreach (var row in table.Rows)
             {
                 XElement xmlRow = new XElement("row");
                 result.Data.Add(xmlRow);
@@ -30,7 +30,7 @@ namespace Specflow.Steps.Db
                     var attribute = new XAttribute(columnName, row[i]);
                     xmlRow.Add(attribute);
                 }
-            }            
+            }
 
             return result;
         }

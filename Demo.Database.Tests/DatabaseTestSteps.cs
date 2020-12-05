@@ -10,9 +10,15 @@ namespace Demo.Database.Tests
     {
         private SpecflowDbPopulator _populator;
         private SpecflowDbValidator _validator;
+        private readonly FormatterManager _formatter = new FormatterManager();
 
         private IDbSafeManager _dbSafe;
-        private readonly FormatterManager _formatterManager = new FormatterManager();
+
+        public DatabaseTestSteps()
+        {
+            // Adding formatters if needed.
+            // _formatter.Register(typeof(decimal), new DecimalFormatter("0.00"));
+        }
 
         [BeforeScenario]
         public void Initialize()
@@ -25,8 +31,8 @@ namespace Demo.Database.Tests
 
             _dbSafe = dbSafe;
 
-            _populator = new SpecflowDbPopulator(connectionString, _formatterManager);
-            _validator = new SpecflowDbValidator();
+            _populator = new SpecflowDbPopulator(connectionString);
+            _validator = new SpecflowDbValidator(connectionString);
         }
 
         [AfterScenario]
@@ -55,7 +61,7 @@ namespace Demo.Database.Tests
         [Then(@"table '(.*)' should contain the data")]
         public void AssertTable(string tableName, Table table)
         {
-            _validator.AssertTable(tableName, table);
+            _validator.AssertTable(tableName, table, _formatter);
         }
     }
 }
