@@ -192,7 +192,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2000-01-05",
                             "2000-02-05"});
 #line 5
-testRunner.Given("table \'[dbo].[Product]\' contains the data", ((string)(null)), table1, "Given ");
+testRunner.Given("table with identity columns \'[dbo].[Product]\' contains the data", ((string)(null)), table1, "Given ");
 #line hidden
 #line 13
 testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

@@ -12,6 +12,7 @@ namespace Demo.Database.Tests
         private SpecflowDbValidator _validator;
 
         private IDbSafeManager _dbSafe;
+        private readonly FormatterManager _formatterManager = new FormatterManager();
 
         [BeforeScenario]
         public void Initialize()
@@ -24,7 +25,7 @@ namespace Demo.Database.Tests
 
             _dbSafe = dbSafe;
 
-            _populator = new SpecflowDbPopulator(connectionString);
+            _populator = new SpecflowDbPopulator(connectionString, _formatterManager);
             _validator = new SpecflowDbValidator();
         }
 
@@ -35,9 +36,15 @@ namespace Demo.Database.Tests
         }
 
         [Given(@"table '(.*)' contains the data")]
-        public void SetTable(string tableName, Table table)
+        public void SetTableWithoutIdentityColumns(string tableName, Table table)
         {
-            _populator.SetTable(tableName, table);
+            _populator.SetTable(tableName, table, false);
+        }
+
+        [Given(@"table with identity columns '(.*)' contains the data")]
+        public void SetTableWithIdentityColumns(string tableName, Table table)
+        {
+            _populator.SetTable(tableName, table, true);
         }
 
         [When(@"I execute my operation")]

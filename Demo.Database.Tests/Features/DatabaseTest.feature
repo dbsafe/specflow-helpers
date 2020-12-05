@@ -2,7 +2,7 @@
 	Demonstrates populating and asserting expected data in a SQL Server database
 
 Scenario: Populate and validate a table
-Given table '[dbo].[Product]' contains the data
+Given table with identity columns '[dbo].[Product]' contains the data
 | Id | Code   | Name      | Description | Cost   | ListPrice | CategoryId | SupplierId | IsActive | ReleaseDate | CreatedOn  |
 | 1  | code-1 | product-1 | desc-1      | 101.10 | 111.10    | 1          | 2          | 1        | 2000-01-01  | 2000-02-01 |
 | 2  | code-2 | product-2 | desc-2      | 102.10 | 112.10    | 1          | 2          | 1        | 2000-01-02  | 2000-02-02 |
