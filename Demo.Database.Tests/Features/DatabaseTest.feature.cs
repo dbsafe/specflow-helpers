@@ -92,13 +92,13 @@ namespace Demo.Database.Tests.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Populate and validate a table")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Populate and validate a table 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DatabaseTest")]
-        public virtual void PopulateAndValidateATable()
+        public virtual void PopulateAndValidateATable1()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Populate and validate a table", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Populate and validate a table 1", null, tagsOfScenario, argumentsOfScenario);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -135,7 +135,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "code-1",
                             "product-1",
-                            "desc-1",
+                            "[NULL]",
                             "101.10",
                             "111.10",
                             "1",
@@ -213,7 +213,7 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "1",
                             "code-1",
                             "product-1",
-                            "desc-1",
+                            "[NULL]",
                             "101.10",
                             "111.10",
                             "1",

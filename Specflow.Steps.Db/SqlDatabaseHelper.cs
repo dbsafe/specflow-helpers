@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using DbSafe;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using DbSafe;
 
 namespace Specflow.Steps.Db
 {
@@ -68,7 +68,8 @@ namespace Specflow.Steps.Db
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
                             var columnName = reader.GetName(i);
-                            var value = formatter.Format(tableName, columnName, reader[i]);
+                            var dbValue = reader[i];
+                            var value = dbValue.GetType() == typeof(DBNull) ? null : formatter.Format(tableName, columnName, dbValue);
                             var cell = new KeyValuePair<string, string>(columnName, value);
                             var dataCell = Object.Collections.DataCell.Load(cell);
                             dataCells.Add(dataCell);

@@ -26,6 +26,11 @@ namespace Specflow.Steps.Db
 
                 for (int i = 0; i < headers.Length; i++)
                 {
+                    if (row[i] == "[NULL]")
+                    {
+                        continue;
+                    }
+
                     var columnName = headers[i];
                     var attribute = new XAttribute(columnName, row[i]);
                     xmlRow.Add(attribute);
