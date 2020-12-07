@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Specflow tests for classes</Description>
-    <Copyright>Copyright (c) 2019 specflow-helpers</Copyright>
+    <Copyright>Copyright (c) 2020 specflow-helpers</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/dbsafe/specflow-helpers</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dbsafe/specflow-helpers</RepositoryUrl>

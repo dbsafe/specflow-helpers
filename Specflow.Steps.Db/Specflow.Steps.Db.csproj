@@ -2,6 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>Specflow tests for SQL Server</Description>
+    <Copyright>Copyright (c) 2020 specflow-helpers</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/dbsafe/specflow-helpers</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dbsafe/specflow-helpers</RepositoryUrl>
+    <Authors>Ernesto Valcarcel</Authors>
+    <Product>specflow-helpers</Product>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <IncludeSymbols>True</IncludeSymbols>
+    <PackageId>Helpers.Specflow.Steps.Db</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
