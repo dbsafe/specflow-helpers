@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Object", "Specflow.Steps.Object\Specflow.Steps.Object.csproj", "{4EF19ECA-CFBD-4E42-90D5-1D6A71443A20}"
 EndProject
@@ -18,10 +18,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.WebApi", "Specflow.Steps.WebApi\Specflow.Steps.WebApi.csproj", "{424C0896-C72B-4F21-9737-E10DC6FB730A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Db", "Specflow.Steps.Db\Specflow.Steps.Db.csproj", "{ED1A5F1E-0E43-445E-AA8E-71925B5BA3FE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Database.Tests", "Demo.Database.Tests\Demo.Database.Tests.csproj", "{CC36415F-07B6-4AC2-A532-D225D4987071}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Demo.Database", "Demo.Database\Demo.Database.sqlproj", "{42D904D8-0EEC-4C52-B0AE-CB66937DA58B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,16 +57,6 @@ Global
 		{ED1A5F1E-0E43-445E-AA8E-71925B5BA3FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED1A5F1E-0E43-445E-AA8E-71925B5BA3FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED1A5F1E-0E43-445E-AA8E-71925B5BA3FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC36415F-07B6-4AC2-A532-D225D4987071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC36415F-07B6-4AC2-A532-D225D4987071}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC36415F-07B6-4AC2-A532-D225D4987071}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC36415F-07B6-4AC2-A532-D225D4987071}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42D904D8-0EEC-4C52-B0AE-CB66937DA58B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42D904D8-0EEC-4C52-B0AE-CB66937DA58B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42D904D8-0EEC-4C52-B0AE-CB66937DA58B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{42D904D8-0EEC-4C52-B0AE-CB66937DA58B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42D904D8-0EEC-4C52-B0AE-CB66937DA58B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42D904D8-0EEC-4C52-B0AE-CB66937DA58B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

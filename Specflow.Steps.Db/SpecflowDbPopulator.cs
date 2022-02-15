@@ -1,5 +1,4 @@
-﻿using DbSafe;
-using SqlDbSafe;
+﻿using SqlDbSafe;
 using TechTalk.SpecFlow;
 
 namespace Specflow.Steps.Db
