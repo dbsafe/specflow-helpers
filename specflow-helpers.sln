@@ -13,16 +13,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Object.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.WebApi", "Specflow.Steps.WebApi\Specflow.Steps.WebApi.csproj", "{424C0896-C72B-4F21-9737-E10DC6FB730A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CalcEng.Api", "Demo.CalcEng.Api\Demo.CalcEng.Api.csproj", "{311E842A-F4DB-4D18-97BF-D31127A60182}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Api", "Demo.CalcEng.Api\Demo.CalcEng.Api.csproj", "{311E842A-F4DB-4D18-97BF-D31127A60182}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specflow.Steps.Db.Sql", "Specflow.Steps.Db.Sql\Specflow.Steps.Db.Sql.csproj", "{A21B3394-08BB-4385-8BA4-CEB82BB5D58E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Db.Sql", "Specflow.Steps.Db.Sql\Specflow.Steps.Db.Sql.csproj", "{A21B3394-08BB-4385-8BA4-CEB82BB5D58E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specflow.Steps.Db.Sql.Tests", "Specflow.Steps.Db.Sql.Tests\Specflow.Steps.Db.Sql.Tests.csproj", "{7C04A6E3-3D7A-44C7-B200-3E612DBB35E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Db.Sql.Tests", "Specflow.Steps.Db.Sql.Tests\Specflow.Steps.Db.Sql.Tests.csproj", "{7C04A6E3-3D7A-44C7-B200-3E612DBB35E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77C4737E-27F8-4C7F-81E0-B3446FF44C17}"
 	ProjectSection(SolutionItems) = preProject
 		Specflow.Steps.Dd.Shared\DbSteps.cs = Specflow.Steps.Dd.Shared\DbSteps.cs
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CalcEng.Api.Tests", "Demo.CalcEng.Api.Tests\Demo.CalcEng.Api.Tests.csproj", "{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{7C04A6E3-3D7A-44C7-B200-3E612DBB35E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C04A6E3-3D7A-44C7-B200-3E612DBB35E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C04A6E3-3D7A-44C7-B200-3E612DBB35E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
