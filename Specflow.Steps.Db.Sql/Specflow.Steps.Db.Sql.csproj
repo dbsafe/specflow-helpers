@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Specflow.Steps.Dd.Shared\DbSteps.cs" Link="DbSteps.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DbSafe" Version="1.1.1.31" />
+    <PackageReference Include="SpecFlow" Version="3.9.52" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+	<PackageReference Include="SqlDbSafe" Version="1.1.1.31" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Specflow.Steps.Object\Specflow.Steps.Object.csproj" />
+  </ItemGroup>
+
+</Project>
