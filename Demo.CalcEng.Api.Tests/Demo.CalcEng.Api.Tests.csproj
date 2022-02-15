@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Demo.CalcEng.Api\Demo.CalcEng.Api.csproj" />
     <ProjectReference Include="..\Specflow.Steps.WebApi\Specflow.Steps.WebApi.csproj" />
   </ItemGroup>
 
@@ -31,6 +30,12 @@
     <Reference Include="System">
       <HintPath>System</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Features\CalcEngApi.feature.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
