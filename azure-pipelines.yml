@@ -73,4 +73,4 @@ stages:
         displayName: Tests Specflow.Steps.Db.Sql project
         inputs:
           command: 'test'
-          projects: './Specflow.Steps.Db.Sql/Specflow.Steps.Db.Sql.Tests.csproj'
+          projects: './Specflow.Steps.Db.Sql.Tests/Specflow.Steps.Db.Sql.Tests.csproj'
