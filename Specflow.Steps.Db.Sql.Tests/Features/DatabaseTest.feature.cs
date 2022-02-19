@@ -91,6 +91,45 @@ namespace Specflow.Steps.Db.Sql.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 4
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Name",
+                        "ContactName",
+                        "ContactPhone",
+                        "ContactEmail"});
+            table1.AddRow(new string[] {
+                        "1",
+                        "sup-1",
+                        "cont-1",
+                        "phone-1",
+                        "email-1"});
+            table1.AddRow(new string[] {
+                        "2",
+                        "sup-2",
+                        "cont-2",
+                        "phone-2",
+                        "email-2"});
+#line 5
+testRunner.Given("table with identity columns \'[dbo].[Supplier]\' contains the data", ((string)(null)), table1, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "id",
+                        "Name"});
+            table2.AddRow(new string[] {
+                        "1",
+                        "cat-1"});
+            table2.AddRow(new string[] {
+                        "2",
+                        "cat-2"});
+#line 9
+testRunner.Given("table with identity columns \'[dbo].[Category]\' contains the data", ((string)(null)), table2, "Given ");
+#line hidden
+        }
+        
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Populate and validate a table 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DatabaseTest")]
@@ -99,211 +138,29 @@ namespace Specflow.Steps.Db.Sql.Tests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Populate and validate a table 1", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 14
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
 #line 4
-this.ScenarioInitialize(scenarioInfo);
+this.FeatureBackground();
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Id",
-                            "Code",
-                            "Name",
-                            "Description",
-                            "Cost",
-                            "ListPrice",
-                            "CategoryId",
-                            "SupplierId",
-                            "IsActive",
-                            "ReleaseDate",
-                            "CreatedOn"});
-                table1.AddRow(new string[] {
-                            "1",
-                            "code-1",
-                            "product-1",
-                            "[NULL]",
-                            "101.10",
-                            "111.10",
-                            "1",
-                            "2",
-                            "1",
-                            "2000-01-01",
-                            "2000-02-01"});
-                table1.AddRow(new string[] {
-                            "2",
-                            "code-2",
-                            "product-2",
-                            "desc-2",
-                            "102.10",
-                            "112.10",
-                            "1",
-                            "2",
-                            "1",
-                            "2000-01-02",
-                            "2000-02-02"});
-                table1.AddRow(new string[] {
-                            "3",
-                            "code-3",
-                            "product-3",
-                            "desc-3",
-                            "103.10",
-                            "113.10",
-                            "2",
-                            "1",
-                            "1",
-                            "2000-01-03",
-                            "2000-02-03"});
-                table1.AddRow(new string[] {
-                            "4",
-                            "code-4",
-                            "product-4",
-                            "",
-                            "104.10",
-                            "114.10",
-                            "2",
-                            "1",
-                            "0",
-                            "2000-01-04",
-                            "2000-02-04"});
-                table1.AddRow(new string[] {
-                            "5",
-                            "code-5",
-                            "product-5",
-                            "[NULL]",
-                            "105.10",
-                            "115.10",
-                            "2",
-                            "1",
-                            "0",
-                            "2000-01-05",
-                            "2000-02-05"});
-#line 5
-testRunner.Given("table with identity columns \'[dbo].[Product]\' contains the data", ((string)(null)), table1, "Given ");
-#line hidden
-#line 13
-testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Id:Key",
-                            "Code",
-                            "Name",
-                            "Description",
-                            "Cost:Number",
-                            "ListPrice:Number",
-                            "CategoryId",
-                            "SupplierId",
-                            "IsActive:Boolean",
-                            "ReleaseDate:DateTime",
-                            "CreatedOn:DateTime"});
-                table2.AddRow(new string[] {
-                            "1",
-                            "code-1",
-                            "product-1",
-                            "[NULL]",
-                            "101.10",
-                            "111.10",
-                            "1",
-                            "2",
-                            "true",
-                            "2000-01-01",
-                            "2000-02-01"});
-                table2.AddRow(new string[] {
-                            "2",
-                            "code-2",
-                            "product-2",
-                            "desc-2",
-                            "102.10",
-                            "112.10",
-                            "1",
-                            "2",
-                            "true",
-                            "2000-01-02",
-                            "2000-02-02"});
-                table2.AddRow(new string[] {
-                            "3",
-                            "code-3",
-                            "product-3",
-                            "desc-3",
-                            "103.10",
-                            "113.10",
-                            "2",
-                            "1",
-                            "true",
-                            "2000-01-03",
-                            "2000-02-03"});
-                table2.AddRow(new string[] {
-                            "4",
-                            "code-4",
-                            "product-4",
-                            "",
-                            "104.10",
-                            "114.10",
-                            "2",
-                            "1",
-                            "false",
-                            "2000-01-04",
-                            "2000-02-04"});
-                table2.AddRow(new string[] {
-                            "5",
-                            "code-5",
-                            "product-5",
-                            "[NULL]",
-                            "105.10",
-                            "115.10",
-                            "2",
-                            "1",
-                            "false",
-                            "2000-01-05",
-                            "2000-02-05"});
-#line 15
-testRunner.Then("table \'[dbo].[Product]\' should contain the data", ((string)(null)), table2, "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Populate and validate a table 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DatabaseTest")]
-        public virtual void PopulateAndValidateATable2()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Populate and validate a table 2", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 23
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id",
                             "Code",
@@ -320,7 +177,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "code-1",
                             "product-1",
-                            "desc-1",
+                            "[NULL]",
                             "101.10",
                             "111.10",
                             "1",
@@ -376,10 +233,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "0",
                             "2000-01-05",
                             "2000-02-05"});
-#line 24
+#line 15
 testRunner.Given("table with identity columns \'[dbo].[Product]\' contains the data", ((string)(null)), table3, "Given ");
 #line hidden
-#line 32
+#line 23
 testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -392,18 +249,20 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "CategoryId",
                             "SupplierId",
                             "IsActive:Boolean",
-                            "ReleaseDate:DateTime"});
+                            "ReleaseDate:DateTime",
+                            "CreatedOn:DateTime"});
                 table4.AddRow(new string[] {
                             "1",
                             "code-1",
                             "product-1",
-                            "desc-1",
+                            "[NULL]",
                             "101.10",
                             "111.10",
                             "1",
                             "2",
                             "true",
-                            "2000-01-01"});
+                            "2000-01-01",
+                            "2000-02-01"});
                 table4.AddRow(new string[] {
                             "2",
                             "code-2",
@@ -414,7 +273,8 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "1",
                             "2",
                             "true",
-                            "2000-01-02"});
+                            "2000-01-02",
+                            "2000-02-02"});
                 table4.AddRow(new string[] {
                             "3",
                             "code-3",
@@ -425,7 +285,8 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2",
                             "1",
                             "true",
-                            "2000-01-03"});
+                            "2000-01-03",
+                            "2000-02-03"});
                 table4.AddRow(new string[] {
                             "4",
                             "code-4",
@@ -436,7 +297,8 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2",
                             "1",
                             "false",
-                            "2000-01-04"});
+                            "2000-01-04",
+                            "2000-02-04"});
                 table4.AddRow(new string[] {
                             "5",
                             "code-5",
@@ -447,9 +309,192 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2",
                             "1",
                             "false",
-                            "2000-01-05"});
-#line 34
+                            "2000-01-05",
+                            "2000-02-05"});
+#line 25
 testRunner.Then("table \'[dbo].[Product]\' should contain the data", ((string)(null)), table4, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Populate and validate a table 2")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DatabaseTest")]
+        public virtual void PopulateAndValidateATable2()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Populate and validate a table 2", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 33
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Id",
+                            "Code",
+                            "Name",
+                            "Description",
+                            "Cost",
+                            "ListPrice",
+                            "CategoryId",
+                            "SupplierId",
+                            "IsActive",
+                            "ReleaseDate",
+                            "CreatedOn"});
+                table5.AddRow(new string[] {
+                            "1",
+                            "code-1",
+                            "product-1",
+                            "desc-1",
+                            "101.10",
+                            "111.10",
+                            "1",
+                            "2",
+                            "1",
+                            "2000-01-01",
+                            "2000-02-01"});
+                table5.AddRow(new string[] {
+                            "2",
+                            "code-2",
+                            "product-2",
+                            "desc-2",
+                            "102.10",
+                            "112.10",
+                            "1",
+                            "2",
+                            "1",
+                            "2000-01-02",
+                            "2000-02-02"});
+                table5.AddRow(new string[] {
+                            "3",
+                            "code-3",
+                            "product-3",
+                            "desc-3",
+                            "103.10",
+                            "113.10",
+                            "2",
+                            "1",
+                            "1",
+                            "2000-01-03",
+                            "2000-02-03"});
+                table5.AddRow(new string[] {
+                            "4",
+                            "code-4",
+                            "product-4",
+                            "",
+                            "104.10",
+                            "114.10",
+                            "2",
+                            "1",
+                            "0",
+                            "2000-01-04",
+                            "2000-02-04"});
+                table5.AddRow(new string[] {
+                            "5",
+                            "code-5",
+                            "product-5",
+                            "[NULL]",
+                            "105.10",
+                            "115.10",
+                            "2",
+                            "1",
+                            "0",
+                            "2000-01-05",
+                            "2000-02-05"});
+#line 34
+testRunner.Given("table with identity columns \'[dbo].[Product]\' contains the data", ((string)(null)), table5, "Given ");
+#line hidden
+#line 42
+testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Id:Key",
+                            "Code",
+                            "Name",
+                            "Description",
+                            "Cost:Number",
+                            "ListPrice:Number",
+                            "CategoryId",
+                            "SupplierId",
+                            "IsActive:Boolean",
+                            "ReleaseDate:DateTime"});
+                table6.AddRow(new string[] {
+                            "1",
+                            "code-1",
+                            "product-1",
+                            "desc-1",
+                            "101.10",
+                            "111.10",
+                            "1",
+                            "2",
+                            "true",
+                            "2000-01-01"});
+                table6.AddRow(new string[] {
+                            "2",
+                            "code-2",
+                            "product-2",
+                            "desc-2",
+                            "102.10",
+                            "112.10",
+                            "1",
+                            "2",
+                            "true",
+                            "2000-01-02"});
+                table6.AddRow(new string[] {
+                            "3",
+                            "code-3",
+                            "product-3",
+                            "desc-3",
+                            "103.10",
+                            "113.10",
+                            "2",
+                            "1",
+                            "true",
+                            "2000-01-03"});
+                table6.AddRow(new string[] {
+                            "4",
+                            "code-4",
+                            "product-4",
+                            "",
+                            "104.10",
+                            "114.10",
+                            "2",
+                            "1",
+                            "false",
+                            "2000-01-04"});
+                table6.AddRow(new string[] {
+                            "5",
+                            "code-5",
+                            "product-5",
+                            "[NULL]",
+                            "105.10",
+                            "115.10",
+                            "2",
+                            "1",
+                            "false",
+                            "2000-01-05"});
+#line 44
+testRunner.Then("table \'[dbo].[Product]\' should contain the data", ((string)(null)), table6, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

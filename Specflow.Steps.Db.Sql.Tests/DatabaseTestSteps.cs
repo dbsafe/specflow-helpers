@@ -7,7 +7,9 @@ namespace Specflow.Steps.Db.Sql.Tests
     [Binding]
     public class DatabaseTestSteps : SqlSteps
     {
-        private static string _connectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=specflow-helpers-demo";
+        // Database deployed to localhost
+        private static string _connectionString = @"data source=localhost;initial catalog=ProductDatabase;User ID=dbsafe;Password=dbsafe;MultipleActiveResultSets=True;App=Specflow.Steps.Db.Sql.Tests";
+
         private static FormatterManager _formatter;
 
         static DatabaseTestSteps()
@@ -26,10 +28,8 @@ namespace Specflow.Steps.Db.Sql.Tests
         [BeforeScenario]
         public void Initialize()
         {
-            var connectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=specflow-helpers-demo";
-
             var dbSafe = SqlDbSafeManager.Initialize("specflow-helpers-demo.xml");
-            dbSafe.PassConnectionString(connectionString);
+            dbSafe.PassConnectionString(_connectionString);
             dbSafe.ExecuteScripts("delete-data");
 
             _dbSafe = dbSafe;

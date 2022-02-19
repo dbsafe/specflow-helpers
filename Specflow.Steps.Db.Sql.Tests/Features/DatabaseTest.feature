@@ -1,6 +1,16 @@
 ﻿Feature: DatabaseTest
 	Demonstrates populating and asserting expected data in a SQL Server database
 
+Background:
+Given table with identity columns '[dbo].[Supplier]' contains the data
+| Id | Name   | ContactName | ContactPhone | ContactEmail |
+| 1  | sup-1  | cont-1      | phone-1      | email-1      |
+| 2  | sup-2  | cont-2      | phone-2      | email-2      |
+Given table with identity columns '[dbo].[Category]' contains the data
+| id | Name  |
+| 1  | cat-1 |
+| 2  | cat-2 |
+
 Scenario: Populate and validate a table 1
 Given table with identity columns '[dbo].[Product]' contains the data
 | Id | Code   | Name      | Description | Cost   | ListPrice | CategoryId | SupplierId | IsActive | ReleaseDate | CreatedOn  |

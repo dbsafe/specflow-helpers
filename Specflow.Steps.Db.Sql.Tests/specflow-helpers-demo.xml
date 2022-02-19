@@ -3,6 +3,8 @@
 	<scripts>
 		<script name="delete-data">
 			DELETE [dbo].[Product];
+			DELETE [dbo].[Category];
+			DELETE [dbo].[Supplier];
 		</script>
 	</scripts>
 
