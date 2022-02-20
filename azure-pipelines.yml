@@ -17,6 +17,7 @@ stages:
     - job: BuildAndTest
       displayName: Build and test
       steps:
+
       - script: dotnet build /warnaserror --configuration Release -p:Version=$(_version) -p:PackageVersion=$(_packageVersion) -p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
         displayName: Build solution
 
@@ -88,4 +89,11 @@ stages:
         condition: ne(variables.PrereleaseLabel, '-ci')
         displayName: 'Publish Artifact'
         inputs:
-          ArtifactName: '$(Build.BuildNumber)'          
+          ArtifactName: '$(Build.BuildNumber)'
+
+      - task: NuGetCommand@2
+        inputs:
+          command: 'push'
+          packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+          nuGetFeedType: 'external'
+          publishFeedCredentials: 'nuget-specflow-helpers'
