@@ -28,6 +28,9 @@ stages:
             ./Specflow.Steps.Object.Tests/Specflow.Steps.Object.Tests.csproj
             ./Demo.CalcEng.Domain.Tests/Demo.CalcEng.Domain.Tests.csproj
 
+      - script: docker-compose up --build -d
+        displayName: Start Demo.CalcEng.Api
+
       # - script: git clone https://github.com/dbsafe/dbsafe-pg-db
       #   displayName: Checkout PostgreSql test database
       # - script: docker-compose -f ./dbsafe-pg-db/docker-compose.yml up --build -d
@@ -74,3 +77,9 @@ stages:
         inputs:
           command: 'test'
           projects: './Specflow.Steps.Db.Sql.Tests/Specflow.Steps.Db.Sql.Tests.csproj'
+          
+      - task: DotNetCoreCLI@2
+        displayName: Tests Specflow.Steps.WebApi project
+        inputs:
+          command: 'test'
+          projects: './Demo.CalcEng.Api.Tests/Demo.CalcEng.Api.Tests.csproj'          
