@@ -17,7 +17,7 @@ stages:
     - job: BuildAndTest
       displayName: Build and test
       steps:
-      - script: dotnet build /warnaserror --configuration Release -p:Version=$(_version) -p:PackageVersion=$(_packageVersion)
+      - script: dotnet build /warnaserror --configuration Release -p:Version=$(_version) -p:PackageVersion=$(_packageVersion) -p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
         displayName: Build solution
 
       - task: DotNetCoreCLI@2
