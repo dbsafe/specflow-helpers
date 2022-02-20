@@ -30,7 +30,8 @@ namespace Specflow.Steps.Db.Sql.Tests
         {
             var dbSafe = SqlDbSafeManager.Initialize("specflow-helpers-demo.xml");
             dbSafe.PassConnectionString(_connectionString);
-            dbSafe.ExecuteScripts("delete-data");
+            dbSafe.ExecuteScripts("delete-data")
+                .ExecuteScripts("reseed-tables");
 
             _dbSafe = dbSafe;
         }

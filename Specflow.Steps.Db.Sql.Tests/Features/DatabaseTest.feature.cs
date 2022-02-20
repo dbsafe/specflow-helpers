@@ -162,7 +162,6 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Id",
                             "Code",
                             "Name",
                             "Description",
@@ -174,7 +173,6 @@ this.FeatureBackground();
                             "ReleaseDate",
                             "CreatedOn"});
                 table3.AddRow(new string[] {
-                            "1",
                             "code-1",
                             "product-1",
                             "[NULL]",
@@ -186,7 +184,6 @@ this.FeatureBackground();
                             "2000-01-01",
                             "2000-02-01"});
                 table3.AddRow(new string[] {
-                            "2",
                             "code-2",
                             "product-2",
                             "desc-2",
@@ -198,7 +195,6 @@ this.FeatureBackground();
                             "2000-01-02",
                             "2000-02-02"});
                 table3.AddRow(new string[] {
-                            "3",
                             "code-3",
                             "product-3",
                             "desc-3",
@@ -210,7 +206,6 @@ this.FeatureBackground();
                             "2000-01-03",
                             "2000-02-03"});
                 table3.AddRow(new string[] {
-                            "4",
                             "code-4",
                             "product-4",
                             "",
@@ -222,7 +217,6 @@ this.FeatureBackground();
                             "2000-01-04",
                             "2000-02-04"});
                 table3.AddRow(new string[] {
-                            "5",
                             "code-5",
                             "product-5",
                             "[NULL]",
@@ -234,7 +228,7 @@ this.FeatureBackground();
                             "2000-01-05",
                             "2000-02-05"});
 #line 15
-testRunner.Given("table with identity columns \'[dbo].[Product]\' contains the data", ((string)(null)), table3, "Given ");
+testRunner.Given("table \'[dbo].[Product]\' contains the data", ((string)(null)), table3, "Given ");
 #line hidden
 #line 23
 testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -252,7 +246,7 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "ReleaseDate:DateTime",
                             "CreatedOn:DateTime"});
                 table4.AddRow(new string[] {
-                            "1",
+                            "101",
                             "code-1",
                             "product-1",
                             "[NULL]",
@@ -264,7 +258,7 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2000-01-01",
                             "2000-02-01"});
                 table4.AddRow(new string[] {
-                            "2",
+                            "102",
                             "code-2",
                             "product-2",
                             "desc-2",
@@ -276,7 +270,7 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2000-01-02",
                             "2000-02-02"});
                 table4.AddRow(new string[] {
-                            "3",
+                            "103",
                             "code-3",
                             "product-3",
                             "desc-3",
@@ -288,7 +282,7 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2000-01-03",
                             "2000-02-03"});
                 table4.AddRow(new string[] {
-                            "4",
+                            "104",
                             "code-4",
                             "product-4",
                             "",
@@ -300,7 +294,7 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2000-01-04",
                             "2000-02-04"});
                 table4.AddRow(new string[] {
-                            "5",
+                            "105",
                             "code-5",
                             "product-5",
                             "[NULL]",

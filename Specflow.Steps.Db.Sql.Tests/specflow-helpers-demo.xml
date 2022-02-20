@@ -6,6 +6,14 @@
 			DELETE [dbo].[Category];
 			DELETE [dbo].[Supplier];
 		</script>
+		<!--[dbo].[Product] needs to be resed depending on the table status.--> 
+		<!--https://docs.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?redirectedfrom=MSDN&view=sql-server-ver15-->
+		<script name="reseed-tables">
+			IF EXISTS (SELECT * FROM sys.identity_columns WHERE OBJECT_NAME(OBJECT_ID) = 'Product' AND last_value IS NOT NULL)
+			   DBCC CHECKIDENT ('[dbo].[Product]', RESEED, 100);
+			ELSE
+			   DBCC CHECKIDENT ('[dbo].[Product]', RESEED, 101);
+		</script>
 	</scripts>
 
 	<datasets/>
