@@ -7,9 +7,6 @@ variables:
 trigger:
 - master
 
-resources:
-- repo: self
-
 pool: 
   vmImage: ubuntu-latest
 
@@ -23,10 +20,10 @@ stages:
         displayName: Build solution      
 
 - stage: Test
-  
   jobs:
     - job: Tests
       steps:
+      - checkout: none
 
       - task: DotNetCoreCLI@2
         displayName: Tests Specflow.Steps.Object project
