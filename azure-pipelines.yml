@@ -83,3 +83,9 @@ stages:
         inputs:
           command: 'test'
           projects: './Demo.CalcEng.Api.Tests/Demo.CalcEng.Api.Tests.csproj'          
+
+      - task: PublishBuildArtifacts@1
+        condition: ne(variables.PrereleaseLabel, '-ci')
+        displayName: 'Publish Artifact'
+        inputs:
+          ArtifactName: '$(Build.BuildNumber)'          
