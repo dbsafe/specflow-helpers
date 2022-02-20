@@ -24,7 +24,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Specflow.Steps.Dd.Shared\DbSteps.cs = Specflow.Steps.Dd.Shared\DbSteps.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CalcEng.Api.Tests", "Demo.CalcEng.Api.Tests\Demo.CalcEng.Api.Tests.csproj", "{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Api.Tests", "Demo.CalcEng.Api.Tests\Demo.CalcEng.Api.Tests.csproj", "{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{8EE831C7-27AD-4F26-8D4C-1BC433ADC4A4}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

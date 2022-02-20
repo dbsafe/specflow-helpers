@@ -12,6 +12,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.Logger.LogInformation($"IsDevelopment: {app.Environment.IsDevelopment()}");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
