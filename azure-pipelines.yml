@@ -10,28 +10,17 @@ trigger:
 pool: 
   vmImage: ubuntu-latest
 
-stages:
+steps:
+- script: dotnet build /warnaserror --configuration Release -p:Version=$(_version) -p:PackageVersion=$(_packageVersion) -p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
+  displayName: Build solution      
 
-- stage: Build
-  jobs:
-    - job: Build
-      steps:
-      - script: dotnet build /warnaserror --configuration Release -p:Version=$(_version) -p:PackageVersion=$(_packageVersion) -p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
-        displayName: Build solution      
-
-- stage: Test
-  jobs:
-    - job: Tests
-      steps:
-      - checkout: none
-
-      - task: DotNetCoreCLI@2
-        displayName: Tests Specflow.Steps.Object project
-        inputs:
-          command: 'test'
-          projects: |
-            ./Specflow.Steps.Object.Tests/Specflow.Steps.Object.Tests.csproj
-            ./Demo.CalcEng.Domain.Tests/Demo.CalcEng.Domain.Tests.csproj
+- task: DotNetCoreCLI@2
+  displayName: Tests Specflow.Steps.Object project
+  inputs:
+    command: 'test'
+    projects: |
+      ./Specflow.Steps.Object.Tests/Specflow.Steps.Object.Tests.csproj
+      ./Demo.CalcEng.Domain.Tests/Demo.CalcEng.Domain.Tests.csproj
 
       # - script: docker-compose up --build -d
       #   displayName: Start Demo.CalcEng.Api
