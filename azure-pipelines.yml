@@ -15,7 +15,7 @@ steps:
   displayName: Build solution      
 
 - task: DotNetCoreCLI@2
-  displayName: Tests Specflow.Steps.Object project
+  displayName: Test Specflow.Steps.Object project
   inputs:
     command: 'test'
     projects: |
@@ -45,13 +45,13 @@ steps:
   displayName: Deploy MS-SQL database using script
                   
 - task: DotNetCoreCLI@2
-  displayName: Tests Specflow.Steps.Db.Sql project
+  displayName: Test Specflow.Steps.Db.Sql project
   inputs:
     command: 'test'
     projects: './Specflow.Steps.Db.Sql.Tests/Specflow.Steps.Db.Sql.Tests.csproj'
           
 - task: DotNetCoreCLI@2
-  displayName: Tests Specflow.Steps.WebApi project
+  displayName: Test Specflow.Steps.WebApi project
   inputs:
     command: 'test'
     projects: './Demo.CalcEng.Api.Tests/Demo.CalcEng.Api.Tests.csproj'
