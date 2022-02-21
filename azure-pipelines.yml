@@ -7,64 +7,93 @@ variables:
 trigger:
 - master
 
-pool: 
-  vmImage: ubuntu-latest
+resources:
+- repo: self
 
-steps:
-- script: dotnet build /warnaserror --configuration Release -p:Version=$(_version) -p:PackageVersion=$(_packageVersion) -p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
-  displayName: Build solution      
+stages:
+  - stage: Build
+    jobs:
+    - job: Build
+      pool:
+        vmImage: ubuntu-latest
+      steps:
+      - script: dotnet build /warnaserror --configuration Release -p:Version=$(_version) -p:PackageVersion=$(_packageVersion) -p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
+        displayName: Build solution
 
-- task: DotNetCoreCLI@2
-  displayName: Tests Specflow.Steps.Object project
-  inputs:
-    command: 'test'
-    projects: |
-      ./Specflow.Steps.Object.Tests/Specflow.Steps.Object.Tests.csproj
-      ./Demo.CalcEng.Domain.Tests/Demo.CalcEng.Domain.Tests.csproj
+  - stage: Test
+    jobs:
+    - job: Test
+      pool:
+        vmImage: ubuntu-latest
+      steps:
+      - task: DotNetCoreCLI@2
+        displayName: Tests Specflow.Steps.Object project
+        inputs:
+          command: 'test'
+          projects: |
+            ./Specflow.Steps.Object.Tests/Specflow.Steps.Object.Tests.csproj
+            ./Demo.CalcEng.Domain.Tests/Demo.CalcEng.Domain.Tests.csproj
 
-- script: docker-compose up --build -d
-  displayName: Start Demo.CalcEng.Api
+
+
+# pool: 
+#   vmImage: ubuntu-latest
+
+# steps:
+# - script: dotnet build /warnaserror --configuration Release -p:Version=$(_version) -p:PackageVersion=$(_packageVersion) -p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
+#   displayName: Build solution      
+
+# - task: DotNetCoreCLI@2
+#   displayName: Tests Specflow.Steps.Object project
+#   inputs:
+#     command: 'test'
+#     projects: |
+#       ./Specflow.Steps.Object.Tests/Specflow.Steps.Object.Tests.csproj
+#       ./Demo.CalcEng.Domain.Tests/Demo.CalcEng.Domain.Tests.csproj
+
+# - script: docker-compose up --build -d
+#   displayName: Start Demo.CalcEng.Api
  
-- script: git clone https://github.com/dbsafe/dbsafe-sql-db
-  displayName: Checkout MS-SQL Server test database
-- script: docker-compose -f ./dbsafe-sql-db/docker-compose.yml up --build -d
-  displayName: Start container with MS-SQL Server
-- script: docker ps
-  displayName: Print Docker containers
+# - script: git clone https://github.com/dbsafe/dbsafe-sql-db
+#   displayName: Checkout MS-SQL Server test database
+# - script: docker-compose -f ./dbsafe-sql-db/docker-compose.yml up --build -d
+#   displayName: Start container with MS-SQL Server
+# - script: docker ps
+#   displayName: Print Docker containers
 
-- task: PowerShell@2
-  inputs:
-    targetType: 'filePath'
-    filePath: ./dbsafe-sql-db/wait-for-db.ps1
-    arguments: >
-      -ContainerName demo-sql-db 
-      -MaxNumberOfTries 120
-  displayName: Wait for MS-SQL Server database
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'filePath'
+#     filePath: ./dbsafe-sql-db/wait-for-db.ps1
+#     arguments: >
+#       -ContainerName demo-sql-db 
+#       -MaxNumberOfTries 120
+#   displayName: Wait for MS-SQL Server database
 
-- script: sqlcmd -S localhost -U sa -P "yourStrong(!)Password" -i ./dbsafe-sql-db/ProductDatabase.sql
-  displayName: Deploy MS-SQL database using script
+# - script: sqlcmd -S localhost -U sa -P "yourStrong(!)Password" -i ./dbsafe-sql-db/ProductDatabase.sql
+#   displayName: Deploy MS-SQL database using script
                   
-- task: DotNetCoreCLI@2
-  displayName: Tests Specflow.Steps.Db.Sql project
-  inputs:
-    command: 'test'
-    projects: './Specflow.Steps.Db.Sql.Tests/Specflow.Steps.Db.Sql.Tests.csproj'
+# - task: DotNetCoreCLI@2
+#   displayName: Tests Specflow.Steps.Db.Sql project
+#   inputs:
+#     command: 'test'
+#     projects: './Specflow.Steps.Db.Sql.Tests/Specflow.Steps.Db.Sql.Tests.csproj'
           
-- task: DotNetCoreCLI@2
-  displayName: Tests Specflow.Steps.WebApi project
-  inputs:
-    command: 'test'
-    projects: './Demo.CalcEng.Api.Tests/Demo.CalcEng.Api.Tests.csproj'
+# - task: DotNetCoreCLI@2
+#   displayName: Tests Specflow.Steps.WebApi project
+#   inputs:
+#     command: 'test'
+#     projects: './Demo.CalcEng.Api.Tests/Demo.CalcEng.Api.Tests.csproj'
 
-- task: PublishBuildArtifacts@1
-  condition: ne(variables.PrereleaseLabel, '-ci')
-  displayName: 'Publish Artifact'
-  inputs:
-    ArtifactName: '$(Build.BuildNumber)'
+# - task: PublishBuildArtifacts@1
+#   condition: ne(variables.PrereleaseLabel, '-ci')
+#   displayName: 'Publish Artifact'
+#   inputs:
+#     ArtifactName: '$(Build.BuildNumber)'
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'nuget-specflow-helpers'
+# - task: NuGetCommand@2
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+#     nuGetFeedType: 'external'
+#     publishFeedCredentials: 'nuget-specflow-helpers'
