@@ -4,6 +4,7 @@ variables:
   - name: _version
     value: $(VersionMajor).$(VersionMinor).$(VersionPatch).$(Build.BuildId)
   - name: _packageVersion
+    value: $[or(eq(variables['PrereleaseLabel'], ''), eq(variables['PrereleaseLabel'], 'beta'))]
 
 trigger:
 - master
@@ -13,7 +14,7 @@ pool:
 
 steps:
 - script: echo $(Build.BuildNumber)
-- script: echo or(eq($(PrereleaseLabel), ''), eq($(PrereleaseLabel), 'beta'))
+- script: echo _packageVersion
 
 - script: dotnet build /warnaserror --configuration Release -p:Version=$(_version) -p:PackageVersion=$(_packageVersion) -p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
   displayName: Build solution      
@@ -61,13 +62,13 @@ steps:
     projects: './Demo.CalcEng.Api.Tests/Demo.CalcEng.Api.Tests.csproj'
 
 - task: PublishBuildArtifacts@1
-  condition: or(eq($(PrereleaseLabel), ''), eq($(PrereleaseLabel), 'beta'))
+  condition: _packageVersion
   displayName: 'Publish Artifact'
   inputs:
     ArtifactName: '$(Build.BuildNumber)'
 
 # - task: NuGetCommand@2
-#   condition: or(eq($(PrereleaseLabel), ''), eq($(PrereleaseLabel), 'beta'))
+#   condition: _packageVersion
 #   inputs:
 #     command: 'push'
 #     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
