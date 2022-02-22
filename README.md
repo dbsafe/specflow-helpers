@@ -1,6 +1,6 @@
 specflow-helpers
 ==================
-[![Build status](https://dev.azure.com/dbsafe/dbsafe/_apis/build/status/dbsafe/specflow-helpers-CI)](https://dev.azure.com/dbsafe/dbsafe/_build/latest?definitionId=4)
+[![Build Status](https://dev.azure.com/dbsafe/dbsafe/_apis/build/status/specflow-helpers/specflow-helpers-ci-2022?branchName=master)](https://dev.azure.com/dbsafe/dbsafe/_build/latest?definitionId=8&branchName=master)
 
 Library to support writing unit test with Specflow
 
