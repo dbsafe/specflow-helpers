@@ -12,8 +12,8 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo '$(Build.BuildNumber)'
-- script: echo '$(_publishPackages)'
+- script: echo $(Build.BuildNumber)
+- script: echo or(eq($(PrereleaseLabel), ''), eq($(PrereleaseLabel), 'beta'))
 
 - script: dotnet build /warnaserror --configuration Release -p:Version=$(_version) -p:PackageVersion=$(_packageVersion) -p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
   displayName: Build solution      
