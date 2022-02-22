@@ -3,6 +3,8 @@ variables:
     value: $(VersionMajor).$(VersionMinor).$(VersionPatch).$(Build.BuildId)
   - name: _packageVersion
     value: $(_version)$(PrereleaseLabel)
+  - name: _publishPackages
+    value: ne(variables.PrereleaseLabel, '-ci')
 
 trigger:
 - master
@@ -57,14 +59,15 @@ steps:
     projects: './Demo.CalcEng.Api.Tests/Demo.CalcEng.Api.Tests.csproj'
 
 - task: PublishBuildArtifacts@1
-  condition: ne(variables.PrereleaseLabel, '-ci')
+  condition: variables._publishPackages
   displayName: 'Publish Artifact'
   inputs:
     ArtifactName: '$(Build.BuildNumber)'
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'nuget-specflow-helpers'
+# - task: NuGetCommand@2
+#   condition: variables._publishPackages
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+#     nuGetFeedType: 'external'
+#     publishFeedCredentials: 'nuget-specflow-helpers'
