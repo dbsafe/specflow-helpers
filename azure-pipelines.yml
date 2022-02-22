@@ -6,7 +6,7 @@ variables:
   - name: _packageVersion
     value: $(_version)$(PrereleaseLabel)
   - name: _publishNugetPackages
-    value: $[or(eq(variables['PrereleaseLabel'], ''), eq(variables['PrereleaseLabel'], 'beta'))]
+    value: $[or(eq(variables['PrereleaseLabel'], ''), eq(variables['PrereleaseLabel'], '-beta'))]
 
 trigger:
 - master
