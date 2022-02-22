@@ -62,13 +62,13 @@ steps:
     projects: './Demo.CalcEng.Api.Tests/Demo.CalcEng.Api.Tests.csproj'
 
 - task: PublishBuildArtifacts@1
-  condition: _packageVersion
+  condition: $(_packageVersion)
   displayName: 'Publish Artifact'
   inputs:
     ArtifactName: '$(Build.BuildNumber)'
 
 # - task: NuGetCommand@2
-#   condition: _packageVersion
+#   condition: $(_packageVersion)
 #   inputs:
 #     command: 'push'
 #     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
