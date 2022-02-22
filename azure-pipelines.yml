@@ -4,9 +4,6 @@ variables:
   - name: _version
     value: $(VersionMajor).$(VersionMinor).$(VersionPatch).$(Build.BuildId)
   - name: _packageVersion
-    value: $(_version)$(PrereleaseLabel)
-  - name: _publishPackages
-    value: or(eq(variables.PrereleaseLabel, ''), eq(variables.PrereleaseLabel, 'beta'))
 
 trigger:
 - master
@@ -64,13 +61,13 @@ steps:
     projects: './Demo.CalcEng.Api.Tests/Demo.CalcEng.Api.Tests.csproj'
 
 - task: PublishBuildArtifacts@1
-  condition: variables._publishPackages
+  condition: or(eq($(PrereleaseLabel), ''), eq($(PrereleaseLabel), 'beta'))
   displayName: 'Publish Artifact'
   inputs:
     ArtifactName: '$(Build.BuildNumber)'
 
 # - task: NuGetCommand@2
-#   condition: variables._publishPackages
+#   condition: or(eq($(PrereleaseLabel), ''), eq($(PrereleaseLabel), 'beta'))
 #   inputs:
 #     command: 'push'
 #     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
