@@ -5,20 +5,22 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Specflow tests for classes</Description>
-    <Copyright>Copyright (c) 2020 specflow-helpers</Copyright>
+    <Copyright>Copyright (c) 2022 specflow-helpers</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/dbsafe/specflow-helpers</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dbsafe/specflow-helpers</RepositoryUrl>
     <Authors>Ernesto Valcarcel</Authors>
     <Product>specflow-helpers</Product>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
     <IncludeSymbols>True</IncludeSymbols>
     <PackageId>Helpers.Specflow.Steps.Object</PackageId>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>

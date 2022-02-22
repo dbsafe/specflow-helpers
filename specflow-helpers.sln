@@ -3,15 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Object", "Specflow.Steps.Object\Specflow.Steps.Object.csproj", "{4EF19ECA-CFBD-4E42-90D5-1D6A71443A20}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Domain", "Demo.CalcEng.Domain\Demo.CalcEng.Domain.csproj", "{4FF9FD8A-C0C5-45BA-A086-1D9B3F2E45C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Domain.Tests", "Demo.CalcEng.Domain.Tests\Demo.CalcEng.Domain.Tests.csproj", "{1C57E9D9-BFC2-4E77-A102-C15573FB0C0F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Object.Tests", "Specflow.Steps.Object.Tests\Specflow.Steps.Object.Tests.csproj", "{FCBE8D1C-17F9-4580-BC43-46762B899499}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.WebApi", "Specflow.Steps.WebApi\Specflow.Steps.WebApi.csproj", "{424C0896-C72B-4F21-9737-E10DC6FB730A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Api", "Demo.CalcEng.Api\Demo.CalcEng.Api.csproj", "{311E842A-F4DB-4D18-97BF-D31127A60182}"
 EndProject
@@ -30,7 +26,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{8EE831C7
 	ProjectSection(SolutionItems) = preProject
 		azure-pipelines.yml = azure-pipelines.yml
 		docker-compose.yml = docker-compose.yml
+		LICENSE = LICENSE
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Object", "Specflow.Steps.Object\Specflow.Steps.Object.csproj", "{FC436AEA-B26E-4D47-A340-60AF5FD37E17}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.WebApi", "Specflow.Steps.WebApi\Specflow.Steps.WebApi.csproj", "{96C2AA63-0045-4612-AB1C-027D86EFA90B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +39,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4EF19ECA-CFBD-4E42-90D5-1D6A71443A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EF19ECA-CFBD-4E42-90D5-1D6A71443A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EF19ECA-CFBD-4E42-90D5-1D6A71443A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EF19ECA-CFBD-4E42-90D5-1D6A71443A20}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4FF9FD8A-C0C5-45BA-A086-1D9B3F2E45C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4FF9FD8A-C0C5-45BA-A086-1D9B3F2E45C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FF9FD8A-C0C5-45BA-A086-1D9B3F2E45C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,10 +51,6 @@ Global
 		{FCBE8D1C-17F9-4580-BC43-46762B899499}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCBE8D1C-17F9-4580-BC43-46762B899499}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCBE8D1C-17F9-4580-BC43-46762B899499}.Release|Any CPU.Build.0 = Release|Any CPU
-		{424C0896-C72B-4F21-9737-E10DC6FB730A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{424C0896-C72B-4F21-9737-E10DC6FB730A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{424C0896-C72B-4F21-9737-E10DC6FB730A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{424C0896-C72B-4F21-9737-E10DC6FB730A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{311E842A-F4DB-4D18-97BF-D31127A60182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{311E842A-F4DB-4D18-97BF-D31127A60182}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{311E842A-F4DB-4D18-97BF-D31127A60182}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -74,6 +67,14 @@ Global
 		{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC436AEA-B26E-4D47-A340-60AF5FD37E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC436AEA-B26E-4D47-A340-60AF5FD37E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC436AEA-B26E-4D47-A340-60AF5FD37E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC436AEA-B26E-4D47-A340-60AF5FD37E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96C2AA63-0045-4612-AB1C-027D86EFA90B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96C2AA63-0045-4612-AB1C-027D86EFA90B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96C2AA63-0045-4612-AB1C-027D86EFA90B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96C2AA63-0045-4612-AB1C-027D86EFA90B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

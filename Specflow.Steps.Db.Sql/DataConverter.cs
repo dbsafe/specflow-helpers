@@ -5,8 +5,6 @@ using TechTalk.SpecFlow;
 
 namespace Specflow.Steps.Db.Shared
 {
-    // Not sure how this is being used.
-    // Keeping it in case it is used by someone.
     public static class DataConverter
     {
         public static DatasetElement BuildDatasetElementFromSpecFlowTable(string tableName, Table table, bool setIdentityInsert)

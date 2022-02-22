@@ -2,10 +2,40 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	<Description>Specflow tests for classes</Description>
+	<Copyright>Copyright (c) 2022 specflow-helpers</Copyright>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<PackageProjectUrl>https://github.com/dbsafe/specflow-helpers</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/dbsafe/specflow-helpers</RepositoryUrl>
+	<Authors>Ernesto Valcarcel</Authors>
+	<Product>specflow-helpers</Product>
+	<IncludeSymbols>True</IncludeSymbols>
+	<PackageId>Helpers.Specflow.Steps.Db.Sql</PackageId>
+	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+	<IncludeSymbols>true</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\Specflow.Steps.Dd.Shared\DbSteps.cs" Link="DbSteps.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE" Link="LICENSE">
+      <PackagePath></PackagePath>
+      <Pack>True</Pack>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
