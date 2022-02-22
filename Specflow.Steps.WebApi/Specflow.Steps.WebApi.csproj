@@ -5,39 +5,34 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Specflow tests for WebApi services</Description>
-    <Copyright>Copyright (c) 2019 specflow-helpers</Copyright>
+    <Copyright>Copyright (c) 2022 specflow-helpers</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/dbsafe/specflow-helpers</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dbsafe/specflow-helpers</RepositoryUrl>
     <Authors>Ernesto Valcarcel</Authors>
     <Product>specflow-helpers</Product>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
     <IncludeSymbols>True</IncludeSymbols>
     <PackageId>Helpers.Specflow.Steps.WebApi</PackageId>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-  </ItemGroup>
-
+  </ItemGroup>	
 
   <ItemGroup>
-    <PackageReference Include="SpecFlow" Version="3.1.97" />
+    <PackageReference Include="SpecFlow" Version="3.9.52" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Specflow.Steps.Object\Specflow.Steps.Object.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore.Http.Extensions">
-      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.http.extensions\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>

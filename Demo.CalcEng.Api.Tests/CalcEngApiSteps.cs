@@ -8,7 +8,7 @@ namespace Demo.CalcEng.Api.Tests
     [Scope(Feature = "CalcEngApi")]
     public class CalcEngApiSteps : WebApiSpecs
     {
-        private static readonly WebApiSpecsConfig _config = new WebApiSpecsConfig { BaseUrl = CalcEngApiHost.BaseUrl };
+        private static readonly WebApiSpecsConfig _config = new WebApiSpecsConfig { BaseUrl = "http://localhost:5000" };
 
         public CalcEngApiSteps(TestContext testContext) : base(testContext, _config) { }
     }

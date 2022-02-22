@@ -1,6 +1,5 @@
 ﻿using Demo.CalcEng.Domain;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Demo.CalcEng.Api.Controllers
 {

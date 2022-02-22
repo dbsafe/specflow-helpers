@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  demo-calc-eng-api:
+    image: demo-calc-eng-api
+    container_name: demo-calc-eng-api
+    build:
+      context: .
+      dockerfile: Demo.CalcEng.Api/Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
