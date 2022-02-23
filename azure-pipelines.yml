@@ -69,10 +69,10 @@ steps:
   inputs:
     ArtifactName: '$(Build.BuildNumber)'
 
-# - task: NuGetCommand@2
-#   condition: and(succeeded(), eq(variables._publishNugetPackages, 'true'))
-#   inputs:
-#     command: 'push'
-#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-#     nuGetFeedType: 'external'
-#     publishFeedCredentials: 'nuget-specflow-helpers'
+- task: NuGetCommand@2
+  condition: and(succeeded(), eq(variables._publishNugetPackages, 'true'))
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'nuget-specflow-helpers'
