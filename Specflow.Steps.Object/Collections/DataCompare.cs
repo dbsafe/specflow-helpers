@@ -86,7 +86,8 @@ namespace Specflow.Steps.Object.Collections
 
         public static bool Compare(DataRow expected, DataRow actual, out string message)
         {
-            if (expected.Values.Length != actual.Values.Length)
+            var expectsNulls = expected.Values.Any(a => a.IsNull);
+            if (!expectsNulls && expected.Values.Length != actual.Values.Length)
             {
                 message = $"The number of items does not match. Expected: <{expected.Values.Length}>, Actual: <{actual.Values.Length}>";
                 return false;
@@ -96,6 +97,11 @@ namespace Specflow.Steps.Object.Collections
             {
                 var expectedValue = expected.Values[i];
                 var actualValue = actual.Values.Where(a => a.Name == expectedValue.Name).ToArray();
+
+                if (expectedValue.IsNull && actualValue.Length == 0)
+                {
+                    continue;
+                }
 
                 if (actualValue.Length == 0)
                 {
@@ -119,16 +125,15 @@ namespace Specflow.Steps.Object.Collections
             return true;
         }
 
-        private static bool CompareNumber(DataCell expected, DataCell actual, out string message)
+        private static bool CompareNumber(DataCell expected, DataCell actual, decimal expectedValue, out string message)
         {
-            var expectedDecimal = (decimal)expected.Value;
             if (!decimal.TryParse(actual.Value.ToString(), out decimal actualDecimal))
             {
-                message = $"Property: {expected.Name}. Actual <{expected.Value}> is not a valid Number";
+                message = $"Property: {expected.Name}. Actual <{actual.Value}> is not a valid Number";
                 return false;
             }
 
-            if (expectedDecimal != actualDecimal)
+            if (expectedValue != actualDecimal)
             {
                 message = $"Property: {expected.Name}. Expected <{expected.Value}>, Actual: <{actual.Value}>";
                 return false;
@@ -215,7 +220,8 @@ namespace Specflow.Steps.Object.Collections
 
             if (expected.Type == typeof(decimal) || expected.Type == typeof(int))
             {
-                return CompareNumber(expected, actual, out message);
+                var expectedValue = Convert.ToDecimal(expected.Value);
+                return CompareNumber(expected, actual, expectedValue, out message);
             }
 
             return CompareText(expected, actual, out message);

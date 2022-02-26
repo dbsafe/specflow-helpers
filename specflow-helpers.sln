@@ -18,6 +18,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77C4737E-27F8-4C7F-81E0-B3446FF44C17}"
 	ProjectSection(SolutionItems) = preProject
 		Specflow.Steps.Dd.Shared\DbSteps.cs = Specflow.Steps.Dd.Shared\DbSteps.cs
+		README.md = README.md
+		tests-readme.md = tests-readme.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Api.Tests", "Demo.CalcEng.Api.Tests\Demo.CalcEng.Api.Tests.csproj", "{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}"
