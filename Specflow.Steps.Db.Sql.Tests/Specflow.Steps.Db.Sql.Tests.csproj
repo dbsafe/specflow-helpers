@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Helpers.Specflow.Steps.Db.Sql" Version="1.9.0.307-beta" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
@@ -19,10 +20,6 @@
     <PackageReference Include="SpecFlow.MsTest" Version="3.9.52" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.52" />
     <PackageReference Include="SqlDbSafe" Version="1.1.1.31" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Specflow.Steps.Db.Sql\Specflow.Steps.Db.Sql.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Helpers.Specflow.Steps.WebApi" Version="1.9.0.307-beta" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
@@ -18,10 +19,6 @@
     <PackageReference Include="SpecFlow" Version="3.9.52" />
     <PackageReference Include="SpecFlow.MsTest" Version="3.9.52" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.52" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Specflow.Steps.WebApi\Specflow.Steps.WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
