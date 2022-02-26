@@ -1,4 +1,4 @@
-### Version 1.5.0 (Planned)
+### Version 1.5.0
 - Added package `Helpers.Specflow.Steps.Db.Pg` to support populating and validating tables in PostgreSql.
 
 ### Version 1.4.0

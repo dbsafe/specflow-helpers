@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 
 namespace Specflow.Steps.Db.Sql
 {
+
+    // Kept for backward compatibility
     public static class SqlDatabaseHelper
     {
         public static bool IsObjectValid(string connectionString, string objectName)

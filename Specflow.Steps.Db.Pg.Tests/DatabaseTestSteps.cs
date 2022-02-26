@@ -1,14 +1,15 @@
 ﻿using DbSafe;
-using SqlDbSafe;
+using PgDbSafe;
+using Specflow.Steps.Db.Pg;
 using TechTalk.SpecFlow;
 
 namespace Specflow.Steps.Db.Sql.Tests
 {
     [Binding]
-    public class DatabaseTestSteps : SqlSteps
+    public class DatabaseTestSteps : PgSteps
     {
         // Database deployed to localhost
-        private static string _connectionString = "data source=localhost;initial catalog=ProductDatabase;User ID=dbsafe;Password=dbsafe;MultipleActiveResultSets=True;App=Specflow.Steps.Db.Pg.Tests";
+        private static string _connectionString = "Host=localhost;Port=5432;Database=dbsafe;Username=dbsafe;Password=dbsafe";
 
         private static FormatterManager _formatter;
 
@@ -28,7 +29,7 @@ namespace Specflow.Steps.Db.Sql.Tests
         [BeforeScenario]
         public void Initialize()
         {
-            var dbSafe = SqlDbSafeManager.Initialize("specflow-helpers-demo.xml");
+            var dbSafe = PgDbSafeManager.Initialize("specflow-helpers-demo.xml");
             dbSafe.PassConnectionString(_connectionString);
             dbSafe.ExecuteScripts("delete-data")
                 .ExecuteScripts("reseed-tables");

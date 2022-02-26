@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-	<Description>Specflow tests for MS-SQL Server</Description>
+	<Description>Specflow tests for PostgreSql</Description>
 	<Copyright>Copyright (c) 2022 specflow-helpers</Copyright>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageProjectUrl>https://github.com/dbsafe/specflow-helpers</PackageProjectUrl>
@@ -12,7 +12,7 @@
 	<Authors>Ernesto Valcarcel</Authors>
 	<Product>specflow-helpers</Product>
 	<IncludeSymbols>True</IncludeSymbols>
-	<PackageId>Helpers.Specflow.Steps.Db.Sql</PackageId>
+	<PackageId>Helpers.Specflow.Steps.Db.Pg</PackageId>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -20,19 +20,23 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-  </ItemGroup>
-
+	<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>	
+	
   <ItemGroup>
     <Compile Include="..\Specflow.Steps.Dd.Shared\DataConverter.cs" Link="SharedLinks\DataConverter.cs" />
     <Compile Include="..\Specflow.Steps.Dd.Shared\DbSteps.cs" Link="SharedLinks\DbSteps.cs" />
     <Compile Include="..\Specflow.Steps.Dd.Shared\SpecflowDb.cs" Link="SharedLinks\SpecflowDb.cs" />
     <Compile Include="..\Specflow.Steps.Dd.Shared\SpecflowDbPopulator.cs" Link="SharedLinks\SpecflowDbPopulator.cs" />
     <Compile Include="..\Specflow.Steps.Dd.Shared\SpecflowDbValidator.cs" Link="SharedLinks\SpecflowDbValidator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SharedLinks\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,17 +48,13 @@
 
   <ItemGroup>
     <PackageReference Include="DbSafe" Version="1.1.1.31" />
+    <PackageReference Include="Npgsql" Version="6.0.3" />
+    <PackageReference Include="PgDbSafe" Version="1.1.1.31" />
     <PackageReference Include="SpecFlow" Version="3.9.52" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
-	<PackageReference Include="SqlDbSafe" Version="1.1.1.31" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Specflow.Steps.Object\Specflow.Steps.Object.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SharedLinks\" />
   </ItemGroup>
 
 </Project>

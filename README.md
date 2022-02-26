@@ -11,7 +11,7 @@ For more information about Specflow visit: https://specflow.org/
 Features
 --------
 
-specflow-helpers can be used for writing tests for methods of a class and for writing test for a WebApi.
+specflow-helpers can be used for writing tests for classes,  WebApis, and databases.
 
 NuGet packages
 -------------
@@ -20,6 +20,12 @@ defines a base Steps Definition class with `Given` steps that set properties of 
 
 [Helpers.Specflow.Steps.WebApi](https://www.nuget.org/packages/Helpers.Specflow.Steps.WebApi/)
 defines a base Steps Definition class with `Given` steps that set properties of a `HttpRequest` object and `Then` steps that assert properties of a `HttpResponse` object and its content. The base class has also one `When` step that executes a `HttpRequest` passing a url, method, and query parameters.
+
+[Helpers.Specflow.Steps.Db.Sql](https://www.nuget.org/packages/Helpers.Specflow.Steps.Db.Sql/)
+
+[Helpers.Specflow.Steps.Db.Pg](https://www.nuget.org/packages/Helpers.Specflow.Steps.Db.Pg/)
+
+define base Steps Definition classes with `Given` steps for populating database tables and  `Then` steps that assert expected data in a database.
 
 **[Getting Started](getting-started/getting-started.md)**
 
@@ -160,11 +166,15 @@ Project Name | Description
 ------------ | -----------
 Specflow.Steps.Object | specflow-helpers implementation for testing classes
 Specflow.Steps.Object.Tests | Unit test for Specflow.Steps.Object
-Specflow.Steps.WebApi | specflow-helpers implementation for testing WebApi services
 Demo.CalcEng.Domain | Defines a service class used for demo
-Demo.CalcEng.Domain.Tests | Demonstrates how to use specflow-helpers to write Specflow tests for a class. Uses the release version from NuGet. For debugging remove the reference to the NuGet package and add a reference to the project Specflow.Steps.Object
+Demo.CalcEng.Domain.Tests | Demonstrates how to use Specflow.Steps.Object to write Specflow tests for classes.
+Specflow.Steps.WebApi | specflow-helpers implementation for testing WebApi services
 Demo.CalcEng.Api | A WebApi service used for demo 
-Demo.CalcEng.Api.Tests | Demonstrates how to use specflow-helpers to write Specflow tests for a WebApi. Uses the release version from NuGet. For debugging remove the reference to the NuGet packages and add a reference to the projects Specflow.Steps.Object and Specflow.Steps.WebApi
+Demo.CalcEng.Api.Tests | Demonstrates how to use specflow-helpers to write Specflow tests for a WebApi.
+Specflow.Steps.Db.Sql | specflow-helpers implementation for MS-SQL Server
+Specflow.Steps.Db.Sql.Tests | Demonstrates how to use Specflow.Steps.Db.Sql
+Specflow.Steps.Db.Pg | specflow-helpers implementation for PostgreSql
+Specflow.Steps.Db.Pg.Tests | Demonstrates how to use Specflow.Steps.Db.Pg
 
 Development environment
 -----------------------
@@ -352,7 +362,7 @@ Given content is the complex-element array
 | 3          | name-3 | [NULL]      |
 ```
 
-Supported `When` step for testing WebApi services only
+Supported `When` steps for testing WebApi services only
 ------------------------------------------------------
 
 **Sending a request to a WebApi**
@@ -382,3 +392,33 @@ Then ReasonPhrase should be 'OK'
 Then header Server should be 'Kestrel'
 ```
 
+Supported `Given` steps for testing databases
+--------------------------------------------
+
+**Populating a table**
+```
+Given table '[dbo].[Product]' contains the data
+| Code   | Name      | Description | Cost   | ListPrice | CategoryId | SupplierId | IsActive | ReleaseDate | CreatedOn  |
+| code-1 | product-1 | [NULL]      | 101.10 | 111.10    | 1          | 2          | 1        | 2000-01-01  | 2000-02-01 |
+| code-2 | product-2 | desc-2      | 102.10 | 112.10    | 1          | 2          | 1        | 2000-01-02  | 2000-02-02 |
+
+```
+
+**Populating a table setting identity field**
+```
+Given table with identity columns '[dbo].[Product]' contains the data
+| Id | Code   | Name      | Description | Cost   | ListPrice | CategoryId | SupplierId | IsActive | ReleaseDate | CreatedOn  |
+| 1  | code-1 | product-1 | desc-1      | 101.10 | 111.10    | 1          | 2          | 1        | 2000-01-01  | 2000-02-01 |
+| 2  | code-2 | product-2 | desc-2      | 102.10 | 112.10    | 1          | 2          | 1        | 2000-01-02  | 2000-02-02 |
+```
+
+Supported `Then` step for testing databases
+-------------------------------------------
+
+**Assert data in a table**
+```
+Then table '[dbo].[Product]' should contain the data
+| Id:Key | Code   | Name      | Description | Cost:Number | ListPrice:Number | CategoryId | SupplierId | IsActive:Boolean | ReleaseDate:DateTime |
+| 1      | code-1 | product-1 | desc-1      | 101.10      | 111.10           | 1          | 2          | true             | 2000-01-01           |
+| 2      | code-2 | product-2 | desc-2      | 102.10      | 112.10           | 1          | 2          | true             | 2000-01-02           |
+```
