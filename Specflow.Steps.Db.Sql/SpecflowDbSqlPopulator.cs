@@ -7,16 +7,18 @@ namespace Specflow.Steps.Db.Sql
     public class SpecflowDbSqlPopulator : ISpecflowDbPopulator
     {
         private readonly string _connectionString;
+        private readonly SpecflowDb _specflowDb;
 
         public SpecflowDbSqlPopulator(string connectionString)
         {
             _connectionString = connectionString;
+            _specflowDb = new SpecflowDb();
         }
 
         public void PopulateTable(string tableName, Table table, bool setIdentityInsert)
         {
-            SpecflowDb.AssertTableName(tableName, _connectionString);
-            SpecflowDb.AssertTableSchema(tableName, table, _connectionString);
+            _specflowDb.AssertTableName(tableName, _connectionString);
+            _specflowDb.AssertTableSchema(tableName, table, _connectionString);
 
             var datasetElement = DataConverter.BuildDatasetElementFromSpecFlowTable(tableName, table, setIdentityInsert);
             var sqlDatabaseClient = new SqlDatabaseClient(false)

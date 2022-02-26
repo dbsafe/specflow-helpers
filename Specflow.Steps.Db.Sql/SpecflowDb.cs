@@ -4,9 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace Specflow.Steps.Db.Sql
 {
-    public static class SpecflowDb
+    public class SpecflowDb
     {
-        public static void AssertTableSchema(string tableName, Table table, string connectionString)
+        public void AssertTableSchema(string tableName, Table table, string connectionString)
         {
             var columnNames = SqlDatabaseHelper.GetColumnNames(connectionString, tableName).Select(a => a.ToUpper());
             foreach (var header in table.Header)
@@ -15,7 +15,7 @@ namespace Specflow.Steps.Db.Sql
             }
         }
 
-        public static void AssertTableSchema(string tableName, Object.Collections.DataCollection dataCollection, string connectionString)
+        public void AssertTableSchema(string tableName, Object.Collections.DataCollection dataCollection, string connectionString)
         {
             var columnNames = SqlDatabaseHelper.GetColumnNames(connectionString, tableName).Select(a => a.ToUpper());
 
@@ -26,7 +26,7 @@ namespace Specflow.Steps.Db.Sql
             }
         }
 
-        public static void AssertTableName(string tableName, string connectionString)
+        public void AssertTableName(string tableName, string connectionString)
         {
             var tableFound = SqlDatabaseHelper.IsObjectValid(connectionString, tableName);
             Assert.IsTrue(tableFound, $"Table '{tableName}' not found");

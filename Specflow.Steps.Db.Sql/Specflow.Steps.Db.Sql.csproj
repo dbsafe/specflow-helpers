@@ -28,7 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\Specflow.Steps.Dd.Shared\DbSteps.cs" Link="DbSteps.cs" />
+    <Compile Include="..\Specflow.Steps.Dd.Shared\DataConverter.cs" Link="SharedLinks\DataConverter.cs" />
+    <Compile Include="..\Specflow.Steps.Dd.Shared\DbSteps.cs" Link="SharedLinks\DbSteps.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +48,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Specflow.Steps.Object\Specflow.Steps.Object.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SharedLinks\" />
   </ItemGroup>
 
 </Project>

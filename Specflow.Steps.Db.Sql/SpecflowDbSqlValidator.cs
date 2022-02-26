@@ -12,19 +12,21 @@ namespace Specflow.Steps.Db.Sql
     {
         private readonly string _connectionString;
         private readonly FormatterManager _formatter;
+        private readonly SpecflowDb _specflowDb;
 
         public SpecflowDbSqlValidator(string connectionString, FormatterManager formatter)
         {
             _connectionString = connectionString;
             _formatter = formatter;
+            _specflowDb = new SpecflowDb();
         }
 
         public void AssertTable(string tableName, Table table)
         {
-            SpecflowDb.AssertTableName(tableName, _connectionString);
+            _specflowDb.AssertTableName(tableName, _connectionString);
 
             var expectedDataCollection = DataCollection.Load(table);
-            SpecflowDb.AssertTableSchema(tableName, expectedDataCollection, _connectionString);
+            _specflowDb.AssertTableSchema(tableName, expectedDataCollection, _connectionString);
 
             var fields = expectedDataCollection.Rows[0].Values.Select(a => a.Name);
             var actualDataCollection = SqlDatabaseHelper.BuildDataCollection(_connectionString, tableName, fields, _formatter);
