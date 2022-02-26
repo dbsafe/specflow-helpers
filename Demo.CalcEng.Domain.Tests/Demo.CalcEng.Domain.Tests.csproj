@@ -10,7 +10,8 @@
   </PropertyGroup>  
 
   <ItemGroup>
-  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+    <PackageReference Include="Helpers.Specflow.Steps.Object" Version="1.10.0.371-beta" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.5.0" />
     <PackageReference Include="MSTest.TestFramework" Version="3.5.0" />
     <PackageReference Include="SpecFlow" Version="3.9.74" />
@@ -20,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Demo.CalcEng.Domain\Demo.CalcEng.Domain.csproj" />
-    <ProjectReference Include="..\Specflow.Steps.Object\Specflow.Steps.Object.csproj" />
   </ItemGroup>
 
   <ItemGroup>
