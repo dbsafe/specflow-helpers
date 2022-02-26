@@ -362,7 +362,7 @@ Given content is the complex-element array
 | 3          | name-3 | [NULL]      |
 ```
 
-Supported `When` step for testing WebApi services only
+Supported `When` steps for testing WebApi services only
 ------------------------------------------------------
 
 **Sending a request to a WebApi**
@@ -392,7 +392,7 @@ Then ReasonPhrase should be 'OK'
 Then header Server should be 'Kestrel'
 ```
 
-Supported `Given` step for testing databases
+Supported `Given` steps for testing databases
 --------------------------------------------
 
 **Populating a table**
