@@ -1,34 +1,32 @@
 ﻿using DbSafe;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Specflow.Steps.Db.Shared;
 using Specflow.Steps.Object.Collections;
 using System;
+using System.Data.Common;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace Specflow.Steps.Db.Sql
+namespace Specflow.Steps.Db.Shared
 {
-    public class SpecflowDbSqlValidator : ISpecflowDbValidator
+    public class SpecflowDbValidator<TDbConnection, TDbCommand> : ISpecflowDbValidator where TDbConnection : DbConnection where TDbCommand : DbCommand
     {
-        private readonly string _connectionString;
         private readonly FormatterManager _formatter;
-        private readonly SpecflowDb _specflowDb;
-        private readonly ISpecflowDbSchema _specflowDbSchema;
+        private readonly SpecflowDb<TDbConnection, TDbCommand> _specflowDb;
+        private readonly ISpecflowDbSchema<TDbConnection, TDbCommand> _specflowDbSchema;
 
-        public SpecflowDbSqlValidator(string connectionString, FormatterManager formatter)
+        public SpecflowDbValidator(ISpecflowDbSchema<TDbConnection, TDbCommand> specflowDbSchema, FormatterManager formatter)
         {
-            _connectionString = connectionString;
             _formatter = formatter;
-            _specflowDbSchema = new SqlSpecflowDbSchema(connectionString);
-            _specflowDb = new SpecflowDb(_specflowDbSchema);
+            _specflowDbSchema = specflowDbSchema;
+            _specflowDb = new SpecflowDb<TDbConnection, TDbCommand>(_specflowDbSchema);
         }
 
         public void AssertTable(string tableName, Table table)
         {
-            _specflowDb.AssertTableName(tableName, _connectionString);
+            _specflowDb.AssertTableName(tableName);
 
             var expectedDataCollection = DataCollection.Load(table);
-            _specflowDb.AssertTableSchema(tableName, expectedDataCollection, _connectionString);
+            _specflowDb.AssertTableSchema(tableName, expectedDataCollection);
 
             var fields = expectedDataCollection.Rows[0].Values.Select(a => a.Name);
             var actualDataCollection = _specflowDbSchema.BuildDataCollection(tableName, fields, _formatter);

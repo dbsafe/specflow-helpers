@@ -1,28 +1,30 @@
 ﻿using DbSafe;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace Specflow.Steps.Db.Shared
 {
-    public interface ISpecflowDbSchema
+    public interface ISpecflowDbSchema<TDbConnection, TDbCommand> where TDbConnection : DbConnection where TDbCommand : DbCommand
     {
         IEnumerable<string> GetColumnNames(string tableName);
         bool IsObjectValid(string objectName);
         Object.Collections.DataCollection BuildDataCollection(string tableName, IEnumerable<string> fields, FormatterManager formatter);
+        AdoDatabaseClient<TDbConnection, TDbCommand> GetClient();
     }
 
-    public class SpecflowDb
+    public class SpecflowDb<TDbConnection, TDbCommand> where TDbConnection : DbConnection where TDbCommand : DbCommand
     {
-        private readonly ISpecflowDbSchema _specflowDbSchema;
+        private readonly ISpecflowDbSchema<TDbConnection, TDbCommand> _specflowDbSchema;
 
-        public SpecflowDb(ISpecflowDbSchema specflowDbSchema)
+        public SpecflowDb(ISpecflowDbSchema<TDbConnection, TDbCommand> specflowDbSchema)
         {
             _specflowDbSchema = specflowDbSchema;
         }
 
-        public void AssertTableSchema(string tableName, Table table, string connectionString)
+        public void AssertTableSchema(string tableName, Table table)
         {
             var columnNames = _specflowDbSchema.GetColumnNames(tableName).Select(a => a.ToUpper());
             foreach (var header in table.Header)
@@ -31,7 +33,7 @@ namespace Specflow.Steps.Db.Shared
             }
         }
 
-        public void AssertTableSchema(string tableName, Object.Collections.DataCollection dataCollection, string connectionString)
+        public void AssertTableSchema(string tableName, Object.Collections.DataCollection dataCollection)
         {
             var columnNames = _specflowDbSchema.GetColumnNames(tableName).Select(a => a.ToUpper());
 
@@ -42,7 +44,7 @@ namespace Specflow.Steps.Db.Shared
             }
         }
 
-        public void AssertTableName(string tableName, string connectionString)
+        public void AssertTableName(string tableName)
         {
             var tableFound = _specflowDbSchema.IsObjectValid(tableName);
             Assert.IsTrue(tableFound, $"Table '{tableName}' not found");
