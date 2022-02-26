@@ -13,12 +13,14 @@ namespace Specflow.Steps.Db.Sql
         private readonly string _connectionString;
         private readonly FormatterManager _formatter;
         private readonly SpecflowDb _specflowDb;
+        private readonly ISpecflowDbSchema _specflowDbSchema;
 
         public SpecflowDbSqlValidator(string connectionString, FormatterManager formatter)
         {
             _connectionString = connectionString;
             _formatter = formatter;
-            _specflowDb = new SpecflowDb();
+            _specflowDbSchema = new SqlSpecflowDbSchema(connectionString);
+            _specflowDb = new SpecflowDb(_specflowDbSchema);
         }
 
         public void AssertTable(string tableName, Table table)
@@ -29,7 +31,7 @@ namespace Specflow.Steps.Db.Sql
             _specflowDb.AssertTableSchema(tableName, expectedDataCollection, _connectionString);
 
             var fields = expectedDataCollection.Rows[0].Values.Select(a => a.Name);
-            var actualDataCollection = SqlDatabaseHelper.BuildDataCollection(_connectionString, tableName, fields, _formatter);
+            var actualDataCollection = _specflowDbSchema.BuildDataCollection(tableName, fields, _formatter);
 
             if (!DataCompare.Compare(expectedDataCollection, actualDataCollection, out string message))
             {

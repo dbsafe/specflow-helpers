@@ -12,7 +12,7 @@ namespace Specflow.Steps.Db.Sql
         public SpecflowDbSqlPopulator(string connectionString)
         {
             _connectionString = connectionString;
-            _specflowDb = new SpecflowDb();
+            _specflowDb = new SpecflowDb(new SqlSpecflowDbSchema(connectionString));
         }
 
         public void PopulateTable(string tableName, Table table, bool setIdentityInsert)
