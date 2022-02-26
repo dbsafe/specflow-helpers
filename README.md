@@ -343,6 +343,15 @@ Supported `Given` step for testing WebApi services only
 Given content equals to '{ "PropA": "abc" }'
 ```
 
+**Setting the content with an array**
+```
+Given content is the complex-element array
+| id:Integer | name   | description |
+| 1          | name-1 | desc-1      |
+| 2          | name-2 |             |
+| 3          | name-3 | [NULL]      |
+```
+
 Supported `When` step for testing WebApi services only
 ------------------------------------------------------
 
