@@ -69,3 +69,45 @@ Scenario: Calculate totals
 	And property operationResult.fieldA should be the number 6
 	And property operationResult.fieldB should be the number 60
 	And property operationResult.fieldC should be the number 600.6
+
+Scenario: Receive a list
+	Given content is the complex-element array
+	| id:Integer | name   | description |
+	| 1          | name-1 | desc-1      |
+	| 2          | name-2 | desc-2      |
+	| 3          | name-3 | desc-3      |
+	When I send a POST request to api/CalcEng/EchoList
+	Then StatusCode should be 200
+	And property operationResult should be the complex-element array
+	| id:Key:Integer | name   | description |
+	| 1              | name-1 | desc-1      |
+	| 2              | name-2 | desc-2      |
+	| 3              | name-3 | desc-3      |
+
+Scenario: Receive a list with null properties
+	Given content is the complex-element array
+	| id:Integer | name   | description |
+	| 1          | name-1 | desc-1      |
+	| 2          | name-2 |             |
+	| 3          | name-3 | [NULL]      |
+	When I send a POST request to api/CalcEng/EchoList
+	Then StatusCode should be 200
+	And property operationResult should be the complex-element array
+	| id:Key:Integer | name   | description |
+	| 1              | name-1 | desc-1      |
+	| 2              | name-2 |             |
+	| 3              | name-3 | [NULL]      |
+
+Scenario: Receive a list missing null properties
+	Given content is the complex-element array
+	| id:Integer | name   | description |
+	| 1          | name-1 | desc-1      |
+	| 2          | name-2 |             |
+	| 3          | name-3 | [NULL]      |
+	When I send a POST request to api/CalcEng/EchoListWithoutNulls
+	Then StatusCode should be 200
+	And property operationResult should be the complex-element array
+	| id:Key:Integer | name   | description |
+	| 1              | name-1 | desc-1      |
+	| 2              | name-2 |             |
+	| 3              | name-3 | [NULL]      |

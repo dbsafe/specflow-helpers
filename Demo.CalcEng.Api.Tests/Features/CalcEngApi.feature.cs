@@ -470,6 +470,234 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Receive a list")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEngApi")]
+        public virtual void ReceiveAList()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Receive a list", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 73
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id:Integer",
+                            "name",
+                            "description"});
+                table2.AddRow(new string[] {
+                            "1",
+                            "name-1",
+                            "desc-1"});
+                table2.AddRow(new string[] {
+                            "2",
+                            "name-2",
+                            "desc-2"});
+                table2.AddRow(new string[] {
+                            "3",
+                            "name-3",
+                            "desc-3"});
+#line 74
+ testRunner.Given("content is the complex-element array", ((string)(null)), table2, "Given ");
+#line hidden
+#line 79
+ testRunner.When("I send a POST request to api/CalcEng/EchoList", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 80
+ testRunner.Then("StatusCode should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id:Key:Integer",
+                            "name",
+                            "description"});
+                table3.AddRow(new string[] {
+                            "1",
+                            "name-1",
+                            "desc-1"});
+                table3.AddRow(new string[] {
+                            "2",
+                            "name-2",
+                            "desc-2"});
+                table3.AddRow(new string[] {
+                            "3",
+                            "name-3",
+                            "desc-3"});
+#line 81
+ testRunner.And("property operationResult should be the complex-element array", ((string)(null)), table3, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Receive a list with null properties")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEngApi")]
+        public virtual void ReceiveAListWithNullProperties()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Receive a list with null properties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 87
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id:Integer",
+                            "name",
+                            "description"});
+                table4.AddRow(new string[] {
+                            "1",
+                            "name-1",
+                            "desc-1"});
+                table4.AddRow(new string[] {
+                            "2",
+                            "name-2",
+                            ""});
+                table4.AddRow(new string[] {
+                            "3",
+                            "name-3",
+                            "[NULL]"});
+#line 88
+ testRunner.Given("content is the complex-element array", ((string)(null)), table4, "Given ");
+#line hidden
+#line 93
+ testRunner.When("I send a POST request to api/CalcEng/EchoList", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 94
+ testRunner.Then("StatusCode should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id:Key:Integer",
+                            "name",
+                            "description"});
+                table5.AddRow(new string[] {
+                            "1",
+                            "name-1",
+                            "desc-1"});
+                table5.AddRow(new string[] {
+                            "2",
+                            "name-2",
+                            ""});
+                table5.AddRow(new string[] {
+                            "3",
+                            "name-3",
+                            "[NULL]"});
+#line 95
+ testRunner.And("property operationResult should be the complex-element array", ((string)(null)), table5, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Receive a list missing null properties")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEngApi")]
+        public virtual void ReceiveAListMissingNullProperties()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Receive a list missing null properties", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 101
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id:Integer",
+                            "name",
+                            "description"});
+                table6.AddRow(new string[] {
+                            "1",
+                            "name-1",
+                            "desc-1"});
+                table6.AddRow(new string[] {
+                            "2",
+                            "name-2",
+                            ""});
+                table6.AddRow(new string[] {
+                            "3",
+                            "name-3",
+                            "[NULL]"});
+#line 102
+ testRunner.Given("content is the complex-element array", ((string)(null)), table6, "Given ");
+#line hidden
+#line 107
+ testRunner.When("I send a POST request to api/CalcEng/EchoListWithoutNulls", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 108
+ testRunner.Then("StatusCode should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id:Key:Integer",
+                            "name",
+                            "description"});
+                table7.AddRow(new string[] {
+                            "1",
+                            "name-1",
+                            "desc-1"});
+                table7.AddRow(new string[] {
+                            "2",
+                            "name-2",
+                            ""});
+                table7.AddRow(new string[] {
+                            "3",
+                            "name-3",
+                            "[NULL]"});
+#line 109
+ testRunner.And("property operationResult should be the complex-element array", ((string)(null)), table7, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -1,5 +1,7 @@
 ﻿using Demo.CalcEng.Domain;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Demo.CalcEng.Api.Controllers
 {
@@ -48,15 +50,56 @@ namespace Demo.CalcEng.Api.Controllers
         [HttpDelete("DeleteTest/{id}")]
         public IActionResult Delete(int id)
         {
-            var data = OperationResponse.CreateSucceed($"deleted item {id}");
-            return Ok(data);
+            var response = OperationResponse.CreateSucceed($"deleted item {id}");
+            return Ok(response);
         }
 
         [HttpPut("PutTest/{id}")]
         public IActionResult PutTest(int id, DomainItem item)
         {
-            var data = OperationResponse.CreateSucceed($"Item: {id}, new PropA: {item.PropA}");
-            return Ok(data);
+            var response = OperationResponse.CreateSucceed($"Item: {id}, new PropA: {item.PropA}");
+            return Ok(response);
         }
+
+        [HttpGet("GetAList")]
+        public IActionResult GetAList()
+        {
+            var data = new List<ListItem>
+            { 
+                new ListItem { Id = 1, Name="name-1", Description="decs-1" },
+                new ListItem { Id = 2, Name="name-2", Description="decs-2" },
+                new ListItem { Id = 3, Name="name-3", Description="decs-3" },
+            };
+
+            var response = OperationResponse.CreateSucceed(data);
+            return Ok(response);
+        }
+
+        [HttpPost("EchoList")]
+        public IActionResult EchoList(IEnumerable<ListItem> list)
+        {
+            var response = OperationResponse.CreateSucceed(list);
+            return Ok(response);
+        }
+
+        [HttpPost("EchoListWithoutNulls")]
+        public IActionResult EchoListWithoutNulls(IEnumerable<ListItem> list)
+        {
+            var serializerOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web)
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            };
+            serializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+            
+            var response = OperationResponse.CreateSucceed(list);
+            return new JsonResult(response, serializerOptions);
+        }
+    }
+
+    public class ListItem
+    {
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
     }
 }

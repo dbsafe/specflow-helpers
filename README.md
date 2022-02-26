@@ -168,7 +168,7 @@ Demo.CalcEng.Api.Tests | Demonstrates how to use specflow-helpers to write Specf
 
 Development environment
 -----------------------
-VS2019 and .NET Core 2.2 SDK (v2.2.204)
+VS2022 and .NET 6
 
 Supported `Given` steps for testing a class or a WebApi service
 ---------------------------------------------------------------

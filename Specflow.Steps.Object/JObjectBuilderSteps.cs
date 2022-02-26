@@ -308,6 +308,11 @@ namespace Specflow.Steps.Object
 
                 foreach (var cell in row.Values)
                 {
+                    if (cell.IsNull)
+                    {
+                        continue;
+                    }
+
                     if (cell.Type == typeof(decimal))
                     {
                         var value = (decimal)cell.Value;
