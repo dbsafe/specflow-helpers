@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-	<Description>Specflow tests for classes</Description>
+	<Description>Specflow tests for MS-SQL Server</Description>
 	<Copyright>Copyright (c) 2022 specflow-helpers</Copyright>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageProjectUrl>https://github.com/dbsafe/specflow-helpers</PackageProjectUrl>
