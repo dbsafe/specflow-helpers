@@ -30,6 +30,7 @@
   <ItemGroup>
     <Compile Include="..\Specflow.Steps.Dd.Shared\DataConverter.cs" Link="SharedLinks\DataConverter.cs" />
     <Compile Include="..\Specflow.Steps.Dd.Shared\DbSteps.cs" Link="SharedLinks\DbSteps.cs" />
+    <Compile Include="..\Specflow.Steps.Dd.Shared\SpecflowDb.cs" Link="SharedLinks\SpecflowDb.cs" />
   </ItemGroup>
 
   <ItemGroup>
