@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Specflow.Steps.Dd.Shared\DataConverter.cs" Link="SharedLinks\DataConverter.cs" />
+    <Compile Include="..\Specflow.Steps.Dd.Shared\DbSteps.cs" Link="SharedLinks\DbSteps.cs" />
+    <Compile Include="..\Specflow.Steps.Dd.Shared\SpecflowDb.cs" Link="SharedLinks\SpecflowDb.cs" />
+    <Compile Include="..\Specflow.Steps.Dd.Shared\SpecflowDbPopulator.cs" Link="SharedLinks\SpecflowDbPopulator.cs" />
+    <Compile Include="..\Specflow.Steps.Dd.Shared\SpecflowDbValidator.cs" Link="SharedLinks\SpecflowDbValidator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SharedLinks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DbSafe" Version="1.1.1.31" />
+    <PackageReference Include="Npgsql" Version="6.0.3" />
+    <PackageReference Include="PgDbSafe" Version="1.1.1.31" />
+    <PackageReference Include="SpecFlow" Version="3.9.52" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Specflow.Steps.Object\Specflow.Steps.Object.csproj" />
+  </ItemGroup>
+
+</Project>

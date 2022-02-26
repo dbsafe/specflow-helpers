@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dbTest>
+	<scripts>
+		<script name="delete-data">
+			DELETE FROM public.product;
+			DELETE FROM public.category;
+			DELETE FROM public.supplier;
+		</script>
+		<script name="reseed-tables">
+			SELECT setval('public.product_id_seq', 100, true);
+		</script>
+	</scripts>
+
+	<datasets/>
+</dbTest>
