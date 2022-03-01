@@ -61,6 +61,13 @@ namespace Demo.CalcEng.Api.Controllers
             return Ok(response);
         }
 
+        [HttpPatch("PutTest/{id}")]
+        public IActionResult PatchTest(int id, DomainItem item)
+        {
+            var response = OperationResponse.CreateSucceed($"Item: {id}, updated PropA: {item.PropA}");
+            return Ok(response);
+        }
+
         [HttpGet("GetAList")]
         public IActionResult GetAList()
         {

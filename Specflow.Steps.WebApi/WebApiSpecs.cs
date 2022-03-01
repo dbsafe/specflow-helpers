@@ -78,7 +78,7 @@ namespace Specflow.Steps.WebApi
             ExecuteProtected(() => SetContentAsComplexElementArray(table));
         }
 
-        [When(@"I send a (POST|GET|PUT|DELETE) request to ([\w\W]+)")]
+        [When(@"I send a (POST|GET|PUT|DELETE|PATCH) request to ([\w\W]+)")]
         public void CreateClientRequest(HttpRequestType requestType, string path)
         {
             ExecuteProtected(() =>
