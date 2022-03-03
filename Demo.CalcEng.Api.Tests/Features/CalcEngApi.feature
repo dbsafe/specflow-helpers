@@ -51,6 +51,11 @@ Scenario: Calling Put method
 	When I send a PUT request to api/CalcEng/PutTest/11
 	Then property operationResult should be 'Item: 11, new PropA: abc'
 
+Scenario: Calling Patch method
+	Given content equals to '{ "PropA": "abc" }'
+	When I send a PATCH request to api/CalcEng/PutTest/11
+	Then property operationResult should be 'Item: 11, updated PropA: abc'
+
 Scenario: Validating header and StatusCode when a request fails
 	Given header CorrelationId equals to '1111-aaaa'
 	When I send a GET request to api/MethodThatFails

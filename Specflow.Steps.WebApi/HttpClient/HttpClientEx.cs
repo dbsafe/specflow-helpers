@@ -10,7 +10,8 @@ namespace Specflow.Steps.WebApi.HttpClient
         GET,
         POST,
         PUT,
-        DELETE
+        DELETE,
+        PATCH
     }
 
     public class HttpClientExRequest
@@ -38,6 +39,8 @@ namespace Specflow.Steps.WebApi.HttpClient
 
                 case HttpRequestType.PUT:
                     return await PutAsync(request);
+                case HttpRequestType.PATCH:
+                    return await PatchAsync(request);
                 default:
                     throw new InvalidOperationException($"RequestType '{request.RequestType}' not supported");
             }
@@ -62,7 +65,22 @@ namespace Specflow.Steps.WebApi.HttpClient
                 return await client.PutAsync(request.Url, httpContent);
             });
         }
-        
+
+        private Task<HttpResponseMessage> PatchAsync(HttpClientExRequest request)
+        {
+            return ExecuteRequest(async (client) =>
+            {
+                SetHeaders(request, client);
+                var req = new HttpRequestMessage
+                {
+                    Content = GetHttpContent(request),
+                    Method = new HttpMethod(HttpRequestType.PATCH.ToString()),
+                    RequestUri = new Uri(request.Url)
+                };
+                return await client.SendAsync(req);
+            });
+        }
+
         private Task<HttpResponseMessage> DeleteAsync(HttpClientExRequest request)
         {
             return ExecuteRequest(async (client) =>
