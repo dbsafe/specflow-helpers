@@ -56,6 +56,12 @@ steps:
   inputs:
     command: 'test'
     projects: './Specflow.Steps.Db.Sql.Tests/Specflow.Steps.Db.Sql.Tests.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: Test Specflow.Steps.Db.Pg project
+  inputs:
+    command: 'test'
+    projects: './Specflow.Steps.Db.Pg.Tests/Specflow.Steps.Db.Pg.Tests.csproj'    
           
 - task: DotNetCoreCLI@2
   displayName: Test Specflow.Steps.WebApi project
