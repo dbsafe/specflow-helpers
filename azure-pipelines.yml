@@ -32,12 +32,28 @@ steps:
 - script: docker-compose up --build -d
   displayName: Start Demo.CalcEng.Api
  
+- script: git clone https://github.com/dbsafe/dbsafe-pg-db
+  displayName: Checkout PostgreSql test database
+- script: docker-compose -f ./dbsafe-pg-db/docker-compose.yml up --build -d
+  displayName: Start container with PostgreSql database
+- script: docker ps
+  displayName: Print Docker containers
+
 - script: git clone https://github.com/dbsafe/dbsafe-sql-db
   displayName: Checkout MS-SQL Server test database
 - script: docker-compose -f ./dbsafe-sql-db/docker-compose.yml up --build -d
   displayName: Start container with MS-SQL Server
 - script: docker ps
   displayName: Print Docker containers
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'filePath'
+    filePath: ./dbsafe-pg-db/wait-for-db.ps1
+    arguments: >
+    -ContainerName demo-pg-db 
+    -MaxNumberOfTries 120
+  displayName: Wait for PostgreSql database
 
 - task: PowerShell@2
   inputs:
