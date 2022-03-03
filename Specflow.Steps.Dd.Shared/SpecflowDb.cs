@@ -11,7 +11,7 @@ namespace Specflow.Steps.Db.Shared
     {
         IEnumerable<string> GetColumnNames(string tableName);
         bool IsObjectValid(string objectName);
-        Object.Collections.DataCollection BuildDataCollection(string tableName, IEnumerable<string> fields, FormatterManager formatter);
+        Object.Collections.DataCollection BuildDataCollection(string tableName, IEnumerable<string> fields, IEnumerable<FieldFilter> filters, FormatterManager formatter);
         AdoDatabaseClient<TDbConnection, TDbCommand> GetClient();
     }
 
@@ -33,14 +33,22 @@ namespace Specflow.Steps.Db.Shared
             }
         }
 
-        public void AssertTableSchema(string tableName, Object.Collections.DataCollection dataCollection)
+        public void AssertTableSchema(string tableName, Object.Collections.DataCollection dataCollection, IEnumerable<FieldFilter> filters)
         {
             var columnNames = _specflowDbSchema.GetColumnNames(tableName).Select(a => a.ToUpper());
 
-            Assert.IsTrue(dataCollection.Rows.Length > 0, $"Table '{tableName}'. The number of rows cannot be zero");
+            Assert.IsTrue(dataCollection.Rows.Length > 0, $"Table '{tableName}' - The number of rows cannot be zero");
             foreach (var cell in dataCollection.Rows[0].Values)
             {
-                Assert.IsTrue(columnNames.Contains(cell.Name.ToUpper()), $"Column '{cell.Name}' not found");
+                Assert.IsTrue(columnNames.Contains(cell.Name.ToUpper()), $"Table '{tableName}' - Column '{cell.Name}' not found");
+            }
+
+            if (filters != null)
+            {
+                foreach (var filter in filters)
+                {
+                    Assert.IsTrue(columnNames.Contains(filter.FieldName.ToUpper()), $"Table '{tableName}' - Filters - Column '{filter.FieldName}' not found");
+                }
             }
         }
 

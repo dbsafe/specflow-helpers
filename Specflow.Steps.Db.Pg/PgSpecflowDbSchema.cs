@@ -17,7 +17,7 @@ namespace Specflow.Steps.Db.Pg
             _connectionString = connectionString;
         }
 
-        public Object.Collections.DataCollection BuildDataCollection(string tableName, IEnumerable<string> fields, FormatterManager formatter)
+        public Object.Collections.DataCollection BuildDataCollection(string tableName, IEnumerable<string> fields, IEnumerable<FieldFilter> filters, FormatterManager formatter)
         {
             var rows = new List<Object.Collections.DataRow>();
             var command = $"SELECT {string.Join(",", fields)} FROM {tableName}";

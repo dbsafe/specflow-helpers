@@ -1,8 +1,11 @@
 ﻿using DbSafe;
+using Specflow.Steps.Db.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
 
 namespace Specflow.Steps.Db.Sql
 {
@@ -52,8 +55,40 @@ namespace Specflow.Steps.Db.Sql
 
         public static Object.Collections.DataCollection BuildDataCollection(string connectionString, string tableName, IEnumerable<string> fields, FormatterManager formatter)
         {
+            return BuildDataCollection(connectionString, tableName, fields, null, formatter);
+        }
+
+        private static IEnumerable<FieldFilter> AddQuotationMarks(IEnumerable<FieldFilter> filters)
+        {
+            FieldFilter AddQuotationMarks(FieldFilter filter)
+            {
+                var valuesWithQuotationMarks = filter.FieldValues.Split(',').Select(a => $"'{a.Trim()}'");
+                return new FieldFilter
+                {
+                    FieldName = filter.FieldName,
+                    FieldValues = string.Join(",", valuesWithQuotationMarks)
+                };
+            }
+
+            return filters.Select(AddQuotationMarks);
+        }
+
+        public static Object.Collections.DataCollection BuildDataCollection(string connectionString, string tableName, IEnumerable<string> fields, IEnumerable<FieldFilter> filters, FormatterManager formatter)
+        {
             var rows = new List<Object.Collections.DataRow>();
             var command = $"SELECT {string.Join(",", fields)} FROM {tableName}";
+
+            if (filters != null && filters.Any())
+            {
+                filters = AddQuotationMarks(filters);
+                var filtering = new List<string>();
+                foreach (var filter in filters)
+                {
+                    filtering.Add($"{filter.FieldName} IN ({filter.FieldValues})");
+                }
+
+                command = $"{command}{Environment.NewLine}{"WHERE"} {string.Join(" AND ", filtering)}";
+            }
 
             using (var conn = CreateDbConnection(connectionString))
             {
