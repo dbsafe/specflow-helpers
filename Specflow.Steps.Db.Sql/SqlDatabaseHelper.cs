@@ -58,21 +58,6 @@ namespace Specflow.Steps.Db.Sql
             return BuildDataCollection(connectionString, tableName, fields, null, formatter);
         }
 
-        private static IEnumerable<FieldFilter> AddQuotationMarks(IEnumerable<FieldFilter> filters)
-        {
-            FieldFilter AddQuotationMarks(FieldFilter filter)
-            {
-                var valuesWithQuotationMarks = filter.FieldValues.Split(',').Select(a => $"'{a.Trim()}'");
-                return new FieldFilter
-                {
-                    FieldName = filter.FieldName,
-                    FieldValues = string.Join(",", valuesWithQuotationMarks)
-                };
-            }
-
-            return filters.Select(AddQuotationMarks);
-        }
-
         public static Object.Collections.DataCollection BuildDataCollection(string connectionString, string tableName, IEnumerable<string> fields, IEnumerable<FieldFilter> filters, FormatterManager formatter)
         {
             var rows = new List<Object.Collections.DataRow>();
@@ -80,7 +65,7 @@ namespace Specflow.Steps.Db.Sql
 
             if (filters != null && filters.Any())
             {
-                filters = AddQuotationMarks(filters);
+                filters = SpecflowDbValidatorHelper.AddQuotationMarks(filters);
                 var filtering = new List<string>();
                 foreach (var filter in filters)
                 {

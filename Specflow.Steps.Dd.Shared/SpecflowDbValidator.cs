@@ -38,4 +38,22 @@ namespace Specflow.Steps.Db.Shared
             }
         }
     }
+
+    public static class SpecflowDbValidatorHelper
+    {
+        public static IEnumerable<FieldFilter> AddQuotationMarks(IEnumerable<FieldFilter> filters)
+        {
+            FieldFilter AddQuotationMarks(FieldFilter filter)
+            {
+                var valuesWithQuotationMarks = filter.FieldValues.Split(',').Select(a => $"'{a.Trim()}'");
+                return new FieldFilter
+                {
+                    FieldName = filter.FieldName,
+                    FieldValues = string.Join(",", valuesWithQuotationMarks)
+                };
+            }
+
+            return filters.Select(AddQuotationMarks);
+        }
+    }
 }
