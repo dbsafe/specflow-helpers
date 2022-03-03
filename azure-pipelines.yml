@@ -51,8 +51,8 @@ steps:
     targetType: 'filePath'
     filePath: ./dbsafe-pg-db/wait-for-db.ps1
     arguments: >
-    -ContainerName demo-pg-db 
-    -MaxNumberOfTries 120
+      -ContainerName demo-pg-db 
+      -MaxNumberOfTries 120
   displayName: Wait for PostgreSql database
 
 - task: PowerShell@2
