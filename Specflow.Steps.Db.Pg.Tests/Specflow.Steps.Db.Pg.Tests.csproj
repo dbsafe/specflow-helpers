@@ -26,22 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Features\DatabaseTest.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </None>
     <None Update="specflow-helpers-demo.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Features\DatabaseTest.feature.cs">
-      <Visible>true</Visible>
-      <DependentUpon>%(Filename)</DependentUpon>
-      <DesignTime>true</DesignTime>
-      <AutoGen>true</AutoGen>
-    </Compile>
-  </ItemGroup>
+	<Folder Include="Features\" />
+  </ItemGroup>	
 
 </Project>
