@@ -5,6 +5,7 @@ using Specflow.Steps.Db.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace Specflow.Steps.Db.Pg
 {
@@ -17,10 +18,22 @@ namespace Specflow.Steps.Db.Pg
             _connectionString = connectionString;
         }
 
-        public Object.Collections.DataCollection BuildDataCollection(string tableName, IEnumerable<string> fields, FormatterManager formatter)
+        public Object.Collections.DataCollection BuildDataCollection(string tableName, IEnumerable<string> fields, IEnumerable<FieldFilter> filters, FormatterManager formatter)
         {
             var rows = new List<Object.Collections.DataRow>();
             var command = $"SELECT {string.Join(",", fields)} FROM {tableName}";
+
+            if (filters != null && filters.Any())
+            {
+                filters = SpecflowDbValidatorHelper.AddQuotationMarks(filters);
+                var filtering = new List<string>();
+                foreach (var filter in filters)
+                {
+                    filtering.Add($"{filter.FieldName} IN ({filter.FieldValues})");
+                }
+
+                command = $"{command}{Environment.NewLine}{"WHERE"} {string.Join(" AND ", filtering)}";
+            }
 
             using (var conn = CreateDbConnection(_connectionString))
             {

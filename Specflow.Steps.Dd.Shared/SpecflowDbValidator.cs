@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Specflow.Steps.Object.Collections;
 using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -21,20 +22,38 @@ namespace Specflow.Steps.Db.Shared
             _specflowDb = new SpecflowDb<TDbConnection, TDbCommand>(_specflowDbSchema);
         }
 
-        public void AssertTable(string tableName, Table table)
+        public void AssertTable(string tableName, Table table, IEnumerable<FieldFilter> filters)
         {
             _specflowDb.AssertTableName(tableName);
 
             var expectedDataCollection = DataCollection.Load(table);
-            _specflowDb.AssertTableSchema(tableName, expectedDataCollection);
+            _specflowDb.AssertTableSchema(tableName, expectedDataCollection, filters);
 
             var fields = expectedDataCollection.Rows[0].Values.Select(a => a.Name);
-            var actualDataCollection = _specflowDbSchema.BuildDataCollection(tableName, fields, _formatter);
+            var actualDataCollection = _specflowDbSchema.BuildDataCollection(tableName, fields, filters, _formatter);
 
             if (!DataCompare.Compare(expectedDataCollection, actualDataCollection, out string message))
             {
                 Assert.Fail($"Table '{tableName}'.{Environment.NewLine}{message}");
             }
+        }
+    }
+
+    public static class SpecflowDbValidatorHelper
+    {
+        public static IEnumerable<FieldFilter> AddQuotationMarks(IEnumerable<FieldFilter> filters)
+        {
+            FieldFilter AddQuotationMarks(FieldFilter filter)
+            {
+                var valuesWithQuotationMarks = filter.FieldValues.Split(',').Select(a => $"'{a.Trim()}'");
+                return new FieldFilter
+                {
+                    FieldName = filter.FieldName,
+                    FieldValues = string.Join(",", valuesWithQuotationMarks)
+                };
+            }
+
+            return filters.Select(AddQuotationMarks);
         }
     }
 }

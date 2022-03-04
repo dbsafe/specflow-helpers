@@ -53,7 +53,7 @@ Scenario: Calling Put method
 
 Scenario: Calling Patch method
 	Given content equals to '{ "PropA": "abc" }'
-	When I send a PATCH request to api/CalcEng/PutTest/11
+	When I send a PATCH request to api/CalcEng/PatchTest/11
 	Then property operationResult should be 'Item: 11, updated PropA: abc'
 
 Scenario: Validating header and StatusCode when a request fails

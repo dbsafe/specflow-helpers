@@ -15,9 +15,9 @@ namespace Specflow.Steps.Db.Sql
             _connectionString = connectionString;
         }
 
-        public Object.Collections.DataCollection BuildDataCollection(string tableName, IEnumerable<string> fields, FormatterManager formatter)
+        public Object.Collections.DataCollection BuildDataCollection(string tableName, IEnumerable<string> fields, IEnumerable<FieldFilter> filters, FormatterManager formatter)
         {
-            return SqlDatabaseHelper.BuildDataCollection(_connectionString, tableName, fields, formatter);
+            return SqlDatabaseHelper.BuildDataCollection(_connectionString, tableName, fields, filters, formatter);
         }
 
         public AdoDatabaseClient<SqlConnection, SqlCommand> GetClient()
