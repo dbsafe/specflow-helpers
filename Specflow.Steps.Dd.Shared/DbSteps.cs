@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -41,6 +42,9 @@ namespace Specflow.Steps.Db.Shared
         [Given(@"I filter table '(.*)' by")]
         public void SetFilterForTable(string tableName, Table filter)
         {
+            Assert.IsTrue(filter.Header.Contains(nameof(FieldFilter.FieldName)), $"Column '{nameof(FieldFilter.FieldName)}' is missing in the filter");
+            Assert.IsTrue(filter.Header.Contains(nameof(FieldFilter.FieldValues)), $"Column '{nameof(FieldFilter.FieldValues)}' is missing in the filter");
+
             var filters = filter.CreateSet<FieldFilter>();
             _tableFilters[tableName] = filters;
         }
