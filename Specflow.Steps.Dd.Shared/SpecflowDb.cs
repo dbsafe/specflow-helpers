@@ -12,6 +12,7 @@ namespace Specflow.Steps.Db.Shared
         IEnumerable<string> GetColumnNames(string tableName);
         bool IsObjectValid(string objectName);
         Object.Collections.DataCollection BuildDataCollection(string tableName, IEnumerable<string> fields, IEnumerable<FieldFilter> filters, FormatterManager formatter);
+        int GetRecordCount(string tableName, IEnumerable<FieldFilter> filters);
         AdoDatabaseClient<TDbConnection, TDbCommand> GetClient();
     }
 
@@ -43,6 +44,17 @@ namespace Specflow.Steps.Db.Shared
                 Assert.IsTrue(columnNames.Contains(cell.Name.ToUpper()), $"Table '{tableName}' - Column '{cell.Name}' not found");
             }
 
+            AssertFilters(tableName, columnNames, filters);
+        }
+
+        public void AssertTableSchema(string tableName, IEnumerable<FieldFilter> filters)
+        {
+            var columnNames = _specflowDbSchema.GetColumnNames(tableName).Select(a => a.ToUpper());
+            AssertFilters(tableName, columnNames, filters);
+        }
+
+        private void AssertFilters(string tableName, IEnumerable<string> columnNames, IEnumerable<FieldFilter> filters)
+        {
             if (filters != null)
             {
                 foreach (var filter in filters)
