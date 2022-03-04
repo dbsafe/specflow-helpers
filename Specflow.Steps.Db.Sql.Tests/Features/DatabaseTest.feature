@@ -90,3 +90,9 @@ Then table '[dbo].[Supplier]' should contain the data
 Then table '[dbo].[Category]' should contain the data
 | Id | Name  |
 | 2  | cat-2 |
+
+Scenario: Validate empty table
+Given I filter table '[dbo].[Supplier]' by
+| FieldName | FieldValues |
+| Name      | sup-10      |
+Then table '[dbo].[Supplier]' should be empty

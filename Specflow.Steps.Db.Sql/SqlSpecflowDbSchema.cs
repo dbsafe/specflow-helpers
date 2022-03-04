@@ -20,6 +20,11 @@ namespace Specflow.Steps.Db.Sql
             return SqlDatabaseHelper.BuildDataCollection(_connectionString, tableName, fields, filters, formatter);
         }
 
+        public int GetRecordCount(string tableName, IEnumerable<FieldFilter> filters)
+        {
+            return SqlDatabaseHelper.GetRecordCount(_connectionString, tableName, filters);
+        }
+
         public AdoDatabaseClient<SqlConnection, SqlCommand> GetClient()
         {
             return new SqlDatabaseClient(false)

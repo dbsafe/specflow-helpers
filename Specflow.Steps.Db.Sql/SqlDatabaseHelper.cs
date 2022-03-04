@@ -108,6 +108,34 @@ namespace Specflow.Steps.Db.Sql
             };
         }
 
+        public static int GetRecordCount(string connectionString, string tableName, IEnumerable<FieldFilter> filters)
+        {
+            var command = $"SELECT COUNT(*) FROM {tableName}";
+
+            if (filters != null && filters.Any())
+            {
+                filters = SpecflowDbValidatorHelper.AddQuotationMarks(filters);
+                var filtering = new List<string>();
+                foreach (var filter in filters)
+                {
+                    filtering.Add($"{filter.FieldName} IN ({filter.FieldValues})");
+                }
+
+                command = $"{command}{Environment.NewLine}{"WHERE"} {string.Join(" AND ", filtering)}";
+            }
+
+            using (var conn = CreateDbConnection(connectionString))
+            {
+                using (var comm = CreateDbCommand(command, conn))
+                {
+                    conn.Open();
+                    var reader = comm.ExecuteReader(CommandBehavior.KeyInfo);
+                    reader.Read();
+                    return int.Parse(reader[0].ToString());
+                }
+            }
+        }
+
         private static SqlConnection CreateDbConnection(string connectionString) => new SqlConnection(connectionString);
 
         private static SqlCommand CreateDbCommand(string command, SqlConnection conn) => new SqlCommand(command, conn);

@@ -90,3 +90,9 @@ Then table 'public.supplier' should contain the data
 Then table 'public.category' should contain the data
 | id | name  |
 | 2  | cat-2 |
+
+Scenario: Validate empty table
+Given I filter table 'public.supplier' by
+| FieldName | FieldValues |
+| name      | sup-10      |
+Then table 'public.supplier' should be empty

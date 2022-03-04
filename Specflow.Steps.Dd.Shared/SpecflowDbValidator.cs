@@ -37,6 +37,14 @@ namespace Specflow.Steps.Db.Shared
                 Assert.Fail($"Table '{tableName}'.{Environment.NewLine}{message}");
             }
         }
+
+        public void AssertTableIsEmpty(string tableName, IEnumerable<FieldFilter> filters)
+        {
+            _specflowDb.AssertTableName(tableName);
+            _specflowDb.AssertTableSchema(tableName, filters);
+            var recordCount = _specflowDbSchema.GetRecordCount(tableName, filters);
+            Assert.AreEqual(0, recordCount, $"Table '{tableName}' is not empty");
+        }
     }
 
     public static class SpecflowDbValidatorHelper

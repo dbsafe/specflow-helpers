@@ -13,6 +13,7 @@ namespace Specflow.Steps.Db.Shared
     public interface ISpecflowDbValidator
     {
         void AssertTable(string tableName, Table table, IEnumerable<FieldFilter> filters);
+        void AssertTableIsEmpty(string tableName, IEnumerable<FieldFilter> filters);
     }
 
     public class FieldFilter
@@ -60,6 +61,13 @@ namespace Specflow.Steps.Db.Shared
         {
             var tableHasFilter = _tableFilters.TryGetValue(tableName, out var filter);
             _validator.AssertTable(tableName, table, tableHasFilter ? filter : null);
+        }
+
+        [Then(@"table '(.*)' should be empty")]
+        public void AssertTableIsEmpty(string tableName)
+        {
+            var tableHasFilter = _tableFilters.TryGetValue(tableName, out var filter);
+            _validator.AssertTableIsEmpty(tableName, tableHasFilter ? filter : null);
         }
     }
 }
