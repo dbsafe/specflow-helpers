@@ -9,7 +9,7 @@ Scenario: Add two numbers - Operation succeeds
 	And property SecondNumber equals to the number 20
 	
 	# Executing an operation
-	When I Add two numbers
+	When I add two numbers
 	
 	# Assert a numeric property
 	Then property OperationResult should be the number 30

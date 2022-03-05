@@ -12,7 +12,7 @@ namespace Demo.CalcEng.Domain.Tests
 
         public CalcEngServiceSteps(TestContext testContext) : base(testContext) { }
 
-        [When(@"I Add two numbers")]
+        [When(@"I add two numbers")]
         public void ExecuteAddTwoNumbers()
         {
             var request = Request.ToObject<TwoNumbersOperationRequest>();
