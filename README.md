@@ -8,8 +8,10 @@ This library provides a base implementation that can be reused when writing the 
 In order to use the library some knowledge of Specflow is required.
 For more information about Specflow visit: https://specflow.org/
 
-[Testing classes](class-tests.md)
-[Testing a WebApi](webapi-tests.md)
-[Database testing](database-tests.md)
+Test Type | Description
+-|-
+[Class](class-tests.md)|Used for testing properties of an object returned by a method
+[WebApi](webapi-tests.md)|Used for testing a WebApi
+[Database](database-tests.md)|Used for database testing
 
 **[Getting Started](getting-started/getting-started.md)**
