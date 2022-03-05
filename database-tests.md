@@ -15,9 +15,9 @@ There are two ways of using the steps defined in the library.
 
 **Dependencies**
 
-`PgSteps` and `SqlSteps` use [DbSafe](https://github.com/dbsafe/dbsafe) for loading and validating the data. 
-[DbSafe](https://github.com/dbsafe/dbsafe) uses [formatters](https://github.com/dbsafe/dbsafe#column-formatters) to simplify the expected data.
-[DbSafe](https://github.com/dbsafe/dbsafe) can be used for preparing the database for the test.
+`PgSteps` and `SqlSteps` use [DbSafe](https://github.com/dbsafe/dbsafe) for loading and validating the data.
+DbSafe uses [formatters](https://github.com/dbsafe/dbsafe#column-formatters) to simplify the expected data.
+DbSafe can be used for preparing the database for the test.
 
 When validating the expected data in a table, `PgSteps` and `SqlSteps` use the method to validate an complex-element array from Helpers.Specflow.Steps.Object.
 
