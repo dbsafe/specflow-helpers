@@ -94,8 +94,13 @@ Then table 'public.product' should contain the data
 | 2      | code-2 | product-2 | desc-2      | 102.10      | 112.10            | 1           | 2           | true              | 2000-01-02            |
 ```
 
-The Steps definition class using an instance of `PgSteps`
----------------------------------------------------------
+Validating that a table (or the result of filtering the table) is empty
+```
+Then table 'public.supplier' should be empty
+```
+
+Steps definition class using an instance of `PgSteps` and defining custom phrases
+---------------------------------------------------------------------------------
 
 pros: SpecFlow scenarios can use domain-related phrases.
 
