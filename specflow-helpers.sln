@@ -17,9 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Db.Sql.Tests
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77C4737E-27F8-4C7F-81E0-B3446FF44C17}"
 	ProjectSection(SolutionItems) = preProject
+		class-tests.md = class-tests.md
+		database-tests.md = database-tests.md
 		README.md = README.md
 		releases.md = releases.md
 		tests-readme.md = tests-readme.md
+		webapi-tests.md = webapi-tests.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CalcEng.Api.Tests", "Demo.CalcEng.Api.Tests\Demo.CalcEng.Api.Tests.csproj", "{519992BC-93CB-4502-B67A-B7B4DE9ABF3D}"
@@ -35,9 +38,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Object", "Sp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.WebApi", "Specflow.Steps.WebApi\Specflow.Steps.WebApi.csproj", "{96C2AA63-0045-4612-AB1C-027D86EFA90B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specflow.Steps.Db.Pg", "Specflow.Steps.Db.Pg\Specflow.Steps.Db.Pg.csproj", "{666F8C9F-6245-47FE-BD65-0FAB3229772F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Db.Pg", "Specflow.Steps.Db.Pg\Specflow.Steps.Db.Pg.csproj", "{666F8C9F-6245-47FE-BD65-0FAB3229772F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specflow.Steps.Db.Pg.Tests", "Specflow.Steps.Db.Pg.Tests\Specflow.Steps.Db.Pg.Tests.csproj", "{43D354C8-87F5-456F-80A1-5379F73A3B3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Specflow.Steps.Db.Pg.Tests", "Specflow.Steps.Db.Pg.Tests\Specflow.Steps.Db.Pg.Tests.csproj", "{43D354C8-87F5-456F-80A1-5379F73A3B3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
