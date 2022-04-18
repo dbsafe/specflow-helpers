@@ -18,7 +18,7 @@ public class CalcEng
         var data = request.FirstNumber + request.SecondNumber;
         return OperationResponse.CreateSucceed(data);
     }
-    
+
     // ...
 }
 
@@ -192,22 +192,22 @@ Then property OperationResult should be the complex-element array
 
 - Each column represents a property of the elements in the array
 - The headers indicates the property names and the data type
-  
+
   Example:
   ```
   Date:DateTime
   ```
-  
-- When `key` is added to a property, the property is used as the key in the array. 
-  `key` can be added to more than one property to create a composite key. 
+
+- When `key` is added to a property, the property is used as the key in the array.
+  `key` can be added to more than one property to create a composite key.
   `key` must be positioned before the property type when the type is specified.
-  
+
   Example:
   ```
   PropA:key
   Value:key:Number
   ```
-  
+
 - Use `[NULL]` when a property is expected to be null
 
   Example:
@@ -217,9 +217,9 @@ Then property OperationResult should be the complex-element array
   | item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
   | item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
   ```
-  
+
   - Use `[IGNORE]` to skip the validation of a property
-  
+
   Example:
   ```
   Then property OperationResult should be the complex-element array
@@ -227,8 +227,8 @@ Then property OperationResult should be the complex-element array
   | item1-pa  | [IGNORE] | 2000-01-01    | 100          | True            |
   | item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
   ```
-  
-  
+
+
  **Retrieving a property using JPath**
   ```
  Then property OperationResult[1].Date should be the datetime '2000-01-02'

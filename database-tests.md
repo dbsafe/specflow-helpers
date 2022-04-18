@@ -15,9 +15,9 @@ There are two ways of using the steps defined in the library.
 
 **Dependencies**
 
-`PgSteps` and `SqlSteps` use [DbSafe](https://github.com/dbsafe/dbsafe) for loading and validating the data. 
-[DbSafe](https://github.com/dbsafe/dbsafe) uses [formatters](https://github.com/dbsafe/dbsafe#column-formatters) to simplify the expected data.
-[DbSafe](https://github.com/dbsafe/dbsafe) can be used for preparing the database for the test.
+`PgSteps` and `SqlSteps` use [DbSafe](https://github.com/dbsafe/dbsafe) for loading and validating the data.
+DbSafe uses [formatters](https://github.com/dbsafe/dbsafe#column-formatters) to simplify the expected data.
+DbSafe can be used for preparing the database for the test.
 
 When validating the expected data in a table, `PgSteps` and `SqlSteps` use the method to validate an complex-element array from Helpers.Specflow.Steps.Object.
 
@@ -94,8 +94,13 @@ Then table 'public.product' should contain the data
 | 2      | code-2 | product-2 | desc-2      | 102.10      | 112.10            | 1           | 2           | true              | 2000-01-02            |
 ```
 
-The Steps definition class using an instance of `PgSteps`
----------------------------------------------------------
+Validating that a table (or the result of filtering the table) is empty
+```
+Then table 'public.supplier' should be empty
+```
+
+Steps definition class using an instance of `PgSteps` and defining custom phrases
+---------------------------------------------------------------------------------
 
 pros: SpecFlow scenarios can use domain-related phrases.
 
