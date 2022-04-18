@@ -13,6 +13,7 @@ namespace Specflow.Steps.Db.Shared
     public interface ISpecflowDbValidator
     {
         void AssertTable(string tableName, Table table, IEnumerable<FieldFilter> filters);
+        void AssertQuery(string query, Table table);
         void AssertTableIsEmpty(string tableName, IEnumerable<FieldFilter> filters);
     }
 
@@ -61,6 +62,12 @@ namespace Specflow.Steps.Db.Shared
         {
             var tableHasFilter = _tableFilters.TryGetValue(tableName, out var filter);
             _validator.AssertTable(tableName, table, tableHasFilter ? filter : null);
+        }
+
+        [Then(@"query '(.*)' should return the data")]
+        public void AssertQuery(string query, Table table)
+        {
+            _validator.AssertQuery(query, table);
         }
 
         [Then(@"table '(.*)' should be empty")]

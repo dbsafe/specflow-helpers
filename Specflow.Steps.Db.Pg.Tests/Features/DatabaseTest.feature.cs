@@ -313,13 +313,13 @@ testRunner.Then("table \'public.product\' should contain the data", ((string)(nu
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Populate and validate a table with identity column")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Validate table using a query")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DatabaseTest")]
-        public virtual void PopulateAndValidateATableWithIdentityColumn()
+        public virtual void ValidateTableUsingAQuery()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Populate and validate a table with identity column", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate table using a query", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -344,7 +344,6 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                            "id",
                             "code",
                             "name",
                             "description",
@@ -356,10 +355,9 @@ this.FeatureBackground();
                             "release_date",
                             "created_on"});
                 table5.AddRow(new string[] {
-                            "1",
                             "code-1",
                             "product-1",
-                            "desc-1",
+                            "[NULL]",
                             "101.10",
                             "111.10",
                             "1",
@@ -368,7 +366,6 @@ this.FeatureBackground();
                             "2000-01-01",
                             "2000-02-01"});
                 table5.AddRow(new string[] {
-                            "2",
                             "code-2",
                             "product-2",
                             "desc-2",
@@ -380,7 +377,6 @@ this.FeatureBackground();
                             "2000-01-02",
                             "2000-02-02"});
                 table5.AddRow(new string[] {
-                            "3",
                             "code-3",
                             "product-3",
                             "desc-3",
@@ -392,7 +388,6 @@ this.FeatureBackground();
                             "2000-01-03",
                             "2000-02-03"});
                 table5.AddRow(new string[] {
-                            "4",
                             "code-4",
                             "product-4",
                             "",
@@ -404,7 +399,6 @@ this.FeatureBackground();
                             "2000-01-04",
                             "2000-02-04"});
                 table5.AddRow(new string[] {
-                            "5",
                             "code-5",
                             "product-5",
                             "[NULL]",
@@ -416,7 +410,7 @@ this.FeatureBackground();
                             "2000-01-05",
                             "2000-02-05"});
 #line 32
-testRunner.Given("table with identity columns \'public.product\' contains the data", ((string)(null)), table5, "Given ");
+testRunner.Given("table \'public.product\' contains the data", ((string)(null)), table5, "Given ");
 #line hidden
 #line 39
 testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -431,20 +425,22 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "category_id",
                             "supplier_id",
                             "is_active:Boolean",
-                            "release_date:DateTime"});
+                            "release_date:DateTime",
+                            "created_on:DateTime"});
                 table6.AddRow(new string[] {
-                            "1",
+                            "101",
                             "code-1",
                             "product-1",
-                            "desc-1",
+                            "[NULL]",
                             "101.10",
                             "111.10",
                             "1",
                             "2",
                             "true",
-                            "2000-01-01"});
+                            "2000-01-01",
+                            "2000-02-01"});
                 table6.AddRow(new string[] {
-                            "2",
+                            "102",
                             "code-2",
                             "product-2",
                             "desc-2",
@@ -453,9 +449,10 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "1",
                             "2",
                             "true",
-                            "2000-01-02"});
+                            "2000-01-02",
+                            "2000-02-02"});
                 table6.AddRow(new string[] {
-                            "3",
+                            "103",
                             "code-3",
                             "product-3",
                             "desc-3",
@@ -464,9 +461,10 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2",
                             "1",
                             "true",
-                            "2000-01-03"});
+                            "2000-01-03",
+                            "2000-02-03"});
                 table6.AddRow(new string[] {
-                            "4",
+                            "104",
                             "code-4",
                             "product-4",
                             "",
@@ -475,9 +473,10 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2",
                             "1",
                             "false",
-                            "2000-01-04"});
+                            "2000-01-04",
+                            "2000-02-04"});
                 table6.AddRow(new string[] {
-                            "5",
+                            "105",
                             "code-5",
                             "product-5",
                             "[NULL]",
@@ -486,22 +485,23 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2",
                             "1",
                             "false",
-                            "2000-01-05"});
+                            "2000-01-05",
+                            "2000-02-05"});
 #line 40
-testRunner.Then("table \'public.product\' should contain the data", ((string)(null)), table6, "Then ");
+testRunner.Then("query \'(SELECT * FROM public.product) AS prod\' should return the data", ((string)(null)), table6, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Filter and validate a table - one field, one value")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Populate and validate a table with identity column")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DatabaseTest")]
-        public virtual void FilterAndValidateATable_OneFieldOneValue()
+        public virtual void PopulateAndValidateATableWithIdentityColumn()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter and validate a table - one field, one value", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Populate and validate a table with identity column", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 48
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -600,16 +600,10 @@ this.FeatureBackground();
 #line 49
 testRunner.Given("table with identity columns \'public.product\' contains the data", ((string)(null)), table7, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FieldName",
-                            "FieldValues"});
-                table8.AddRow(new string[] {
-                            "id",
-                            "2"});
 #line 56
-testRunner.Given("I filter table \'public.product\' by", ((string)(null)), table8, "Given ");
+testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "id:Key",
                             "code",
                             "name",
@@ -620,7 +614,18 @@ testRunner.Given("I filter table \'public.product\' by", ((string)(null)), table
                             "supplier_id",
                             "is_active:Boolean",
                             "release_date:DateTime"});
-                table9.AddRow(new string[] {
+                table8.AddRow(new string[] {
+                            "1",
+                            "code-1",
+                            "product-1",
+                            "desc-1",
+                            "101.10",
+                            "111.10",
+                            "1",
+                            "2",
+                            "true",
+                            "2000-01-01"});
+                table8.AddRow(new string[] {
                             "2",
                             "code-2",
                             "product-2",
@@ -631,22 +636,55 @@ testRunner.Given("I filter table \'public.product\' by", ((string)(null)), table
                             "2",
                             "true",
                             "2000-01-02"});
-#line 59
-testRunner.Then("table \'public.product\' should contain the data", ((string)(null)), table9, "Then ");
+                table8.AddRow(new string[] {
+                            "3",
+                            "code-3",
+                            "product-3",
+                            "desc-3",
+                            "103.10",
+                            "113.10",
+                            "2",
+                            "1",
+                            "true",
+                            "2000-01-03"});
+                table8.AddRow(new string[] {
+                            "4",
+                            "code-4",
+                            "product-4",
+                            "",
+                            "104.10",
+                            "114.10",
+                            "2",
+                            "1",
+                            "false",
+                            "2000-01-04"});
+                table8.AddRow(new string[] {
+                            "5",
+                            "code-5",
+                            "product-5",
+                            "[NULL]",
+                            "105.10",
+                            "115.10",
+                            "2",
+                            "1",
+                            "false",
+                            "2000-01-05"});
+#line 57
+testRunner.Then("table \'public.product\' should contain the data", ((string)(null)), table8, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Filter and validate a table - multiple fields and values")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Filter and validate a table - one field, one value")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DatabaseTest")]
-        public virtual void FilterAndValidateATable_MultipleFieldsAndValues()
+        public virtual void FilterAndValidateATable_OneFieldOneValue()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter and validate a table - multiple fields and values", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 63
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter and validate a table - one field, one value", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 65
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -669,7 +707,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "id",
                             "code",
                             "name",
@@ -681,7 +719,7 @@ this.FeatureBackground();
                             "is_active",
                             "release_date",
                             "created_on"});
-                table10.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "1",
                             "code-1",
                             "product-1",
@@ -693,7 +731,7 @@ this.FeatureBackground();
                             "1",
                             "2000-01-01",
                             "2000-02-01"});
-                table10.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "2",
                             "code-2",
                             "product-2",
@@ -705,7 +743,7 @@ this.FeatureBackground();
                             "1",
                             "2000-01-02",
                             "2000-02-02"});
-                table10.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "3",
                             "code-3",
                             "product-3",
@@ -717,7 +755,7 @@ this.FeatureBackground();
                             "1",
                             "2000-01-03",
                             "2000-02-03"});
-                table10.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "4",
                             "code-4",
                             "product-4",
@@ -729,7 +767,7 @@ this.FeatureBackground();
                             "0",
                             "2000-01-04",
                             "2000-02-04"});
-                table10.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "5",
                             "code-5",
                             "product-5",
@@ -741,22 +779,19 @@ this.FeatureBackground();
                             "0",
                             "2000-01-05",
                             "2000-02-05"});
-#line 64
-testRunner.Given("table with identity columns \'public.product\' contains the data", ((string)(null)), table10, "Given ");
+#line 66
+testRunner.Given("table with identity columns \'public.product\' contains the data", ((string)(null)), table9, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "FieldName",
                             "FieldValues"});
-                table11.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "id",
-                            "1,2,5"});
-                table11.AddRow(new string[] {
-                            "is_active",
-                            "1"});
-#line 71
-testRunner.Given("I filter table \'public.product\' by", ((string)(null)), table11, "Given ");
+                            "2"});
+#line 73
+testRunner.Given("I filter table \'public.product\' by", ((string)(null)), table10, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "id:Key",
                             "code",
                             "name",
@@ -767,18 +802,7 @@ testRunner.Given("I filter table \'public.product\' by", ((string)(null)), table
                             "supplier_id",
                             "is_active:Boolean",
                             "release_date:DateTime"});
-                table12.AddRow(new string[] {
-                            "1",
-                            "code-1",
-                            "product-1",
-                            "desc-1",
-                            "101.10",
-                            "111.10",
-                            "1",
-                            "2",
-                            "true",
-                            "2000-01-01"});
-                table12.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "2",
                             "code-2",
                             "product-2",
@@ -789,21 +813,21 @@ testRunner.Given("I filter table \'public.product\' by", ((string)(null)), table
                             "2",
                             "true",
                             "2000-01-02"});
-#line 75
-testRunner.Then("table \'public.product\' should contain the data", ((string)(null)), table12, "Then ");
+#line 76
+testRunner.Then("table \'public.product\' should contain the data", ((string)(null)), table11, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Filter and validate multiple tables")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Filter and validate a table - multiple fields and values")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DatabaseTest")]
-        public virtual void FilterAndValidateMultipleTables()
+        public virtual void FilterAndValidateATable_MultipleFieldsAndValues()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter and validate multiple tables", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter and validate a table - multiple fields and values", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 80
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -827,61 +851,142 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id",
+                            "code",
+                            "name",
+                            "description",
+                            "cost",
+                            "list_price",
+                            "category_id",
+                            "supplier_id",
+                            "is_active",
+                            "release_date",
+                            "created_on"});
+                table12.AddRow(new string[] {
+                            "1",
+                            "code-1",
+                            "product-1",
+                            "desc-1",
+                            "101.10",
+                            "111.10",
+                            "1",
+                            "2",
+                            "1",
+                            "2000-01-01",
+                            "2000-02-01"});
+                table12.AddRow(new string[] {
+                            "2",
+                            "code-2",
+                            "product-2",
+                            "desc-2",
+                            "102.10",
+                            "112.10",
+                            "1",
+                            "2",
+                            "1",
+                            "2000-01-02",
+                            "2000-02-02"});
+                table12.AddRow(new string[] {
+                            "3",
+                            "code-3",
+                            "product-3",
+                            "desc-3",
+                            "103.10",
+                            "113.10",
+                            "2",
+                            "1",
+                            "1",
+                            "2000-01-03",
+                            "2000-02-03"});
+                table12.AddRow(new string[] {
+                            "4",
+                            "code-4",
+                            "product-4",
+                            "",
+                            "104.10",
+                            "114.10",
+                            "2",
+                            "1",
+                            "0",
+                            "2000-01-04",
+                            "2000-02-04"});
+                table12.AddRow(new string[] {
+                            "5",
+                            "code-5",
+                            "product-5",
+                            "[NULL]",
+                            "105.10",
+                            "115.10",
+                            "2",
+                            "1",
+                            "0",
+                            "2000-01-05",
+                            "2000-02-05"});
+#line 81
+testRunner.Given("table with identity columns \'public.product\' contains the data", ((string)(null)), table12, "Given ");
+#line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "FieldName",
                             "FieldValues"});
                 table13.AddRow(new string[] {
-                            "name",
-                            "sup-1"});
-#line 81
-testRunner.Given("I filter table \'public.supplier\' by", ((string)(null)), table13, "Given ");
+                            "id",
+                            "1,2,5"});
+                table13.AddRow(new string[] {
+                            "is_active",
+                            "1"});
+#line 88
+testRunner.Given("I filter table \'public.product\' by", ((string)(null)), table13, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FieldName",
-                            "FieldValues"});
+                            "id:Key",
+                            "code",
+                            "name",
+                            "description",
+                            "cost:Number",
+                            "list_price:Number",
+                            "category_id",
+                            "supplier_id",
+                            "is_active:Boolean",
+                            "release_date:DateTime"});
                 table14.AddRow(new string[] {
-                            "name",
-                            "cat-2"});
-#line 84
-testRunner.Given("I filter table \'public.category\' by", ((string)(null)), table14, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
-                            "id",
-                            "name",
-                            "contact_name",
-                            "contact_phone",
-                            "contact_email"});
-                table15.AddRow(new string[] {
                             "1",
-                            "sup-1",
-                            "cont-1",
-                            "phone-1",
-                            "email-1"});
-#line 87
-testRunner.Then("table \'public.supplier\' should contain the data", ((string)(null)), table15, "Then ");
-#line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
-                            "id",
-                            "name"});
-                table16.AddRow(new string[] {
+                            "code-1",
+                            "product-1",
+                            "desc-1",
+                            "101.10",
+                            "111.10",
+                            "1",
                             "2",
-                            "cat-2"});
-#line 90
-testRunner.Then("table \'public.category\' should contain the data", ((string)(null)), table16, "Then ");
+                            "true",
+                            "2000-01-01"});
+                table14.AddRow(new string[] {
+                            "2",
+                            "code-2",
+                            "product-2",
+                            "desc-2",
+                            "102.10",
+                            "112.10",
+                            "1",
+                            "2",
+                            "true",
+                            "2000-01-02"});
+#line 92
+testRunner.Then("table \'public.product\' should contain the data", ((string)(null)), table14, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Validate empty table")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Filter and validate multiple tables")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DatabaseTest")]
-        public virtual void ValidateEmptyTable()
+        public virtual void FilterAndValidateMultipleTables()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate empty table", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 94
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter and validate multiple tables", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 97
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -904,16 +1009,93 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "FieldName",
                             "FieldValues"});
+                table15.AddRow(new string[] {
+                            "name",
+                            "sup-1"});
+#line 98
+testRunner.Given("I filter table \'public.supplier\' by", ((string)(null)), table15, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FieldName",
+                            "FieldValues"});
+                table16.AddRow(new string[] {
+                            "name",
+                            "cat-2"});
+#line 101
+testRunner.Given("I filter table \'public.category\' by", ((string)(null)), table16, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id",
+                            "name",
+                            "contact_name",
+                            "contact_phone",
+                            "contact_email"});
                 table17.AddRow(new string[] {
+                            "1",
+                            "sup-1",
+                            "cont-1",
+                            "phone-1",
+                            "email-1"});
+#line 104
+testRunner.Then("table \'public.supplier\' should contain the data", ((string)(null)), table17, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                            "id",
+                            "name"});
+                table18.AddRow(new string[] {
+                            "2",
+                            "cat-2"});
+#line 107
+testRunner.Then("table \'public.category\' should contain the data", ((string)(null)), table18, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Validate empty table")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DatabaseTest")]
+        public virtual void ValidateEmptyTable()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate empty table", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 111
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FieldName",
+                            "FieldValues"});
+                table19.AddRow(new string[] {
                             "name",
                             "sup-10"});
-#line 95
-testRunner.Given("I filter table \'public.supplier\' by", ((string)(null)), table17, "Given ");
+#line 112
+testRunner.Given("I filter table \'public.supplier\' by", ((string)(null)), table19, "Given ");
 #line hidden
-#line 98
+#line 115
 testRunner.Then("table \'public.supplier\' should be empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
