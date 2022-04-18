@@ -38,6 +38,18 @@ namespace Specflow.Steps.Db.Shared
             }
         }
 
+        public void AssertQuery(string query, Table table)
+        {
+            var expectedDataCollection = DataCollection.Load(table);
+            var fields = expectedDataCollection.Rows[0].Values.Select(a => a.Name);
+            var actualDataCollection = _specflowDbSchema.BuildDataCollection(query, fields, Enumerable.Empty<FieldFilter>(), _formatter);
+
+            if (!DataCompare.Compare(expectedDataCollection, actualDataCollection, out string message))
+            {
+                Assert.Fail($"Query '{query}'.{Environment.NewLine}{message}");
+            }
+        }
+
         public void AssertTableIsEmpty(string tableName, IEnumerable<FieldFilter> filters)
         {
             _specflowDb.AssertTableName(tableName);
