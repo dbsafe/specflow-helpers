@@ -488,7 +488,7 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "2000-01-05",
                             "2000-02-05"});
 #line 40
-testRunner.Then("query \'(select * from public.product) as prod\' should return the data", ((string)(null)), table6, "Then ");
+testRunner.Then("query \'(SELECT * FROM public.product) AS prod\' should return the data", ((string)(null)), table6, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

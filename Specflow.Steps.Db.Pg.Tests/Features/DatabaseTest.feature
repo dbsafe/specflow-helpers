@@ -37,7 +37,7 @@ Given table 'public.product' contains the data
 | code-4 | product-4 |             | 104.10 | 114.10     | 2           | 1           | 0         | 2000-01-04   | 2000-02-04 |
 | code-5 | product-5 | [NULL]      | 105.10 | 115.10     | 2           | 1           | 0         | 2000-01-05   | 2000-02-05 |
 When I execute my operation
-Then query '(select * from public.product) as prod' should return the data
+Then query '(SELECT * FROM public.product) AS prod' should return the data
 | id:Key | code   | name      | description | cost:Number | list_price:Number | category_id | supplier_id | is_active:Boolean | release_date:DateTime | created_on:DateTime |
 | 101    | code-1 | product-1 | [NULL]      | 101.10      | 111.10            | 1           | 2           | true              | 2000-01-01            | 2000-02-01          |
 | 102    | code-2 | product-2 | desc-2      | 102.10      | 112.10            | 1           | 2           | true              | 2000-01-02            | 2000-02-02          |

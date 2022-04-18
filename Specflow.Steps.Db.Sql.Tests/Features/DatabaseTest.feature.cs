@@ -455,7 +455,7 @@ testRunner.When("I execute my operation", ((string)(null)), ((TechTalk.SpecFlow.
                             "103",
                             "code-3",
                             "product-3",
-                            "desc-31",
+                            "desc-3",
                             "103.10",
                             "113.10",
                             "2",
