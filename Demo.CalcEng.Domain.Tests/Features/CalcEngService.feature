@@ -109,6 +109,18 @@ Scenario: Request Domain Items - Ignore field
 
 	Then property OperationResult should be an array with 4 items
 
+Scenario: Request Domain Items - Filter array items
+	When I request domain items
+
+	# Assert filtering items in an array
+	Given I filter property OperationResult by
+	| FieldName | FieldValues                |
+	| PropA     | item1-pa,item2-pa,item4-pa |
+	Then property OperationResult should be the complex-element array
+	| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+	| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
+	| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+	| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
 
 Scenario: Request Domain Items By Date
 	# Setting a DateTime property -

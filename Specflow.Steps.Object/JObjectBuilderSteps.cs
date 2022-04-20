@@ -11,8 +11,15 @@ using TechTalk.SpecFlow.Assist;
 
 namespace Specflow.Steps.Object
 {
+    public class FieldFilter
+    {
+        public string FieldName { get; set; }
+        public string FieldValues { get; set; }
+    }
     public class JObjectBuilderSteps
     {
+        private readonly Dictionary<string, IEnumerable<FieldFilter>> _fieldFilters = new Dictionary<string, IEnumerable<FieldFilter>>(20);
+
         public TestContext TestContext { get; }
         public JObject Request { get; private set; }
         public JObject Response { get; private set; }
@@ -77,6 +84,12 @@ namespace Specflow.Steps.Object
         public void SetRequestPropertyAsArrayWithComplexElements(string name, Table table)
         {
             ExecuteProtected(() => SetRequestContentPropertyAsComplexElementArray(name, table));
+        }
+
+        [Given(@"I filter property ([^\s]+) by")]
+        public void FilterArrayWithComplexElements(string name, Table table)
+        {
+            ExecuteProtected(() => SetFilterArrayWithComplexElements(name, table));
         }
 
         #endregion
@@ -223,10 +236,30 @@ namespace Specflow.Steps.Object
 
             var expectedDataset = DataCollection.Load(table);
             var actualDataset = DataCollection.Load(actualToken.Children());
+            actualDataset = FilterRows(actualDataset, arrayPropertyName);
             if (!DataCompare.Compare(expectedDataset, actualDataset, out string message))
             {
                 Assert.Fail($"Array property {arrayPropertyName}.\n{message}");
             }
+        }
+
+        private DataCollection FilterRows(DataCollection source, string arrayPropertyName)
+        {
+            if (!_fieldFilters.ContainsKey(arrayPropertyName))
+            {
+                return source;
+            }
+
+            var filters = _fieldFilters[arrayPropertyName];
+            var filteredRows = source.Rows.ToArray();
+            foreach (var filter in filters)
+            {
+                var values = filter.FieldValues.Split(',').Select(v => v.Trim());
+                filteredRows = filteredRows.Where(r => r.Values.Where(c => c.Name == filter.FieldName && values.Contains(c.Value.ToString())).Any())
+                    .ToArray();
+            }
+
+            return new DataCollection { Rows = filteredRows };
         }
 
         #endregion
@@ -295,6 +328,15 @@ namespace Specflow.Steps.Object
             InitializeRequest();
             var prop = CreateJArrayFromTable(table);
             Request.Add(name, prop);
+        }
+
+        private void SetFilterArrayWithComplexElements(string propertyName, Table filter)
+        {
+            Assert.IsTrue(filter.Header.Contains(nameof(FieldFilter.FieldName)), $"Column '{nameof(FieldFilter.FieldName)}' is missing in the filter");
+            Assert.IsTrue(filter.Header.Contains(nameof(FieldFilter.FieldValues)), $"Column '{nameof(FieldFilter.FieldValues)}' is missing in the filter");
+
+            var filters = filter.CreateSet<FieldFilter>();
+            _fieldFilters[propertyName] = filters;
         }
 
         protected JArray CreateJArrayFromTable(Table table)

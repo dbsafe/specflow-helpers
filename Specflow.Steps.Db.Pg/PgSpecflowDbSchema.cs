@@ -2,6 +2,7 @@
 using Npgsql;
 using PgDbSafe;
 using Specflow.Steps.Db.Shared;
+using Specflow.Steps.Object;
 using System;
 using System.Collections.Generic;
 using System.Data;
