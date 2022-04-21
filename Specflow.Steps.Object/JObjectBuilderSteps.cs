@@ -20,6 +20,8 @@ namespace Specflow.Steps.Object
     {
         private readonly Dictionary<string, IEnumerable<FieldFilter>> _fieldFilters = new Dictionary<string, IEnumerable<FieldFilter>>(20);
 
+        protected bool UseNullForMissingProperties { get; set; }
+
         public TestContext TestContext { get; }
         public JObject Request { get; private set; }
         public JObject Response { get; private set; }
@@ -651,11 +653,11 @@ namespace Specflow.Steps.Object
 
         }
 
-        private JToken FindProperty(string name, bool canBeNull = false)
+        private JToken FindProperty(string name)
         {
             ValidateResponse();
             var jToken = Response.SelectToken($"$.{name}");
-            if (!canBeNull)
+            if (!UseNullForMissingProperties)
             {
                 Assert.IsNotNull(jToken, $"Property {name} not found in the response");
             }
@@ -663,11 +665,11 @@ namespace Specflow.Steps.Object
             return jToken;
         }
 
-        private JToken FindJPath(string jPath, bool canBeNull = false)
+        private JToken FindJPath(string jPath)
         {
             ValidateResponse();
             var jToken = Response.SelectToken(jPath);
-            if (!canBeNull)
+            if (!UseNullForMissingProperties)
             {
                 Assert.IsNotNull(jToken, $"JPath {jPath} not found in the response");
             }
