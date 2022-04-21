@@ -37,10 +37,10 @@ Scenario: Add several numbers - Passing a list
 
 Scenario: Pass an array with complex elements
 	Given property Items is the complex-element array
-	| PropA:Number | PropB:Number |
-	| 10           | 100          |
-	| 11           | 110          |
-	| 22           | 220          |
+		| PropA:Number | PropB:Number |
+		| 10           | 100          |
+		| 11           | 110          |
+		| 22           | 220          |
 	When I calculate totals
 	Then property OperationResult.PropA should be the number 43
 	Then property OperationResult.PropB should be the number 430
@@ -48,9 +48,9 @@ Scenario: Pass an array with complex elements
 Scenario: Divide two numbers - Operation fails
 	# Setting several properties using a table -
 	Given properties
-	| name         | value |
-	| FirstNumber  | 10    |
-	| SecondNumber | 0     |
+		| name         | value |
+		| FirstNumber  | 10    |
+		| SecondNumber | 0     |
 	When I execute the Div operation
 	Then property Succeed should be False
 
@@ -63,6 +63,7 @@ Scenario: Request Prime Numbers
 
 	# Assert an array with single elements -
 	Then property OperationResult should be the single-element array '2, 3, 5, 7, 11, 13, 17, 19, 23'
+	And jpath '$.OperationResult' should be the single-element array '2, 3, 5, 7, 11, 13, 17, 19, 23'
 
 
 Scenario: Request Prime Numbers - Using a table
@@ -70,16 +71,28 @@ Scenario: Request Prime Numbers - Using a table
 
 	# Assert an array with single elements using a table -
 	Then property OperationResult should be the single-element array
-	| values |
-	| 2      |
-	| 3      |
-	| 5      |
-	| 7      |
-	| 11     |
-	| 13     |
-	| 17     |
-	| 19     |
-	| 23     |
+		| values |
+		| 2      |
+		| 3      |
+		| 5      |
+		| 7      |
+		| 11     |
+		| 13     |
+		| 17     |
+		| 19     |
+		| 23     |
+
+	And jpath '$.OperationResult' should be the single-element array
+		| values |
+		| 2      |
+		| 3      |
+		| 5      |
+		| 7      |
+		| 11     |
+		| 13     |
+		| 17     |
+		| 19     |
+		| 23     |
 	
 
 Scenario: Request Domain Items
@@ -90,37 +103,52 @@ Scenario: Request Domain Items
 	# key column(s)
 	# data type
 	# expected null value
-	| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
-	| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
-	| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
-	| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |
-	| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
+
+	# using JPath
+	And jpath '$.OperationResult' should be the complex-element array
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
+	
+	And jpath '$.OperationResult[?(@.PropA=='item3-pa')].PropB' should be 'item3-pb'
+	And jpath '$.OperationResult[?(@.PropA=='item3-pa')].IsSmall' should be False
+	And jpath '$.OperationResult[?(@.PropA=='item3-pa')].Date' should be the datetime '2000-01-03'
+	And jpath '$.OperationResult[?(@.PropA=='item3-pa')].Value' should be the number 300
+	And jpath '$.OperationResult[?(@.PropA=='item1-pa')].PropB' should be NULL
 
 
 Scenario: Request Domain Items - Ignore field
 	When I request domain items
 	Then property OperationResult should be the complex-element array
 	# Ignore a field in the array -
-	| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
-	| item1-pa  | [IGNORE] | 2000-01-01    | 100          | True            |
-	| item2-pa  | [IGNORE] | 2000-01-02    | 200          | False           |
-	| item3-pa  | [IGNORE] | 2000-01-03    | 300          | False           |
-	| item4-pa  | [IGNORE] | 2000-01-04    | 400          | False           |
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+		| item1-pa  | [IGNORE] | 2000-01-01    | 100          | True            |
+		| item2-pa  | [IGNORE] | 2000-01-02    | 200          | False           |
+		| item3-pa  | [IGNORE] | 2000-01-03    | 300          | False           |
+		| item4-pa  | [IGNORE] | 2000-01-04    | 400          | False           |
 
 	Then property OperationResult should be an array with 4 items
+	Then jpath '$.OperationResult' should be an array with 4 items
 
 Scenario: Request Domain Items - Filter array items
 	When I request domain items
 
 	# Assert filtering items in an array
 	Given I filter property OperationResult by
-	| FieldName | FieldValues                |
-	| PropA     | item1-pa,item2-pa,item4-pa |
+		| FieldName | FieldValues                |
+		| PropA     | item1-pa,item2-pa,item4-pa |
 	Then property OperationResult should be the complex-element array
-	| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
-	| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
-	| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
-	| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
 
 Scenario: Request Domain Items By Date
 	# Setting a DateTime property -
@@ -131,10 +159,11 @@ Scenario: Request Domain Items By Date
 	When I request domain items by date
 
 	Then property OperationResult should be the complex-element array
-	| PropA:key | PropB  | Date:DateTime | Value:Number | IsSmall:Boolean |
-	| item1-pa  | [NULL] | 2000-01-01    | 100          | True            |
+		| PropA:key | PropB  | Date:DateTime | Value:Number | IsSmall:Boolean |
+		| item1-pa  | [NULL] | 2000-01-01    | 100          | True            |
 
 	Then property OperationResult should be an array with 1 item
+	And jpath '$.OperationResult' should be an array with 1 item
 
 
 Scenario: Request Domain Items - Assert DtateTime property
@@ -150,6 +179,7 @@ Scenario: Request Domain Items By Date - Returns empty array
 	When I request domain items by date
 	# assert an empty array
 	Then property OperationResult should be an empty array
+	And jpath '$.OperationResult' should be an empty array
 
 Scenario: Calling a method that does not need parameters
 	When I request pi
@@ -158,7 +188,9 @@ Scenario: Calling a method that does not need parameters
 Scenario: Validating that a numeric value is in a range
 	When I request pi
 	Then property OperationResult should be a number between 3.1 and 3.2
+	And jpath '$.OperationResult' should be a number between 3.1 and 3.2
 
 Scenario: Validating that a datetime value is in a range
 	When I request domain items
 	Then property OperationResult[1].Date should be a datetime between '2000-01-01' and '2000-01-03'
+	And jpath '$.OperationResult[1].Date' should be a datetime between '2000-01-01' and '2000-01-03'
