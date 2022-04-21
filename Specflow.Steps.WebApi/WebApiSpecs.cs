@@ -49,6 +49,7 @@ namespace Specflow.Steps.WebApi
             : base(testContext)
         {
             _config = config;
+            UseNullForMissingProperties = true;
         }
 
         #region Steps
