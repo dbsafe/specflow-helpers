@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Specflow.Steps.Object;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -15,12 +16,6 @@ namespace Specflow.Steps.Db.Shared
         void AssertTable(string tableName, Table table, IEnumerable<FieldFilter> filters);
         void AssertQuery(string query, Table table);
         void AssertTableIsEmpty(string tableName, IEnumerable<FieldFilter> filters);
-    }
-
-    public class FieldFilter
-    {
-        public string FieldName { get; set; }
-        public string FieldValues { get; set; }
     }
 
     public abstract class DbSteps

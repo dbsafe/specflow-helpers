@@ -11,8 +11,15 @@ using TechTalk.SpecFlow.Assist;
 
 namespace Specflow.Steps.Object
 {
+    public class FieldFilter
+    {
+        public string FieldName { get; set; }
+        public string FieldValues { get; set; }
+    }
     public class JObjectBuilderSteps
     {
+        private readonly Dictionary<string, IEnumerable<FieldFilter>> _fieldFilters = new Dictionary<string, IEnumerable<FieldFilter>>(20);
+
         public TestContext TestContext { get; }
         public JObject Request { get; private set; }
         public JObject Response { get; private set; }
@@ -79,6 +86,12 @@ namespace Specflow.Steps.Object
             ExecuteProtected(() => SetRequestContentPropertyAsComplexElementArray(name, table));
         }
 
+        [Given(@"I filter property ([^\s]+) by")]
+        public void FilterArrayWithComplexElements(string name, Table table)
+        {
+            ExecuteProtected(() => SetFilterArrayWithComplexElements(name, table));
+        }
+
         #endregion
 
         #region Then
@@ -88,7 +101,16 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateResponseProperty(propertyName, expectedPropertyValue);
+                ValidateResponseProperty(propertyName, expectedPropertyValue, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be the number ([-+]?[\d]*[\.]?[\d]+)")]
+        public void AssertNumericJPath(string jpath, decimal expectedPropertyValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponseProperty(jpath, expectedPropertyValue, true);
             });
         }
 
@@ -97,7 +119,16 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateResponseProperty(propertyName, expectedPropertyValue);
+                ValidateResponseProperty(propertyName, expectedPropertyValue, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be the datetime '(.*)'")]
+        public void AssertDateTimeJPath(string jpath, DateTime expectedPropertyValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponseProperty(jpath, expectedPropertyValue, true);
             });
         }
 
@@ -107,7 +138,17 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateNullProperty(propertyName);
+                ValidateNullProperty(propertyName, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be null")]
+        [Then(@"jpath '(.*)' should be NULL")]
+        public void AssertNullJPath(string jpath)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateNullProperty(jpath, true);
             });
         }
 
@@ -116,7 +157,16 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateResponseProperty(propertyName, expectedPropertyValue);
+                ValidateResponseProperty(propertyName, expectedPropertyValue, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be (False|false|True|true)")]
+        public void AssertBooleanJPath(string jpath, bool expectedPropertyValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponseProperty(jpath, expectedPropertyValue, true);
             });
         }
 
@@ -125,7 +175,16 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateResponseProperty(propertyName, expectedPropertyValue);
+                ValidateResponseProperty(propertyName, expectedPropertyValue, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be '(.*)'")]
+        public void AssertTextJPath(string jpath, string expectedPropertyValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponseProperty(jpath, expectedPropertyValue, true);
             });
         }
 
@@ -134,7 +193,16 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateArrayProperty(propertyName, itemsCsv);
+                ValidateArrayProperty(propertyName, itemsCsv, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be the single-element array '(.*)'")]
+        public void AssertArrayJPath(string jpath, string itemsCsv)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateArrayProperty(jpath, itemsCsv, true);
             });
         }
 
@@ -143,7 +211,16 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateSingleColumnArray(propertyName, table);
+                ValidateSingleColumnArray(propertyName, table, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be the single-element array")]
+        public void AssertArrayJPath(string jpath, Table table)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateSingleColumnArray(jpath, table, true);
             });
         }
 
@@ -152,7 +229,16 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateMultiColumnArray(propertyName, table);
+                ValidateMultiColumnArray(propertyName, table, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be the complex-element array")]
+        public void AssertComplexArrayJPath(string jpath, Table table)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateMultiColumnArray(jpath, table, true);
             });
         }
 
@@ -161,25 +247,52 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateEmptyArrayProperty(propertyName);
+                ValidateEmptyArrayProperty(propertyName, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be an empty array")]
+        public void AssertEmptyArrayJPath(string jpath)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateEmptyArrayProperty(jpath, true);
             });
         }
 
         [Then(@"property ([^\s]+) should be an array with ([\d]+) items")]
-        public void AssertArrayCount(string propertyName, int count)
+        public void AssertPropertyArrayCount(string propertyName, int count)
         {
             ExecuteProtected(() =>
             {
-                ValidateArrayCount(propertyName, count);
+                ValidateArrayCount(propertyName, count, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be an array with ([\d]+) items")]
+        public void AssertJPathArrayCount(string jpath, int count)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateArrayCount(jpath, count, true);
             });
         }
 
         [Then(@"property ([^\s]+) should be an array with 1 item")]
-        public void AssertArrayHasOneItem(string propertyName)
+        public void AssertPropertyArrayHasOneItem(string propertyName)
         {
             ExecuteProtected(() =>
             {
-                ValidateArrayCount(propertyName, 1);
+                ValidateArrayCount(propertyName, 1, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be an array with 1 item")]
+        public void AssertJPathArrayHasOneItem(string jpath)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateArrayCount(jpath, 1, true);
             });
         }
 
@@ -188,7 +301,16 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateNumericProperty(propertyName, minValue, maxValue);
+                ValidateNumericProperty(propertyName, minValue, maxValue, false);
+            });
+        }
+
+        [Then(@"jpath '(.*)' should be a number between (.*) and (.*)")]
+        public void AssertNumericJPath(string jpath, decimal minValue, decimal maxValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateNumericProperty(jpath, minValue, maxValue, true);
             });
         }
 
@@ -197,13 +319,22 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateDateTimeProperty(propertyName, minValue, maxValue);
+                ValidateDateTimeProperty(propertyName, minValue, maxValue, false);
             });
         }
 
-        private void ValidateSingleColumnArray(string arrayPropertyName, Table table)
+        [Then(@"jpath '(.*)' should be a datetime between '(.*)' and '(.*)'")]
+        public void AssertDateTimeJPath(string jpath, DateTime minValue, DateTime maxValue)
         {
-            var actualToken = FindProperty(arrayPropertyName);
+            ExecuteProtected(() =>
+            {
+                ValidateDateTimeProperty(jpath, minValue, maxValue, true);
+            });
+        }
+
+        private void ValidateSingleColumnArray(string arrayPropertyName, Table table, bool isJPath)
+        {
+            var actualToken = isJPath ? FindJPath(arrayPropertyName) : FindProperty(arrayPropertyName);
             Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {arrayPropertyName}. Actual type is not an array");
 
             var expectedArray = table.Rows.Select(a => a[0]).ToArray();
@@ -216,17 +347,37 @@ namespace Specflow.Steps.Object
             }
         }
 
-        private void ValidateMultiColumnArray(string arrayPropertyName, Table table)
+        private void ValidateMultiColumnArray(string arrayPropertyName, Table table, bool isJPath)
         {
-            var actualToken = FindProperty(arrayPropertyName);
+            var actualToken = isJPath ? FindJPath(arrayPropertyName) : FindProperty(arrayPropertyName);
             Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {arrayPropertyName}. Actual type is not an array");
 
             var expectedDataset = DataCollection.Load(table);
             var actualDataset = DataCollection.Load(actualToken.Children());
+            actualDataset = FilterRows(actualDataset, arrayPropertyName);
             if (!DataCompare.Compare(expectedDataset, actualDataset, out string message))
             {
                 Assert.Fail($"Array property {arrayPropertyName}.\n{message}");
             }
+        }
+
+        private DataCollection FilterRows(DataCollection source, string arrayPropertyName)
+        {
+            if (!_fieldFilters.ContainsKey(arrayPropertyName))
+            {
+                return source;
+            }
+
+            var filters = _fieldFilters[arrayPropertyName];
+            var filteredRows = source.Rows.ToArray();
+            foreach (var filter in filters)
+            {
+                var values = filter.FieldValues.Split(',').Select(v => v.Trim());
+                filteredRows = filteredRows.Where(r => r.Values.Where(c => c.Name == filter.FieldName && values.Contains(c.Value.ToString())).Any())
+                    .ToArray();
+            }
+
+            return new DataCollection { Rows = filteredRows };
         }
 
         #endregion
@@ -297,6 +448,15 @@ namespace Specflow.Steps.Object
             Request.Add(name, prop);
         }
 
+        private void SetFilterArrayWithComplexElements(string propertyName, Table filter)
+        {
+            Assert.IsTrue(filter.Header.Contains(nameof(FieldFilter.FieldName)), $"Column '{nameof(FieldFilter.FieldName)}' is missing in the filter");
+            Assert.IsTrue(filter.Header.Contains(nameof(FieldFilter.FieldValues)), $"Column '{nameof(FieldFilter.FieldValues)}' is missing in the filter");
+
+            var filters = filter.CreateSet<FieldFilter>();
+            _fieldFilters[propertyName] = filters;
+        }
+
         protected JArray CreateJArrayFromTable(Table table)
         {
             var items = new List<JObject>();
@@ -349,9 +509,9 @@ namespace Specflow.Steps.Object
             }
         }
 
-        private void ValidateResponseProperty(string name, decimal value)
+        private void ValidateResponseProperty(string name, decimal value, bool isJPath)
         {
-            var jToken = FindProperty(name);
+            var jToken = isJPath ? FindJPath(name) : FindProperty(name);
             Assert.IsTrue(jToken is JValue, $"Property {name} is not a single value");
             var jValue = jToken as JValue;
             Assert.IsNotNull(jValue.Value, $"Property {name} is null");
@@ -360,9 +520,9 @@ namespace Specflow.Steps.Object
             Assert.AreEqual(value, convertedValue, $"Property: {name}");
         }
 
-        private void ValidateResponseProperty(string name, DateTime value)
+        private void ValidateResponseProperty(string name, DateTime value, bool isJPath)
         {
-            var jToken = FindProperty(name);
+            var jToken = isJPath ? FindJPath(name) : FindProperty(name);
             Assert.IsTrue(jToken is JValue, $"Property {name} is not a single value");
             var jValue = jToken as JValue;
             Assert.IsNotNull(jValue.Value, $"Property {name} is null");
@@ -371,9 +531,9 @@ namespace Specflow.Steps.Object
             Assert.AreEqual(value, convertedValue, $"Property: {name}");
         }
 
-        private void ValidateResponseProperty(string name, bool value)
+        private void ValidateResponseProperty(string name, bool value, bool isJPath)
         {
-            var jToken = FindProperty(name);
+            var jToken = isJPath ? FindJPath(name) : FindProperty(name);
             Assert.IsTrue(jToken is JValue, $"Property {name} is not a single value");
             var jValue = jToken as JValue;
             Assert.IsNotNull(jValue.Value, $"Property {name} is null");
@@ -382,18 +542,18 @@ namespace Specflow.Steps.Object
             Assert.AreEqual(value, convertedValue, $"Property: {name}");
         }
 
-        private void ValidateResponseProperty(string name, string value)
+        private void ValidateResponseProperty(string name, string value, bool isJPath)
         {
-            var jToken = FindProperty(name);
+            var jToken = isJPath ? FindJPath(name) : FindProperty(name);
             Assert.IsTrue(jToken is JValue, $"Property {name} is not a single value");
             var jValue = jToken as JValue;
             Assert.IsNotNull(jValue.Value, $"Property {name} is null");
             Assert.AreEqual(value, jValue.Value.ToString(), $"Property: {name}");
         }
 
-        private void ValidateNullProperty(string name)
+        private void ValidateNullProperty(string name, bool isJPath)
         {
-            var jToken = FindProperty(name, true);
+            var jToken = isJPath ? FindJPath(name) : FindProperty(name);
             if (jToken == null)
             {
                 return;
@@ -404,17 +564,17 @@ namespace Specflow.Steps.Object
             Assert.IsNull(jValue.Value, $"Property {name} is not null");
         }
 
-        private JToken FindArrayProperty(string propertyName)
+        private JToken FindArrayProperty(string propertyName, bool isJPath)
         {
-            var actualToken = FindProperty(propertyName);
+            var actualToken = isJPath ? FindJPath(propertyName) : FindProperty(propertyName);
             Assert.AreEqual(JTokenType.Array, actualToken.Type, $"Property {propertyName}. Actual type is not an array");
 
             return actualToken;
         }
 
-        private void ValidateArrayProperty(string propertyName, string itemsCsv)
+        private void ValidateArrayProperty(string propertyName, string itemsCsv, bool isJPath)
         {
-            var actualToken = FindArrayProperty(propertyName);
+            var actualToken = FindArrayProperty(propertyName, isJPath);
 
             var expectedArray = itemsCsv.Split(',').Select(a => a.Trim());
             var actualArray = actualToken.Children().Select(a => a.ToString()).ToArray();
@@ -426,28 +586,28 @@ namespace Specflow.Steps.Object
             }
         }
 
-        private void ValidateEmptyArrayProperty(string propertyName)
+        private void ValidateEmptyArrayProperty(string propertyName, bool isJPath)
         {
-            var actualToken = FindArrayProperty(propertyName);
+            var actualToken = FindArrayProperty(propertyName, isJPath);
             var actualArray = actualToken.Children().Select(a => a.ToString()).ToArray();
             Assert.AreEqual(0, actualArray.Length, $"Array property {propertyName} is not empty");
         }
 
-        private void ValidateArrayCount(string arrayPropertyName, int count)
+        private void ValidateArrayCount(string arrayPropertyName, int count, bool isJPath)
         {
-            var actualToken = FindArrayProperty(arrayPropertyName);
+            var actualToken = FindArrayProperty(arrayPropertyName, isJPath);
             var actualCount = (actualToken as JArray).Count;
             Assert.AreEqual(count, actualCount, $"Array: {arrayPropertyName}. Actual number of items is {actualCount}");
         }
 
-        private void ValidateNumericProperty(string propertyName, decimal minValue, decimal maxValue)
+        private void ValidateNumericProperty(string propertyName, decimal minValue, decimal maxValue, bool isJPath)
         {
             if (minValue > maxValue)
             {
                 Assert.Fail($"Invalid range [{minValue} - {maxValue}]");
             }
 
-            var jToken = FindProperty(propertyName);
+            var jToken = isJPath ? FindJPath(propertyName) : FindProperty(propertyName);
             Assert.IsTrue(jToken is JValue, $"Property {propertyName} is not a single value");
             var jValue = jToken as JValue;
             Assert.IsNotNull(jValue.Value, $"Property {propertyName} is null");
@@ -465,14 +625,14 @@ namespace Specflow.Steps.Object
             }
         }
 
-        private void ValidateDateTimeProperty(string propertyName, DateTime minValue, DateTime maxValue)
+        private void ValidateDateTimeProperty(string propertyName, DateTime minValue, DateTime maxValue, bool isJPath)
         {
             if (minValue > maxValue)
             {
                 Assert.Fail($"Invalid range [{minValue} - {maxValue}]");
             }
 
-            var jToken = FindProperty(propertyName);
+            var jToken = isJPath ? FindJPath(propertyName) : FindProperty(propertyName);
             Assert.IsTrue(jToken is JValue, $"Property {propertyName} is not a single value");
             var jValue = jToken as JValue;
             Assert.IsNotNull(jValue.Value, $"Property {propertyName} is null");
@@ -498,6 +658,18 @@ namespace Specflow.Steps.Object
             if (!canBeNull)
             {
                 Assert.IsNotNull(jToken, $"Property {name} not found in the response");
+            }
+
+            return jToken;
+        }
+
+        private JToken FindJPath(string jPath, bool canBeNull = false)
+        {
+            ValidateResponse();
+            var jToken = Response.SelectToken(jPath);
+            if (!canBeNull)
+            {
+                Assert.IsNotNull(jToken, $"JPath {jPath} not found in the response");
             }
 
             return jToken;
