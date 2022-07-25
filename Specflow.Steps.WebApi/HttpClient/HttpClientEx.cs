@@ -24,6 +24,8 @@ namespace Specflow.Steps.WebApi.HttpClient
 
     public class HttpClientEx
     {
+        public bool BypassServerCertificateValidation { get; set; }
+
         public async Task<HttpResponseMessage> SendRequest(HttpClientExRequest request)
         {
             switch (request.RequestType)
@@ -125,10 +127,24 @@ namespace Specflow.Steps.WebApi.HttpClient
 
         private async Task<HttpResponseMessage> ExecuteRequest(Func<System.Net.Http.HttpClient, Task<HttpResponseMessage>> func)
         {
-            using (var client = new System.Net.Http.HttpClient())
+            using (var client = CreateClient())
             {
                 return await func(client);
             }
+        }
+
+        private System.Net.Http.HttpClient CreateClient()
+        {
+            if (!BypassServerCertificateValidation)
+            {
+                return new System.Net.Http.HttpClient();
+            }
+
+            var handler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }
+            };
+            return new System.Net.Http.HttpClient(handler);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Specflow.Steps.WebApi
     public class WebApiSpecsConfig
     {
         public string BaseUrl { get; set; }
+        public bool BypassServerCertificateValidation { get; set; }
     }
 
     public enum WebApiSpecsRequestContentType
@@ -210,7 +211,11 @@ namespace Specflow.Steps.WebApi
         private async Task SendHttpRequestAsync(WebApiSpecsRequest request)
         {
             PrintRequest(request);
-            var client = new HttpClientEx();
+            var client = new HttpClientEx
+            {
+                BypassServerCertificateValidation = _config.BypassServerCertificateValidation
+            };
+
             var httpClientExRequest = MapRequest(request);
             HttpResponse = await client.SendRequest(httpClientExRequest);
             _requestSent = true;
