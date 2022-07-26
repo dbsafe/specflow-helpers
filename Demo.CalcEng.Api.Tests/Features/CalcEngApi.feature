@@ -119,3 +119,12 @@ Scenario: Receive a list missing null properties
 	| 1              | name-1 | desc-1      |
 	| 2              | name-2 |             |
 	| 3              | name-3 | [NULL]      |
+
+Scenario: Receive a response where the content is an array
+	When I send a GET request to api/CalcEng/GetAListRoot
+	Then StatusCode should be 200
+	And content should be the complex-element array
+	| id:Key:Integer | name   | description |
+	| 1              | name-1 | desc-1      |
+	| 2              | name-2 | desc-2      |
+	| 3              | name-3 | desc-3      |
