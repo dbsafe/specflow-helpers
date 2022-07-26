@@ -188,8 +188,16 @@ namespace Specflow.Steps.WebApi
             {
                 try
                 {
-                    var responseContent = JObject.Parse(content);
-                    SetResponse(responseContent);
+                    var responseContent = JToken.Parse(content);
+
+                    if (responseContent.Type == JTokenType.Array)
+                    {
+                        SetResponseWithArray(responseContent);
+                    }
+                    else
+                    {
+                        SetResponse(responseContent);
+                    }
                 }
                 catch (Exception ex)
                 {

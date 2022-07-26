@@ -25,6 +25,7 @@ namespace Specflow.Steps.Object
         public TestContext TestContext { get; }
         public JObject Request { get; private set; }
         public JObject Response { get; private set; }
+        public JArray ArrayResponse { get; private set; }
 
         public JObjectBuilderSteps(TestContext testContext)
         {
@@ -34,6 +35,11 @@ namespace Specflow.Steps.Object
         public void SetResponse(object response)
         {
             Response = JObject.FromObject(response);
+        }
+
+        public void SetResponseWithArray(object arrayResponse)
+        {
+            ArrayResponse = JArray.FromObject(arrayResponse);
         }
 
         public void SetResponse(JObject response)
@@ -235,6 +241,15 @@ namespace Specflow.Steps.Object
             });
         }
 
+        [Then(@"content should be the complex-element array")]
+        public void AssertContentAsComplexArrayProperty(Table table)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateContentAsMultiColumnArray(table, false);
+            });
+        }
+
         [Then(@"jpath '(.*)' should be the complex-element array")]
         public void AssertComplexArrayJPath(string jpath, Table table)
         {
@@ -363,6 +378,18 @@ namespace Specflow.Steps.Object
             }
         }
 
+        private void ValidateContentAsMultiColumnArray(Table table, bool isJPath)
+        {
+            ValidateArrayResponse();
+
+            var expectedDataset = DataCollection.Load(table);
+            var actualDataset = DataCollection.Load(ArrayResponse.Children());
+            if (!DataCompare.Compare(expectedDataset, actualDataset, out string message))
+            {
+                Assert.Fail($"Array Response.\n{message}");
+            }
+        }
+
         private DataCollection FilterRows(DataCollection source, string arrayPropertyName)
         {
             if (!_fieldFilters.ContainsKey(arrayPropertyName))
@@ -406,6 +433,11 @@ namespace Specflow.Steps.Object
         protected virtual void ValidateResponse()
         {
             Assert.IsNotNull(Response, "Response is not assigned");
+        }
+
+        protected virtual void ValidateArrayResponse()
+        {
+            Assert.IsNotNull(ArrayResponse, "Array Response is not assigned");
         }
 
         private void SetRequestContentProperty(string name, string value)

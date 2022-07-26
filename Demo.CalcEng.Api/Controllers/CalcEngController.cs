@@ -73,13 +73,26 @@ namespace Demo.CalcEng.Api.Controllers
         {
             var data = new List<ListItem>
             { 
-                new ListItem { Id = 1, Name="name-1", Description="decs-1" },
-                new ListItem { Id = 2, Name="name-2", Description="decs-2" },
-                new ListItem { Id = 3, Name="name-3", Description="decs-3" },
+                new ListItem { Id = 1, Name="name-1", Description="desc-1" },
+                new ListItem { Id = 2, Name="name-2", Description="desc-2" },
+                new ListItem { Id = 3, Name="name-3", Description="desc-3" },
             };
 
             var response = OperationResponse.CreateSucceed(data);
             return Ok(response);
+        }
+
+        [HttpGet("GetAListRoot")]
+        public IActionResult GetAListContent()
+        {
+            var data = new List<ListItem>
+            {
+                new ListItem { Id = 1, Name="name-1", Description="desc-1" },
+                new ListItem { Id = 2, Name="name-2", Description="desc-2" },
+                new ListItem { Id = 3, Name="name-3", Description="desc-3" },
+            };
+
+            return Ok(data);
         }
 
         [HttpPost("EchoList")]
