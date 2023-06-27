@@ -136,6 +136,11 @@ namespace Demo.CalcEng.Domain
             return OperationResponse.CreateSucceed(_domainItems);
         }
 
+        public DomainItem[] GetDomainItemsAsArray()
+        {
+            return _domainItems;
+        }
+
         public OperationResponse<DomainItem[]> GetDomainItemsByDate(GetDomainItemsByDateRequest request)
         {
             var data = _domainItems
