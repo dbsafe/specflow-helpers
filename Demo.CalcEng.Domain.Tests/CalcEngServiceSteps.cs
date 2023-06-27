@@ -50,6 +50,13 @@ namespace Demo.CalcEng.Domain.Tests
             SetResponse(operationResponse);
         }
 
+        [When(@"I request domain items as array")]
+        public void RequestDomainItemsAsArray()
+        {
+            var response = _calcEng.GetDomainItemsAsArray();
+            SetResponseWithArray(response);
+        }
+
         [When(@"I request domain items by date")]
         public void RequestDomainItemsByDate()
         {

@@ -123,6 +123,23 @@ Scenario: Request Domain Items
 	And jpath '$.OperationResult[?(@.PropA=='item3-pa')].Value' should be the number 300
 	And jpath '$.OperationResult[?(@.PropA=='item1-pa')].PropB' should be NULL
 
+Scenario: Request Domain Items as Array
+	When I request domain items as array
+
+	# using JPath
+	Then jpath '$' should be the complex-element array
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
+		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
+	
+	And jpath '$[?(@.PropA=='item3-pa')].PropB' should be 'item3-pb'
+	And jpath '$[?(@.PropA=='item3-pa')].IsSmall' should be False
+	And jpath '$[?(@.PropA=='item3-pa')].Date' should be the datetime '2000-01-03'
+	And jpath '$[?(@.PropA=='item3-pa')].Value' should be the number 300
+	And jpath '$[?(@.PropA=='item1-pa')].PropB' should be NULL
+
 
 Scenario: Request Domain Items - Ignore field
 	When I request domain items

@@ -577,14 +577,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Domain Items - Ignore field")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Domain Items as Array")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
-        public virtual void RequestDomainItems_IgnoreField()
+        public virtual void RequestDomainItemsAsArray()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Ignore field", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 127
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items as Array", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 126
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -604,8 +604,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 128
- testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 127
+ testRunner.When("I request domain items as array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
@@ -615,35 +615,118 @@ this.ScenarioInitialize(scenarioInfo);
                             "IsSmall:Boolean"});
                 table7.AddRow(new string[] {
                             "item1-pa",
-                            "[IGNORE]",
+                            "[NULL]",
                             "2000-01-01",
                             "100",
                             "True"});
                 table7.AddRow(new string[] {
                             "item2-pa",
-                            "[IGNORE]",
+                            "item2-pb",
                             "2000-01-02",
                             "200",
                             "False"});
                 table7.AddRow(new string[] {
                             "item3-pa",
-                            "[IGNORE]",
+                            "item3-pb",
                             "2000-01-03",
                             "300",
                             "False"});
                 table7.AddRow(new string[] {
                             "item4-pa",
+                            "item4-pb",
+                            "2000-01-04",
+                            "400",
+                            "False"});
+#line 130
+ testRunner.Then("jpath \'$\' should be the complex-element array", ((string)(null)), table7, "Then ");
+#line hidden
+#line 137
+ testRunner.And("jpath \'$[?(@.PropA==\'item3-pa\')].PropB\' should be \'item3-pb\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 138
+ testRunner.And("jpath \'$[?(@.PropA==\'item3-pa\')].IsSmall\' should be False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 139
+ testRunner.And("jpath \'$[?(@.PropA==\'item3-pa\')].Date\' should be the datetime \'2000-01-03\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 140
+ testRunner.And("jpath \'$[?(@.PropA==\'item3-pa\')].Value\' should be the number 300", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 141
+ testRunner.And("jpath \'$[?(@.PropA==\'item1-pa\')].PropB\' should be NULL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Domain Items - Ignore field")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void RequestDomainItems_IgnoreField()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Ignore field", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 144
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 145
+ testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "PropB",
+                            "Date:DateTime",
+                            "Value:Number",
+                            "IsSmall:Boolean"});
+                table8.AddRow(new string[] {
+                            "item1-pa",
+                            "[IGNORE]",
+                            "2000-01-01",
+                            "100",
+                            "True"});
+                table8.AddRow(new string[] {
+                            "item2-pa",
+                            "[IGNORE]",
+                            "2000-01-02",
+                            "200",
+                            "False"});
+                table8.AddRow(new string[] {
+                            "item3-pa",
+                            "[IGNORE]",
+                            "2000-01-03",
+                            "300",
+                            "False"});
+                table8.AddRow(new string[] {
+                            "item4-pa",
                             "[IGNORE]",
                             "2000-01-04",
                             "400",
                             "False"});
-#line 129
- testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table7, "Then ");
+#line 146
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table8, "Then ");
 #line hidden
-#line 137
+#line 154
  testRunner.Then("property OperationResult should be an array with 4 items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 138
+#line 155
  testRunner.Then("jpath \'$.OperationResult\' should be an array with 4 items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -658,7 +741,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Filter array items", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 140
+#line 157
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -678,85 +761,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 141
+#line 158
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "FieldName",
                             "FieldValues"});
-                table8.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "PropA",
                             "item1-pa,item2-pa,item4-pa"});
-#line 144
- testRunner.Given("I filter property OperationResult by", ((string)(null)), table8, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
-                            "PropA:key",
-                            "PropB",
-                            "Date:DateTime",
-                            "Value:Number",
-                            "IsSmall:Boolean"});
-                table9.AddRow(new string[] {
-                            "item1-pa",
-                            "[NULL]",
-                            "2000-01-01",
-                            "100",
-                            "True"});
-                table9.AddRow(new string[] {
-                            "item2-pa",
-                            "item2-pb",
-                            "2000-01-02",
-                            "200",
-                            "False"});
-                table9.AddRow(new string[] {
-                            "item4-pa",
-                            "item4-pb",
-                            "2000-01-04",
-                            "400",
-                            "False"});
-#line 147
- testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table9, "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Domain Items By Date")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
-        public virtual void RequestDomainItemsByDate()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items By Date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 153
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 155
- testRunner.Given("property Date equals to \'2000-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 157
- testRunner.And("property IsSmall equals to \'True\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 159
- testRunner.When("I request domain items by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 161
+ testRunner.Given("I filter property OperationResult by", ((string)(null)), table9, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
@@ -770,13 +785,81 @@ this.ScenarioInitialize(scenarioInfo);
                             "2000-01-01",
                             "100",
                             "True"});
-#line 161
+                table10.AddRow(new string[] {
+                            "item2-pa",
+                            "item2-pb",
+                            "2000-01-02",
+                            "200",
+                            "False"});
+                table10.AddRow(new string[] {
+                            "item4-pa",
+                            "item4-pb",
+                            "2000-01-04",
+                            "400",
+                            "False"});
+#line 164
  testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table10, "Then ");
 #line hidden
-#line 165
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Domain Items By Date")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void RequestDomainItemsByDate()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items By Date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 170
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 172
+ testRunner.Given("property Date equals to \'2000-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 174
+ testRunner.And("property IsSmall equals to \'True\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 176
+ testRunner.When("I request domain items by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "PropB",
+                            "Date:DateTime",
+                            "Value:Number",
+                            "IsSmall:Boolean"});
+                table11.AddRow(new string[] {
+                            "item1-pa",
+                            "[NULL]",
+                            "2000-01-01",
+                            "100",
+                            "True"});
+#line 178
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table11, "Then ");
+#line hidden
+#line 182
  testRunner.Then("property OperationResult should be an array with 1 item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 166
+#line 183
  testRunner.And("jpath \'$.OperationResult\' should be an array with 1 item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -791,7 +874,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Assert DtateTime property", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 169
+#line 186
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -811,13 +894,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 170
+#line 187
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 173
+#line 190
  testRunner.Then("property OperationResult[1].Date should be the datetime \'2000-01-02\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 175
+#line 192
  testRunner.Then("property OperationResult[1].Date should be the datetime \'2000-01-02 00:00:00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -832,7 +915,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items By Date - Returns empty array", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 177
+#line 194
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -852,16 +935,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 178
+#line 195
  testRunner.Given("property Date equals to \'1900-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 179
+#line 196
  testRunner.When("I request domain items by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 181
+#line 198
  testRunner.Then("property OperationResult should be an empty array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 182
+#line 199
  testRunner.And("jpath \'$.OperationResult\' should be an empty array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -876,7 +959,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calling a method that does not need parameters", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 184
+#line 201
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -896,10 +979,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 185
+#line 202
  testRunner.When("I request pi", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 186
+#line 203
  testRunner.Then("property OperationResult should be the number 3.14", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -914,7 +997,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating that a numeric value is in a range", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 188
+#line 205
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -934,13 +1017,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 189
+#line 206
  testRunner.When("I request pi", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 190
+#line 207
  testRunner.Then("property OperationResult should be a number between 3.1 and 3.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 191
+#line 208
  testRunner.And("jpath \'$.OperationResult\' should be a number between 3.1 and 3.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -955,7 +1038,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating that a datetime value is in a range", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 193
+#line 210
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -975,14 +1058,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 194
+#line 211
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 195
+#line 212
  testRunner.Then("property OperationResult[1].Date should be a datetime between \'2000-01-01\' and \'2" +
                         "000-01-03\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 196
+#line 213
  testRunner.And("jpath \'$.OperationResult[1].Date\' should be a datetime between \'2000-01-01\' and \'" +
                         "2000-01-03\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

@@ -699,14 +699,31 @@ namespace Specflow.Steps.Object
 
         private JToken FindJPath(string jPath)
         {
-            ValidateResponse();
-            var jToken = Response.SelectToken(jPath);
+            var currentResponse = GetCurrentResponse();
+            Assert.IsNotNull(currentResponse, "Content does not have a value");
+            var jToken = currentResponse.SelectToken(jPath);
+            
             if (!UseNullForMissingProperties)
             {
                 Assert.IsNotNull(jToken, $"JPath {jPath} not found in the response");
             }
 
             return jToken;
+        }
+
+        private JToken GetCurrentResponse()
+        {
+            if (Response != null)
+            {
+                return Response;
+            }
+
+            if (ArrayResponse != null)
+            {
+                return ArrayResponse;
+            }
+            
+            return null;
         }
 
         private static bool IsDateTime(JToken jToken)
