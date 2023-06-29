@@ -1,5 +1,7 @@
 ﻿using Demo.CalcEng.Domain;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -101,6 +103,28 @@ namespace Demo.CalcEng.Api.Controllers
             var response = OperationResponse.CreateSucceed(list);
             return new JsonResult(response, serializerOptions);
         }
+
+        [HttpPost("EchoAFile")]
+        public async Task<IActionResult> EchoAFile([FromForm] FileRequest fileRequest)
+        {
+            using var ms = new MemoryStream();
+            await fileRequest.FormFile!.CopyToAsync(ms);
+            ms.Position = 0;
+            var bytes = new byte[ms.Length];
+            ms.Read(bytes, 0, bytes.Length);
+            var text = Encoding.UTF8.GetString(bytes);
+
+            return Ok(text);
+        }
+    }
+
+    public class FileRequest
+    {
+        [Required(ErrorMessage = "Filename is required")]
+        public string? Filename { get; set; }
+
+        [Required(ErrorMessage = "File is required")]
+        public IFormFile? FormFile { get; set; }
     }
 
     public class ListItem

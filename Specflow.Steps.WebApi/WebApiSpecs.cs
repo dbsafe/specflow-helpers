@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace Specflow.Steps.WebApi
 {
@@ -38,6 +39,9 @@ namespace Specflow.Steps.WebApi
         private const string NULL_MSG_ITEM = "[NULL]";
         private bool _requestSent = false;
         private string _stringContent = null;
+        private readonly List<KeyValuePair<string, string>> _formProperties = new List<KeyValuePair<string, string>>();
+        private readonly List<string> _fileLines = new List<string>();
+        private string _formPropertyFilename;
 
         private WebApiSpecsConfig _config;
 
@@ -79,6 +83,18 @@ namespace Specflow.Steps.WebApi
             ExecuteProtected(() => SetContentAsComplexElementArray(table));
         }
 
+        [Given(@"form property ([^\s]+) equals to '(.*)'")]
+        public void SetRequestFormProperty(string name, string value)
+        {
+            ExecuteProtected(() => SetRequestFormContentProperty(name, value));
+        }
+
+        [Given(@"form property ([^\s]+) is the file")]
+        public void SetRequestFormFileProperty(string name, Table table)
+        {
+            ExecuteProtected(() => SetRequestFormFileContentProperty(name, table));
+        }
+
         [When(@"I send a (POST|GET|PUT|DELETE|PATCH) request to ([\w\W]+)")]
         public void CreateClientRequest(HttpRequestType requestType, string path)
         {
@@ -91,6 +107,15 @@ namespace Specflow.Steps.WebApi
                 request.Headers = _headers;
                 ValidateRequest(request);
                 SendHttpRequestAsync(request).Wait();
+            });
+        }
+
+        [When(@"I send a form POST request to ([\w\W]+)")]
+        public void CreateClientFormPostRequest(HttpRequestType requestType, string path)
+        {
+            ExecuteProtected(() =>
+            {
+                var filenameValue = _formProperties.FirstOrDefault(a => a.Key == "FileName");
             });
         }
 
@@ -327,5 +352,23 @@ namespace Specflow.Steps.WebApi
             var content = CreateJArrayFromTable(table);
             _stringContent = content.ToString();
         }
+
+        private void SetRequestFormContentProperty(string name, string value)
+        {
+            _formProperties.Add(new KeyValuePair<string, string>(name, value));
+        }
+
+        public void SetRequestFormFileContentProperty(string name, Table table)
+        {
+            var lines = table.CreateSet<FileLine>().Select(l => l.Line);
+            _fileLines.AddRange(lines);
+            _formPropertyFilename = name;
+        }
     }
+
+    internal class FileLine
+    {
+        public string Line { get; set; }
+    }
+
 }
