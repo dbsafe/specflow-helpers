@@ -60,6 +60,8 @@ namespace Demo.CalcEng.Domain
         OperationResponse<decimal> Sum(TwoNumbersOperationRequest request);
         OperationResponse<decimal> Pi();
         OperationResponse<Row> CalculateTotals(IEnumerable<Row> request);
+        OperationResponse<Guid> GetGuid();
+        OperationResponse<Guid> GetGuidWithoutDashes();
     }
 
     public class CalcEngService : ICalcEngService
@@ -168,6 +170,22 @@ namespace Demo.CalcEng.Domain
             }
 
             return OperationResponse.CreateSucceed(totals);
+        }
+
+        public OperationResponse<Guid> GetGuid()
+        {
+            return OperationResponse.CreateSucceed(Guid.Parse("b9c24d94-2d6c-4ea1-a0f2-03df67e4014d"));
+        }
+
+        public OperationResponse<string> GetGuidWithoutDashes()
+        {
+            var guidWithoutDashed = Guid.Parse("b9c24d94-2d6c-4ea1-a0f2-03df67e4014d").ToString().Replace("-", string.Empty);
+            return OperationResponse.CreateSucceed(guidWithoutDashed);
+        }
+
+        OperationResponse<Guid> ICalcEngService.GetGuidWithoutDashes()
+        {
+            throw new NotImplementedException();
         }
     }
 }

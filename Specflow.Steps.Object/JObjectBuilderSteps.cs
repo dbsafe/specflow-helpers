@@ -122,6 +122,25 @@ namespace Specflow.Steps.Object
             });
         }
 
+        [Then(@"property ([^\s]+) should be the guid '([0-9A-Fa-f-]+)'")]
+        public void AssertGuidProperty(string propertyName, Guid expectedPropertyValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponseProperty(propertyName, expectedPropertyValue, false);
+            });
+        }
+
+        
+        [Then(@"jpath '(.*)' should be the guid '([0-9A-Fa-f-]+)'")]
+        public void AssertGuidJPath(string jpath, Guid expectedPropertyValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateResponseProperty(jpath, expectedPropertyValue, true);
+            });
+        }
+
         [Then(@"property ([^\s]+) should be the datetime '(.*)'")]
         public void AssertDateTimeProperty(string propertyName, DateTime expectedPropertyValue)
         {
@@ -246,7 +265,7 @@ namespace Specflow.Steps.Object
         {
             ExecuteProtected(() =>
             {
-                ValidateContentAsMultiColumnArray(table, false);
+                ValidateContentAsMultiColumnArray(table);
             });
         }
 
@@ -378,7 +397,7 @@ namespace Specflow.Steps.Object
             }
         }
 
-        private void ValidateContentAsMultiColumnArray(Table table, bool isJPath)
+        private void ValidateContentAsMultiColumnArray(Table table)
         {
             ValidateArrayResponse();
 
@@ -541,6 +560,16 @@ namespace Specflow.Steps.Object
             {
                 Request = new JObject();
             }
+        }
+
+        private void ValidateResponseProperty(string name, Guid value, bool isJPath)
+        {
+            var jToken = isJPath ? FindJPath(name) : FindProperty(name);
+            Assert.IsTrue(jToken is JValue, $"Property {name} is not a single value");
+            var jValue = jToken as JValue;
+            Assert.IsNotNull(jValue.Value, $"Property {name} is null");
+            Assert.IsTrue(Guid.TryParse(jValue.Value.ToString(), out Guid convertedValue), $"Property {name} is not a valid guid");
+            Assert.AreEqual(value, convertedValue, $"Property: {name}");
         }
 
         private void ValidateResponseProperty(string name, decimal value, bool isJPath)
