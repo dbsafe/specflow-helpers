@@ -8,7 +8,7 @@ namespace Demo.CalcEng.Domain.Tests
     [Scope(Feature = "CalcEng")]
     public class CalcEngServiceSteps : JObjectBuilderSteps
     {
-        private readonly CalcEngService _calcEng = new CalcEngService();
+        private readonly CalcEngService _calcEng = new();
 
         public CalcEngServiceSteps(TestContext testContext) : base(testContext) { }
 
@@ -77,6 +77,20 @@ namespace Demo.CalcEng.Domain.Tests
         {
             var request = Request.ToObject<TotalsOperationRequest>();
             var operationResult = _calcEng.Totals(request);
+            SetResponse(operationResult);
+        }
+
+        [When(@"I request a guid")]
+        public void WhenIRequestAGuid()
+        {
+            var operationResult = _calcEng.GetGuid();
+            SetResponse(operationResult);
+        }
+
+        [When(@"I request a guid without dashes")]
+        public void WhenIRequestAGuidWithoutDashes()
+        {
+            var operationResult = _calcEng.GetGuidWithoutDashes();
             SetResponse(operationResult);
         }
     }

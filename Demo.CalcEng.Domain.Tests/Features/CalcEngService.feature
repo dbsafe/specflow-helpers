@@ -211,3 +211,14 @@ Scenario: Validating that a datetime value is in a range
 	When I request domain items
 	Then property OperationResult[1].Date should be a datetime between '2000-01-01' and '2000-01-03'
 	And jpath '$.OperationResult[1].Date' should be a datetime between '2000-01-01' and '2000-01-03'
+
+Scenario: Validating a guid
+	When I request a guid
+	Then property OperationResult should be the guid 'b9c24d94-2d6c-4ea1-a0f2-03df67e4014d'
+	And property OperationResult should be the guid 'B9C24D94-2D6C-4EA1-A0F2-03DF67E4014D'
+	And jpath '$.OperationResult' should be the guid 'B9C24D94-2D6C-4EA1-A0F2-03DF67E4014D'
+
+Scenario: Validating a guid without dashes
+	When I request a guid without dashes
+	Then property OperationResult should be the guid 'b9c24d94-2d6c-4ea1-a0f2-03df67e4014d'
+	And property OperationResult should be the guid 'B9C24D94-2D6C-4EA1-A0F2-03DF67E4014D'
