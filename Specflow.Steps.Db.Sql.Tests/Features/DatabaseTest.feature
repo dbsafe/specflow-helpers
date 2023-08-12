@@ -22,11 +22,11 @@ Given table '[dbo].[Product]' contains the data
 When I execute my operation
 Then table '[dbo].[Product]' should contain the data
 | Id:Key | Code   | Name      | Description | Cost:Number | ListPrice:Number | CategoryId | SupplierId | IsActive:Boolean | ReleaseDate:DateTime | CreatedOn:DateTime |
-| 101      | code-1 | product-1 | [NULL]      | 101.10      | 111.10           | 1          | 2          | true             | 2000-01-01           | 2000-02-01         |
-| 102      | code-2 | product-2 | desc-2      | 102.10      | 112.10           | 1          | 2          | true             | 2000-01-02           | 2000-02-02         |
-| 103      | code-3 | product-3 | desc-3      | 103.10      | 113.10           | 2          | 1          | true             | 2000-01-03           | 2000-02-03         |
-| 104      | code-4 | product-4 |             | 104.10      | 114.10           | 2          | 1          | false            | 2000-01-04           | 2000-02-04         |
-| 105      | code-5 | product-5 | [NULL]      | 105.10      | 115.10           | 2          | 1          | false            | 2000-01-05           | 2000-02-05         |
+| 101    | code-1 | product-1 | [NULL]      | 101.10      | 111.10           | 1          | 2          | true             | 2000-01-01           | 2000-02-01         |
+| 102    | code-2 | product-2 | desc-2      | 102.10      | 112.10           | 1          | 2          | true             | 2000-01-02           | 2000-02-02         |
+| 103    | code-3 | product-3 | desc-3      | 103.10      | 113.10           | 2          | 1          | true             | 2000-01-03           | 2000-02-03         |
+| 104    | code-4 | product-4 |             | 104.10      | 114.10           | 2          | 1          | false            | 2000-01-04           | 2000-02-04         |
+| 105    | code-5 | product-5 | [NULL]      | 105.10      | 115.10           | 2          | 1          | false            | 2000-01-05           | 2000-02-05         |
 
 Scenario: Validate a table using a query
 Given table '[dbo].[Product]' contains the data
@@ -39,11 +39,11 @@ Given table '[dbo].[Product]' contains the data
 When I execute my operation
 Then query '(SELECT * FROM [dbo].[Product]) AS prod' should return the data
 | Id:Key | Code   | Name      | Description | Cost:Number | ListPrice:Number | CategoryId | SupplierId | IsActive:Boolean | ReleaseDate:DateTime | CreatedOn:DateTime |
-| 101      | code-1 | product-1 | [NULL]      | 101.10      | 111.10           | 1          | 2          | true             | 2000-01-01           | 2000-02-01         |
-| 102      | code-2 | product-2 | desc-2      | 102.10      | 112.10           | 1          | 2          | true             | 2000-01-02           | 2000-02-02         |
-| 103      | code-3 | product-3 | desc-3      | 103.10      | 113.10           | 2          | 1          | true             | 2000-01-03           | 2000-02-03         |
-| 104      | code-4 | product-4 |             | 104.10      | 114.10           | 2          | 1          | false            | 2000-01-04           | 2000-02-04         |
-| 105      | code-5 | product-5 | [NULL]      | 105.10      | 115.10           | 2          | 1          | false            | 2000-01-05           | 2000-02-05         |
+| 101    | code-1 | product-1 | [NULL]      | 101.10      | 111.10           | 1          | 2          | true             | 2000-01-01           | 2000-02-01         |
+| 102    | code-2 | product-2 | desc-2      | 102.10      | 112.10           | 1          | 2          | true             | 2000-01-02           | 2000-02-02         |
+| 103    | code-3 | product-3 | desc-3      | 103.10      | 113.10           | 2          | 1          | true             | 2000-01-03           | 2000-02-03         |
+| 104    | code-4 | product-4 |             | 104.10      | 114.10           | 2          | 1          | false            | 2000-01-04           | 2000-02-04         |
+| 105    | code-5 | product-5 | [NULL]      | 105.10      | 115.10           | 2          | 1          | false            | 2000-01-05           | 2000-02-05         |
 
 Scenario: Populate and validate a table with identity column
 Given table with identity columns '[dbo].[Product]' contains the data
@@ -113,3 +113,8 @@ Given I filter table '[dbo].[Supplier]' by
 | FieldName | FieldValues |
 | Name      | sup-10      |
 Then table '[dbo].[Supplier]' should be empty
+
+Scenario: Validate fields as GUID
+Then query '(SELECT '1aaaaaaa-bbbb-cccc-dddd-2eeeeeeeeeee' AS Col1, '2AAAAAAA-BBBB-CCCC-DDDD-1EEEEEEEEEEE' AS Col2) AS Guids' should return the data
+| Col1:Key:Guid                        | Col2:Guid                            |
+| 1aaaaaaa-bbbb-cccc-dddd-2eeeeeeeeeee | 2AAAAAAA-BBBB-CCCC-DDDD-1EEEEEEEEEEE |
