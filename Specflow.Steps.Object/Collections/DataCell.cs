@@ -157,6 +157,8 @@ namespace Specflow.Steps.Object.Collections
                     return typeof(int);
                 case "Boolean":
                     return typeof(bool);
+                case "Guid":
+                    return typeof(Guid);
                 case "":
                     return typeof(string);
             }
