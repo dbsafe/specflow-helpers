@@ -1,5 +1,6 @@
 ﻿using DbSafe;
 using SqlDbSafe;
+using System.Diagnostics.CodeAnalysis;
 using TechTalk.SpecFlow;
 
 namespace Specflow.Steps.Db.Sql.Tests
@@ -8,9 +9,9 @@ namespace Specflow.Steps.Db.Sql.Tests
     public class DatabaseTestSteps : SqlSteps
     {
         // Database deployed to localhost
-        private static string _connectionString = "data source=localhost;initial catalog=ProductDatabase;User ID=dbsafe;Password=dbsafe;MultipleActiveResultSets=True;App=Specflow.Steps.Db.Pg.Tests";
+        private static readonly string _connectionString = "data source=localhost;initial catalog=ProductDatabase;User ID=dbsafe;Password=dbsafe;MultipleActiveResultSets=True;App=Specflow.Steps.Db.Pg.Tests";
 
-        private static FormatterManager _formatter;
+        private static readonly FormatterManager _formatter;
 
         static DatabaseTestSteps()
         {
@@ -43,8 +44,10 @@ namespace Specflow.Steps.Db.Sql.Tests
         }
 
         [When(@"I execute my operation")]
+        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Use by Specflow")]
         public void ExecuteOperation()
         {
+            // execute logic being tested
         }
     }
 }

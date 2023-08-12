@@ -113,3 +113,8 @@ Given I filter table 'public.supplier' by
 | FieldName | FieldValues |
 | name      | sup-10      |
 Then table 'public.supplier' should be empty
+
+Scenario: Validate fields as GUID
+Then query '(SELECT '1aaaaaaa-bbbb-cccc-dddd-2eeeeeeeeeee' AS Col1, '2AAAAAAA-BBBB-CCCC-DDDD-1EEEEEEEEEEE' AS Col2) AS Guids' should return the data
+| col1:Key:Guid                        | col2:Guid                            |
+| 1aaaaaaa-bbbb-cccc-dddd-2eeeeeeeeeee | 2AAAAAAA-BBBB-CCCC-DDDD-1EEEEEEEEEEE |
