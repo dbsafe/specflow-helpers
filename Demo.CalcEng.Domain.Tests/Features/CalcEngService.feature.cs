@@ -495,31 +495,36 @@ this.ScenarioInitialize(scenarioInfo);
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
-                            "IsSmall:Boolean"});
+                            "IsSmall:Boolean",
+                            "ExternalId:Guid"});
                 table5.AddRow(new string[] {
                             "item1-pa",
                             "[NULL]",
                             "2000-01-01",
                             "100",
-                            "True"});
+                            "True",
+                            "00000000-0000-0000-0000-000000000001"});
                 table5.AddRow(new string[] {
                             "item2-pa",
                             "item2-pb",
                             "2000-01-02",
                             "200",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000002"});
                 table5.AddRow(new string[] {
                             "item3-pa",
                             "item3-pb",
                             "2000-01-03",
                             "300",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000003"});
                 table5.AddRow(new string[] {
                             "item4-pa",
                             "item4-pb",
                             "2000-01-04",
                             "400",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000004"});
 #line 102
  testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table5, "Then ");
 #line hidden
@@ -528,31 +533,36 @@ this.ScenarioInitialize(scenarioInfo);
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
-                            "IsSmall:Boolean"});
+                            "IsSmall:Boolean",
+                            "ExternalId:Guid"});
                 table6.AddRow(new string[] {
                             "item1-pa",
                             "[NULL]",
                             "2000-01-01",
                             "100",
-                            "True"});
+                            "True",
+                            "00000000-0000-0000-0000-000000000001"});
                 table6.AddRow(new string[] {
                             "item2-pa",
                             "item2-pb",
                             "2000-01-02",
                             "200",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000002"});
                 table6.AddRow(new string[] {
                             "item3-pa",
                             "item3-pb",
                             "2000-01-03",
                             "300",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000003"});
                 table6.AddRow(new string[] {
                             "item4-pa",
                             "item4-pb",
                             "2000-01-04",
                             "400",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000004"});
 #line 113
  testRunner.And("jpath \'$.OperationResult\' should be the complex-element array", ((string)(null)), table6, "And ");
 #line hidden
@@ -612,31 +622,36 @@ this.ScenarioInitialize(scenarioInfo);
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
-                            "IsSmall:Boolean"});
+                            "IsSmall:Boolean",
+                            "ExternalId:Guid"});
                 table7.AddRow(new string[] {
                             "item1-pa",
                             "[NULL]",
                             "2000-01-01",
                             "100",
-                            "True"});
+                            "True",
+                            "00000000-0000-0000-0000-000000000001"});
                 table7.AddRow(new string[] {
                             "item2-pa",
                             "item2-pb",
                             "2000-01-02",
                             "200",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000002"});
                 table7.AddRow(new string[] {
                             "item3-pa",
                             "item3-pb",
                             "2000-01-03",
                             "300",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000003"});
                 table7.AddRow(new string[] {
                             "item4-pa",
                             "item4-pb",
                             "2000-01-04",
                             "400",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000004"});
 #line 130
  testRunner.Then("jpath \'$\' should be the complex-element array", ((string)(null)), table7, "Then ");
 #line hidden
@@ -695,31 +710,36 @@ this.ScenarioInitialize(scenarioInfo);
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
-                            "IsSmall:Boolean"});
+                            "IsSmall:Boolean",
+                            "ExternalId:Guid"});
                 table8.AddRow(new string[] {
                             "item1-pa",
                             "[IGNORE]",
                             "2000-01-01",
                             "100",
-                            "True"});
+                            "True",
+                            "00000000-0000-0000-0000-000000000001"});
                 table8.AddRow(new string[] {
                             "item2-pa",
                             "[IGNORE]",
                             "2000-01-02",
                             "200",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000002"});
                 table8.AddRow(new string[] {
                             "item3-pa",
                             "[IGNORE]",
                             "2000-01-03",
                             "300",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000003"});
                 table8.AddRow(new string[] {
                             "item4-pa",
                             "[IGNORE]",
                             "2000-01-04",
                             "400",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000004"});
 #line 146
  testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table8, "Then ");
 #line hidden
@@ -778,25 +798,29 @@ this.ScenarioInitialize(scenarioInfo);
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
-                            "IsSmall:Boolean"});
+                            "IsSmall:Boolean",
+                            "ExternalId:Guid"});
                 table10.AddRow(new string[] {
                             "item1-pa",
                             "[NULL]",
                             "2000-01-01",
                             "100",
-                            "True"});
+                            "True",
+                            "00000000-0000-0000-0000-000000000001"});
                 table10.AddRow(new string[] {
                             "item2-pa",
                             "item2-pb",
                             "2000-01-02",
                             "200",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000002"});
                 table10.AddRow(new string[] {
                             "item4-pa",
                             "item4-pb",
                             "2000-01-04",
                             "400",
-                            "False"});
+                            "False",
+                            "00000000-0000-0000-0000-000000000004"});
 #line 164
  testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table10, "Then ");
 #line hidden
@@ -1158,6 +1182,331 @@ this.ScenarioInitialize(scenarioInfo);
 #line 224
  testRunner.And("property OperationResult should be the guid \'B9C24D94-2D6C-4EA1-A0F2-03DF67E4014D" +
                         "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Framework-Test - Provide friendly message when actual DateTime field is null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void Framework_Test_ProvideFriendlyMessageWhenActualDateTimeFieldIsNull()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Framework-Test - Provide friendly message when actual DateTime field is null", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 226
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 227
+ testRunner.When("I request domain items with null DateTimes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "PropB",
+                            "Date:DateTime",
+                            "Value:Number",
+                            "IsSmall:Boolean",
+                            "ExternalId:Guid"});
+                table12.AddRow(new string[] {
+                            "item1-pa",
+                            "[NULL]",
+                            "2000-01-01",
+                            "100",
+                            "True",
+                            "00000000-0000-0000-0000-000000000001"});
+                table12.AddRow(new string[] {
+                            "item2-pa",
+                            "item2-pb",
+                            "2000-01-02",
+                            "200",
+                            "False",
+                            "00000000-0000-0000-0000-000000000002"});
+                table12.AddRow(new string[] {
+                            "item3-pa",
+                            "item3-pb",
+                            "2000-01-03",
+                            "300",
+                            "False",
+                            "00000000-0000-0000-0000-000000000003"});
+                table12.AddRow(new string[] {
+                            "item4-pa",
+                            "item4-pb",
+                            "2000-01-04",
+                            "400",
+                            "False",
+                            "00000000-0000-0000-0000-000000000004"});
+#line 229
+ testRunner.Then("property OperationResult should be the complex-element array (framework-test)", ((string)(null)), table12, "Then ");
+#line hidden
+#line 235
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'The" +
+                        " rows at position 4 are different.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 236
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
+                        "perty: Date. Expected <1/4/2000 12:00:00 AM>, Actual is null\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Framework-Test - Provide friendly message when actual Decimal field is null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void Framework_Test_ProvideFriendlyMessageWhenActualDecimalFieldIsNull()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Framework-Test - Provide friendly message when actual Decimal field is null", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 238
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 239
+ testRunner.When("I request domain items with null Numbers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "PropB",
+                            "Date:DateTime",
+                            "Value:Number",
+                            "IsSmall:Boolean",
+                            "ExternalId:Guid"});
+                table13.AddRow(new string[] {
+                            "item1-pa",
+                            "[NULL]",
+                            "2000-01-01",
+                            "100",
+                            "True",
+                            "00000000-0000-0000-0000-000000000001"});
+                table13.AddRow(new string[] {
+                            "item2-pa",
+                            "item2-pb",
+                            "2000-01-02",
+                            "200",
+                            "False",
+                            "00000000-0000-0000-0000-000000000002"});
+                table13.AddRow(new string[] {
+                            "item3-pa",
+                            "item3-pb",
+                            "2000-01-03",
+                            "300",
+                            "False",
+                            "00000000-0000-0000-0000-000000000003"});
+                table13.AddRow(new string[] {
+                            "item4-pa",
+                            "item4-pb",
+                            "2000-01-04",
+                            "400",
+                            "False",
+                            "00000000-0000-0000-0000-000000000004"});
+#line 241
+ testRunner.Then("property OperationResult should be the complex-element array (framework-test)", ((string)(null)), table13, "Then ");
+#line hidden
+#line 247
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'The" +
+                        " rows at position 4 are different.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 248
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
+                        "perty: Value. Expected <400>, Actual is null\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Framework-Test - Provide friendly message when actual Boolean field is null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void Framework_Test_ProvideFriendlyMessageWhenActualBooleanFieldIsNull()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Framework-Test - Provide friendly message when actual Boolean field is null", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 250
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 251
+ testRunner.When("I request domain items with null Booleans", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "PropB",
+                            "Date:DateTime",
+                            "Value:Number",
+                            "IsSmall:Boolean",
+                            "ExternalId:Guid"});
+                table14.AddRow(new string[] {
+                            "item1-pa",
+                            "[NULL]",
+                            "2000-01-01",
+                            "100",
+                            "True",
+                            "00000000-0000-0000-0000-000000000001"});
+                table14.AddRow(new string[] {
+                            "item2-pa",
+                            "item2-pb",
+                            "2000-01-02",
+                            "200",
+                            "False",
+                            "00000000-0000-0000-0000-000000000002"});
+                table14.AddRow(new string[] {
+                            "item3-pa",
+                            "item3-pb",
+                            "2000-01-03",
+                            "300",
+                            "False",
+                            "00000000-0000-0000-0000-000000000003"});
+                table14.AddRow(new string[] {
+                            "item4-pa",
+                            "item4-pb",
+                            "2000-01-04",
+                            "400",
+                            "False",
+                            "00000000-0000-0000-0000-000000000004"});
+#line 253
+ testRunner.Then("property OperationResult should be the complex-element array (framework-test)", ((string)(null)), table14, "Then ");
+#line hidden
+#line 259
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'The" +
+                        " rows at position 4 are different.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 260
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
+                        "perty: IsSmall. Expected <False>, Actual: <null>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Framework-Test - Provide friendly message when actual Guid field is null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public virtual void Framework_Test_ProvideFriendlyMessageWhenActualGuidFieldIsNull()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Framework-Test - Provide friendly message when actual Guid field is null", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 262
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 263
+ testRunner.When("I request domain items with null Guids", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "PropB",
+                            "Date:DateTime",
+                            "Value:Number",
+                            "IsSmall:Boolean",
+                            "ExternalId:Guid"});
+                table15.AddRow(new string[] {
+                            "item1-pa",
+                            "[NULL]",
+                            "2000-01-01",
+                            "100",
+                            "True",
+                            "00000000-0000-0000-0000-000000000001"});
+                table15.AddRow(new string[] {
+                            "item2-pa",
+                            "item2-pb",
+                            "2000-01-02",
+                            "200",
+                            "False",
+                            "00000000-0000-0000-0000-000000000002"});
+                table15.AddRow(new string[] {
+                            "item3-pa",
+                            "item3-pb",
+                            "2000-01-03",
+                            "300",
+                            "False",
+                            "00000000-0000-0000-0000-000000000003"});
+                table15.AddRow(new string[] {
+                            "item4-pa",
+                            "item4-pb",
+                            "2000-01-04",
+                            "400",
+                            "False",
+                            "00000000-0000-0000-0000-000000000004"});
+#line 265
+ testRunner.Then("property OperationResult should be the complex-element array (framework-test)", ((string)(null)), table15, "Then ");
+#line hidden
+#line 271
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'The" +
+                        " rows at position 4 are different.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 272
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
+                        "perty: ExternalId. Expected <00000000-0000-0000-0000-000000000004>, Actual: <nul" +
+                        "l>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

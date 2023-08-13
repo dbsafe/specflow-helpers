@@ -103,19 +103,19 @@ Scenario: Request Domain Items
 	# key column(s)
 	# data type
 	# expected null value
-		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
-		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
-		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
-		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |
-		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean | ExternalId:Guid                      |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            | 00000000-0000-0000-0000-000000000001 |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           | 00000000-0000-0000-0000-000000000002 |
+		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           | 00000000-0000-0000-0000-000000000003 |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           | 00000000-0000-0000-0000-000000000004 |
 
 	# using JPath
 	And jpath '$.OperationResult' should be the complex-element array
-		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
-		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
-		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
-		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |
-		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |ExternalId:Guid                      |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |00000000-0000-0000-0000-000000000001 |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |00000000-0000-0000-0000-000000000002 |
+		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |00000000-0000-0000-0000-000000000003 |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |00000000-0000-0000-0000-000000000004 |
 	
 	And jpath '$.OperationResult[?(@.PropA=='item3-pa')].PropB' should be 'item3-pb'
 	And jpath '$.OperationResult[?(@.PropA=='item3-pa')].IsSmall' should be False
@@ -128,11 +128,11 @@ Scenario: Request Domain Items as Array
 
 	# using JPath
 	Then jpath '$' should be the complex-element array
-		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
-		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
-		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
-		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |
-		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |ExternalId:Guid                      |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |00000000-0000-0000-0000-000000000001 |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |00000000-0000-0000-0000-000000000002 |
+		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |00000000-0000-0000-0000-000000000003 |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |00000000-0000-0000-0000-000000000004 |
 	
 	And jpath '$[?(@.PropA=='item3-pa')].PropB' should be 'item3-pb'
 	And jpath '$[?(@.PropA=='item3-pa')].IsSmall' should be False
@@ -145,11 +145,11 @@ Scenario: Request Domain Items - Ignore field
 	When I request domain items
 	Then property OperationResult should be the complex-element array
 	# Ignore a field in the array -
-		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
-		| item1-pa  | [IGNORE] | 2000-01-01    | 100          | True            |
-		| item2-pa  | [IGNORE] | 2000-01-02    | 200          | False           |
-		| item3-pa  | [IGNORE] | 2000-01-03    | 300          | False           |
-		| item4-pa  | [IGNORE] | 2000-01-04    | 400          | False           |
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |ExternalId:Guid                      |
+		| item1-pa  | [IGNORE] | 2000-01-01    | 100          | True            |00000000-0000-0000-0000-000000000001 |
+		| item2-pa  | [IGNORE] | 2000-01-02    | 200          | False           |00000000-0000-0000-0000-000000000002 |
+		| item3-pa  | [IGNORE] | 2000-01-03    | 300          | False           |00000000-0000-0000-0000-000000000003 |
+		| item4-pa  | [IGNORE] | 2000-01-04    | 400          | False           |00000000-0000-0000-0000-000000000004 |
 
 	Then property OperationResult should be an array with 4 items
 	Then jpath '$.OperationResult' should be an array with 4 items
@@ -162,10 +162,10 @@ Scenario: Request Domain Items - Filter array items
 		| FieldName | FieldValues                |
 		| PropA     | item1-pa,item2-pa,item4-pa |
 	Then property OperationResult should be the complex-element array
-		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |
-		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |
-		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |
-		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |ExternalId:Guid                      |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |00000000-0000-0000-0000-000000000001 |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |00000000-0000-0000-0000-000000000002 |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |00000000-0000-0000-0000-000000000004 |
 
 Scenario: Request Domain Items By Date
 	# Setting a DateTime property -
@@ -222,3 +222,51 @@ Scenario: Validating a guid without dashes
 	When I request a guid without dashes
 	Then property OperationResult should be the guid 'b9c24d94-2d6c-4ea1-a0f2-03df67e4014d'
 	And property OperationResult should be the guid 'B9C24D94-2D6C-4EA1-A0F2-03DF67E4014D'
+
+Scenario: Framework-Test - Provide friendly message when actual DateTime field is null
+	When I request domain items with null DateTimes
+
+	Then property OperationResult should be the complex-element array (framework-test)
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |ExternalId:Guid                      |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |00000000-0000-0000-0000-000000000001 |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |00000000-0000-0000-0000-000000000002 |
+		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |00000000-0000-0000-0000-000000000003 |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |00000000-0000-0000-0000-000000000004 |
+	And should throw exception of type AssertFailedException with message containing 'The rows at position 4 are different.'
+	And should throw exception of type AssertFailedException with message containing 'Property: Date. Expected <1/4/2000 12:00:00 AM>, Actual is null'
+
+Scenario: Framework-Test - Provide friendly message when actual Decimal field is null
+	When I request domain items with null Numbers
+
+	Then property OperationResult should be the complex-element array (framework-test)
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |ExternalId:Guid                      |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |00000000-0000-0000-0000-000000000001 |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |00000000-0000-0000-0000-000000000002 |
+		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |00000000-0000-0000-0000-000000000003 |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |00000000-0000-0000-0000-000000000004 |
+	And should throw exception of type AssertFailedException with message containing 'The rows at position 4 are different.'
+	And should throw exception of type AssertFailedException with message containing 'Property: Value. Expected <400>, Actual is null'
+
+Scenario: Framework-Test - Provide friendly message when actual Boolean field is null
+	When I request domain items with null Booleans
+
+	Then property OperationResult should be the complex-element array (framework-test)
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |ExternalId:Guid                      |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |00000000-0000-0000-0000-000000000001 |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |00000000-0000-0000-0000-000000000002 |
+		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |00000000-0000-0000-0000-000000000003 |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |00000000-0000-0000-0000-000000000004 |
+	And should throw exception of type AssertFailedException with message containing 'The rows at position 4 are different.'
+	And should throw exception of type AssertFailedException with message containing 'Property: IsSmall. Expected <False>, Actual: <null>'
+
+Scenario: Framework-Test - Provide friendly message when actual Guid field is null
+	When I request domain items with null Guids
+
+	Then property OperationResult should be the complex-element array (framework-test)
+		| PropA:key | PropB    | Date:DateTime | Value:Number | IsSmall:Boolean |ExternalId:Guid                      |
+		| item1-pa  | [NULL]   | 2000-01-01    | 100          | True            |00000000-0000-0000-0000-000000000001 |
+		| item2-pa  | item2-pb | 2000-01-02    | 200          | False           |00000000-0000-0000-0000-000000000002 |
+		| item3-pa  | item3-pb | 2000-01-03    | 300          | False           |00000000-0000-0000-0000-000000000003 |
+		| item4-pa  | item4-pb | 2000-01-04    | 400          | False           |00000000-0000-0000-0000-000000000004 |
+	And should throw exception of type AssertFailedException with message containing 'The rows at position 4 are different.'
+	And should throw exception of type AssertFailedException with message containing 'Property: ExternalId. Expected <00000000-0000-0000-0000-000000000004>, Actual: <null>'

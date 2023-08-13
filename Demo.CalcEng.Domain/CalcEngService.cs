@@ -34,11 +34,12 @@ namespace Demo.CalcEng.Domain
 
     public class DomainItem
     {
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
         public string PropA { get; set; }
         public string PropB { get; set; }
-        public decimal Value { get; set; }
-        public bool IsSmall { get; set; }
+        public decimal? Value { get; set; }
+        public bool? IsSmall { get; set; }
+        public Guid? ExternalId { get; set; }
     }
 
     public class Row
@@ -67,10 +68,10 @@ namespace Demo.CalcEng.Domain
     {
         private readonly DomainItem[] _domainItems = new DomainItem[]
         {
-            new DomainItem { Date = new DateTime(2000, 1, 1), PropA = "item1-pa", Value = 100m, IsSmall = true },
-            new DomainItem { Date = new DateTime(2000, 1, 2), PropA = "item2-pa", PropB = "item2-pb", Value = 200m },
-            new DomainItem { Date = new DateTime(2000, 1, 3), PropA = "item3-pa", PropB = "item3-pb", Value = 300m },
-            new DomainItem { Date = new DateTime(2000, 1, 4), PropA = "item4-pa", PropB = "item4-pb", Value = 400m }
+            new DomainItem { Date = new DateTime(2000, 1, 1), PropA = "item1-pa", Value = 100m, IsSmall = true, ExternalId = Guid.Parse("00000000-0000-0000-0000-000000000001") },
+            new DomainItem { Date = new DateTime(2000, 1, 2), PropA = "item2-pa", PropB = "item2-pb", Value = 200m, IsSmall = false, ExternalId = Guid.Parse("00000000-0000-0000-0000-000000000002") },
+            new DomainItem { Date = new DateTime(2000, 1, 3), PropA = "item3-pa", PropB = "item3-pb", Value = 300m, IsSmall = false, ExternalId = Guid.Parse("00000000-0000-0000-0000-000000000003") },
+            new DomainItem { Date = new DateTime(2000, 1, 4), PropA = "item4-pa", PropB = "item4-pb", Value = 400m, IsSmall = false, ExternalId = Guid.Parse("00000000-0000-0000-0000-000000000004") }
         };
 
         public OperationResponse<decimal> Sum(TwoNumbersOperationRequest request)
@@ -135,6 +136,30 @@ namespace Demo.CalcEng.Domain
         public OperationResponse<DomainItem[]> GetDomainItems()
         {
             return OperationResponse.CreateSucceed(_domainItems);
+        }
+
+        public OperationResponse<DomainItem[]> GetDomainItemsWithNullDateTimes()
+        {
+            _domainItems[3].Date = null;
+            return GetDomainItems();
+        }
+
+        public OperationResponse<DomainItem[]> GetDomainItemsWithNullNumbers()
+        {
+            _domainItems[3].Value = null;
+            return GetDomainItems();
+        }
+
+        public OperationResponse<DomainItem[]> GetDomainItemsWithNullBooleans()
+        {
+            _domainItems[3].IsSmall = null;
+            return GetDomainItems();
+        }
+
+        public OperationResponse<DomainItem[]> GetDomainItemsWithNullGuids()
+        {
+            _domainItems[3].ExternalId = null;
+            return GetDomainItems();
         }
 
         public DomainItem[] GetDomainItemsAsArray()
