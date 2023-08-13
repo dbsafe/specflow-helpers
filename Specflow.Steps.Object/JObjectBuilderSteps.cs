@@ -391,7 +391,8 @@ namespace Specflow.Steps.Object
             var expectedDataset = DataCollection.Load(table);
             var actualDataset = DataCollection.Load(actualToken.Children());
             actualDataset = FilterRows(actualDataset, arrayPropertyName);
-            if (!DataCompare.Compare(expectedDataset, actualDataset, out string message))
+            var areEquals = DataCompare.Compare(expectedDataset, actualDataset, out string message);
+            if (!areEquals)
             {
                 Assert.Fail($"Array property {arrayPropertyName}.\n{message}");
             }

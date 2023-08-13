@@ -16,7 +16,8 @@ namespace Specflow.Steps.Object.Collections
             for (int i = 0; i < expected.Rows.Length; i++)
             {
                 var expectedRow = expected.Rows[i];
-                if (!Compare(i, expectedRow, actual, out message))
+                var areEquals = Compare(i, expectedRow, actual, out message);
+                if (!areEquals)
                 {
                     return false;
                 }
@@ -62,7 +63,8 @@ namespace Specflow.Steps.Object.Collections
                 return false;
             }
 
-            if (!Compare(expectedRow, actualRowsFound[0], out string messageAboutRows))
+            var areEquals = Compare(expectedRow, actualRowsFound[0], out string messageAboutRows);
+            if (!areEquals)
             {
                 message = $"The rows at position {index + 1} are different.\n{messageAboutRows}";
                 return false;
@@ -115,7 +117,8 @@ namespace Specflow.Steps.Object.Collections
                     return false;
                 }
 
-                if (!Compare(expectedValue, actualValue[0], out message))
+                var areEquals = Compare(expectedValue, actualValue[0], out message);
+                if (!areEquals)
                 {
                     return false;
                 }
@@ -127,6 +130,12 @@ namespace Specflow.Steps.Object.Collections
 
         private static bool CompareNumber(DataCell expected, DataCell actual, decimal expectedValue, out string message)
         {
+            if (actual.Value is null)
+            {
+                message = $"Property: {expected.Name}. Expected <{expected.Value}>, Actual is null";
+                return false;
+            }
+
             if (!decimal.TryParse(actual.Value.ToString(), out decimal actualDecimal))
             {
                 message = $"Property: {expected.Name}. Actual <{actual.Value}> is not a valid Number";
@@ -145,10 +154,16 @@ namespace Specflow.Steps.Object.Collections
 
         private static bool CompareDateTime(DataCell expected, DataCell actual, out string message)
         {
+            if (actual.Value is null)
+            {
+                message = $"Property: {expected.Name}. Expected <{expected.Value}>, Actual is null";
+                return false;
+            }
+
             var expectedDateTime = (DateTime)expected.Value;
             if (!DateTime.TryParse(actual.Value.ToString(), out DateTime actualDateTime))
             {
-                message = $"Property: {expected.Name}. Actual <{expected.Value}> is not a valid DateTime";
+                message = $"Property: {expected.Name}. Actual <{actual.Value}> is not a valid DateTime";
                 return false;
             }
 
