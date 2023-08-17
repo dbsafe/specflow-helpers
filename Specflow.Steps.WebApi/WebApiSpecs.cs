@@ -50,9 +50,9 @@ namespace Specflow.Steps.WebApi
         private string _responseStringContent = null;
         private ContentType _reponseContentType = ContentType.Unknown;
 
-        private WebApiSpecsConfig _config;
+        private readonly WebApiSpecsConfig _config;
 
-        private List<KeyValuePair<string, string>> _headers = new List<KeyValuePair<string, string>>();
+        private readonly List<KeyValuePair<string, string>> _headers = new List<KeyValuePair<string, string>>();
 
         public HttpResponseMessage HttpResponse { get; private set; }
 
@@ -137,6 +137,23 @@ namespace Specflow.Steps.WebApi
                 Print($"Header with the name '{name}' found");
 
                 var headerValues = HttpResponse.Headers.GetValues(name);
+                Assert.IsTrue(headerValues.Any(header => header == value), $"Header '{name}' was found but the value did not match");
+            });
+        }
+
+        [Then(@"content header ([^\s]+) should be '(.*)'")]
+        public void AssertContentHeader(string name, string value)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateHttpResponse();
+
+                Assert.IsNotNull(HttpResponse.Content, "Content is null");
+                Assert.IsNotNull(HttpResponse.Content.Headers, "Content Headers property is null");
+                Assert.IsTrue(HttpResponse.Content.Headers.Contains(name), $"Header {name} not found");
+                Print($"Header with the name '{name}' found");
+
+                var headerValues = HttpResponse.Content.Headers.GetValues(name);
                 Assert.IsTrue(headerValues.Any(header => header == value), $"Header '{name}' was found but the value did not match");
             });
         }
@@ -233,14 +250,22 @@ namespace Specflow.Steps.WebApi
             try
             {
                 var responseContent = JToken.Parse(_responseStringContent);
-
-                if (responseContent.Type == JTokenType.Array)
+                if (IsValueType(responseContent.Type))
                 {
-                    SetResponseWithArray(responseContent);
+                    SetResponseWithValue(responseContent);
+                    return;
                 }
-                else
+
+                switch (responseContent.Type)
                 {
-                    SetResponse(responseContent);
+                    case JTokenType.Array:
+                        SetResponseWithArray(responseContent);
+                        return;
+                    case JTokenType.Object:
+                        SetResponse(responseContent);
+                        return;
+                    default:
+                        throw new InvalidOperationException($"Unexpected Json type in the response content '{responseContent.Type}'");
                 }
             }
             catch (Exception ex)

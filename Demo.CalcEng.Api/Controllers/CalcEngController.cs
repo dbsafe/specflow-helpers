@@ -1,5 +1,6 @@
 ﻿using Demo.CalcEng.Domain;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -9,7 +10,7 @@ namespace Demo.CalcEng.Api.Controllers
     [ApiController]
     public class CalcEngController : CalcEngApiController<CalcEngController>
     {
-        private ICalcEngService _calcEngService;
+        private readonly ICalcEngService _calcEngService;
 
         public CalcEngController(ILogger<CalcEngController> logger, ICalcEngService calcEngService)
             : base(logger)
@@ -118,13 +119,43 @@ namespace Demo.CalcEng.Api.Controllers
         [HttpPost("Command")]
         public IActionResult Command()
         {
-            return this.Accepted();
+            return Accepted();
         }
 
         [HttpPost("CommandWithRawResponse/{body}")]
         public IActionResult Command(string body)
         {
-            return this.Ok(body);
+            return Ok(body);
+        }
+
+        [HttpPost("ReturnBoolean/{value}")]
+        public IActionResult ReturnBoolean(bool value)
+        {
+            return Ok(value);
+        }
+
+        [HttpPost("ReturnNumber/{value}")]
+        public IActionResult ReturnNumber(int value)
+        {
+            return Ok(value);
+        }
+
+        [HttpPost("ReturnDateTime/{value}")]
+        public IActionResult ReturnDateTime(string value)
+        {
+            return Ok(DateTime.Parse(value));
+        }
+
+        [HttpPost("ReturnBytes/{value}")]
+        public IActionResult ReturnBytes(string value)
+        {
+            return Ok(Encoding.UTF8.GetBytes(value));
+        }
+
+        [HttpPost("ReturnNull")]
+        public IActionResult ReturnNull()
+        {
+            return Ok(null);
         }
     }
 
