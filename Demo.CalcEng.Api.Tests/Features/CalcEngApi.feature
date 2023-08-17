@@ -143,8 +143,39 @@ Scenario: Receive a response where the content is an array - using jPath
 Scenario: Validate a response without a body
 	When I send a POST request to api/CalcEng/Command
 	Then StatusCode should be 202
+	And content header Content-Length should be '0'
 
 Scenario: Validate a response with a raw body
 	When I send a POST request to api/CalcEng/CommandWithRawResponse/test-body
 	Then StatusCode should be 200
 	And content should be 'test-body'
+
+Scenario: Validate a boolean content
+	When I send a POST request to api/CalcEng/ReturnBoolean/true
+	Then StatusCode should be 200
+	And content should be true
+
+	When I send a POST request to api/CalcEng/ReturnBoolean/false
+	Then StatusCode should be 200
+	And content should be false
+	And content should be 'false'
+
+Scenario: Validate a Numeric content 
+	When I send a POST request to api/CalcEng/ReturnNumber/100
+	Then StatusCode should be 200
+	And content should be the number 100
+
+Scenario: Validate a DateTime content 
+	When I send a POST request to api/CalcEng/ReturnDateTime/2020-12-10
+	Then StatusCode should be 200
+	And content should be the datetime '12/10/2020'
+
+# This is just to see the response when an action returns an array
+Scenario: Validate a content with bytes
+	When I send a POST request to api/CalcEng/ReturnBytes/ABC
+	Then StatusCode should be 200
+
+Scenario: Validate a content with null
+	When I send a POST request to api/CalcEng/ReturnNull
+	Then StatusCode should be 204
+	And content header Content-Length should be '0'

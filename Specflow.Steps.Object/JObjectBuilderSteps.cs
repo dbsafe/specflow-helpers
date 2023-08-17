@@ -25,26 +25,88 @@ namespace Specflow.Steps.Object
         public TestContext TestContext { get; }
         public JObject Request { get; private set; }
         public JObject Response { get; private set; }
+        public JValue ValueResponse { get; private set; }
         public JArray ArrayResponse { get; private set; }
+        public JTokenType ResponseType { get; private set; } = JTokenType.Undefined;
+
+        private static readonly JTokenType[] _valueTypes = new JTokenType[]
+        {
+            JTokenType.Date,
+            JTokenType.Boolean,
+            JTokenType.Float,
+            JTokenType.Null,
+            JTokenType.Bytes,
+            JTokenType.Guid,
+            JTokenType.Integer,
+            JTokenType.String,
+            JTokenType.TimeSpan
+        };
 
         public JObjectBuilderSteps(TestContext testContext)
         {
             TestContext = testContext;
         }
 
+        public void SetResponse(JToken response)
+        {
+            Response = JObject.FromObject(response);
+            ResponseType = response.Type;
+        }
+
         public void SetResponse(object response)
         {
             Response = JObject.FromObject(response);
+            ResponseType = JTokenType.Object;
+        }
+
+        public void SetResponseWithArray(JToken arrayResponse)
+        {
+            ArrayResponse = JArray.FromObject(arrayResponse);
+            ResponseType = arrayResponse.Type;
         }
 
         public void SetResponseWithArray(object arrayResponse)
         {
             ArrayResponse = JArray.FromObject(arrayResponse);
+            ResponseType = JTokenType.Array;
         }
 
-        public void SetResponse(JObject response)
+        public void SetResponseWithValue(JToken response)
         {
-            Response = response;
+            switch (response.Type)
+            {
+                case JTokenType.Date:
+                    ValueResponse = new JValue(response.Value<DateTime>());
+                    break;
+                case JTokenType.Boolean:
+                    ValueResponse = new JValue(response.Value<bool>());
+                    break;
+                case JTokenType.Float:
+                    ValueResponse = new JValue(response.Value<decimal>());
+                    break;
+                case JTokenType.Null:
+                    ValueResponse = new JValue(response.Value<object>());
+                    break;
+                case JTokenType.Bytes:
+                    ValueResponse = new JValue(response.Value<byte[]>());
+                    break;
+                case JTokenType.Guid:
+                    ValueResponse = new JValue(response.Value<Guid>());
+                    break;
+                case JTokenType.Integer:
+                    ValueResponse = new JValue(response.Value<int>());
+                    break;
+                case JTokenType.String:
+                    ValueResponse = new JValue(response.Value<string>());
+                    break;
+                case JTokenType.TimeSpan:
+                    ValueResponse = new JValue(response.Value<TimeSpan>());
+                    break;
+                default:
+                    throw new InvalidOperationException($"Unexpected Json type in the response content '{response.Type}'");
+            }
+
+            ResponseType = response.Type;
         }
 
         #region Given
@@ -131,7 +193,7 @@ namespace Specflow.Steps.Object
             });
         }
 
-        
+
         [Then(@"jpath '(.*)' should be the guid '([0-9A-Fa-f-]+)'")]
         public void AssertGuidJPath(string jpath, Guid expectedPropertyValue)
         {
@@ -368,6 +430,33 @@ namespace Specflow.Steps.Object
             });
         }
 
+        [Then(@"content should be (False|false|True|true)")]
+        public void AssertContentAsValueTypeBoolean(bool expectedValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateContentAsValueTypeBoolean(expectedValue);
+            });
+        }
+
+        [Then(@"content should be the number ([-+]?[\d]*[\.]?[\d]+)")]
+        public void AssertContentAsValueTypeBoolean(decimal expectedValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateContentAsValueTypeNumber(expectedValue);
+            });
+        }
+
+        [Then(@"content should be the datetime '(.*)'")]
+        public void AssertContentAsValueTypeDateTime(DateTime expectedValue)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateContentAsValueTypeDateTime(expectedValue);
+            });
+        }
+
         private void ValidateSingleColumnArray(string arrayPropertyName, Table table, bool isJPath)
         {
             var actualToken = isJPath ? FindJPath(arrayPropertyName) : FindProperty(arrayPropertyName);
@@ -401,13 +490,36 @@ namespace Specflow.Steps.Object
         private void ValidateContentAsMultiColumnArray(Table table)
         {
             ValidateArrayResponse();
-
             var expectedDataset = DataCollection.Load(table);
             var actualDataset = DataCollection.Load(ArrayResponse.Children());
             if (!DataCompare.Compare(expectedDataset, actualDataset, out string message))
             {
                 Assert.Fail($"Array Response.\n{message}");
             }
+        }
+
+        private void ValidateContentAsValueTypeBoolean(bool expectedValue)
+        {
+            ValidateValueResponse();
+            Assert.AreEqual(JTokenType.Boolean, ValueResponse.Type, "Response is not a boolean");
+            Assert.AreEqual(expectedValue, ValueResponse.Value);
+        }
+
+        private void ValidateContentAsValueTypeNumber(decimal expectedValue)
+        {
+            ValidateValueResponse();
+            Assert.IsTrue(IsNumber(ValueResponse), $"Content is not a number");
+            Assert.IsTrue(decimal.TryParse(ValueResponse.Value.ToString(), out decimal convertedValue), $"Content is not a valid number");
+            Assert.AreEqual(expectedValue, convertedValue, "Content");
+        }
+
+        private void ValidateContentAsValueTypeDateTime(DateTime expectedValue)
+        {
+            ValidateValueResponse();
+
+            Assert.IsTrue(IsDateTime(ValueResponse), $"Content is not a datetime");
+            Assert.IsTrue(DateTime.TryParse(ValueResponse.Value.ToString(), out DateTime convertedValue), $"Content is not a valid number");
+            Assert.AreEqual(expectedValue, convertedValue, "Content");
         }
 
         private DataCollection FilterRows(DataCollection source, string arrayPropertyName)
@@ -452,13 +564,28 @@ namespace Specflow.Steps.Object
 
         protected virtual void ValidateResponse()
         {
+            Assert.AreEqual(JTokenType.Object, ResponseType, "Response is not an object");
             Assert.IsNotNull(Response, "Response is not assigned");
         }
 
         protected virtual void ValidateArrayResponse()
         {
+            Assert.AreEqual(JTokenType.Array, ResponseType, "Response is not an array");
             Assert.IsNotNull(ArrayResponse, "Array Response is not assigned");
         }
+
+        protected virtual void EnsureResponseIsNotAValueType()
+        {
+            Assert.IsFalse(IsValueType(ResponseType), "Response cannot be a value type");
+        }
+
+        protected virtual void ValidateValueResponse()
+        {
+            Assert.IsTrue(IsValueType(ResponseType), "Response is not a value type");
+            Assert.IsNotNull(ValueResponse, "Value Response is not assigned");
+        }
+
+        protected bool IsValueType(JTokenType jTokenType) => _valueTypes.Contains(jTokenType);
 
         private void SetRequestContentProperty(string name, string value)
         {
@@ -729,10 +856,11 @@ namespace Specflow.Steps.Object
 
         private JToken FindJPath(string jPath)
         {
+            EnsureResponseIsNotAValueType();
             var currentResponse = GetCurrentResponse();
             Assert.IsNotNull(currentResponse, "Content does not have a value");
             var jToken = currentResponse.SelectToken(jPath);
-            
+
             if (!UseNullForMissingProperties)
             {
                 Assert.IsNotNull(jToken, $"JPath {jPath} not found in the response");
@@ -752,7 +880,7 @@ namespace Specflow.Steps.Object
             {
                 return ArrayResponse;
             }
-            
+
             return null;
         }
 
