@@ -23,6 +23,14 @@ namespace Specflow.Steps.WebApi
         JObjectContent
     }
 
+    public enum ContentType
+    {
+        NonContent,
+        Unknown,
+        Json,
+        Text
+    }
+
     public class WebApiSpecsRequest
     {
         public HttpRequestType? RequestType { get; set; }
@@ -38,7 +46,9 @@ namespace Specflow.Steps.WebApi
         private const string EMPTY_MSG_ITEM = "[EMPTY]";
         private const string NULL_MSG_ITEM = "[NULL]";
         private bool _requestSent = false;
-        private string _stringContent = null;
+        private string _requestStringContent = null;
+        private string _responseStringContent = null;
+        private ContentType _reponseContentType = ContentType.Unknown;
 
         private WebApiSpecsConfig _config;
 
@@ -60,8 +70,8 @@ namespace Specflow.Steps.WebApi
         {
             ExecuteProtected(() =>
             {
-                Assert.IsNull(_stringContent, "The content can be assigned only one time");
-                _stringContent = content;
+                Assert.IsNull(_requestStringContent, "The content can be assigned only one time");
+                _requestStringContent = content;
             });
         }
 
@@ -131,6 +141,17 @@ namespace Specflow.Steps.WebApi
             });
         }
 
+        [Then(@"content should be '(.*)'")]
+        public void AssertContentAsText(string expectedContent)
+        {
+            ExecuteProtected(() =>
+            {
+                ValidateHttpResponse();
+                Assert.IsNotNull(HttpResponse.Content, "Content is null");
+                Assert.AreEqual(expectedContent, _responseStringContent);
+            });
+        }
+
         #endregion
 
         protected override void ValidateResponse()
@@ -176,43 +197,75 @@ namespace Specflow.Steps.WebApi
             }
         }
 
+        private static ContentType GetContentType(HttpResponseMessage httpResponse)
+        {
+            switch (httpResponse.Content?.Headers?.ContentType?.MediaType)
+            {
+                case null:
+                    return ContentType.NonContent;
+                case "application/json":
+                    return ContentType.Json;
+                case "text/plain":
+                    return ContentType.Text;
+                default:
+                    return ContentType.Unknown;
+            }
+        }
+
         private void ExtractContentFromHttpResponse()
         {
-            if (HttpResponse.Content == null)
+            _reponseContentType = GetContentType(HttpResponse);
+            if (_reponseContentType == ContentType.NonContent)
             {
                 return;
             }
 
-            var content = HttpResponse.Content.ReadAsStringAsync().Result;
-            if (content != string.Empty)
+            _responseStringContent = HttpResponse.Content.ReadAsStringAsync().Result;
+            if (_reponseContentType == ContentType.Json && _responseStringContent != string.Empty)
             {
-                try
-                {
-                    var responseContent = JToken.Parse(content);
+                ParseJsonContent();
+                return;
+            }
+        }
 
-                    if (responseContent.Type == JTokenType.Array)
-                    {
-                        SetResponseWithArray(responseContent);
-                    }
-                    else
-                    {
-                        SetResponse(responseContent);
-                    }
-                }
-                catch (Exception ex)
+        private void ParseJsonContent()
+        {
+            try
+            {
+                var responseContent = JToken.Parse(_responseStringContent);
+
+                if (responseContent.Type == JTokenType.Array)
                 {
-                    var message = $"Unable to decode the response.\nContent:\n{content}";
-                    PrintError(message);
-                    throw new Exception(message, ex);
+                    SetResponseWithArray(responseContent);
                 }
+                else
+                {
+                    SetResponse(responseContent);
+                }
+            }
+            catch (Exception ex)
+            {
+                var message = $"Unable to decode the response.\nContent:\n{_responseStringContent}";
+                PrintError(message);
+                throw new Exception(message, ex);
             }
         }
 
         private async Task PrintResponseAsync(HttpResponseMessage response)
         {
             var headers = GetDisplayHeaders(response);
+            var contentHeaders = GetDisplayContentHeaders(response);
             var bodyText = await GetDisplayContentAsync(response.Content);
-            var text = $"RESPONSE [HttpResponseMessage]\nSTATUSCODE: {(int)HttpResponse.StatusCode}\nREASONPHRASE: {HttpResponse.ReasonPhrase}\nHEADERS:\n{headers}\nBODY:\n{bodyText}\n";
+            var text = $@"RESPONSE [HttpResponseMessage]
+STATUSCODE: {(int)HttpResponse.StatusCode}
+REASONPHRASE: {HttpResponse.ReasonPhrase}
+HEADERS:
+{headers}
+CONTENT-HEADERS:
+{contentHeaders}
+BODY:
+{bodyText}
+";
             Print(text);
         }
 
@@ -272,6 +325,18 @@ namespace Specflow.Steps.WebApi
             return $"{string.Join("\n", lines)}";
         }
 
+        private static string GetDisplayContentHeaders(HttpResponseMessage response)
+        {
+            var headers = response.Content?.Headers;
+            if (headers is null)
+            {
+                return NULL_MSG_ITEM;
+            }
+
+            var lines = headers.Select(header => $"{header.Key}:{string.Join(",", header.Value)}");
+            return $"{string.Join("\n", lines)}";
+        }
+
         private static string GetDisplayHeaders(IEnumerable<KeyValuePair<string, string>> headers)
         {
             if (headers == null)
@@ -322,11 +387,11 @@ namespace Specflow.Steps.WebApi
         private WebApiSpecsRequest CreateRequest()
         {
             const string message = "The content must be built by assigning properties, a json string value, or an array. Only one of these methods can be used in the scenario.";
-            Assert.IsFalse(Request != null && _stringContent != null, message);
+            Assert.IsFalse(Request != null && _requestStringContent != null, message);
 
-            if (_stringContent != null)
+            if (_requestStringContent != null)
             {
-                return new WebApiSpecsRequest { StringContent = _stringContent, ContentType = WebApiSpecsRequestContentType.StringContent };
+                return new WebApiSpecsRequest { StringContent = _requestStringContent, ContentType = WebApiSpecsRequestContentType.StringContent };
             }
             else
             {
@@ -336,9 +401,9 @@ namespace Specflow.Steps.WebApi
 
         private void SetContentAsComplexElementArray(Table table)
         {
-            Assert.IsNull(_stringContent, "The content can be assigned only one time");
+            Assert.IsNull(_requestStringContent, "The content can be assigned only one time");
             var content = CreateJArrayFromTable(table);
-            _stringContent = content.ToString();
+            _requestStringContent = content.ToString();
         }
     }
 }

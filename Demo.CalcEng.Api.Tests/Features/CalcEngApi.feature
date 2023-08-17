@@ -139,3 +139,12 @@ Scenario: Receive a response where the content is an array - using jPath
 	| 3              | name-3 | desc-3      |
 	
 	And jpath '$[?(@.id==2)].name' should be 'name-2'
+
+Scenario: Validate a response without a body
+	When I send a POST request to api/CalcEng/Command
+	Then StatusCode should be 202
+
+Scenario: Validate a response with a raw body
+	When I send a POST request to api/CalcEng/CommandWithRawResponse/test-body
+	Then StatusCode should be 200
+	And content should be 'test-body'
