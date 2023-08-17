@@ -114,6 +114,18 @@ namespace Demo.CalcEng.Api.Controllers
             var response = OperationResponse.CreateSucceed(list);
             return new JsonResult(response, serializerOptions);
         }
+
+        [HttpPost("Command")]
+        public IActionResult Command()
+        {
+            return this.Accepted();
+        }
+
+        [HttpPost("CommandWithRawResponse/{body}")]
+        public IActionResult Command(string body)
+        {
+            return this.Ok(body);
+        }
     }
 
     public class ListItem
