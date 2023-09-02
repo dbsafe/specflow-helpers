@@ -138,30 +138,6 @@ namespace Demo.CalcEng.Domain
             return OperationResponse.CreateSucceed(_domainItems);
         }
 
-        public OperationResponse<DomainItem[]> GetDomainItemsWithNullDateTimes()
-        {
-            _domainItems[3].Date = null;
-            return GetDomainItems();
-        }
-
-        public OperationResponse<DomainItem[]> GetDomainItemsWithNullNumbers()
-        {
-            _domainItems[3].Value = null;
-            return GetDomainItems();
-        }
-
-        public OperationResponse<DomainItem[]> GetDomainItemsWithNullBooleans()
-        {
-            _domainItems[3].IsSmall = null;
-            return GetDomainItems();
-        }
-
-        public OperationResponse<DomainItem[]> GetDomainItemsWithNullGuids()
-        {
-            _domainItems[3].ExternalId = null;
-            return GetDomainItems();
-        }
-
         public DomainItem[] GetDomainItemsAsArray()
         {
             return _domainItems;
