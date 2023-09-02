@@ -11,9 +11,19 @@ namespace Demo.CalcEng.Domain.Tests
     public class FrameworkSteps : JObjectBuilderSteps
     {
         private Exception _exception;
+        private bool _exceptionExpected;
 
         public FrameworkSteps(TestContext testContext) : base(testContext)
         {
+        }
+
+        [AfterScenario]
+        public void EnsureExceptionWasVerified()
+        {
+            if (_exception != null && !_exceptionExpected)
+            {
+                Assert.Fail("An exception was thrown");
+            }
         }
 
         [When(@"returned content is the object '(.*)'")]
@@ -46,6 +56,7 @@ namespace Demo.CalcEng.Domain.Tests
         [Then(@"should throw exception of type ([^\s]+) with message containing '([^']*)'")]
         public void ValidateThatAnExceptionWasThrownWithMessage(string exceptionTypeName, string message)
         {
+            _exceptionExpected = true;
             Assert.IsNotNull(_exception, "An exception was not thrown");
             Assert.AreEqual(exceptionTypeName, _exception.GetType().Name);
             Assert.IsTrue(_exception.Message.Contains(message), $"Exception message: '{_exception.Message}' does not contain '{message}'");
@@ -54,6 +65,7 @@ namespace Demo.CalcEng.Domain.Tests
         [Then(@"should throw exception ([^\s]+)")]
         public void ValidateThatAnExceptionWasThrown(string exceptionTypeName)
         {
+            _exceptionExpected = true;
             Assert.IsNotNull(_exception, "An exception was not thrown");
             Assert.AreEqual(exceptionTypeName, _exception.GetType().Name);
         }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -38,8 +39,17 @@ namespace Specflow.Steps.Object.Collections
 
         public string GetComposedKey(string[] keyNames)
         {
-            var ks = Values.Where(a => keyNames.Contains(a.Name)).Select(a => a.Value).ToArray();
-            return string.Join("_", ks);
+            IEnumerable<string> keys = Enumerable.Empty<string>();
+            // add one key at the time to keep the order.
+            foreach (var keyName in keyNames)
+            {
+                var newKey = Values
+                    .Where(a => a.Name == keyName)
+                    .Select(a => a.Type == typeof(Guid) ? a.Value.ToString().ToLower() : a.Value.ToString());
+                keys = keys.Union(newKey);
+            }
+
+            return string.Join("_", keys);
         }
 
         public string[] GetKeyPropertyNames()
