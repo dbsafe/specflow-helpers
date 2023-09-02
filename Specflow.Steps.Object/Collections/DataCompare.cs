@@ -37,36 +37,92 @@ namespace Specflow.Steps.Object.Collections
             }
             else
             {
-                return CompareUsingComposedKey(keyPropertyNames, composedKey, index, expectedRow, actual, out message);
+                if (CompareUsingComposedKey(keyPropertyNames, composedKey, expectedRow, actual, out message))
+                {
+                    return true;
+                }
+                
+                message = $"Comparing rows at position {index + 1}.\n{message}";
+                return false;
             }
         }
 
+        private static bool IsExpectedValid(DataCell expected, out string message)
+        {
+            if (expected.Type == typeof(Guid))
+            {
+                if (!Guid.TryParse(expected.Value.ToString(), out Guid _))
+                {
+                    message = $"Property: {expected.Name}. Expected <{expected.Value}> is not a valid Guid";
+                    return false;
+                }
+            }
+
+            if (expected.Type == typeof(int) || expected.Type == typeof(decimal))
+            {
+                if (!decimal.TryParse(expected.Value.ToString(), out decimal _))
+                {
+                    message = $"Property: {expected.Name}. Expected <{expected.Value}> is not a valid Number";
+                    return false;
+                }
+            }
+
+            if (expected.Type == typeof(DateTime))
+            {
+                if (!DateTime.TryParse(expected.Value.ToString(), out DateTime actualDateTime))
+                {
+                    message = $"Property: {expected.Name}. Expected <{expected.Value}> is not a valid DateTime";
+                    return false;
+                }
+            }
+
+            message = string.Empty;
+            return true;
+        }
+
+        private static bool AreExpectedKeysValid(string[] keyPropertyNames, DataRow expectedRow, out string message)
+        {
+            foreach (var keyPropertyName in keyPropertyNames)
+            {
+                var expected = expectedRow.Values.First(a => a.Name == keyPropertyName);
+                if (!IsExpectedValid(expected, out message))
+                {
+                    return false;
+                }
+            }
+
+            message = string.Empty;
+            return true;
+        }
 
         private static bool CompareUsingComposedKey(
             string[] keyPropertyNames,
             string composedKey,
-            int index,
             DataRow expectedRow,
             DataCollection actual,
             out string message)
         {
+            if (!AreExpectedKeysValid(keyPropertyNames, expectedRow, out message))
+            {
+                return false;
+            }
+
             var actualRowsFound = actual.Rows.Where(a => a.GetComposedKey(keyPropertyNames) == composedKey).ToArray();
             if (actualRowsFound.Length == 0)
             {
-                message = $"Expected row at the position {index + 1} was not found in actual";
+                message = $"Expected row not found in actual";
                 return false;
             }
 
             if (actualRowsFound.Length > 1)
             {
-                message = $"Expected row key at the position {index + 1} was found {actualRowsFound.Count()} times in actual";
+                message = $"Expected row key found {actualRowsFound.Count()} times in actual";
                 return false;
             }
 
-            var areEquals = Compare(expectedRow, actualRowsFound[0], out string messageAboutRows);
+            var areEquals = Compare(expectedRow, actualRowsFound[0], out message);
             if (!areEquals)
             {
-                message = $"The rows at position {index + 1} are different.\n{messageAboutRows}";
                 return false;
             }
 
@@ -78,7 +134,7 @@ namespace Specflow.Steps.Object.Collections
         {
             if (!Compare(expectedRow, actual.Rows[index], out string messageAboutRows))
             {
-                message = $"The rows at position {index + 1} are different.\n{messageAboutRows}";
+                message = $"Comparing rows at position {index + 1}.\n{messageAboutRows}";
                 return false;
             }
 
@@ -128,21 +184,26 @@ namespace Specflow.Steps.Object.Collections
             return true;
         }
 
-        private static bool CompareNumber(DataCell expected, DataCell actual, decimal expectedValue, out string message)
+        private static bool CompareNumber(DataCell expected, DataCell actual, out string message)
         {
-            if (actual.Value is null)
+            if (IsActualValueNull(expected, actual, out message))
             {
-                message = $"Property: {expected.Name}. Expected <{expected.Value}>, Actual is null";
                 return false;
             }
 
-            if (!decimal.TryParse(actual.Value.ToString(), out decimal actualDecimal))
+            if (!decimal.TryParse(expected.Value.ToString(), out decimal expectedNumber))
+            {
+                message = $"Property: {expected.Name}. Expected <{expected.Value}> is not a valid Number";
+                return false;
+            }
+
+            if (!decimal.TryParse(actual.Value.ToString(), out decimal actualNumber))
             {
                 message = $"Property: {expected.Name}. Actual <{actual.Value}> is not a valid Number";
                 return false;
             }
 
-            if (expectedValue != actualDecimal)
+            if (expectedNumber != actualNumber)
             {
                 message = $"Property: {expected.Name}. Expected <{expected.Value}>, Actual: <{actual.Value}>";
                 return false;
@@ -154,9 +215,8 @@ namespace Specflow.Steps.Object.Collections
 
         private static bool CompareDateTime(DataCell expected, DataCell actual, out string message)
         {
-            if (actual.Value is null)
+            if (IsActualValueNull(expected, actual, out message))
             {
-                message = $"Property: {expected.Name}. Expected <{expected.Value}>, Actual is null";
                 return false;
             }
 
@@ -175,6 +235,47 @@ namespace Specflow.Steps.Object.Collections
 
             message = string.Empty;
             return true;
+        }
+
+        private static bool CompareGuid(DataCell expected, DataCell actual, out string message)
+        {
+            if (IsActualValueNull(expected, actual, out message))
+            {
+                return false;
+            }
+
+            if (!Guid.TryParse(expected.Value.ToString(), out Guid expectedGuid))
+            {
+                message = $"Property: {expected.Name}. Expected <{expected.Value}> is not a valid Guid";
+                return false;
+            }
+
+            if (!Guid.TryParse(actual.Value.ToString(), out Guid actualGuid))
+            {
+                message = $"Property: {expected.Name}. Actual <{actual.Value}> is not a valid Guid";
+                return false;
+            }
+
+            if (expectedGuid != actualGuid)
+            {
+                message = $"Property: {expected.Name}. Expected <{expected.Value}>, Actual: <{actual.Value}>";
+                return false;
+            }
+
+            message = string.Empty;
+            return true;
+        }
+
+        private static bool IsActualValueNull(DataCell expected, DataCell actual, out string message)
+        {
+            if (actual.Value is null)
+            {
+                message = $"Property: {expected.Name}. Expected <{expected.Value}>, Actual is null";
+                return true;
+            }
+
+            message = string.Empty;
+            return false;
         }
 
         private static bool CompareText(DataCell expected, DataCell actual, out string message)
@@ -233,10 +334,14 @@ namespace Specflow.Steps.Object.Collections
                 return CompareDateTime(expected, actual, out message);
             }
 
+            if (expected.Type == typeof(Guid))
+            {
+                return CompareGuid(expected, actual, out message);
+            }
+
             if (expected.Type == typeof(decimal) || expected.Type == typeof(int))
             {
-                var expectedValue = Convert.ToDecimal(expected.Value);
-                return CompareNumber(expected, actual, expectedValue, out message);
+                return CompareNumber(expected, actual, out message);
             }
 
             return CompareText(expected, actual, out message);

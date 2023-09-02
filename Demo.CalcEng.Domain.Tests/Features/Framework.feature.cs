@@ -92,13 +92,15 @@ namespace Demo.CalcEng.Domain.Tests.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Provide friendly message when actual DateTime field is null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Null check in an array - 01 - Provide friendly message when actual DateTime field" +
+            " is null")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
-        public void ProvideFriendlyMessageWhenActualDateTimeFieldIsNull()
+        public void NullCheckInAnArray_01_ProvideFriendlyMessageWhenActualDateTimeFieldIsNull()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provide friendly message when actual DateTime field is null", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Null check in an array - 01 - Provide friendly message when actual DateTime field" +
+                    " is null", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -113,21 +115,21 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"2000-01-01\" }, { \"PropA\"" +
                         ": 2, \"PropB\": null } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:DateTime"});
-                table16.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "1",
                             "2000-01-01"});
-                table16.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "2",
                             "2000-01-02"});
 #line 7
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table16, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table12, "Then ");
 #line hidden
 #line 11
- testRunner.And("should throw exception of type AssertFailedException with message containing \'The" +
-                        " rows at position 2 are different.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 2.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
@@ -138,13 +140,15 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Provide friendly message when actual Decimal field is null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Null check in an array - 02 - Provide friendly message when actual Decimal field " +
+            "is null")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
-        public void ProvideFriendlyMessageWhenActualDecimalFieldIsNull()
+        public void NullCheckInAnArray_02_ProvideFriendlyMessageWhenActualDecimalFieldIsNull()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provide friendly message when actual Decimal field is null", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Null check in an array - 02 - Provide friendly message when actual Decimal field " +
+                    "is null", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -159,21 +163,21 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": 20.01 }, { \"PropA\": 2, \"P" +
                         "ropB\": null } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:Number"});
-                table17.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "1",
                             "20.01"});
-                table17.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "2",
                             "20.02"});
 #line 17
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table17, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table13, "Then ");
 #line hidden
 #line 21
- testRunner.And("should throw exception of type AssertFailedException with message containing \'The" +
-                        " rows at position 2 are different.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 2.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
@@ -184,13 +188,15 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Provide friendly message when actual Boolean field is null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Null check in an array - 03 - Provide friendly message when actual Boolean field " +
+            "is null")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
-        public void ProvideFriendlyMessageWhenActualBooleanFieldIsNull()
+        public void NullCheckInAnArray_03_ProvideFriendlyMessageWhenActualBooleanFieldIsNull()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provide friendly message when actual Boolean field is null", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Null check in an array - 03 - Provide friendly message when actual Boolean field " +
+                    "is null", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -205,21 +211,21 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": true }, { \"PropA\": 2, \"Pr" +
                         "opB\": null } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:Boolean"});
-                table18.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "1",
                             "true"});
-                table18.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "2",
                             "false"});
 #line 27
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table18, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table14, "Then ");
 #line hidden
 #line 31
- testRunner.And("should throw exception of type AssertFailedException with message containing \'The" +
-                        " rows at position 2 are different.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 2.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 32
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
@@ -230,13 +236,15 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Provide friendly message when actual Guid field is null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Null check in an array - 04 - Provide friendly message when actual Guid field is " +
+            "null")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
-        public void ProvideFriendlyMessageWhenActualGuidFieldIsNull()
+        public void NullCheckInAnArray_04_ProvideFriendlyMessageWhenActualGuidFieldIsNull()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provide friendly message when actual Guid field is null", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Null check in an array - 04 - Provide friendly message when actual Guid field is " +
+                    "null", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 34
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -251,25 +259,563 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"00000000-0000-0000-0000-" +
                         "000000000001\" }, { \"PropA\": 2, \"PropB\": null } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "PropB:Guid"});
+                table15.AddRow(new string[] {
+                            "2",
+                            "00000000-0000-0000-0000-000000000002"});
+                table15.AddRow(new string[] {
+                            "1",
+                            "00000000-0000-0000-0000-000000000001"});
+#line 37
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table15, "Then ");
+#line hidden
+#line 41
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 1.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 42
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
+                        "perty: PropB. Expected <00000000-0000-0000-0000-000000000002>, Actual is null\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 01 - Expected values should pass")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_01_ExpectedValuesShouldPass()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 01 - Expected values should pass", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 45
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 46
+ testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"00000000-0000-0000-0000-" +
+                        "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
+                        " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "PropB:Guid"});
+                table16.AddRow(new string[] {
+                            "1",
+                            "00000000-0000-0000-0000-00000000000a"});
+                table16.AddRow(new string[] {
+                            "2",
+                            "00000000-0000-0000-0000-00000000000B"});
+#line 48
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table16, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 02 - Unexpected values should fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_02_UnexpectedValuesShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 02 - Unexpected values should fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 53
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 54
+ testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"00000000-0000-0000-0000-" +
+                        "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
+                        " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "PropB:Guid"});
+                table17.AddRow(new string[] {
+                            "1",
+                            "00000000-0000-0000-0000-000000000001"});
+                table17.AddRow(new string[] {
+                            "2",
+                            "00000000-0000-0000-0000-00000000000b"});
+#line 56
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table17, "Then ");
+#line hidden
+#line 60
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 1.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 61
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
+                        "perty: PropB. Expected <00000000-0000-0000-0000-000000000001>, Actual: <00000000" +
+                        "-0000-0000-0000-00000000000a>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 03 - Invalid expected values should fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_03_InvalidExpectedValuesShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 03 - Invalid expected values should fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 63
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 64
+ testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"00000000-0000-0000-0000-" +
+                        "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
+                        " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "PropB:Guid"});
+                table18.AddRow(new string[] {
+                            "1",
+                            "00000000-0000-0000-0000-00000000000-"});
+                table18.AddRow(new string[] {
+                            "2",
+                            "00000000-0000-0000-0000-00000000000b"});
+#line 66
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table18, "Then ");
+#line hidden
+#line 70
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 1.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 71
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
+                        "perty: PropB. Expected <00000000-0000-0000-0000-00000000000-> is not a valid Gui" +
+                        "d\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 04 - Invalid actual values should fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_04_InvalidActualValuesShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 04 - Invalid actual values should fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 73
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 74
+ testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"00000000-0000-0000-0000-" +
+                        "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000-\" }" +
+                        " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
                 TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:Guid"});
                 table19.AddRow(new string[] {
                             "1",
-                            "00000000-0000-0000-0000-000000000001"});
+                            "00000000-0000-0000-0000-00000000000a"});
                 table19.AddRow(new string[] {
                             "2",
-                            "00000000-0000-0000-0000-000000000002"});
-#line 37
+                            "00000000-0000-0000-0000-00000000000b"});
+#line 76
  testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table19, "Then ");
 #line hidden
-#line 41
- testRunner.And("should throw exception of type AssertFailedException with message containing \'The" +
-                        " rows at position 2 are different.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 80
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 2.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 42
+#line 81
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
-                        "perty: PropB. Expected <00000000-0000-0000-0000-000000000002>, Actual: <null>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "perty: PropB. Actual <00000000-0000-0000-0000-00000000000-> is not a valid Guid\'" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 05 - Key Guid - Expected values should pass")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_05_KeyGuid_ExpectedValuesShouldPass()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 05 - Key Guid - Expected values should pass", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 83
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 84
+ testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"00000000-0000-0000-0000-" +
+                        "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
+                        " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA",
+                            "PropB:Key:Guid"});
+                table20.AddRow(new string[] {
+                            "1",
+                            "00000000-0000-0000-0000-00000000000a"});
+                table20.AddRow(new string[] {
+                            "2",
+                            "00000000-0000-0000-0000-00000000000B"});
+#line 86
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table20, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 06 - Key Guid - Unexpected values should fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_06_KeyGuid_UnexpectedValuesShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 06 - Key Guid - Unexpected values should fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 91
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 92
+ testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"00000000-0000-0000-0000-" +
+                        "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
+                        " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA",
+                            "PropB:Key:Guid"});
+                table21.AddRow(new string[] {
+                            "1",
+                            "00000000-0000-0000-0000-000000000001"});
+                table21.AddRow(new string[] {
+                            "2",
+                            "00000000-0000-0000-0000-00000000000b"});
+#line 94
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table21, "Then ");
+#line hidden
+#line 98
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 1.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 99
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Exp" +
+                        "ected row not found in actual\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 07 - Key Guid - Invalid expected values should fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_07_KeyGuid_InvalidExpectedValuesShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 07 - Key Guid - Invalid expected values should fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 101
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 102
+ testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"00000000-0000-0000-0000-" +
+                        "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
+                        " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA",
+                            "PropB:Key:Guid"});
+                table22.AddRow(new string[] {
+                            "1",
+                            "00000000-0000-0000-0000-00000000000a"});
+                table22.AddRow(new string[] {
+                            "2",
+                            "00000000-0000-0000-0000-00000000000-"});
+#line 104
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table22, "Then ");
+#line hidden
+#line 108
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 2.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 109
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
+                        "perty: PropB. Expected <00000000-0000-0000-0000-00000000000-> is not a valid Gui" +
+                        "d\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 08 - Compose Key Guid - Expected values should pass")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_08_ComposeKeyGuid_ExpectedValuesShouldPass()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 08 - Compose Key Guid - Expected values should pass", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 111
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 112
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""C"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""D"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Key:Guid",
+                            "PropA:Key:Number",
+                            "PropC"});
+                table23.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table23.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000A",
+                            "2",
+                            "B"});
+                table23.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "3",
+                            "C"});
+                table23.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000b",
+                            "1",
+                            "D"});
+#line 114
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table23, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 09 - Compose Key Guid - Unexpected values should fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_09_ComposeKeyGuid_UnexpectedValuesShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 09 - Compose Key Guid - Unexpected values should fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 121
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 122
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""C"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""D"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Key:Guid",
+                            "PropA:Key:Number",
+                            "PropC"});
+                table24.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table24.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000A",
+                            "2",
+                            "B"});
+                table24.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000d",
+                            "3",
+                            "C"});
+                table24.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000b",
+                            "1",
+                            "D"});
+#line 124
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table24, "Then ");
+#line hidden
+#line 130
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 3.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 131
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Exp" +
+                        "ected row not found in actual\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 10 - Compose Key Guid - Invalid expected values should " +
+            "fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_10_ComposeKeyGuid_InvalidExpectedValuesShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 10 - Compose Key Guid - Invalid expected values should " +
+                    "fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 133
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 134
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""C"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""D"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Key:Guid",
+                            "PropA:Key:Number",
+                            "PropC"});
+                table25.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table25.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000-",
+                            "2",
+                            "B"});
+                table25.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000d",
+                            "3",
+                            "C"});
+                table25.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000b",
+                            "1",
+                            "D"});
+#line 136
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table25, "Then ");
+#line hidden
+#line 142
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 2.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 143
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
+                        "perty: PropB. Expected <00000000-0000-0000-0000-00000000000-> is not a valid Gui" +
+                        "d\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Guid fields in an array - 11 - Compose Key Guid - Invalid actual values should fa" +
+            "il")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void GuidFieldsInAnArray_11_ComposeKeyGuid_InvalidActualValuesShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Guid fields in an array - 11 - Compose Key Guid - Invalid actual values should fa" +
+                    "il", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 145
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 146
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000-"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""C"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""D"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Key:Guid",
+                            "PropA:Key:Number",
+                            "PropC"});
+                table26.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table26.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "2",
+                            "B"});
+                table26.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "3",
+                            "C"});
+                table26.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000b",
+                            "1",
+                            "D"});
+#line 148
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table26, "Then ");
+#line hidden
+#line 154
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 1.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 155
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Exp" +
+                        "ected row not found in actual\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
