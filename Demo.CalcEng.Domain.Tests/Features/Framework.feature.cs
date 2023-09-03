@@ -820,6 +820,362 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fields in an array - 01 - Without Key - Should pass")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void FieldsInAnArray_01_WithoutKey_ShouldPass()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fields in an array - 01 - Without Key - Should pass", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 158
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 159
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Guid",
+                            "PropA:Number",
+                            "PropC"});
+                table27.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table27.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000b",
+                            "2",
+                            "B"});
+                table27.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000c",
+                            "3",
+                            "C"});
+#line 161
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table27, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fields in an array - 02 - Single Key - Should pass")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void FieldsInAnArray_02_SingleKey_ShouldPass()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fields in an array - 02 - Single Key - Should pass", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 167
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 168
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Key:Guid",
+                            "PropA:Number",
+                            "PropC"});
+                table28.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table28.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000b",
+                            "2",
+                            "B"});
+                table28.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000c",
+                            "3",
+                            "C"});
+#line 170
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table28, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fields in an array - 03 - Single Key - Key found multiple times in actual should " +
+            "fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void FieldsInAnArray_03_SingleKey_KeyFoundMultipleTimesInActualShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fields in an array - 03 - Single Key - Key found multiple times in actual should " +
+                    "fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 176
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 177
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Key:Guid",
+                            "PropA:Number",
+                            "PropC"});
+                table29.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table29.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000b",
+                            "2",
+                            "B"});
+                table29.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000c",
+                            "3",
+                            "C"});
+#line 179
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table29, "Then ");
+#line hidden
+#line 184
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 1.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 185
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Exp" +
+                        "ected row key found 2 times in actual\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fields in an array - 04 - Compose Key - Key found multiple times in actual should" +
+            " fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void FieldsInAnArray_04_ComposeKey_KeyFoundMultipleTimesInActualShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fields in an array - 04 - Compose Key - Key found multiple times in actual should" +
+                    " fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 187
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 188
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Key:Guid",
+                            "PropA:Key:Number",
+                            "PropC"});
+                table30.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table30.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000b",
+                            "2",
+                            "B"});
+                table30.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000c",
+                            "3",
+                            "C"});
+#line 190
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table30, "Then ");
+#line hidden
+#line 195
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 1.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 196
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Exp" +
+                        "ected row key found 2 times in actual\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fields in an array - 05 - Single Key - Duplicated expected key should fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void FieldsInAnArray_05_SingleKey_DuplicatedExpectedKeyShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fields in an array - 05 - Single Key - Duplicated expected key should fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 198
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 199
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Key:Guid",
+                            "PropA:Number",
+                            "PropC"});
+                table31.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table31.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "2",
+                            "B"});
+                table31.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000c",
+                            "3",
+                            "C"});
+#line 201
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table31, "Then ");
+#line hidden
+#line 206
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 2.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 207
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Dup" +
+                        "licated Key PropB: 00000000-0000-0000-0000-00000000000a\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fields in an array - 06 - Compose Key - Duplicated expected key should fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void FieldsInAnArray_06_ComposeKey_DuplicatedExpectedKeyShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fields in an array - 06 - Compose Key - Duplicated expected key should fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 209
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 210
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""C"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""D"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Key:Guid",
+                            "PropA:Key:Number",
+                            "PropC"});
+                table32.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table32.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "B"});
+                table32.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000d",
+                            "3",
+                            "C"});
+                table32.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000b",
+                            "1",
+                            "D"});
+#line 212
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table32, "Then ");
+#line hidden
+#line 218
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 2.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 219
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Dup" +
+                        "licated Key PropB: 00000000-0000-0000-0000-00000000000a, PropA: 1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fields in an array - 07 - Without Key - Property not found should fail")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "FrameworkTest")]
+        public void FieldsInAnArray_07_WithoutKey_PropertyNotFoundShouldFail()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fields in an array - 07 - Without Key - Property not found should fail", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 221
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 222
+ testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropAA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropB:Guid",
+                            "PropA:Number",
+                            "PropC"});
+                table33.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000a",
+                            "1",
+                            "A"});
+                table33.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000b",
+                            "2",
+                            "B"});
+                table33.AddRow(new string[] {
+                            "00000000-0000-0000-0000-00000000000c",
+                            "3",
+                            "C"});
+#line 224
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table33, "Then ");
+#line hidden
+#line 229
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 2.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 230
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
+                        "perty PropA not found\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
