@@ -153,3 +153,78 @@ Scenario: Guid fields in an array - 11 - Compose Key Guid - Invalid actual value
 		| 00000000-0000-0000-0000-00000000000b | 1                | D     |
 	And should throw exception of type AssertFailedException with message containing 'Comparing rows at position 1.'
 	And should throw exception of type AssertFailedException with message containing 'Expected row not found in actual'
+
+
+Scenario: Fields in an array - 01 - Without Key - Should pass
+	When returned content is the array '[ { "PropA": 1, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "A" }, { "PropA": 2, "PropB": "00000000-0000-0000-0000-00000000000b", "PropC": "B" }, { "PropA": 3, "PropB": "00000000-0000-0000-0000-00000000000c", "PropC": "C" } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropB:Guid                           | PropA:Number | PropC |
+		| 00000000-0000-0000-0000-00000000000a | 1            | A     |
+		| 00000000-0000-0000-0000-00000000000b | 2            | B     |
+		| 00000000-0000-0000-0000-00000000000c | 3            | C     |
+
+Scenario: Fields in an array - 02 - Single Key - Should pass
+	When returned content is the array '[ { "PropA": 1, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "A" }, { "PropA": 2, "PropB": "00000000-0000-0000-0000-00000000000b", "PropC": "B" }, { "PropA": 3, "PropB": "00000000-0000-0000-0000-00000000000c", "PropC": "C" } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropB:Key:Guid                       | PropA:Number | PropC |
+		| 00000000-0000-0000-0000-00000000000a | 1            | A     |
+		| 00000000-0000-0000-0000-00000000000b | 2            | B     |
+		| 00000000-0000-0000-0000-00000000000c | 3            | C     |
+
+Scenario: Fields in an array - 03 - Single Key - Key found multiple times in actual should fail
+	When returned content is the array '[ { "PropA": 1, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "A" }, { "PropA": 2, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "B" }, { "PropA": 3, "PropB": "00000000-0000-0000-0000-00000000000c", "PropC": "C" } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropB:Key:Guid                       | PropA:Number | PropC |
+		| 00000000-0000-0000-0000-00000000000a | 1            | A     |
+		| 00000000-0000-0000-0000-00000000000b | 2            | B     |
+		| 00000000-0000-0000-0000-00000000000c | 3            | C     |
+	And should throw exception of type AssertFailedException with message containing 'Comparing rows at position 1.'
+	And should throw exception of type AssertFailedException with message containing 'Expected row key found 2 times in actual'
+
+Scenario: Fields in an array - 04 - Compose Key - Key found multiple times in actual should fail
+	When returned content is the array '[ { "PropA": 1, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "A" }, { "PropA": 1, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "B" }, { "PropA": 3, "PropB": "00000000-0000-0000-0000-00000000000c", "PropC": "C" } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropB:Key:Guid                       | PropA:Key:Number | PropC |
+		| 00000000-0000-0000-0000-00000000000a | 1                | A     |
+		| 00000000-0000-0000-0000-00000000000b | 2                | B     |
+		| 00000000-0000-0000-0000-00000000000c | 3                | C     |
+	And should throw exception of type AssertFailedException with message containing 'Comparing rows at position 1.'
+	And should throw exception of type AssertFailedException with message containing 'Expected row key found 2 times in actual'
+
+Scenario: Fields in an array - 05 - Single Key - Duplicated expected key should fail
+	When returned content is the array '[ { "PropA": 1, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "A" }, { "PropA": 2, "PropB": "00000000-0000-0000-0000-00000000000b", "PropC": "B" }, { "PropA": 3, "PropB": "00000000-0000-0000-0000-00000000000c", "PropC": "C" } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropB:Key:Guid                       | PropA:Number | PropC |
+		| 00000000-0000-0000-0000-00000000000a | 1            | A     |
+		| 00000000-0000-0000-0000-00000000000a | 2            | B     |
+		| 00000000-0000-0000-0000-00000000000c | 3            | C     |
+	And should throw exception of type AssertFailedException with message containing 'Comparing rows at position 2.'
+	And should throw exception of type AssertFailedException with message containing 'Duplicated Key PropB: 00000000-0000-0000-0000-00000000000a'
+
+Scenario: Fields in an array - 06 - Compose Key - Duplicated expected key should fail
+	When returned content is the array '[ { "PropA": 1, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "A" }, { "PropA": 2, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "B" }, { "PropA": 3, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "C" }, { "PropA": 1, "PropB": "00000000-0000-0000-0000-00000000000b", "PropC": "D" } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropB:Key:Guid                       | PropA:Key:Number | PropC |
+		| 00000000-0000-0000-0000-00000000000a | 1                | A     |
+		| 00000000-0000-0000-0000-00000000000a | 1                | B     |
+		| 00000000-0000-0000-0000-00000000000d | 3                | C     |
+		| 00000000-0000-0000-0000-00000000000b | 1                | D     |
+	And should throw exception of type AssertFailedException with message containing 'Comparing rows at position 2.'
+	And should throw exception of type AssertFailedException with message containing 'Duplicated Key PropB: 00000000-0000-0000-0000-00000000000a, PropA: 1'
+
+Scenario: Fields in an array - 07 - Without Key - Property not found should fail
+	When returned content is the array '[ { "PropA": 1, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "A" }, { "PropAA": 2, "PropB": "00000000-0000-0000-0000-00000000000b", "PropC": "B" }, { "PropA": 3, "PropB": "00000000-0000-0000-0000-00000000000c", "PropC": "C" } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropB:Guid                           | PropA:Number | PropC |
+		| 00000000-0000-0000-0000-00000000000a | 1            | A     |
+		| 00000000-0000-0000-0000-00000000000b | 2            | B     |
+		| 00000000-0000-0000-0000-00000000000c | 3            | C     |
+	And should throw exception of type AssertFailedException with message containing 'Comparing rows at position 2.'
+	And should throw exception of type AssertFailedException with message containing 'Property PropA not found'

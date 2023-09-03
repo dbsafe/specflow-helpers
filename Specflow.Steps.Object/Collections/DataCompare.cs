@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Specflow.Steps.Object.Collections
@@ -13,10 +14,11 @@ namespace Specflow.Steps.Object.Collections
                 return false;
             }
 
+            var composedKeys = new List<string>();
             for (int i = 0; i < expected.Rows.Length; i++)
             {
                 var expectedRow = expected.Rows[i];
-                var areEquals = Compare(i, expectedRow, actual, out message);
+                var areEquals = Compare(i, expectedRow, actual, composedKeys, out message);
                 if (!areEquals)
                 {
                     return false;
@@ -27,24 +29,41 @@ namespace Specflow.Steps.Object.Collections
             return true;
         }
 
-        private static bool Compare(int index, DataRow expectedRow, DataCollection actual, out string message)
+        private static bool Compare(int index, DataRow expectedRow, DataCollection actual, List<string> composedKeys, out string message)
         {
-            var keyPropertyNames = expectedRow.GetKeyPropertyNames();
-            var composedKey = expectedRow.GetComposedKey(keyPropertyNames);
+            var composedKey = expectedRow.GetComposedKey();
             if (string.IsNullOrEmpty(composedKey))
             {
                 return CompareUsingIndex(index, expectedRow, actual, out message);
             }
-            else
+
+            if (IsComposeKeyDuplicated(composedKey, composedKeys, expectedRow, index, out message))
             {
-                if (CompareUsingComposedKey(keyPropertyNames, composedKey, expectedRow, actual, out message))
-                {
-                    return true;
-                }
-                
-                message = $"Comparing rows at position {index + 1}.\n{message}";
                 return false;
             }
+
+            composedKeys.Add(composedKey);
+            if (CompareUsingComposedKey(composedKey, expectedRow, actual, out message))
+            {
+                return true;
+            }
+
+            message = $"Comparing rows at position {index + 1}.\n{message}";
+            return false;
+        }
+
+        private static bool IsComposeKeyDuplicated(string composedKey, List<string> composedKeys, DataRow expectedRow, int index, out string message)
+        {
+            if (composedKeys.Contains(composedKey))
+            {
+                var composedKeyCells = expectedRow.GetComposedKeyCells();
+                var composedKeyValues = composedKeyCells.Select(a => $"{a.Name}: {a.Value.ToString()}");
+                message = $"Comparing rows at position {index + 1}.\nDuplicated Key {string.Join(", ", composedKeyValues)}";
+                return true;
+            }
+
+            message = string.Empty;
+            return false;
         }
 
         private static bool IsExpectedValid(DataCell expected, out string message)
@@ -80,12 +99,12 @@ namespace Specflow.Steps.Object.Collections
             return true;
         }
 
-        private static bool AreExpectedKeysValid(string[] keyPropertyNames, DataRow expectedRow, out string message)
+        private static bool AreExpectedKeysValid(IEnumerable<string> keyPropertyNames, DataRow expectedRow, out string message)
         {
-            foreach (var keyPropertyName in keyPropertyNames)
+            var expectedCells = expectedRow.GetCellsByName(keyPropertyNames);
+            foreach (var expectedCell in expectedCells)
             {
-                var expected = expectedRow.Values.First(a => a.Name == keyPropertyName);
-                if (!IsExpectedValid(expected, out message))
+                if (!IsExpectedValid(expectedCell, out message))
                 {
                     return false;
                 }
@@ -95,19 +114,15 @@ namespace Specflow.Steps.Object.Collections
             return true;
         }
 
-        private static bool CompareUsingComposedKey(
-            string[] keyPropertyNames,
-            string composedKey,
-            DataRow expectedRow,
-            DataCollection actual,
-            out string message)
+        private static bool CompareUsingComposedKey(string composedKey, DataRow expectedRow, DataCollection actual, out string message)
         {
+            var keyPropertyNames = expectedRow.GetKeyPropertyNames();
             if (!AreExpectedKeysValid(keyPropertyNames, expectedRow, out message))
             {
                 return false;
             }
 
-            var actualRowsFound = actual.Rows.Where(a => a.GetComposedKey(keyPropertyNames) == composedKey).ToArray();
+            var actualRowsFound = actual.Rows.Where(a => a.GetComposedKeyByName(keyPropertyNames) == composedKey).ToArray();
             if (actualRowsFound.Length == 0)
             {
                 message = $"Expected row not found in actual";
@@ -120,8 +135,7 @@ namespace Specflow.Steps.Object.Collections
                 return false;
             }
 
-            var areEquals = Compare(expectedRow, actualRowsFound[0], out message);
-            if (!areEquals)
+            if (!Compare(expectedRow, actualRowsFound[0], out message))
             {
                 return false;
             }
@@ -163,13 +177,13 @@ namespace Specflow.Steps.Object.Collections
 
                 if (actualValue.Length == 0)
                 {
-                    message = $"Property '{expectedValue.Name}' not found";
+                    message = $"Property {expectedValue.Name} not found";
                     return false;
                 }
 
                 if (actualValue.Length > 1)
                 {
-                    message = $"Duplicated property '{expectedValue.Name}'";
+                    message = $"Duplicated property {expectedValue.Name}";
                     return false;
                 }
 

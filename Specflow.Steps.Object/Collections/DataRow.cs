@@ -37,24 +37,51 @@ namespace Specflow.Steps.Object.Collections
             return new DataRow { Values = values.ToArray() };
         }
 
-        public string GetComposedKey(string[] keyNames)
+        /// <summary>
+        /// Used to get the Compose Key from the Actual values
+        /// </summary>
+        /// <param name="keyNames">Name of the fields that are Key in the Expected values</param>
+        /// <returns></returns>
+        public string GetComposedKeyByName(IEnumerable<string> keyNames)
         {
-            IEnumerable<string> keys = Enumerable.Empty<string>();
-            // add one key at the time to keep the order.
-            foreach (var keyName in keyNames)
-            {
-                var newKey = Values
-                    .Where(a => a.Name == keyName)
-                    .Select(a => a.Type == typeof(Guid) ? a.Value.ToString().ToLower() : a.Value.ToString());
-                keys = keys.Union(newKey);
-            }
-
-            return string.Join("_", keys);
+            return BuildComposeKey(GetCellsByName(keyNames));
         }
 
-        public string[] GetKeyPropertyNames()
+        /// <summary>
+        /// Used to get the Compose Key from the Expected values
+        /// </summary>
+        /// <returns></returns>
+        public string GetComposedKey()
         {
-            return Values.Where(a => a.IsKey).Select(a => a.Name).ToArray();
+            return BuildComposeKey(GetComposedKeyCells());
+        }
+
+        private string BuildComposeKey(IEnumerable<DataCell> composeKeyCells)
+        {
+            var cellKeys = composeKeyCells
+                .Select(a => a.Type == typeof(Guid) ? a.Value.ToString().ToLower() : a.Value.ToString());
+            return string.Join("/", cellKeys);
+        }
+
+        public IEnumerable<DataCell> GetCellsByName(IEnumerable<string> names)
+        {
+            IEnumerable<DataCell> cells = Enumerable.Empty<DataCell>();
+
+            // add one key at the time to keep the order.
+            foreach (var name in names)
+            {
+                var newKey = Values.Where(a => a.Name == name);
+                cells = cells.Union(newKey);
+            }
+
+            return cells;
+        }
+
+        public IEnumerable<DataCell> GetComposedKeyCells() => Values.Where(a => a.IsKey);
+
+        public IEnumerable<string> GetKeyPropertyNames()
+        {
+            return GetComposedKeyCells().Select(a => a.Name).ToArray();
         }
     }
 }
