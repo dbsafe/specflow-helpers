@@ -59,8 +59,32 @@ namespace Specflow.Steps.Object.Collections
         private string BuildComposeKey(IEnumerable<DataCell> composeKeyCells)
         {
             var cellKeys = composeKeyCells
-                .Select(a => a.Type == typeof(Guid) ? a.Value.ToString().ToLower() : a.Value.ToString());
+                .Select(DataCellToKey);
             return string.Join("/", cellKeys);
+        }
+
+        private string DataCellToKey(DataCell dataCell)
+        {
+            if (dataCell.Type == typeof(Guid))
+            {
+                return dataCell.Value.ToString().ToLower();
+            }
+
+            if (dataCell.Type == typeof(DateTime))
+            {
+                var dateTime = dataCell.Value.GetType() == typeof(DateTime) ? (DateTime)dataCell.Value : DateTime.Parse(dataCell.Value.ToString());
+
+                return $"{dateTime.Ticks}_{dateTime.Kind}";
+            }
+
+            if (dataCell.Type == typeof(DateTimeOffset))
+            {
+                var dateTime = dataCell.Value.GetType() == typeof(DateTimeOffset) ? (DateTimeOffset)dataCell.Value : DateTimeOffset.Parse(dataCell.Value.ToString());
+
+                return $"{dateTime.UtcTicks}";
+            }
+
+            return dataCell.Value.ToString();
         }
 
         public IEnumerable<DataCell> GetCellsByName(IEnumerable<string> names)

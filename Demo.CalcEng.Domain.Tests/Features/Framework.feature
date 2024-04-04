@@ -154,6 +154,42 @@ Scenario: Guid fields in an array - 11 - Compose Key Guid - Invalid actual value
 	And should throw exception of type AssertFailedException with message containing 'Comparing rows at position 1.'
 	And should throw exception of type AssertFailedException with message containing 'Expected row not found in actual'
 
+Scenario: DateTime fields in an array - 01 - Key DateTime - Expected values should pass
+	When returned content is the array '[ { "PropA": 1, "PropB": "2020-01-02 10:20:30" }, { "PropA": 2, "PropB": "2020-01-02 10:20:31" } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropA | PropB:Key:DateTime  |
+		| 1     | 2020-01-02 10:20:30 |
+		| 2     | 2020-01-02 10:20:31 |
+
+Scenario: DateTime fields in an array - 02 - Key DateTime - Unexpected values should fail
+	When returned content is the array '[ { "PropA": 1, "PropB": "2020-01-02 10:20:30" }, { "PropA": 2, "PropB": "2020-01-02 10:20:31" } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropA | PropB:Key:DateTime  |
+		| 1     | 2020-01-02 10:20:32 |
+		| 2     | 2020-01-02 10:20:31 |
+	And should throw exception of type AssertFailedException with message containing 'Comparing rows at position 1.'
+	And should throw exception of type AssertFailedException with message containing 'Expected row not found in actual'
+
+Scenario: DateTime fields in an array - 03 - Key DateTime - Invalid expected value should fail
+	When returned content is the array '[ { "PropA": 1, "PropB": "2020-01-02 10:20:30" }, { "PropA": 2, "PropB": "2020-01-02 10:20:31" } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropA | PropB:Key:DateTime  |
+		| 1     | 2020-01-02 10:20:30 |
+		| 2     | 2020-01-02 10:20:-- |
+	
+	And should throw exception of type CollectionException with message containing 'Property: PropB. Expected <2020-01-02 10:20:--> is not a valid DateTime'
+
+Scenario: DateTime fields in an array - 04 - Compose Key DateTime - Expected values should pass
+	When returned content is the array '[ { "PropA": 1, "PropB": "2020-01-02 10:20:30", "PropC": 2 }, { "PropA": 2, "PropB": "2020-01-02 10:20:31", "PropC": 3 }, { "PropA": 2, "PropB": "2020-01-02 10:20:31", "PropC": 1 } ]'
+	
+	Then jpath '$' should be the complex-element array (framework-test)
+		| PropA | PropB:Key:DateTime  | PropC:Key |
+		| 1     | 2020-01-02 10:20:30 | 2         |
+		| 2     | 2020-01-02 10:20:31 | 3         |
+		| 2     | 2020-01-02 10:20:31 | 1         |
 
 Scenario: Fields in an array - 01 - Without Key - Should pass
 	When returned content is the array '[ { "PropA": 1, "PropB": "00000000-0000-0000-0000-00000000000a", "PropC": "A" }, { "PropA": 2, "PropB": "00000000-0000-0000-0000-00000000000b", "PropC": "B" }, { "PropA": 3, "PropB": "00000000-0000-0000-0000-00000000000c", "PropC": "C" } ]'

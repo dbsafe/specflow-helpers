@@ -14,6 +14,14 @@ namespace Specflow.Steps.Object.Collections
                 return false;
             }
 
+            if (expected.Rows.Length == 0)
+            {
+                message = $"Expected cannot be empty";
+                return false;
+            }
+
+            SetTypeInActual(expected.Rows.First(), actual);
+            
             var composedKeys = new List<string>();
             for (int i = 0; i < expected.Rows.Length; i++)
             {
@@ -27,6 +35,21 @@ namespace Specflow.Steps.Object.Collections
 
             message = string.Empty;
             return true;
+        }
+
+        private static void SetTypeInActual(DataRow firstExpected, DataCollection actual)
+        {
+            foreach (var actualRow in actual.Rows)
+            {
+                foreach (var expectedCell in firstExpected.Values)
+                {
+                    var foundActualCell = actualRow.Values.FirstOrDefault(v => v.Name == expectedCell.Name);
+                    if (foundActualCell != null)
+                    {
+                        foundActualCell.Type = expectedCell.Type;
+                    }
+                }
+            }
         }
 
         private static bool Compare(int index, DataRow expectedRow, DataCollection actual, List<string> composedKeys, out string message)
