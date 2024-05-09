@@ -48,7 +48,7 @@
 
   <ItemGroup>
     <PackageReference Include="DbSafe" Version="1.1.1.31" />
-    <PackageReference Include="Npgsql" Version="7.0.4" />
+    <PackageReference Include="Npgsql" Version="8.0.3" />
     <PackageReference Include="PgDbSafe" Version="1.1.1.31" />
     <PackageReference Include="SpecFlow" Version="3.9.74" />
   </ItemGroup>
