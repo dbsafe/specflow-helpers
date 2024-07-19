@@ -123,6 +123,23 @@ Scenario: Request Domain Items
 	And jpath '$.OperationResult[?(@.PropA=='item3-pa')].Value' should be the number 300
 	And jpath '$.OperationResult[?(@.PropA=='item1-pa')].PropB' should be NULL
 
+Scenario: Request Domain Items with DateTimeOffset
+	When I request domain items with DateTimeOffset
+
+	# Assert an array with complex elements -
+	Then property OperationResult should be the complex-element array
+	# key column(s)
+	# data type
+		| PropA:key | Date:DateTimeOffset    |
+		| item1-pa  | 2000-01-01T00:00-07:00 |
+		| item2-pa  | 2000-01-02Z            |
+
+	# using JPath
+	And jpath '$.OperationResult' should be the complex-element array
+		| PropA:key | Date:DateTimeOffset    |
+		| item1-pa  | 2000-01-01T00:00-07:00 |
+		| item2-pa  | 2000-01-02Z            |
+
 Scenario: Request Domain Items as Array
 	When I request domain items as array
 

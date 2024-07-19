@@ -50,6 +50,13 @@ namespace Demo.CalcEng.Domain.Tests
             SetResponse(operationResponse);
         }
 
+        [When(@"I request domain items with DateTimeOffset")]
+        public void RequestDomainItemsWithDateTimeOffset()
+        {
+            var operationResponse = _calcEng.GetDomainItemsWithDateTimeOffset();
+            SetResponse(operationResponse);
+        }
+
         [When(@"I request domain items as array")]
         public void RequestDomainItemsAsArray()
         {

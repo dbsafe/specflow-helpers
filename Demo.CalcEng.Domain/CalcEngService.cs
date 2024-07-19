@@ -42,6 +42,12 @@ namespace Demo.CalcEng.Domain
         public Guid? ExternalId { get; set; }
     }
 
+    public class DomainItemWithDateTimeOffset
+    {
+        public DateTimeOffset? Date { get; set; }
+        public string PropA { get; set; }
+    }
+
     public class Row
     {
         public int FieldA { get; set; }
@@ -72,6 +78,12 @@ namespace Demo.CalcEng.Domain
             new DomainItem { Date = new DateTime(2000, 1, 2), PropA = "item2-pa", PropB = "item2-pb", Value = 200m, IsSmall = false, ExternalId = Guid.Parse("00000000-0000-0000-0000-000000000002") },
             new DomainItem { Date = new DateTime(2000, 1, 3), PropA = "item3-pa", PropB = "item3-pb", Value = 300m, IsSmall = false, ExternalId = Guid.Parse("00000000-0000-0000-0000-000000000003") },
             new DomainItem { Date = new DateTime(2000, 1, 4), PropA = "item4-pa", PropB = "item4-pb", Value = 400m, IsSmall = false, ExternalId = Guid.Parse("00000000-0000-0000-0000-000000000004") }
+        };
+
+        private readonly DomainItemWithDateTimeOffset[] _domainItemsWithDateTimeOffset = new DomainItemWithDateTimeOffset[]
+        {
+            new DomainItemWithDateTimeOffset { Date = new DateTimeOffset(new DateTime(2000, 1, 1), TimeSpan.FromHours(-7)), PropA = "item1-pa" },
+            new DomainItemWithDateTimeOffset { Date = new DateTimeOffset(new DateTime(2000, 1, 2), TimeSpan.Zero), PropA = "item2-pa" }
         };
 
         public OperationResponse<decimal> Sum(TwoNumbersOperationRequest request)
@@ -136,6 +148,11 @@ namespace Demo.CalcEng.Domain
         public OperationResponse<DomainItem[]> GetDomainItems()
         {
             return OperationResponse.CreateSucceed(_domainItems);
+        }
+
+        public OperationResponse<DomainItemWithDateTimeOffset[]> GetDomainItemsWithDateTimeOffset()
+        {
+            return OperationResponse.CreateSucceed(_domainItemsWithDateTimeOffset);
         }
 
         public DomainItem[] GetDomainItemsAsArray()

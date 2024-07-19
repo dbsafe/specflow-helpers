@@ -115,17 +115,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"2000-01-01\" }, { \"PropA\"" +
                         ": 2, \"PropB\": null } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:DateTime"});
-                table12.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "1",
                             "2000-01-01"});
-                table12.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "2",
                             "2000-01-02"});
 #line 7
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table12, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table14, "Then ");
 #line hidden
 #line 11
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -163,17 +163,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": 20.01 }, { \"PropA\": 2, \"P" +
                         "ropB\": null } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:Number"});
-                table13.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "1",
                             "20.01"});
-                table13.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "2",
                             "20.02"});
 #line 17
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table13, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table15, "Then ");
 #line hidden
 #line 21
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -211,17 +211,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": true }, { \"PropA\": 2, \"Pr" +
                         "opB\": null } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:Boolean"});
-                table14.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "1",
                             "true"});
-                table14.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "2",
                             "false"});
 #line 27
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table14, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table16, "Then ");
 #line hidden
 #line 31
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -259,17 +259,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"00000000-0000-0000-0000-" +
                         "000000000001\" }, { \"PropA\": 2, \"PropB\": null } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:Guid"});
-                table15.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "2",
                             "00000000-0000-0000-0000-000000000002"});
-                table15.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "1",
                             "00000000-0000-0000-0000-000000000001"});
 #line 37
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table15, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table17, "Then ");
 #line hidden
 #line 41
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -306,17 +306,17 @@ this.ScenarioInitialize(scenarioInfo);
                         "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
                         " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:Guid"});
-                table16.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "1",
                             "00000000-0000-0000-0000-00000000000a"});
-                table16.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "2",
                             "00000000-0000-0000-0000-00000000000B"});
 #line 48
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table16, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table18, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -345,17 +345,17 @@ this.ScenarioInitialize(scenarioInfo);
                         "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
                         " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:Guid"});
-                table17.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             "1",
                             "00000000-0000-0000-0000-000000000001"});
-                table17.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             "2",
                             "00000000-0000-0000-0000-00000000000b"});
 #line 56
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table17, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table19, "Then ");
 #line hidden
 #line 60
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -393,17 +393,17 @@ this.ScenarioInitialize(scenarioInfo);
                         "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
                         " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:Guid"});
-                table18.AddRow(new string[] {
+                table20.AddRow(new string[] {
                             "1",
                             "00000000-0000-0000-0000-00000000000-"});
-                table18.AddRow(new string[] {
+                table20.AddRow(new string[] {
                             "2",
                             "00000000-0000-0000-0000-00000000000b"});
 #line 66
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table18, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table20, "Then ");
 #line hidden
 #line 70
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -441,17 +441,17 @@ this.ScenarioInitialize(scenarioInfo);
                         "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000-\" }" +
                         " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB:Guid"});
-                table19.AddRow(new string[] {
+                table21.AddRow(new string[] {
                             "1",
                             "00000000-0000-0000-0000-00000000000a"});
-                table19.AddRow(new string[] {
+                table21.AddRow(new string[] {
                             "2",
                             "00000000-0000-0000-0000-00000000000b"});
 #line 76
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table19, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table21, "Then ");
 #line hidden
 #line 80
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -489,17 +489,17 @@ this.ScenarioInitialize(scenarioInfo);
                         "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
                         " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA",
                             "PropB:Key:Guid"});
-                table20.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "1",
                             "00000000-0000-0000-0000-00000000000a"});
-                table20.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "2",
                             "00000000-0000-0000-0000-00000000000B"});
 #line 86
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table20, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table22, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -528,17 +528,17 @@ this.ScenarioInitialize(scenarioInfo);
                         "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
                         " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA",
                             "PropB:Key:Guid"});
-                table21.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "1",
                             "00000000-0000-0000-0000-000000000001"});
-                table21.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "2",
                             "00000000-0000-0000-0000-00000000000b"});
 #line 94
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table21, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table23, "Then ");
 #line hidden
 #line 98
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -575,17 +575,17 @@ this.ScenarioInitialize(scenarioInfo);
                         "00000000000a\" }, { \"PropA\": 2, \"PropB\": \"00000000-0000-0000-0000-00000000000b\" }" +
                         " ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA",
                             "PropB:Key:Guid"});
-                table22.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "1",
                             "00000000-0000-0000-0000-00000000000a"});
-                table22.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "2",
                             "00000000-0000-0000-0000-00000000000-"});
 #line 104
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table22, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table24, "Then ");
 #line hidden
 #line 108
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -621,28 +621,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line 112
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""C"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""D"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Key:Guid",
                             "PropA:Key:Number",
                             "PropC"});
-                table23.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table23.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000A",
                             "2",
                             "B"});
-                table23.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "3",
                             "C"});
-                table23.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000b",
                             "1",
                             "D"});
 #line 114
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table23, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table25, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -669,28 +669,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line 122
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""C"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""D"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Key:Guid",
                             "PropA:Key:Number",
                             "PropC"});
-                table24.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table24.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000A",
                             "2",
                             "B"});
-                table24.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000d",
                             "3",
                             "C"});
-                table24.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000b",
                             "1",
                             "D"});
 #line 124
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table24, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table26, "Then ");
 #line hidden
 #line 130
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -727,28 +727,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line 134
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""C"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""D"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Key:Guid",
                             "PropA:Key:Number",
                             "PropC"});
-                table25.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table25.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000-",
                             "2",
                             "B"});
-                table25.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000d",
                             "3",
                             "C"});
-                table25.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000b",
                             "1",
                             "D"});
 #line 136
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table25, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table27, "Then ");
 #line hidden
 #line 142
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -786,28 +786,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line 146
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000-"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""C"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""D"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Key:Guid",
                             "PropA:Key:Number",
                             "PropC"});
-                table26.AddRow(new string[] {
+                table28.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table26.AddRow(new string[] {
+                table28.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "2",
                             "B"});
-                table26.AddRow(new string[] {
+                table28.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "3",
                             "C"});
-                table26.AddRow(new string[] {
+                table28.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000b",
                             "1",
                             "D"});
 #line 148
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table26, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table28, "Then ");
 #line hidden
 #line 154
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -843,17 +843,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"2020-01-02 10:20:30\" }, " +
                         "{ \"PropA\": 2, \"PropB\": \"2020-01-02 10:20:31\" } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA",
                             "PropB:Key:DateTime"});
-                table27.AddRow(new string[] {
+                table29.AddRow(new string[] {
                             "1",
                             "2020-01-02 10:20:30"});
-                table27.AddRow(new string[] {
+                table29.AddRow(new string[] {
                             "2",
                             "2020-01-02 10:20:31"});
 #line 160
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table27, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table29, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -881,17 +881,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"2020-01-02 10:20:30\" }, " +
                         "{ \"PropA\": 2, \"PropB\": \"2020-01-02 10:20:31\" } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA",
                             "PropB:Key:DateTime"});
-                table28.AddRow(new string[] {
+                table30.AddRow(new string[] {
                             "1",
                             "2020-01-02 10:20:32"});
-                table28.AddRow(new string[] {
+                table30.AddRow(new string[] {
                             "2",
                             "2020-01-02 10:20:31"});
 #line 168
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table28, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table30, "Then ");
 #line hidden
 #line 172
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -929,17 +929,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("returned content is the array \'[ { \"PropA\": 1, \"PropB\": \"2020-01-02 10:20:30\" }, " +
                         "{ \"PropA\": 2, \"PropB\": \"2020-01-02 10:20:31\" } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA",
                             "PropB:Key:DateTime"});
-                table29.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             "1",
                             "2020-01-02 10:20:30"});
-                table29.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             "2",
                             "2020-01-02 10:20:--"});
 #line 178
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table29, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table31, "Then ");
 #line hidden
 #line 183
  testRunner.And("should throw exception of type CollectionException with message containing \'Prope" +
@@ -974,24 +974,24 @@ this.ScenarioInitialize(scenarioInfo);
                         "ropC\": 2 }, { \"PropA\": 2, \"PropB\": \"2020-01-02 10:20:31\", \"PropC\": 3 }, { \"PropA" +
                         "\": 2, \"PropB\": \"2020-01-02 10:20:31\", \"PropC\": 1 } ]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA",
                             "PropB:Key:DateTime",
                             "PropC:Key"});
-                table30.AddRow(new string[] {
+                table32.AddRow(new string[] {
                             "1",
                             "2020-01-02 10:20:30",
                             "2"});
-                table30.AddRow(new string[] {
+                table32.AddRow(new string[] {
                             "2",
                             "2020-01-02 10:20:31",
                             "3"});
-                table30.AddRow(new string[] {
+                table32.AddRow(new string[] {
                             "2",
                             "2020-01-02 10:20:31",
                             "1"});
 #line 188
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table30, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table32, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1018,24 +1018,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line 195
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Guid",
                             "PropA:Number",
                             "PropC"});
-                table31.AddRow(new string[] {
+                table33.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table31.AddRow(new string[] {
+                table33.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000b",
                             "2",
                             "B"});
-                table31.AddRow(new string[] {
+                table33.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000c",
                             "3",
                             "C"});
 #line 197
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table31, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table33, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1062,24 +1062,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line 204
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Key:Guid",
                             "PropA:Number",
                             "PropC"});
-                table32.AddRow(new string[] {
+                table34.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table32.AddRow(new string[] {
+                table34.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000b",
                             "2",
                             "B"});
-                table32.AddRow(new string[] {
+                table34.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000c",
                             "3",
                             "C"});
 #line 206
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table32, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table34, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1108,24 +1108,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line 213
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Key:Guid",
                             "PropA:Number",
                             "PropC"});
-                table33.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table33.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000b",
                             "2",
                             "B"});
-                table33.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000c",
                             "3",
                             "C"});
 #line 215
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table33, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table35, "Then ");
 #line hidden
 #line 220
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -1162,24 +1162,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line 224
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Key:Guid",
                             "PropA:Key:Number",
                             "PropC"});
-                table34.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table34.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000b",
                             "2",
                             "B"});
-                table34.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000c",
                             "3",
                             "C"});
 #line 226
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table34, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table36, "Then ");
 #line hidden
 #line 231
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -1214,24 +1214,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line 235
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Key:Guid",
                             "PropA:Number",
                             "PropC"});
-                table35.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table35.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "2",
                             "B"});
-                table35.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000c",
                             "3",
                             "C"});
 #line 237
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table35, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table37, "Then ");
 #line hidden
 #line 242
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -1266,28 +1266,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line 246
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""C"" }, { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""D"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Key:Guid",
                             "PropA:Key:Number",
                             "PropC"});
-                table36.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table36.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "B"});
-                table36.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000d",
                             "3",
                             "C"});
-                table36.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000b",
                             "1",
                             "D"});
 #line 248
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table36, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table38, "Then ");
 #line hidden
 #line 254
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
@@ -1322,26 +1322,30 @@ this.ScenarioInitialize(scenarioInfo);
 #line 258
  testRunner.When(@"returned content is the array '[ { ""PropA"": 1, ""PropB"": ""00000000-0000-0000-0000-00000000000a"", ""PropC"": ""A"" }, { ""PropAA"": 2, ""PropB"": ""00000000-0000-0000-0000-00000000000b"", ""PropC"": ""B"" }, { ""PropA"": 3, ""PropB"": ""00000000-0000-0000-0000-00000000000c"", ""PropC"": ""C"" } ]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropB:Guid",
                             "PropA:Number",
                             "PropC"});
-                table37.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000a",
                             "1",
                             "A"});
-                table37.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000b",
                             "2",
                             "B"});
-                table37.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "00000000-0000-0000-0000-00000000000c",
                             "3",
                             "C"});
 #line 260
- testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table37, "Then ");
+ testRunner.Then("jpath \'$\' should be the complex-element array (framework-test)", ((string)(null)), table39, "Then ");
 #line hidden
 #line 265
+ testRunner.And("should throw exception of type AssertFailedException with message containing \'Com" +
+                        "paring rows at position 2.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 266
  testRunner.And("should throw exception of type AssertFailedException with message containing \'Pro" +
                         "perty PropA not found\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

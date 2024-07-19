@@ -507,13 +507,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Domain Items as Array")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Domain Items with DateTimeOffset")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
-        public void RequestDomainItemsAsArray()
+        public void RequestDomainItemsWithDateTimeOffset()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items as Array", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items with DateTimeOffset", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 126
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -525,59 +525,108 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 127
- testRunner.When("I request domain items as array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I request domain items with DateTimeOffset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "Date:DateTimeOffset"});
+                table7.AddRow(new string[] {
+                            "item1-pa",
+                            "2000-01-01T00:00-07:00"});
+                table7.AddRow(new string[] {
+                            "item2-pa",
+                            "2000-01-02Z"});
+#line 130
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table7, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "PropA:key",
+                            "Date:DateTimeOffset"});
+                table8.AddRow(new string[] {
+                            "item1-pa",
+                            "2000-01-01T00:00-07:00"});
+                table8.AddRow(new string[] {
+                            "item2-pa",
+                            "2000-01-02Z"});
+#line 138
+ testRunner.And("jpath \'$.OperationResult\' should be the complex-element array", ((string)(null)), table8, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Request Domain Items as Array")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalcEng")]
+        public void RequestDomainItemsAsArray()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items as Array", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 143
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 144
+ testRunner.When("I request domain items as array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
                             "IsSmall:Boolean",
                             "ExternalId:Guid"});
-                table7.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "item1-pa",
                             "[NULL]",
                             "2000-01-01",
                             "100",
                             "True",
                             "00000000-0000-0000-0000-000000000001"});
-                table7.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "item2-pa",
                             "item2-pb",
                             "2000-01-02",
                             "200",
                             "False",
                             "00000000-0000-0000-0000-000000000002"});
-                table7.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "item3-pa",
                             "item3-pb",
                             "2000-01-03",
                             "300",
                             "False",
                             "00000000-0000-0000-0000-000000000003"});
-                table7.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "item4-pa",
                             "item4-pb",
                             "2000-01-04",
                             "400",
                             "False",
                             "00000000-0000-0000-0000-000000000004"});
-#line 130
- testRunner.Then("jpath \'$\' should be the complex-element array", ((string)(null)), table7, "Then ");
+#line 147
+ testRunner.Then("jpath \'$\' should be the complex-element array", ((string)(null)), table9, "Then ");
 #line hidden
-#line 137
+#line 154
  testRunner.And("jpath \'$[?(@.PropA==\'item3-pa\')].PropB\' should be \'item3-pb\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 138
+#line 155
  testRunner.And("jpath \'$[?(@.PropA==\'item3-pa\')].IsSmall\' should be False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 139
+#line 156
  testRunner.And("jpath \'$[?(@.PropA==\'item3-pa\')].Date\' should be the datetime \'2000-01-03\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 140
+#line 157
  testRunner.And("jpath \'$[?(@.PropA==\'item3-pa\')].Value\' should be the number 300", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 141
+#line 158
  testRunner.And("jpath \'$[?(@.PropA==\'item1-pa\')].PropB\' should be NULL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -592,7 +641,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Ignore field", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 144
+#line 161
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -602,51 +651,51 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 145
+#line 162
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
                             "IsSmall:Boolean",
                             "ExternalId:Guid"});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "item1-pa",
                             "[IGNORE]",
                             "2000-01-01",
                             "100",
                             "True",
                             "00000000-0000-0000-0000-000000000001"});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "item2-pa",
                             "[IGNORE]",
                             "2000-01-02",
                             "200",
                             "False",
                             "00000000-0000-0000-0000-000000000002"});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "item3-pa",
                             "[IGNORE]",
                             "2000-01-03",
                             "300",
                             "False",
                             "00000000-0000-0000-0000-000000000003"});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "item4-pa",
                             "[IGNORE]",
                             "2000-01-04",
                             "400",
                             "False",
                             "00000000-0000-0000-0000-000000000004"});
-#line 146
- testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table8, "Then ");
+#line 163
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table10, "Then ");
 #line hidden
-#line 154
+#line 171
  testRunner.Then("property OperationResult should be an array with 4 items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 155
+#line 172
  testRunner.Then("jpath \'$.OperationResult\' should be an array with 4 items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -661,7 +710,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Filter array items", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 157
+#line 174
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -671,48 +720,48 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 158
+#line 175
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "FieldName",
                             "FieldValues"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "PropA",
                             "item1-pa,item2-pa,item4-pa"});
-#line 161
- testRunner.Given("I filter property OperationResult by", ((string)(null)), table9, "Given ");
+#line 178
+ testRunner.Given("I filter property OperationResult by", ((string)(null)), table11, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
                             "IsSmall:Boolean",
                             "ExternalId:Guid"});
-                table10.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "item1-pa",
                             "[NULL]",
                             "2000-01-01",
                             "100",
                             "True",
                             "00000000-0000-0000-0000-000000000001"});
-                table10.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "item2-pa",
                             "item2-pb",
                             "2000-01-02",
                             "200",
                             "False",
                             "00000000-0000-0000-0000-000000000002"});
-                table10.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "item4-pa",
                             "item4-pb",
                             "2000-01-04",
                             "400",
                             "False",
                             "00000000-0000-0000-0000-000000000004"});
-#line 164
- testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table10, "Then ");
+#line 181
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table12, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -726,7 +775,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items By Date", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 170
+#line 187
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -736,34 +785,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 172
+#line 189
  testRunner.Given("property Date equals to \'2000-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 174
+#line 191
  testRunner.And("property IsSmall equals to \'True\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 176
+#line 193
  testRunner.When("I request domain items by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "PropA:key",
                             "PropB",
                             "Date:DateTime",
                             "Value:Number",
                             "IsSmall:Boolean"});
-                table11.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "item1-pa",
                             "[NULL]",
                             "2000-01-01",
                             "100",
                             "True"});
-#line 178
- testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table11, "Then ");
+#line 195
+ testRunner.Then("property OperationResult should be the complex-element array", ((string)(null)), table13, "Then ");
 #line hidden
-#line 182
+#line 199
  testRunner.Then("property OperationResult should be an array with 1 item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 183
+#line 200
  testRunner.And("jpath \'$.OperationResult\' should be an array with 1 item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -778,7 +827,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items - Assert DtateTime property", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 186
+#line 203
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -788,13 +837,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 187
+#line 204
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 190
+#line 207
  testRunner.Then("property OperationResult[1].Date should be the datetime \'2000-01-02\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 192
+#line 209
  testRunner.Then("property OperationResult[1].Date should be the datetime \'2000-01-02 00:00:00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -809,7 +858,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Request Domain Items By Date - Returns empty array", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 194
+#line 211
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -819,16 +868,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 195
+#line 212
  testRunner.Given("property Date equals to \'1900-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 196
+#line 213
  testRunner.When("I request domain items by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 198
+#line 215
  testRunner.Then("property OperationResult should be an empty array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 199
+#line 216
  testRunner.And("jpath \'$.OperationResult\' should be an empty array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -843,7 +892,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calling a method that does not need parameters", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 201
+#line 218
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -853,10 +902,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 202
+#line 219
  testRunner.When("I request pi", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 203
+#line 220
  testRunner.Then("property OperationResult should be the number 3.14", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -871,7 +920,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating that a numeric value is in a range", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 205
+#line 222
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -881,13 +930,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 206
+#line 223
  testRunner.When("I request pi", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 207
+#line 224
  testRunner.Then("property OperationResult should be a number between 3.1 and 3.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 208
+#line 225
  testRunner.And("jpath \'$.OperationResult\' should be a number between 3.1 and 3.2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -902,7 +951,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating that a datetime value is in a range", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 210
+#line 227
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -912,14 +961,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 211
+#line 228
  testRunner.When("I request domain items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 212
+#line 229
  testRunner.Then("property OperationResult[1].Date should be a datetime between \'2000-01-01\' and \'2" +
                         "000-01-03\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 213
+#line 230
  testRunner.And("jpath \'$.OperationResult[1].Date\' should be a datetime between \'2000-01-01\' and \'" +
                         "2000-01-03\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -935,7 +984,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating a guid", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 215
+#line 232
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -945,18 +994,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 216
+#line 233
  testRunner.When("I request a guid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 217
+#line 234
  testRunner.Then("property OperationResult should be the guid \'b9c24d94-2d6c-4ea1-a0f2-03df67e4014d" +
                         "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 218
+#line 235
  testRunner.And("property OperationResult should be the guid \'B9C24D94-2D6C-4EA1-A0F2-03DF67E4014D" +
                         "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 219
+#line 236
  testRunner.And("jpath \'$.OperationResult\' should be the guid \'B9C24D94-2D6C-4EA1-A0F2-03DF67E4014" +
                         "D\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -972,7 +1021,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating a guid without dashes", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 221
+#line 238
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -982,14 +1031,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 222
+#line 239
  testRunner.When("I request a guid without dashes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 223
+#line 240
  testRunner.Then("property OperationResult should be the guid \'b9c24d94-2d6c-4ea1-a0f2-03df67e4014d" +
                         "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 224
+#line 241
  testRunner.And("property OperationResult should be the guid \'B9C24D94-2D6C-4EA1-A0F2-03DF67E4014D" +
                         "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
