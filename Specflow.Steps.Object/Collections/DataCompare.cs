@@ -113,7 +113,16 @@ namespace Specflow.Steps.Object.Collections
             {
                 if (!DateTime.TryParse(expected.Value.ToString(), out DateTime actualDateTime))
                 {
-                    message = $"Property: {expected.Name}. Expected <{expected.Value}> is not a valid DateTime";
+                    message = $"Property: {expected.Name}. Expected <{expected.Value}> is not a valid {nameof(DateTime)}";
+                    return false;
+                }
+            }
+
+            if (expected.Type == typeof(DateTimeOffset))
+            {
+                if (!DateTimeOffset.TryParse(expected.Value.ToString(), out DateTimeOffset actualDateTime))
+                {
+                    message = $"Property: {expected.Name}. Expected <{expected.Value}> is not a valid {nameof(DateTimeOffset)}";
                     return false;
                 }
             }
@@ -260,7 +269,31 @@ namespace Specflow.Steps.Object.Collections
             var expectedDateTime = (DateTime)expected.Value;
             if (!DateTime.TryParse(actual.Value.ToString(), out DateTime actualDateTime))
             {
-                message = $"Property: {expected.Name}. Actual <{actual.Value}> is not a valid DateTime";
+                message = $"Property: {expected.Name}. Actual <{actual.Value}> is not a valid {nameof(DateTime)}";
+                return false;
+            }
+
+            if (expectedDateTime != actualDateTime)
+            {
+                message = $"Property: {expected.Name}. Expected <{expected.Value}>, Actual: <{actual.Value}>";
+                return false;
+            }
+
+            message = string.Empty;
+            return true;
+        }
+
+        private static bool CompareDateTimeOffset(DataCell expected, DataCell actual, out string message)
+        {
+            if (IsActualValueNull(expected, actual, out message))
+            {
+                return false;
+            }
+
+            var expectedDateTime = (DateTimeOffset)expected.Value;
+            if (!DateTimeOffset.TryParse(actual.Value.ToString(), out DateTimeOffset actualDateTime))
+            {
+                message = $"Property: {expected.Name}. Actual <{actual.Value}> is not a valid {nameof(DateTimeOffset)}";
                 return false;
             }
 
@@ -369,6 +402,11 @@ namespace Specflow.Steps.Object.Collections
             if (expected.Type == typeof(DateTime))
             {
                 return CompareDateTime(expected, actual, out message);
+            }
+
+            if (expected.Type == typeof(DateTimeOffset))
+            {
+                return CompareDateTimeOffset(expected, actual, out message);
             }
 
             if (expected.Type == typeof(Guid))

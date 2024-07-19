@@ -102,7 +102,18 @@ namespace Specflow.Steps.Object.Collections
             {
                 if (!DateTime.TryParse(value, out DateTime decodedDatetime))
                 {
-                    var message = $"Property: {valueResult.Name}. Expected <{value}> is not a valid DateTime";
+                    var message = $"Property: {valueResult.Name}. Expected <{value}> is not a valid {nameof(DateTime)}";
+                    throw new CollectionException(message);
+                }
+
+                return decodedDatetime;
+            }
+
+            if (valueResult.Type == typeof(DateTimeOffset))
+            {
+                if (!DateTimeOffset.TryParse(value, out DateTimeOffset decodedDatetime))
+                {
+                    var message = $"Property: {valueResult.Name}. Expected <{value}> is not a valid {nameof(DateTimeOffset)}";
                     throw new CollectionException(message);
                 }
 
@@ -151,6 +162,8 @@ namespace Specflow.Steps.Object.Collections
             {
                 case "DateTime":
                     return typeof(DateTime);
+                case "DateTimeOffset":
+                    return typeof(DateTimeOffset);
                 case "Number":
                     return typeof(decimal);
                 case "Integer":
